@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Hello lahcen'),
+      child: Text('Hello lahcen guys',style: TextStyle(color: Colors.black12),),
     );
   }
 }
