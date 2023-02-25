@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Hello team , are you excited to start working'),
+      child: Text('Hello'),
     );
   }
 }
