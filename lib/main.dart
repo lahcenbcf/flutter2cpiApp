@@ -1,4 +1,6 @@
+import 'package:flluter2cpi/pages/home%20page/homePage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,8 +11,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Hello lahcen guys',style: TextStyle(color: Colors.black12),),
+    return ScreenUtilInit(
+      designSize: const Size(390, 844),
+      builder: (context, child) {
+        return const MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: SafeArea(
+            child: HomePage(),
+          ),
+        );
+      },
     );
   }
 }
