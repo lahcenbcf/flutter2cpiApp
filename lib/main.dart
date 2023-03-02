@@ -1,4 +1,4 @@
-import 'package:flluter2cpi/pages/home%20page/homePage.dart';
+import 'package:flluter2cpi/pages/homePage/homePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,10 +16,12 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return const MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: SafeArea(
-            child: HomePage(),
+          home:Scaffold(
+              body:Home()
           ),
-        );
+
+          );
+        
       },
     );
   }
