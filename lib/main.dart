@@ -15,28 +15,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return ScreenUtilInit(
-    //   designSize: const Size(390, 844),
-    //   builder: (context, child) {
-    //     return MaterialApp(
-    //       debugShowCheckedModeBanner: false,
-    //       routes: generateRoutes(context),
-    //       home: SafeArea(
-    //         child: MultiProvider(
-    //           providers: [
-    //             ChangeNotifierProvider(create: (context) => SignUpViewModel(),),
-    //             ChangeNotifierProvider(create: (context) => SchoolYearViewModel(),)
-    //           ],
-    //           builder: (context, child) =>  MaterialApp(
-    //             debugShowCheckedModeBanner: false,
-    //             routes: generateRoutes(context),
-
-    //           ),
-    //         ),
-    //       ),
-    //     );
-    //   },
-    // );
     return ScreenUtilInit(
       designSize: const Size(390, 844),
       builder: (context, child) {
@@ -53,7 +31,7 @@ class MyApp extends StatelessWidget {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
               routes: generateRoutes(context),
-              home: const SignUp(),
+              home: const SafeArea(child: SignUp()),
             );
           },
         );

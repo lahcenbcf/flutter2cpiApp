@@ -44,12 +44,15 @@ class YearSelecter extends StatelessWidget {
                       ),
                     ),
                     onTap: () {
+                      
                       state.enterYear();
                     },
                   ),
                 )
                 .toList(),
             onChanged: (newYear) {
+              state.setYear = newYear;
+              print(state.selectedYear);
               state.selectYear(newYear);
             },
             onMenuStateChange: (isOpen) => state.menuOpened(isOpen),

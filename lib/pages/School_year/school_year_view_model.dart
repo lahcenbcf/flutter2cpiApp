@@ -6,7 +6,7 @@ class SchoolYearViewModel extends ChangeNotifier{
   bool _isSchoolYearEntered = false;
   bool _buttonClicked = false;
 
-
+  set  setYear(String? year) => _selectedYear=year;
   String? get selectedYear =>_selectedYear;
   bool get menuOpen => _menuOpen;
   bool get isSchoolYearEntered => _isSchoolYearEntered;

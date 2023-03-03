@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 class SignUpViewModel extends ChangeNotifier {
   bool _isEyeOffPassword = false;
   bool _isEyeOffConfirmPassword = false;
+
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _lasttNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+      
 
   bool get isEyeOffPassword => _isEyeOffPassword;
   bool get isEyeOffConfirmPassword => _isEyeOffConfirmPassword;
@@ -29,6 +31,7 @@ class SignUpViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+// check for dots and spaces and other charachters
   bool checkfor(String text, String char) {
     int i = 0;
 
@@ -71,20 +74,28 @@ class SignUpViewModel extends ChangeNotifier {
     return null;
   }
 
+  bool checkSpaces(String input) {
+    int i = 0;
+    while (i < input.length && input[i] != " ") {
+      i++;
+    }
+    return i == input.length;
+  }
+
   String? emailValidator(String? email) {
-    if (email == null) {
+    if (email == null || email.length <= 11) {
       return "enter your email";
-    } else if (email.length < 12) {
-      return "enter your email";
+    } else if (!checkSpaces(email)) {
+      return "delete any extra space";
     } else if (email.substring(email.length - 11) != "@esi-sba.dz") {
       return "enter your esi-sba email";
     }
     return null;
   }
 
-  String? confirmPasswordValidator(String? confirmPassWord){
+  String? confirmPasswordValidator(String? confirmPassWord) {
     if (confirmPassWord != _passwordController.text) {
-      return "invalid password";
+      return "not the same password";
     }
     return null;
   }

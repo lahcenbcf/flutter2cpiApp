@@ -15,11 +15,18 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GlobalKey<FormState> formState = GlobalKey<FormState>();
     return Consumer<SignUpViewModel>(
       builder: (context, state, child) => TextFormField(
-        autovalidateMode: AutovalidateMode.onUserInteraction,
         controller: controller,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        autofocus: false,
+        keyboardType: hint == "First name" || hint == "Last name"
+            ? TextInputType.name
+            : TextInputType.emailAddress,
+        textInputAction: TextInputAction.done,
+        textCapitalization: hint == "First name" || hint == "Last name"
+            ? TextCapitalization.words
+            : TextCapitalization.none,
         validator: (value) {
           switch (hint) {
             case "First name":
@@ -48,8 +55,8 @@ class CustomTextField extends StatelessWidget {
         obscureText: (hint != "Password" && hint != "Confirm password")
             ? false
             : hint == "Password"
-                ? state.isEyeOffPassword
-                : state.isEyeOffConfirmPassword,
+                ? !state.isEyeOffPassword
+                : !state.isEyeOffConfirmPassword,
         // cursor
         cursorColor: const Color.fromRGBO(0, 0, 0, 1),
         decoration: InputDecoration(
@@ -66,11 +73,11 @@ class CustomTextField extends StatelessWidget {
                         : state.swithConfirmPassworState(),
                     child: (hint == "Password")
                         ? state.isEyeOffPassword
-                            ? const Icon(FluentIcons.eye_24_filled)
-                            : const Icon(FluentIcons.eye_off_24_filled)
+                            ? const Icon(FluentIcons.eye_off_24_filled)
+                            : const Icon(FluentIcons.eye_24_filled)
                         : state.isEyeOffConfirmPassword
-                            ? const Icon(FluentIcons.eye_24_filled)
-                            : const Icon(FluentIcons.eye_off_24_filled)),
+                            ? const Icon(FluentIcons.eye_off_24_filled)
+                            : const Icon(FluentIcons.eye_24_filled)),
           ),
           suffixIconColor: const Color.fromRGBO(33, 33, 33, 1),
 
