@@ -61,11 +61,11 @@ class GuestBox extends StatelessWidget {
               decoration:const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(15.0)),
                   color:ThemeInfo.secondaryColor),
-              child: const Center(
+              child: Center(
                   child: Text(
                 'Get started',
                 style: TextStyle(
-                  fontFamily: 'Poppins',
+                  fontFamily: ThemeInfo.fontFamily,
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
                     fontSize: 20.0),
