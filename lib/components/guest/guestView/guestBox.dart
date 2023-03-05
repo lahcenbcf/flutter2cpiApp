@@ -1,7 +1,7 @@
 import 'package:flluter2cpi/constants/theme_Styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluentui_icons/fluentui_icons.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class GuestBox extends StatelessWidget {
@@ -39,7 +39,7 @@ class GuestBox extends StatelessWidget {
                       hintText: "Full name",
                       border: InputBorder.none,
                       suffixIcon: Icon(
-                        FluentSystemIcons.ic_fluent_person_accounts_filled,
+                        FluentIcons.person_12_filled,
                         size: 20.0,
                         color: Colors.black,
                       ),

@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flluter2cpi/components/guest/guestView/guestBox.dart';
-import 'package:fluentui_icons/fluentui_icons.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -43,7 +43,7 @@ void afficherDialog(context) {
                 child: GestureDetector(
                     onTap: () => Navigator.of(context).pop(),
                     child: const Icon(
-                      FluentSystemIcons.ic_fluent_dismiss_circle_filled,
+                      FluentIcons.dismiss_12_filled,
                       size: 50.0,
                     )),
               ),
