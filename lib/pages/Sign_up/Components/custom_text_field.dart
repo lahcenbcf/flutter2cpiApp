@@ -24,15 +24,12 @@ class CustomTextField extends StatelessWidget {
             ? TextInputType.name
             : TextInputType.emailAddress,
         textInputAction: TextInputAction.done,
-        textCapitalization: hint == "First name" || hint == "Last name"
+        textCapitalization: hint == "Full name"
             ? TextCapitalization.words
             : TextCapitalization.none,
         validator: (value) {
           switch (hint) {
-            case "First name":
-              return state.nameValidator(value);
-
-            case "Last name":
+            case "Full name":
               return state.nameValidator(value);
 
             case "Email":

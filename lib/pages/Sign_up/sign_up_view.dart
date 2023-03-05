@@ -140,15 +140,15 @@ class _SignUpState extends State<SignUp> {
                       child: Column(
                         children: [
                           CustomTextField(
-                            hint: "First name",
-                            controller: state.firstNameController,
+                            hint: "Full name",
+                            controller: state.fullNameController,
                           ),
                           SizedBox(height: 25.h),
-                          CustomTextField(
-                            hint: "Last name",
-                            controller: state.lasttNameController,
-                          ),
-                          SizedBox(height: 25.h),
+                          // CustomTextField(
+                          //   hint: "Last name",
+                          //   controller: state.lasttNameController,
+                          // ),
+                          // SizedBox(height: 25.h),
                           CustomTextField(
                             hint: "Email",
                             icon: const Icon(FluentIcons.mail_24_filled),
@@ -206,7 +206,7 @@ class _SignUpState extends State<SignUp> {
                                 style: GoogleFonts.poppins(
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.w300,
-                                    color: Colors.white),
+                                    color: Colors.white,),
                               ),
                               InkWell(
                                 onTap: () {

@@ -4,7 +4,7 @@ class SignUpViewModel extends ChangeNotifier {
   bool _isEyeOffPassword = false;
   bool _isEyeOffConfirmPassword = false;
 
-  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _lasttNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -14,7 +14,7 @@ class SignUpViewModel extends ChangeNotifier {
 
   bool get isEyeOffPassword => _isEyeOffPassword;
   bool get isEyeOffConfirmPassword => _isEyeOffConfirmPassword;
-  TextEditingController get firstNameController => _firstNameController;
+  TextEditingController get fullNameController => _fullNameController;
   TextEditingController get emailController => _emailController;
   TextEditingController get lasttNameController => _lasttNameController;
   TextEditingController get passwordController => _passwordController;
