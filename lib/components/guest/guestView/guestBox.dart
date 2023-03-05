@@ -49,7 +49,7 @@ class GuestBox extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 30.0,
+            height: 10.0,
           ),
           GestureDetector(
             onTap: () {
