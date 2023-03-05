@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'package:flluter2cpi/components/guest/guestView/guestBox.dart';
+import 'package:flluter2cpi/pages/login%20page/components/guestBox.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
