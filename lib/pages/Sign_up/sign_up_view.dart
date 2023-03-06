@@ -3,7 +3,6 @@ import 'package:flluter2cpi/pages/Sign_up/sign_up_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:provider/provider.dart';
 
@@ -98,7 +97,7 @@ class _SignUpState extends State<SignUp> {
                 //     "lib/images/logo.png",
                 //   ),
                 // ),
-                SizedBox(height: 60.h),
+                SizedBox(height: 90.h),
                 Text(
                   "Create new account",
                   style: GoogleFonts.poppins(
@@ -151,7 +150,6 @@ class _SignUpState extends State<SignUp> {
                           // SizedBox(height: 25.h),
                           CustomTextField(
                             hint: "Email",
-                            icon: const Icon(FluentIcons.mail_24_filled),
                             controller: state.emailController,
                           ),
                           SizedBox(height: 25.h),
@@ -204,9 +202,10 @@ class _SignUpState extends State<SignUp> {
                                 "Already have an account? ",
                                 maxLines: 1,
                                 style: GoogleFonts.poppins(
-                                    fontSize: 12.sp,
-                                    fontWeight: FontWeight.w300,
-                                    color: Colors.white,),
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w300,
+                                  color: Colors.white,
+                                ),
                               ),
                               InkWell(
                                 onTap: () {

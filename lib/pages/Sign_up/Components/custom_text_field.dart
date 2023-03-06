@@ -7,14 +7,15 @@ import 'package:provider/provider.dart';
 
 class CustomTextField extends StatelessWidget {
   final String hint;
-  final Widget? icon;
   final TextEditingController controller;
 
   const CustomTextField(
-      {super.key, required this.hint, this.icon, required this.controller});
+      {super.key, required this.hint, required this.controller});
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final iconSize = 25 * (((size.height / 844) + (size.width / 390)) / 2);
     return Consumer<SignUpViewModel>(
       builder: (context, state, child) => TextFormField(
         controller: controller,
@@ -61,20 +62,29 @@ class CustomTextField extends StatelessWidget {
           fillColor: const Color.fromRGBO(239, 238, 238, 1),
           filled: true,
           suffixIcon: Padding(
-            padding: EdgeInsets.only(right: 13.w, top: 15.5.h, bottom: 15.5.h),
-            child: (hint != "Password" && hint != "Confirm password")
-                ? icon
-                : InkWell(
-                    onTap: () => hint == "Password"
-                        ? state.swithPassworState()
-                        : state.swithConfirmPassworState(),
-                    child: (hint == "Password")
-                        ? state.isEyeOffPassword
-                            ? const Icon(FluentIcons.eye_off_24_filled)
-                            : const Icon(FluentIcons.eye_24_filled)
-                        : state.isEyeOffConfirmPassword
-                            ? const Icon(FluentIcons.eye_off_24_filled)
-                            : const Icon(FluentIcons.eye_24_filled)),
+            padding: EdgeInsets.only(right: 13.w),
+            child: (hint != "Password" &&
+                    hint != "Confirm password" &&
+                    hint != "Full name")
+                ? Icon(FluentIcons.mail_24_filled, size: iconSize)
+                : hint == "Full name"
+                    ? null
+                    : InkWell(
+                        radius: iconSize / 2,
+                        onTap: () => hint == "Password"
+                            ? state.swithPassworState()
+                            : state.swithConfirmPassworState(),
+                        child: (hint == "Password")
+                            ? state.isEyeOffPassword
+                                ? Icon(FluentIcons.eye_off_24_filled,
+                                    size: iconSize)
+                                : Icon(FluentIcons.eye_24_filled,
+                                    size: iconSize)
+                            : state.isEyeOffConfirmPassword
+                                ? Icon(FluentIcons.eye_off_24_filled,
+                                    size: iconSize)
+                                : Icon(FluentIcons.eye_24_filled,
+                                    size: iconSize)),
           ),
           suffixIconColor: const Color.fromRGBO(33, 33, 33, 1),
 

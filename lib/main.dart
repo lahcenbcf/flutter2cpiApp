@@ -31,7 +31,9 @@ class MyApp extends StatelessWidget {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
               routes: generateRoutes(context),
-              home: const SafeArea(child: SignUp()),
+              home: const SafeArea(
+                child: SignUp(),
+              ),
             );
           },
         );
