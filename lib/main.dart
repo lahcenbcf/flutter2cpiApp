@@ -1,3 +1,4 @@
+import 'package:flluter2cpi/pages/Login_page/components/guest_box_view_model.dart';
 import 'package:flluter2cpi/pages/School_year/school_year_view_model.dart';
 import 'package:flluter2cpi/pages/Sign_up/sign_up_view.dart';
 import 'package:flluter2cpi/pages/Sign_up/sign_up_view_model.dart';
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
             ),
             ChangeNotifierProvider(
               create: (context) => SchoolYearViewModel(),
+            ),
+            ChangeNotifierProvider(
+              create: (context) => GuestBoxViewModel(),
             )
           ],
           builder: (context, child) {

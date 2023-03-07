@@ -1,4 +1,3 @@
-import 'package:flluter2cpi/pages/Login_page/components/guest.dart';
 import 'package:flluter2cpi/pages/Sign_up/Components/custom_text_field.dart';
 import 'package:flluter2cpi/pages/Sign_up/sign_up_view_model.dart';
 import 'package:flutter/material.dart';
@@ -34,15 +33,7 @@ class _SignUpState extends State<SignUp> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        centerTitle: true,
-        title: SizedBox(
-          height: 39.h,
-          width: 170.w,
-          child: Image.asset(
-            "lib/images/logo.png",
-            fit: BoxFit.fill,
-          ),
-        ),
+
         // leading: Container(
         //   height: 48.h,
         //   width: 48.w,
@@ -91,13 +82,16 @@ class _SignUpState extends State<SignUp> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // SizedBox(
-                //   height: 39.h,
-                //   width: 170.w,
-                //   child: Image.asset(
-                //     "lib/images/logo.png",
-                //   ),
-                // ),
+                SizedBox(height: 10.h),
+                SizedBox(
+                  height: 39.h,
+                  width: 170.w,
+                  child: Image.asset(
+                    "lib/images/logo.png",
+                    fit: BoxFit.contain,
+                    filterQuality: FilterQuality.high,
+                  ),
+                ),
                 SizedBox(height: 90.h),
                 Text(
                   "Create new account",
@@ -144,11 +138,6 @@ class _SignUpState extends State<SignUp> {
                             controller: state.fullNameController,
                           ),
                           SizedBox(height: 25.h),
-                          // CustomTextField(
-                          //   hint: "Last name",
-                          //   controller: state.lasttNameController,
-                          // ),
-                          // SizedBox(height: 25.h),
                           CustomTextField(
                             hint: "Email",
                             controller: state.emailController,
@@ -171,9 +160,16 @@ class _SignUpState extends State<SignUp> {
                                   Navigator.of(context).pushNamed("SchoolYear");
                                 } else {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
+                                    SnackBar(
+                                      dismissDirection: DismissDirection.horizontal,
                                       content: Text(
-                                          "please make sure there is no error."),
+                                        "please make sure there is no error.",
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 15.sp,
+                                          fontWeight: FontWeight.w300,
+                                          color: Colors.white,
+                                        ),
+                                      ),
                                     ),
                                   );
                                 }
@@ -185,7 +181,7 @@ class _SignUpState extends State<SignUp> {
                               textStyle: GoogleFonts.poppins(
                                   fontSize: 20.sp, fontWeight: FontWeight.w700),
                               padding: EdgeInsets.symmetric(
-                                  vertical: 10.h, horizontal: 62.5.w),
+                                  vertical: 12.h, horizontal: 62.5.w),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12.r),
                               ),
@@ -255,9 +251,7 @@ class _SignUpState extends State<SignUp> {
                           ),
                           SizedBox(height: 7.h),
                           InkWell(
-                            onTap: () {
-                           
-                            },
+                            onTap: ()=>{},
                             child: CircleAvatar(
                               radius: 30.r,
                               backgroundColor:
@@ -267,10 +261,14 @@ class _SignUpState extends State<SignUp> {
                                 child: Image.asset(
                                   "lib/images/google.png",
                                   fit: BoxFit.contain,
+                                  filterQuality: FilterQuality.high,
                                 ),
                               ),
                             ),
                           ),
+                          SizedBox(
+                            height: 7.h,
+                          )
                         ],
                       ),
                     ),
