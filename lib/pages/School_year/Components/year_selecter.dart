@@ -16,71 +16,67 @@ class YearSelecter extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final iconSize = 25 * (((size.height / 844) + (size.width / 390)) / 2);
     return Container(
-      width: 325.w,
+      width: 200.w,
       height: 50.h,
-      // padding: EdgeInsets.only(right: 14.w, left: 14.w),
+     //alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(horizontal: 14.w,vertical: 3.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
         color: const Color.fromRGBO(239, 238, 238, 1),
       ),
       child: Consumer<SchoolYearViewModel>(
         builder: (context, state, child) => DropdownButtonHideUnderline(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10).w,
-            child: DropdownButton2(
-              value: state.selectedYear,
-              hint: Text(
-                "School year",
-                style: GoogleFonts.poppins(
-                    fontSize: 14.sp, fontWeight: FontWeight.w500),
-              ),
-              items: ["1 Cpi", "2 Cpi", "1 Cs", "2 Cs", "3 Cs"]
-                  .map(
-                    (e) => DropdownMenuItem(
-                      value: e,
-                      child: Text(
-                        e,
-                        style: GoogleFonts.poppins(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500,
-                        ),
+          child: DropdownButton2(
+            value: state.selectedYear,
+            hint: Text(
+              "School year",
+              style: GoogleFonts.poppins(
+                  fontSize: 14.sp, fontWeight: FontWeight.w500),
+            ),
+            items: ["1 Cpi", "2 Cpi", "1 Cs", "2 Cs", "3 Cs"]
+                .map(
+                  (e) => DropdownMenuItem(
+                    value: e,
+                    child: Text(
+                      e,
+                      style: GoogleFonts.poppins(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
                       ),
-                      onTap: () {
-                        state.enterYear();
-                      },
                     ),
-                  )
-                  .toList(),
-              onChanged: (newYear) {
-                state.setYear = newYear;
-                print(state.selectedYear);
-                state.selectYear(newYear);
-              },
-              onMenuStateChange: (isOpen) => state.menuOpened(isOpen),
-              iconStyleData: IconStyleData(
-                iconSize: iconSize,
-                icon: Center(
-                  child: Icon(
-                    state.menuOpen
-                        ? FluentIcons.chevron_circle_down_24_filled
-                        : FluentIcons.chevron_circle_left_24_filled,
-                    color: const Color.fromRGBO(33, 33, 33, 1),
+                    onTap: () {
+                      state.enterYear();
+                    },
                   ),
-                ),
+                )
+                .toList(),
+            onChanged: (newYear) {
+              state.setYear = newYear;
+              print(state.selectedYear);
+              state.selectYear(newYear);
+            },
+            onMenuStateChange: (isOpen) => state.menuOpened(isOpen),
+            iconStyleData: IconStyleData(
+              iconSize: iconSize,
+              icon: Icon(
+                state.menuOpen
+                    ? FluentIcons.chevron_circle_down_24_filled
+                    : FluentIcons.chevron_circle_left_24_filled,
+                color: const Color.fromRGBO(33, 33, 33, 1),
               ),
-              dropdownStyleData: DropdownStyleData(
-                width: 70.w,
-                elevation: 0,
-                openInterval:
-                    const Interval(0.01, 1, curve: Curves.easeOutCirc),
-                direction: DropdownDirection.left,
-                scrollPadding: EdgeInsets.symmetric(vertical: 1.h),
-                //padding: EdgeInsets.symmetric(vertical: 3.h),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.r),
-                  color: const Color.fromRGBO(239, 238, 238, 1),
-                  border: Border.all(),
-                ),
+            ),
+            dropdownStyleData: DropdownStyleData(
+              width: 80.w,
+              elevation: 0,
+              openInterval:
+                  const Interval(0.01, 1, curve: Curves.easeOutCirc),
+              direction: DropdownDirection.left,
+              scrollPadding: EdgeInsets.symmetric(vertical: 1.h),
+              //padding: EdgeInsets.symmetric(vertical: 3.h),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.r),
+                color: const Color.fromRGBO(239, 238, 238, 1),
+                border: Border.all(),
               ),
             ),
           ),
