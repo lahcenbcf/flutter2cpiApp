@@ -43,7 +43,7 @@ void afficherDialog(context) {
                 child: GestureDetector(
                     onTap: () => Navigator.of(context).pop(),
                     child: const Icon(
-                      FluentIcons.dismiss_12_filled,
+                      FluentIcons.dismiss_circle_12_filled,
                       size: 50.0,
                     )),
               ),

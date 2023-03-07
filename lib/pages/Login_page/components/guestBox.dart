@@ -49,28 +49,29 @@ class GuestBox extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 20.0,
+            height: 40.0,
           ),
           GestureDetector(
             onTap: () {
              
             },
-            child: Container(
-              height: 50.h,
-              width: 258.w,
-              decoration:const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                  color:ThemeInfo.secondaryColor),
-              child: Center(
-                  child: Text(
-                'Get started',
-                style: TextStyle(
-                  fontFamily: ThemeInfo.fontFamily,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 20.0),
-              )),
-            ),
+            child: ElevatedButton(
+                            onPressed: () {
+                            
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromRGBO(32, 197, 122, 1),
+                              textStyle: GoogleFonts.poppins(
+                                  fontSize: 20.sp, fontWeight: FontWeight.w700),
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 16.h, horizontal: 62.5.w),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12.r),
+                              ),
+                            ),
+                            child: const Text("Get started"),
+                          ),
           )
         ],
       ),

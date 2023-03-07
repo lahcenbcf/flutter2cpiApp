@@ -1,3 +1,4 @@
+import 'package:flluter2cpi/pages/Login_page/components/guest.dart';
 import 'package:flluter2cpi/pages/Sign_up/Components/custom_text_field.dart';
 import 'package:flluter2cpi/pages/Sign_up/sign_up_view_model.dart';
 import 'package:flutter/material.dart';
@@ -254,7 +255,9 @@ class _SignUpState extends State<SignUp> {
                           ),
                           SizedBox(height: 7.h),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                           
+                            },
                             child: CircleAvatar(
                               radius: 30.r,
                               backgroundColor:
