@@ -16,7 +16,7 @@ class YearSelecter extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final iconSize = 25 * (((size.height / 844) + (size.width / 390)) / 2);
     return Container(
-      width: 200.w,
+      width: 325.w,
       height: 50.h,
      //alignment: Alignment.center,
       padding: EdgeInsets.symmetric(horizontal: 14.w,vertical: 3.h),

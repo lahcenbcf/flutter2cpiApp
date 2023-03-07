@@ -105,6 +105,7 @@ class SchoolYear extends StatelessWidget {
                       SizedBox(height: 37.h),
                       Container(
                         height: 231.h,
+                        width: 343.w,
                         padding: EdgeInsets.symmetric(
                             horizontal: 9.w, vertical: 20.h),
                         decoration: BoxDecoration(
@@ -119,6 +120,7 @@ class SchoolYear extends StatelessWidget {
                             Column(
                               children: [
                                 const YearSelecter(),
+                                SizedBox(height: 9.h,),
 
                                 //
                                 //
@@ -163,7 +165,7 @@ class SchoolYear extends StatelessWidget {
                                     fontSize: 20.sp,
                                     fontWeight: FontWeight.w700),
                                 padding: EdgeInsets.symmetric(
-                                    vertical: 20.h, horizontal: 81.w),
+                                    vertical: 20.h, horizontal: 60.w),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15.r),
                                 ),

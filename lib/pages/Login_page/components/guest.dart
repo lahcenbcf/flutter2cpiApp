@@ -1,10 +1,10 @@
 import 'dart:ui';
-import 'package:flluter2cpi/pages/Login_page/components/guestBox.dart';
+import 'package:flluter2cpi/pages/Login_page/components/guest_box_view.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void afficherDialog(context) {
+void showDialogg(context) {
   showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -24,7 +24,7 @@ void afficherDialog(context) {
                       gradient: const LinearGradient(
                         begin: Alignment(0, -1),
                         end: Alignment(0, 1),
-                        colors: <Color>[
+                        colors: [
                           Color(0x0a868686),
                           Color.fromARGB(251, 190, 189, 189),
                           Color(0x00868686)
@@ -42,10 +42,7 @@ void afficherDialog(context) {
                 right: 10.0,
                 child: GestureDetector(
                     onTap: () => Navigator.of(context).pop(),
-                    child: const Icon(
-                      FluentIcons.dismiss_12_filled,
-                      size: 50.0,
-                    )),
+                    child: const Icon(FluentIcons.dismiss_circle_48_filled,size: 48,)),
               ),
             ],
           ),

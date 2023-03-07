@@ -68,7 +68,7 @@ class CustomTextField extends StatelessWidget {
                     hint != "Full name")
                 ? Icon(FluentIcons.mail_24_filled, size: iconSize)
                 : hint == "Full name"
-                    ? null
+                    ? Icon(FluentIcons.person_24_filled,size: iconSize,)
                     : InkWell(
                         radius: iconSize / 2,
                         onTap: () => hint == "Password"
