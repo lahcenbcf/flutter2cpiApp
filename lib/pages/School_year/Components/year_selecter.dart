@@ -19,7 +19,7 @@ class YearSelecter extends StatelessWidget {
       width: 325.w,
       height: 50.h,
      //alignment: Alignment.center,
-      padding: EdgeInsets.symmetric(horizontal: 14.w,vertical: 3.h),
+      padding: EdgeInsets.symmetric(horizontal: 14.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
         color: const Color.fromRGBO(239, 238, 238, 1),
