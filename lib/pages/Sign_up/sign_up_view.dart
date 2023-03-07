@@ -6,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:provider/provider.dart';
 
+import '../Login_page/components/guest.dart';
+
 /// colors
 const primaryColor = Color(0x0020C57A); //for the sign up button
 const mainColor = Color(0x00292D36);
@@ -251,7 +253,7 @@ class _SignUpState extends State<SignUp> {
                           ),
                           SizedBox(height: 7.h),
                           InkWell(
-                            onTap: ()=>{},
+                            onTap: ()=>{showDialogg(context)},
                             child: CircleAvatar(
                               radius: 30.r,
                               backgroundColor:

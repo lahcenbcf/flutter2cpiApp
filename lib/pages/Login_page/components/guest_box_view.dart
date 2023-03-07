@@ -3,6 +3,7 @@ import 'package:flluter2cpi/pages/Login_page/components/guest_box_view_model.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class GuestBox extends StatelessWidget {
@@ -70,24 +71,23 @@ class GuestBox extends StatelessWidget {
             SizedBox(height: 20.0.h),
             GestureDetector(
               onTap: () {},
-              child: Container(
-                height: 50.h,
-                width: 258.w,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(15.0.r)),
-                    color: ThemeInfo.secondaryColor),
-                child: Center(
-                  child: Text(
-                    'Get started',
-                    style: TextStyle(
-                      fontFamily: ThemeInfo.fontFamily,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 20.0.sp,
-                    ),
-                  ),
-                ),
-              ),
+              child:ElevatedButton(
+                            onPressed: () {
+                            
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromRGBO(32, 197, 122, 1),
+                              textStyle: GoogleFonts.poppins(
+                                  fontSize: 16.sp, fontWeight: FontWeight.w700),
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 16.h, horizontal: 62.5.w),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12.r),
+                              ),
+                            ),
+                            child: const Text("Get started"),
+                          ),
             ),
             SizedBox(height: 10.h),
           ],
