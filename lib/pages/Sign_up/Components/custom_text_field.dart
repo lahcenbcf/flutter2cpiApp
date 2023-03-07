@@ -19,8 +19,9 @@ class CustomTextField extends StatelessWidget {
     return Consumer<SignUpViewModel>(
       builder: (context, state, child) => TextFormField(
         controller: controller,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
+       autovalidateMode: AutovalidateMode.onUserInteraction,
         autofocus: false,
+        
         keyboardType: hint == "First name" || hint == "Last name"
             ? TextInputType.name
             : TextInputType.emailAddress,

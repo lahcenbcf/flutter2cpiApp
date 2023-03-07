@@ -42,19 +42,18 @@ class GuestBox extends StatelessWidget {
               child: Material(
                 color: Colors.transparent,
                 child: Form(
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: TextFormField(
                     controller: state.fullNameController,
                     validator: (value) => state.nameValidator(value),
                     textCapitalization: TextCapitalization.words,
                     keyboardType: TextInputType.name,
-                    
                     decoration: InputDecoration(
                       fillColor: const Color.fromRGBO(239, 238, 238, 1),
-          filled: true,
-                       border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.r),
-          ),
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.r),
+                      ),
                       hintText: "Full name",
                       suffixIcon: Icon(
                         FluentIcons.person_12_filled,
@@ -69,25 +68,19 @@ class GuestBox extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20.0.h),
-            GestureDetector(
-              onTap: () {},
-              child:ElevatedButton(
-                            onPressed: () {
-                            
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  const Color.fromRGBO(32, 197, 122, 1),
-                              textStyle: GoogleFonts.poppins(
-                                  fontSize: 16.sp, fontWeight: FontWeight.w700),
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 16.h, horizontal: 62.5.w),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12.r),
-                              ),
-                            ),
-                            child: const Text("Get started"),
-                          ),
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromRGBO(32, 197, 122, 1),
+                textStyle: GoogleFonts.poppins(
+                    fontSize: 16.sp, fontWeight: FontWeight.w700),
+                padding:
+                    EdgeInsets.symmetric(vertical: 16.h, horizontal: 62.5.w),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.r),
+                ),
+              ),
+              child: const Text("Get started"),
             ),
             SizedBox(height: 10.h),
           ],

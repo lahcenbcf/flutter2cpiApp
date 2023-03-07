@@ -84,7 +84,7 @@ class _SignUpState extends State<SignUp> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: 10.h),
+                SizedBox(height: 30.h),
                 SizedBox(
                   height: 39.h,
                   width: 170.w,
@@ -94,7 +94,7 @@ class _SignUpState extends State<SignUp> {
                     filterQuality: FilterQuality.high,
                   ),
                 ),
-                SizedBox(height: 90.h),
+                SizedBox(height:60.h),
                 Text(
                   "Create new account",
                   style: GoogleFonts.poppins(
