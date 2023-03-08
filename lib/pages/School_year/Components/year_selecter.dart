@@ -18,11 +18,12 @@ class YearSelecter extends StatelessWidget {
     return Container(
       width: 325.w,
       height: 50.h,
-     //alignment: Alignment.center,
+      //alignment: Alignment.center,
       padding: EdgeInsets.symmetric(horizontal: 14.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
         color: const Color.fromRGBO(239, 238, 238, 1),
+        border: Border.all(color: const Color.fromRGBO(33, 33, 33, 1)),
       ),
       child: Consumer<SchoolYearViewModel>(
         builder: (context, state, child) => DropdownButtonHideUnderline(
@@ -53,7 +54,7 @@ class YearSelecter extends StatelessWidget {
             onChanged: (newYear) {
               state.setYear = newYear;
               print(state.selectedYear);
-              state.selectYear(newYear);
+             // state.selectYear(newYear);
             },
             onMenuStateChange: (isOpen) => state.menuOpened(isOpen),
             iconStyleData: IconStyleData(
@@ -69,14 +70,14 @@ class YearSelecter extends StatelessWidget {
               width: 80.w,
               elevation: 0,
               openInterval:
-                  const Interval(0.01, 1, curve: Curves.easeOutCirc),
+                  const Interval(0.5, 1, curve: Curves.linearToEaseOut),
               direction: DropdownDirection.left,
               scrollPadding: EdgeInsets.symmetric(vertical: 1.h),
               //padding: EdgeInsets.symmetric(vertical: 3.h),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.r),
                 color: const Color.fromRGBO(239, 238, 238, 1),
-                border: Border.all(),
+                border: Border.all(color: const Color.fromRGBO(33, 33, 33, 1)),
               ),
             ),
           ),

@@ -16,10 +16,6 @@ class SchoolYearViewModel extends ChangeNotifier{
     _isSchoolYearEntered = true;
     notifyListeners();
   }
-  selectYear(String? year){
-    _selectedYear = year;
-    notifyListeners();
-  }
 
   menuOpened(bool isOpen){
     _menuOpen = isOpen;

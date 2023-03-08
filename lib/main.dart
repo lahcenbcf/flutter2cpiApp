@@ -33,7 +33,9 @@ class MyApp extends StatelessWidget {
           ],
           builder: (context, child) {
             return MaterialApp(
+              
               debugShowCheckedModeBanner: false,
+              theme: ThemeData(useMaterial3: true),
               routes: generateRoutes(context),
               home: const SafeArea(
                 child: SignUp(),

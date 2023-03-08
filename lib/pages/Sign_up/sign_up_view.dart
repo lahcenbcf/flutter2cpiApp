@@ -180,6 +180,7 @@ class _SignUpState extends State<SignUp> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
                                   const Color.fromRGBO(32, 197, 122, 1),
+                                  foregroundColor: const Color.fromRGBO(255, 255, 255, 0.91),
                               textStyle: GoogleFonts.poppins(
                                   fontSize: 20.sp, fontWeight: FontWeight.w700),
                               padding: EdgeInsets.symmetric(
@@ -188,7 +189,7 @@ class _SignUpState extends State<SignUp> {
                                 borderRadius: BorderRadius.circular(12.r),
                               ),
                             ),
-                            child: const Text("Register now"),
+                            child: const Text("Register now",),
                           ),
                           SizedBox(
                             height: 25.h,
@@ -255,15 +256,19 @@ class _SignUpState extends State<SignUp> {
                           InkWell(
                             onTap: ()=>{showDialogg(context)},
                             child: CircleAvatar(
-                              radius: 30.r,
-                              backgroundColor:
-                                  const Color.fromRGBO(217, 217, 217, 1),
-                              child: Padding(
-                                padding: EdgeInsets.all(8.w),
-                                child: Image.asset(
-                                  "lib/images/google.png",
-                                  fit: BoxFit.contain,
-                                  filterQuality: FilterQuality.high,
+                              radius: 31.5.r,
+                              backgroundColor: const Color.fromRGBO(180, 28, 28, 1),
+                              child: CircleAvatar(
+                                radius: 60.r,
+                                backgroundColor:
+                                    const Color.fromRGBO(217, 217, 217, 1),
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.w),
+                                  child: Image.asset(
+                                    "lib/images/google.png",
+                                    fit: BoxFit.contain,
+                                    filterQuality: FilterQuality.high,
+                                  ),
                                 ),
                               ),
                             ),
