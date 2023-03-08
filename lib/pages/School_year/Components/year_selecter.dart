@@ -18,7 +18,7 @@ class YearSelecter extends StatelessWidget {
     return Container(
       width: 325.w,
       height: 50.h,
-      //alignment: Alignment.center,
+
       padding: EdgeInsets.symmetric(horizontal: 14.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),

@@ -48,16 +48,20 @@ class GuestBox extends StatelessWidget {
                     validator: (value) => state.nameValidator(value),
                     textCapitalization: TextCapitalization.words,
                     keyboardType: TextInputType.name,
+
                     cursorColor: Colors.black,
+
                     decoration: InputDecoration(
                       fillColor: const Color.fromRGBO(239, 238, 238, 1),
                       filled: true,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.r),
                       ),
+
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.r),
                       ),
+
                       hintText: "Full name",
                       suffixIcon: Icon(
                         FluentIcons.person_12_filled,
@@ -76,7 +80,9 @@ class GuestBox extends StatelessWidget {
               onPressed: () {},
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color.fromRGBO(32, 197, 122, 1),
+
                 foregroundColor: const Color.fromRGBO(255, 255, 255, 0.91),
+
                 textStyle: GoogleFonts.poppins(
                     fontSize: 16.sp, fontWeight: FontWeight.w700),
                 padding:
