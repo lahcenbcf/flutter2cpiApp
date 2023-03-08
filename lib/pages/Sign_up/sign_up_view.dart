@@ -256,10 +256,10 @@ class _SignUpState extends State<SignUp> {
                           InkWell(
                             onTap: ()=>{showDialogg(context)},
                             child: CircleAvatar(
-                              radius: 31.5.r,
+                              radius: 31.4.r,
                               backgroundColor: const Color.fromRGBO(180, 28, 28, 1),
                               child: CircleAvatar(
-                                radius: 60.r,
+                                radius: 30.r,
                                 backgroundColor:
                                     const Color.fromRGBO(217, 217, 217, 1),
                                 child: Padding(
