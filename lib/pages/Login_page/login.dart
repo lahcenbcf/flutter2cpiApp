@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flluter2cpi/pages/Login_page/components/guest.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
@@ -18,13 +17,15 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final iconSize = ((size.height / 844) + (size.width / 390)) / 2;
     return SafeArea(
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(backgroundColor: Colors.transparent),
         body: Container(
-            height: 844.h,
-            width: 390.w, //the heigh of the frame
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width, //the heigh of the frame
             decoration: const BoxDecoration(
                 gradient: LinearGradient(
               colors: [
@@ -46,7 +47,7 @@ class Login extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(
-                        height: 30.h,
+                        height: 20.h,
                       ),
                       SizedBox(
                         height: 90.h,
@@ -67,19 +68,25 @@ class Login extends StatelessWidget {
                           filterQuality: FilterQuality.high,
                         ),
                       ),
-                      SizedBox(height: 50.h, width: 20.w),
-                      ListTile(
-                        title: Text(
-                          'Login',
-                          style: GoogleFonts.poppins(
-                              fontSize: 32.sp,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white),
+                      SizedBox(height: 40.h),
+                      // ListTile(
+                      Padding(
+                        padding: EdgeInsets.only(left: 16.w),
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: Text(
+                            'Login',
+                            style: GoogleFonts.poppins(
+                                fontSize: 32.sp,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white),
+                          ),
                         ),
                       ),
+                      //),
                       Padding(
-                        padding: const EdgeInsets.only(
-                            bottom: 57, right: 16, left: 16, top: 16),
+                        padding: EdgeInsets.only(
+                            bottom: 57.h, right: 16.w, left: 16.w, top: 16.h),
                         child: Form(
                           child: FrostedGlassBox(
                             width: 358.0.w,
@@ -110,9 +117,13 @@ class Login extends StatelessWidget {
                                           cursorColor:
                                               const Color.fromRGBO(0, 0, 0, 1),
                                           decoration: InputDecoration(
-                                            suffixIcon: const Icon(
-                                              Icons.email_rounded,
-                                              color: Colors.black,
+                                            suffixIcon: Padding(
+                                              padding:  EdgeInsets.only(right: 13.w),
+                                              child: Icon(
+                                                FluentIcons.mail_24_filled,
+                                                size: 25 * iconSize,
+                                                color: Colors.black,
+                                              ),
                                             ),
                                             filled: true,
                                             fillColor: Colors.white,
@@ -155,15 +166,23 @@ class Login extends StatelessWidget {
                                             suffixIcon: InkWell(
                                               onTap: () => val.switchState(),
                                               child: val.eyeoff
-                                                  ? const Icon(
-                                                      FluentIcons.eye_16_filled,
-                                                      color: Colors.black,
-                                                    )
-                                                  : const Icon(
-                                                      FluentIcons
-                                                          .eye_off_16_filled,
-                                                      color: Colors.black,
-                                                    ),
+                                                  ? Padding(
+                                                    padding:  EdgeInsets.only(right: 13.w),
+                                                    child: Icon(
+                                                        FluentIcons.eye_24_filled,
+                                                        size: 25 * iconSize,
+                                                        color: Colors.black,
+                                                      ),
+                                                  )
+                                                  : Padding(
+                                                    padding:  EdgeInsets.only(right: 13.w),
+                                                    child: Icon(
+                                                        FluentIcons
+                                                            .eye_off_24_filled,
+                                                        size: 25 * iconSize,
+                                                        color: Colors.black,
+                                                      ),
+                                                  ),
                                             ),
                                             filled: true,
                                             fillColor: Colors.white,
@@ -192,11 +211,11 @@ class Login extends StatelessWidget {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 140.0,
-                                        top: 5.0,
-                                        right: 7,
-                                        bottom: 16),
+                                    padding:  EdgeInsets.only(
+                                        left: 180.0.w,
+                                        top: 5.0.h,
+                                       // right: 7.w,
+                                        bottom: 16.h),
                                     child: InkWell(
                                       onTap: () {
                                         print("taped");
@@ -252,12 +271,13 @@ class Login extends StatelessWidget {
                                               fontWeight: FontWeight.w700,
                                               color: Colors.white),
                                         ),
-                                        onTap: () {},
+                                        onTap: () => Navigator.of(context)
+                                            .pushNamed("SignUp"),
                                       ),
                                     ],
                                   ),
                                   SizedBox(
-                                    height: 47.h,
+                                    height: 12.h,
                                   ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -357,17 +377,17 @@ class FrostedGlassBox extends StatelessWidget {
       borderRadius: BorderRadius.circular(20.0),
       child: SizedBox(
         width: width,
-        height: height,
+        //  height: height,
         child: Stack(
           children: [
-            BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaX: 7.0,
-                sigmaY: 7.0,
-              ),
-              child: SizedBox(
-                  width: width, height: height, child: const Text(" ")),
-            ),
+            // BackdropFilter(
+            //   filter: ImageFilter.blur(
+            //     sigmaX: 7.0,
+            //     sigmaY: 7.0,
+            //   ),
+            //   child: SizedBox(
+            //       width: width, height: height, child: const Text(" ")),
+            // ),
             Container(
               padding: const EdgeInsets.only(
                   top: 35, bottom: 22, left: 16, right: 16),
