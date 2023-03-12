@@ -57,15 +57,8 @@ class SchoolYear extends StatelessWidget {
                 ),
                 SizedBox(height: 20.h),
 
-                ),
-                SizedBox(
-                  height: 90.h,
-                  width: 85.w,
-                  child: Image.asset(
-                    "lib/images/g1.png",
-                    fit: BoxFit.contain,
-                  ),
-                ),
+                
+                
                 SizedBox(height: 10.h),
                 SizedBox(
                   height: 39.h,
@@ -74,7 +67,6 @@ class SchoolYear extends StatelessWidget {
                     "lib/images/logo.png",
                     fit: BoxFit.contain,
                     filterQuality: FilterQuality.high,
-                    fit: BoxFit.fill,
                   ),
                 ),
                 SizedBox(height: 59.h),
@@ -111,15 +103,9 @@ class SchoolYear extends StatelessWidget {
                           height: 40.h,
 
                         ),
-                        Text(
-                          "Welcome to Guide",
-                          style: GoogleFonts.poppins(
-                              fontSize: 25.sp,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white),
-                        ),
+                       
 
-                        ),
+                        
                         Text(
                           "Welcome to Guide",
                           style: GoogleFonts.poppins(
@@ -214,80 +200,17 @@ class SchoolYear extends StatelessWidget {
                               ],
                             ),
 
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              SizedBox(height: 50.h),
-                              //DropDownButton
-                              const YearSelecter(),
-                              SizedBox(
-                                height: 9.h,
-                              ),
-
-                              //
-                              //
-                              //check if the user have selected a school year
-                              Consumer<SchoolYearViewModel>(
-                                builder: (context, x, child) {
-                                  if (!x.isSchoolYearEntered &&
-                                      x.buttonClicked) {
-                                    return Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        "Please selcet your school year first.",
-                                        textAlign: TextAlign.start,
-                                        style: GoogleFonts.poppins(
-                                          color: const Color.fromRGBO(
-                                              238, 0, 4, 1),
-                                          fontSize: 12.sp,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    );
-                                  } else {
-                                    return const Text("");
-                                  }
-                                },
-                              ),
-
-                              //
-                              //
-                              //
-                              // continue button
-                              SizedBox(height: 15.h),
-                              ElevatedButton(
-                                onPressed: () {
-                                  // state.setYear = null;
-                                  state.pressButton();
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      const Color.fromRGBO(32, 197, 122, 1),
-                                  textStyle: GoogleFonts.poppins(
-                                      fontSize: 20.sp,
-                                      fontWeight: FontWeight.w700),
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 10.h, horizontal: 82.w),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15.r),
-                                  ),
-                                ),
-                                child: const Text("Continue"),
-                              ),
-                              SizedBox(height: 30.h)
-                            ],
-
-                          ),
-                        ),
+                         
+                        ),),
                         SizedBox(
                           height: 85.h,
-                        )
+                        ),
                       ],
                     ),
                   ),
                 ),
               ],
+      
             ),
           ),
         ),
