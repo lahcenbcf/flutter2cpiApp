@@ -40,6 +40,7 @@ dependencies:
   fluentui_system_icons: ^1.1.190
   gradient_borders: ^1.0.0
   dropdown_button2: ^2.0.0
+  fluentui_icons: ^1.0.0
 
 dev_dependencies:
   flutter_test:
