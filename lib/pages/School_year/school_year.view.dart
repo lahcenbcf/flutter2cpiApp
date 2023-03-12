@@ -44,7 +44,6 @@ class SchoolYear extends StatelessWidget {
               children: [
                 SizedBox(
                   height: 43.h,
-
                 ),
                 SizedBox(
                   height: 90.h,
@@ -56,9 +55,6 @@ class SchoolYear extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20.h),
-
-                
-                
                 SizedBox(height: 10.h),
                 SizedBox(
                   height: 39.h,
@@ -101,11 +97,7 @@ class SchoolYear extends StatelessWidget {
                       children: [
                         SizedBox(
                           height: 40.h,
-
                         ),
-                       
-
-                        
                         Text(
                           "Welcome to Guide",
                           style: GoogleFonts.poppins(
@@ -113,7 +105,6 @@ class SchoolYear extends StatelessWidget {
                               fontWeight: FontWeight.w700,
                               color: Colors.white),
                         ),
-
                         SizedBox(height: 26.h),
                         Text(
                           "Before we continue. Please enter your school year.",
@@ -131,7 +122,6 @@ class SchoolYear extends StatelessWidget {
                             borderRadius: BorderRadius.circular(25.r),
                             color: const Color.fromRGBO(62, 67, 79, 1),
                           ),
-
                           child: SingleChildScrollView(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -141,7 +131,7 @@ class SchoolYear extends StatelessWidget {
                                 //DropDownButton
                                 const YearSelecter(),
                                 SizedBox(
-                                  height: 9.h,
+                                  height: 9.h
                                 ),
 
                                 //
@@ -186,8 +176,9 @@ class SchoolYear extends StatelessWidget {
                                     foregroundColor: const Color.fromRGBO(
                                         255, 255, 255, 0.91),
                                     textStyle: GoogleFonts.poppins(
-                                        fontSize: 20.sp,
-                                        fontWeight: FontWeight.w700),
+                                      fontSize: 20.sp,
+                                      fontWeight: FontWeight.w700,
+                                    ),
                                     padding: EdgeInsets.symmetric(
                                         vertical: 10.h, horizontal: 82.w),
                                     shape: RoundedRectangleBorder(
@@ -199,9 +190,8 @@ class SchoolYear extends StatelessWidget {
                                 SizedBox(height: 30.h)
                               ],
                             ),
-
-                         
-                        ),),
+                          ),
+                        ),
                         SizedBox(
                           height: 85.h,
                         ),
@@ -210,7 +200,6 @@ class SchoolYear extends StatelessWidget {
                   ),
                 ),
               ],
-      
             ),
           ),
         ),
