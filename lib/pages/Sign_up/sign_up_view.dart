@@ -209,7 +209,7 @@ class _SignUpState extends State<SignUp> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  Navigator.of(context).pushNamed("HomePage");
+                                  Navigator.of(context).pushNamed("LogIn");
                                 },
                                 child: Text(
                                   "Login",
