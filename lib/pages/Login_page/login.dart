@@ -83,7 +83,7 @@ class Login extends StatelessWidget {
                         child: Form(
                           child: FrostedGlassBox(
                             width: 358.0.w,
-                            height: 461.h,
+                            height: 500.h,
                             child: Container(
                               key: forme,
                               child: Column(
@@ -101,6 +101,14 @@ class Login extends StatelessWidget {
                                           enabled: true,
                                           keyboardType: TextInputType.text,
                                           textInputAction: TextInputAction.done,
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 15.sp,
+                                            fontWeight: FontWeight.w500,
+                                            color: const Color.fromRGBO(
+                                                0, 0, 0, 1),
+                                          ),
+                                          cursorColor:
+                                              const Color.fromRGBO(0, 0, 0, 1),
                                           decoration: InputDecoration(
                                             suffixIcon: const Icon(
                                               Icons.email_rounded,
@@ -108,11 +116,10 @@ class Login extends StatelessWidget {
                                             ),
                                             filled: true,
                                             fillColor: Colors.white,
-                                            contentPadding:
-                                                const EdgeInsets.only(
-                                                    left: 20.14,
-                                                    right: 120.57,
-                                                    top: 15),
+                                            contentPadding: EdgeInsets.only(
+                                                left: 12.w,
+                                                top: 14.h,
+                                                bottom: 14.h),
                                             border: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(10.r),
@@ -136,24 +143,34 @@ class Login extends StatelessWidget {
                                           keyboardType: TextInputType.text,
                                           textInputAction: TextInputAction.done,
                                           obscureText: val.eyeoff,
+                                          cursorColor:
+                                              const Color.fromRGBO(0, 0, 0, 1),
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 15.sp,
+                                            fontWeight: FontWeight.w500,
+                                            color: const Color.fromRGBO(
+                                                0, 0, 0, 1),
+                                          ),
                                           decoration: InputDecoration(
                                             suffixIcon: InkWell(
                                               onTap: () => val.switchState(),
-                                              child:val.eyeoff ? const Icon(
-                                                FluentIcons.eye_16_filled,
-                                                color: Colors.black,
-                                              ):const Icon(
-                                                FluentIcons.eye_off_16_filled,
-                                                color: Colors.black,
-                                              ),
+                                              child: val.eyeoff
+                                                  ? const Icon(
+                                                      FluentIcons.eye_16_filled,
+                                                      color: Colors.black,
+                                                    )
+                                                  : const Icon(
+                                                      FluentIcons
+                                                          .eye_off_16_filled,
+                                                      color: Colors.black,
+                                                    ),
                                             ),
                                             filled: true,
                                             fillColor: Colors.white,
-                                            contentPadding:
-                                                const EdgeInsets.only(
-                                                    left: 20.14,
-                                                    right: 12.57,
-                                                    top: 15),
+                                            contentPadding: EdgeInsets.only(
+                                                left: 12.w,
+                                                top: 14.h,
+                                                bottom: 14.h),
                                             border: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(10.r),
