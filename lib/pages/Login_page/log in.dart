@@ -147,7 +147,7 @@ send(){
                                     width: 110.w,
                                     child: InkWell(
                                       onTap: () {
-                                        print("taped");
+
                                       },
                                       child: Text(
                                         'Forget passWord?',
@@ -165,7 +165,7 @@ send(){
                                       padding:
                                           (EdgeInsets.symmetric(vertical: 10.h, horizontal: 72.5.w)),
                                       shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(17.r))),
+                                          borderRadius: BorderRadius.circular(17.5.r))),
                                   onPressed: send,
                                   child: Text(
                                     'Login',
