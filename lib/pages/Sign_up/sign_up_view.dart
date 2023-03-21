@@ -1,11 +1,12 @@
 import 'package:flluter2cpi/pages/Sign_up/Components/custom_text_field.dart';
 import 'package:flluter2cpi/pages/Sign_up/sign_up_view_model.dart';
+import 'package:flluter2cpi/services/api.dart';
+import 'package:flluter2cpi/pages/Sign_up/User_Modal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:provider/provider.dart';
-
 import '../Login_page/components/guest.dart';
 
 /// colors
@@ -94,7 +95,7 @@ class _SignUpState extends State<SignUp> {
                     filterQuality: FilterQuality.high,
                   ),
                 ),
-                SizedBox(height:60.h),
+                SizedBox(height: 60.h),
                 Text(
                   "Create new account",
                   style: GoogleFonts.poppins(
@@ -163,7 +164,8 @@ class _SignUpState extends State<SignUp> {
                                 } else {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                      dismissDirection: DismissDirection.horizontal,
+                                      dismissDirection:
+                                          DismissDirection.horizontal,
                                       content: Text(
                                         "please make sure there is no error.",
                                         style: GoogleFonts.poppins(
@@ -180,7 +182,8 @@ class _SignUpState extends State<SignUp> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
                                   const Color.fromRGBO(32, 197, 122, 1),
-                                  foregroundColor: const Color.fromRGBO(255, 255, 255, 0.91),
+                              foregroundColor:
+                                  const Color.fromRGBO(255, 255, 255, 0.91),
                               textStyle: GoogleFonts.poppins(
                                   fontSize: 20.sp, fontWeight: FontWeight.w700),
                               padding: EdgeInsets.symmetric(
@@ -189,7 +192,9 @@ class _SignUpState extends State<SignUp> {
                                 borderRadius: BorderRadius.circular(12.r),
                               ),
                             ),
-                            child: const Text("Register now",),
+                            child: const Text(
+                              "Register now",
+                            ),
                           ),
                           SizedBox(
                             height: 25.h,
@@ -254,10 +259,11 @@ class _SignUpState extends State<SignUp> {
                           ),
                           SizedBox(height: 7.h),
                           InkWell(
-                            onTap: ()=>{showDialogg(context)},
+                            onTap: () => {showDialogg(context)},
                             child: CircleAvatar(
                               radius: 31.4.r,
-                              backgroundColor: const Color.fromRGBO(180, 28, 28, 1),
+                              backgroundColor:
+                                  const Color.fromRGBO(180, 28, 28, 1),
                               child: CircleAvatar(
                                 radius: 30.r,
                                 backgroundColor:

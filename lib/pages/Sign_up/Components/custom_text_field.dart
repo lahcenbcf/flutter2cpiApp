@@ -9,17 +9,18 @@ class CustomTextField extends StatelessWidget {
   final String hint;
   final TextEditingController controller;
 
-  const CustomTextField(
+  CustomTextField(
       {super.key, required this.hint, required this.controller});
-
+   FocusNode focus=FocusNode();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final iconSize = 25 * (((size.height / 844) + (size.width / 390)) / 2);
     return Consumer<SignUpViewModel>(
       builder: (context, state, child) => TextFormField(
+    
         controller: controller,
-       autovalidateMode: AutovalidateMode.onUserInteraction,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         autofocus: false,
         
         keyboardType: hint == "First name" || hint == "Last name"
@@ -33,7 +34,6 @@ class CustomTextField extends StatelessWidget {
           switch (hint) {
             case "Full name":
               return state.nameValidator(value);
-
             case "Email":
               return state.emailValidator(value);
             case "Confirm password":

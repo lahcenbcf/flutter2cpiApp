@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-
+import 'package:flluter2cpi/services/api.dart';
+import 'package:flluter2cpi/pages/Sign_up/User_Modal.dart';
 class SignUpViewModel extends ChangeNotifier {
   bool _isEyeOffPassword = false;
   bool _isEyeOffConfirmPassword = false;
+  bool _isDuplicate=false;
 
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _lasttNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
       
 
   bool get isEyeOffPassword => _isEyeOffPassword;
+  bool get isDuplicate=>_isDuplicate;
   bool get isEyeOffConfirmPassword => _isEyeOffConfirmPassword;
   TextEditingController get fullNameController => _fullNameController;
   TextEditingController get emailController => _emailController;
@@ -70,6 +72,8 @@ class SignUpViewModel extends ChangeNotifier {
       return "delete any extra space";
     } else if (!checkfor(input, "1@")) {
       return "delete any extra character";
+    }else if(isDuplicate){
+      return "name entered is Duplicate";
     }
     return null;
   }
@@ -99,4 +103,5 @@ class SignUpViewModel extends ChangeNotifier {
     }
     return null;
   }
+  
 }

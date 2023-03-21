@@ -1,5 +1,7 @@
 import 'package:flluter2cpi/pages/School_year/Components/year_selecter.dart';
 import 'package:flluter2cpi/pages/School_year/school_year_view_model.dart';
+import 'package:flluter2cpi/pages/Sign_up/User_Modal.dart';
+import 'package:flluter2cpi/pages/Sign_up/sign_up_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,6 +14,7 @@ class SchoolYear extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = Provider.of<SchoolYearViewModel>(context, listen: false);
+    final Registerstate = Provider.of<SignUpViewModel>(context, listen: false);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -130,45 +133,63 @@ class SchoolYear extends StatelessWidget {
                                 SizedBox(height: 50.h),
                                 //DropDownButton
                                 const YearSelecter(),
-                                SizedBox(
-                                  height: 9.h
-                                ),
+                                SizedBox(height: 9.h),
 
                                 //
                                 //
                                 //check if the user have selected a school year
-                                Consumer<SchoolYearViewModel>(
-                                  builder: (context, x, child) {
-                                    if (!x.isSchoolYearEntered &&
-                                        x.buttonClicked) {
-                                      return Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(
-                                          "Please selcet your school year first.",
-                                          textAlign: TextAlign.start,
-                                          style: GoogleFonts.poppins(
-                                            color: const Color.fromRGBO(
-                                                238, 0, 4, 1),
-                                            fontSize: 12.sp,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      );
-                                    } else {
-                                      return const Text("");
-                                    }
-                                  },
-                                ),
+                              
 
-                                //
-                                //
-                                //
-                                // continue button
-                                SizedBox(height: 15.h),
                                 ElevatedButton(
-                                  onPressed: () {
+                                  onPressed: () async{
                                     // state.setYear = null;
-                                    state.pressButton();
+                                    if(state.selectedYear !=null){
+                                     
+                                      await state.pressButton(UserModal(
+                                        fullName: Registerstate
+                                            .fullNameController.text,
+                                        email:
+                                            Registerstate.emailController.text,
+                                        password: Registerstate
+                                            .passwordController.text,
+              
+                                        schoolYear: state.selectedYear));
+                                        if(state.successRegister){
+                                          Navigator.of(context).pushNamed("LogIn");     
+                                      }else{
+                                        ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      dismissDirection:
+                                          DismissDirection.horizontal,
+                                      content: Text(
+                                        state.isDuplicate,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 15.sp,
+                                          fontWeight: FontWeight.w300,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                 );
+                                  }
+
+                                    }else{
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      dismissDirection:
+                                          DismissDirection.horizontal,
+                                      content: Text(
+                                        "enter your school year please",
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 15.sp,
+                                          fontWeight: FontWeight.w300,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                    }
+                                    ;
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor:

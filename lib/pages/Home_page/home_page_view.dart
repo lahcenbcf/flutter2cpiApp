@@ -1,3 +1,4 @@
+import 'package:flluter2cpi/services/api.dart';
 import 'package:flutter/material.dart';
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,7 +12,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Container(),
+      body: Container(
+        child: ElevatedButton(child: Text("logout"),
+        onPressed: ()=>ApiServices.logoutUser(context),),
+      ),
     
     );
   }

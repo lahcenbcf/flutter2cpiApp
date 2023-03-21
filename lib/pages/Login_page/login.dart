@@ -1,5 +1,7 @@
 import 'dart:ui';
 import 'package:flluter2cpi/pages/Login_page/components/guest.dart';
+import 'package:flluter2cpi/pages/Sign_up/User_Modal.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,17 +9,20 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:provider/provider.dart';
 import 'view_model.dart';
 
-class Login extends StatelessWidget {
-  GlobalKey<FormState> forme = GlobalKey<FormState>();
+class Login extends StatefulWidget {
+const  Login({super.key});
+ 
 
-  Login({super.key});
-  send() {
-    //var formdata=forme.currentState;
-    // if (formdata.validate()){print("valid");}else{print("invalid");}
-  }
+  @override
+  State<Login> createState() => _LoginState();
+}
+class _LoginState extends State<Login> {
+  final GlobalKey<FormState> formState = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {
+    final state=Provider.of<View>(context,listen: false);
     return SafeArea(
       child: Scaffold(
         extendBodyBehindAppBar: true,
@@ -81,11 +86,12 @@ class Login extends StatelessWidget {
                         padding: const EdgeInsets.only(
                             bottom: 57, right: 16, left: 16, top: 16),
                         child: Form(
+                          key: formState,
                           child: FrostedGlassBox(
                             width: 358.0.w,
                             height: 500.h,
                             child: Container(
-                              key: forme,
+                              
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
@@ -140,6 +146,7 @@ class Login extends StatelessWidget {
                                         SizedBox(height: 20.h),
                                         TextFormField(
                                           enabled: true,
+                                          controller: state.password_controller,
                                           keyboardType: TextInputType.text,
                                           textInputAction: TextInputAction.done,
                                           obscureText: val.eyeoff,
@@ -199,7 +206,7 @@ class Login extends StatelessWidget {
                                         bottom: 16),
                                     child: InkWell(
                                       onTap: () {
-                                        print("taped");
+                                        
                                       },
                                       child: Text(
                                         'Forget passWord?',
@@ -225,7 +232,37 @@ class Login extends StatelessWidget {
                                               BorderRadius.circular(17.r),
                                         ),
                                       ),
-                                      onPressed: send,
+                                      onPressed:()async {
+                                        
+                                        if(formState.currentState != null){
+                                          if(formState.currentState!.validate()){
+                                            
+                                            await state.loginUser(UserModal(email: state.email_controler.text, password:state.password_controller.text));
+                                            if(state.isLogged){
+                                              // redirection vers home page
+                                              Navigator.pushNamed(context,"HomePage");
+                                            }else{
+                                              // ignore: use_build_context_synchronously
+                                              ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      dismissDirection:
+                                          DismissDirection.horizontal,
+                                      content: Text(
+                                        state.errorLoginMessage!,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 15.sp,
+                                          fontWeight: FontWeight.w300,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                            }
+                                          }
+                                          
+                                        
+                                        }
+                                      },
                                       child: Text(
                                         'Login',
                                         style: GoogleFonts.poppins(
