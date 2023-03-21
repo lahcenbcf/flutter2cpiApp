@@ -18,8 +18,6 @@ void main()async{
   String?loginInfoSession=SharedPrefService.pref.getString("userInfo");
  bool?isGuest=SharedPrefService.pref.getBool("isGuest");// To limit the priviliges of the guest like reading only the posts no edit no add no delete no comments
  String?guestInfo=SharedPrefService.pref.getString("guest"); // is to say Hello to guest so we need the guest Name
-  debugPrint(guestInfo);
-  print(loginInfoSession);
   if(loginInfoSession !=null || isGuest!=null){
     _defaultScreen=const HomePage();
   }
