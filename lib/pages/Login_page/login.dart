@@ -206,7 +206,7 @@ class _LoginState extends State<Login> {
                                         bottom: 16),
                                     child: InkWell(
                                       onTap: () {
-                                        
+                                        Navigator.pushNamed(context,"forgotPassword");
                                       },
                                       child: Text(
                                         'Forget passWord?',
@@ -289,7 +289,9 @@ class _LoginState extends State<Login> {
                                               fontWeight: FontWeight.w700,
                                               color: Colors.white),
                                         ),
-                                        onTap: () {},
+                                        onTap: () {
+                                          Navigator.pushNamed(context,"SignUp");
+                                        },
                                       ),
                                     ],
                                   ),

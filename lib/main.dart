@@ -4,6 +4,8 @@ import 'package:flluter2cpi/pages/School_year/school_year_view_model.dart';
 import 'package:flluter2cpi/pages/Sign_up/sign_up_view.dart';
 import 'package:flluter2cpi/pages/Sign_up/sign_up_view_model.dart';
 import 'package:flluter2cpi/pages/Login_page/view_model.dart';
+import 'package:flluter2cpi/pages/forgot_pass/forgot_view_model.dart';
+import 'package:flluter2cpi/pages/otp_screen/otp_view_model.dart';
 import 'package:flluter2cpi/routes.dart';
 import 'package:flluter2cpi/services/sharedServices.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +51,12 @@ class MyApp extends StatelessWidget {
                 ),
                 ChangeNotifierProvider(
                   create: (context) => View(),
+                ),
+                ChangeNotifierProvider(
+                  create: (context) => View_model(),
+                ),
+                ChangeNotifierProvider(
+                  create: (context) => Otp_view(),
                 )
               ],
               builder: (context, child) {

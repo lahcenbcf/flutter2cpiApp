@@ -35,4 +35,22 @@ class ApiServices{
     SharedPrefService.pref.clear();
     Navigator.pushNamed(context,"LogIn");
   }
+
+  //send email to verify
+  static Future<http.Response> verifyUser(String email)async{
+    Uri requestUrl=Uri.parse("$_baseUrl/forgotPass");
+    var response=await http.post(requestUrl,body:{
+      "email":email
+    });
+  return response;
+  }
+
+  static Future<http.Response> verifyDigits(String code,String email)async{
+    Uri requestUri=Uri.parse("$_baseUrl/verifyCode");
+    var response=await http.post(requestUri,body:{
+      "otp":code,
+      "email":email
+    });
+    return response;
+  }
 }
