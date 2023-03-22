@@ -1,4 +1,5 @@
 import 'package:flluter2cpi/pages/New_password/new_password_vm.dart';
+import 'package:flluter2cpi/pages/forgot_pass/forgot_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,6 +22,7 @@ class _NewPasswordState extends State<NewPassword> {
 //
     final size = MediaQuery.of(context).size;
     final state = Provider.of<NewPasswordViewModel>(context, listen: false);
+    final state2 = Provider.of<View_model>(context, listen: false);
 //
 //
     return Scaffold(
@@ -137,12 +139,14 @@ class _NewPasswordState extends State<NewPassword> {
                       ),
                       SizedBox(height: 39.h),
                       ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async{
                           if (Navigator.of(context).canPop()) {
                             Navigator.of(context).pop();
                           }
                           if (formKey.currentState != null) {
                             if (formKey.currentState!.validate()) {
+
+                              await state.setNewPassword(state.newPasswordController.text,state2.email_controler1.text);
                               showModalBottomSheet(
                                 backgroundColor: Colors.transparent,
                                 context: context,

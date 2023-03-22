@@ -53,4 +53,13 @@ class ApiServices{
     });
     return response;
   }
+
+  static Future<http.Response> setNewPassword(String password,String email)async{
+    Uri requestUri=Uri.parse("$_baseUrl/setNewPassword");
+    var response=await http.post(requestUri,body: {
+      "password":password,
+      "email":email
+    });
+    return response;
+  }
 }

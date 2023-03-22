@@ -152,7 +152,7 @@ class _OtpState extends State<Otp> {
                                     state2.email_controler1.text);
                                 if (state.message_success != null) {
                                   // success
-                                  debugPrint("you enter correct digits");
+                                  Navigator.pushNamed(context,"newPassword");
                                 } else {
                                   debugPrint("failed");
                                 }

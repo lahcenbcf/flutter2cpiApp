@@ -1,5 +1,6 @@
 import 'package:flluter2cpi/pages/Home_page/home_page_view.dart';
 import 'package:flluter2cpi/pages/Login_page/components/guest_box_view_model.dart';
+import 'package:flluter2cpi/pages/New_password/new_password_vm.dart';
 import 'package:flluter2cpi/pages/School_year/school_year_view_model.dart';
 import 'package:flluter2cpi/pages/Sign_up/sign_up_view.dart';
 import 'package:flluter2cpi/pages/Sign_up/sign_up_view_model.dart';
@@ -56,6 +57,9 @@ class MyApp extends StatelessWidget {
                 ),
                 ChangeNotifierProvider(
                   create: (context) => Otp_view(),
+                ),
+                ChangeNotifierProvider(
+                  create:(context)=>NewPasswordViewModel(),
                 )
               ],
               builder: (context, child) {

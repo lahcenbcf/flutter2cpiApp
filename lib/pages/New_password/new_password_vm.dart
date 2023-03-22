@@ -1,4 +1,6 @@
+import 'package:flluter2cpi/services/api.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 class NewPasswordViewModel extends ChangeNotifier {
   bool eyeOpenedPassword = false;
@@ -22,5 +24,10 @@ class NewPasswordViewModel extends ChangeNotifier {
       return "not the same password";
     }
     return null;
+  }
+
+  setNewPassword(String password,String email)async{
+    notifyListeners();
+    Response response=await ApiServices.setNewPassword(password, email);
   }
 }
