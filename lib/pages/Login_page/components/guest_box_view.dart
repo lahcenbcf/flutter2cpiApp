@@ -44,45 +44,43 @@ class _GuestBox extends State<GuestBox> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0).w,
-              child: Material(
-                color: Colors.transparent,
-                child: Form(
-                  key: forme,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  child: TextFormField(
-                    controller: state.fullNameController,
-                    validator: (value) => state.nameValidator(value),
-                    textCapitalization: TextCapitalization.words,
-                    keyboardType: TextInputType.name,
+            Material(
+              color: Colors.transparent,
+              child: Form(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                child: TextFormField(
+                  controller: state.fullNameController,
+                  validator: (value) => state.nameValidator(value),
+                  textCapitalization: TextCapitalization.words,
+                  keyboardType: TextInputType.name,
 
                     cursorColor: Colors.black,
 
-                    decoration: InputDecoration(
-                      fillColor: const Color.fromRGBO(239, 238, 238, 1),
-                      filled: true,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.r),
-                      ),
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.only(left: 12.w, top: 14.h, bottom: 14.h),
+                    fillColor: const Color.fromRGBO(239, 238, 238, 1),
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.r),
+                    ),
 
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.r),
-                      ),
+                      borderRadius: BorderRadius.circular(10.r),
+                    ),
 
                       hintText: "Full name",
-                      suffixIcon: Icon(
-                        FluentIcons.person_12_filled,
-                        size: iconSize,
-                        color: Colors.black,
-                      ),
-                      hintStyle:
-                          const TextStyle(color: Color.fromRGBO(0, 0, 0, 0.61)),
+                    suffixIcon: Icon(
+                      FluentIcons.person_12_filled,
+                      size: iconSize,
+                      color: Colors.black,
                     ),
+                    hintStyle:
+                        const TextStyle(color: Color.fromRGBO(0, 0, 0, 0.61)),
+                  ),
                   ),
                 ),
               ),
-            ),
+            
             SizedBox(height: 20.0.h),
             ElevatedButton(
               onPressed: () async{
