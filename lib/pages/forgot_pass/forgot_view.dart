@@ -131,7 +131,7 @@ class _ForgotPassState extends State<ForgotPass> {
                                             hintStyle: GoogleFonts.poppins(
                                                 fontSize: 14.sp,
                                                 fontWeight: FontWeight.w500,
-                                                color: Color.fromRGBO(0, 0, 0, 0.61)),
+                                                color: const Color.fromRGBO(0, 0, 0, 0.61)),
                                           ),
                                         ),
                                       ),
@@ -150,7 +150,7 @@ class _ForgotPassState extends State<ForgotPass> {
                                         ),
                                         onPressed: () async{
                                           //call apiService 
-                                          debugPrint("hello");
+                                          
                                           await state.sendEmailToVerify(state.email_controler1.text);
                                           if(state.CanPass){
                                             

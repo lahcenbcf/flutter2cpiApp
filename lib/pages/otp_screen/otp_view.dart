@@ -176,7 +176,9 @@ class _OtpState extends State<Otp> {
                                   fontWeight: FontWeight.w700,
                                   color: Color.fromRGBO(32, 197, 122, 1)),
                             ),
-                            onTap: () {},
+                            onTap: () async{
+                                await state2.sendEmailToVerify(state2.email_controler1.text);
+                            },
                           )
                         ],
                       ),
