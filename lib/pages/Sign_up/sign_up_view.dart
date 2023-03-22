@@ -94,7 +94,7 @@ class _SignUpState extends State<SignUp> {
                     filterQuality: FilterQuality.high,
                   ),
                 ),
-                SizedBox(height:60.h),
+                SizedBox(height: 60.h),
                 Text(
                   "Create new account",
                   style: GoogleFonts.poppins(
@@ -139,22 +139,22 @@ class _SignUpState extends State<SignUp> {
                             hint: "Full name",
                             controller: state.fullNameController,
                           ),
-                          SizedBox(height: 25.h),
+                          SizedBox(height: 30.h),
                           CustomTextField(
                             hint: "Email",
                             controller: state.emailController,
                           ),
-                          SizedBox(height: 25.h),
+                          SizedBox(height: 30.h),
                           CustomTextField(
                             hint: "Password",
                             controller: state.passwordController,
                           ),
-                          SizedBox(height: 25.h),
+                          SizedBox(height: 30.h),
                           CustomTextField(
                             hint: "Confirm password",
                             controller: state.confirmPasswordController,
                           ),
-                          SizedBox(height: 40.h),
+                          SizedBox(height: 50.h),
                           ElevatedButton(
                             onPressed: () {
                               if (formState.currentState != null) {
@@ -163,7 +163,8 @@ class _SignUpState extends State<SignUp> {
                                 } else {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                      dismissDirection: DismissDirection.horizontal,
+                                      dismissDirection:
+                                          DismissDirection.horizontal,
                                       content: Text(
                                         "please make sure there is no error.",
                                         style: GoogleFonts.poppins(
@@ -180,20 +181,21 @@ class _SignUpState extends State<SignUp> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
                                   const Color.fromRGBO(32, 197, 122, 1),
-                                  foregroundColor: const Color.fromRGBO(255, 255, 255, 0.91),
+                              foregroundColor:
+                                  const Color.fromRGBO(255, 255, 255, 0.91),
                               textStyle: GoogleFonts.poppins(
                                   fontSize: 20.sp, fontWeight: FontWeight.w700),
                               padding: EdgeInsets.symmetric(
-                                  vertical: 12.h, horizontal: 62.5.w),
+                                  vertical: 10.h, horizontal: 62.5.w),
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12.r),
+                                borderRadius: BorderRadius.circular(15.r),
                               ),
                             ),
-                            child: const Text("Register now",),
+                            child: const Text(
+                              "Register now",
+                            ),
                           ),
-                          SizedBox(
-                            height: 25.h,
-                          ),
+                          SizedBox(height: 25.h),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             mainAxisSize: MainAxisSize.min,
@@ -254,16 +256,17 @@ class _SignUpState extends State<SignUp> {
                           ),
                           SizedBox(height: 7.h),
                           InkWell(
-                            onTap: ()=>{showDialogg(context)},
+                            onTap: () => {showDialogg(context)},
                             child: CircleAvatar(
                               radius: 31.4.r,
-                              backgroundColor: const Color.fromRGBO(180, 28, 28, 1),
+                              backgroundColor:
+                                  const Color.fromRGBO(180, 28, 28, 1),
                               child: CircleAvatar(
                                 radius: 30.r,
                                 backgroundColor:
                                     const Color.fromRGBO(217, 217, 217, 1),
                                 child: Padding(
-                                  padding: EdgeInsets.all(8.w),
+                                  padding: EdgeInsets.all(5.w),
                                   child: Image.asset(
                                     "lib/images/google.png",
                                     fit: BoxFit.contain,

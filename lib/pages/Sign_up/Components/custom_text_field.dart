@@ -19,10 +19,10 @@ class CustomTextField extends StatelessWidget {
     return Consumer<SignUpViewModel>(
       builder: (context, state, child) => TextFormField(
         controller: controller,
-       autovalidateMode: AutovalidateMode.onUserInteraction,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         autofocus: false,
-        
-        keyboardType: hint == "First name" || hint == "Last name"
+
+        keyboardType: hint == "Full name"
             ? TextInputType.name
             : TextInputType.emailAddress,
         textInputAction: TextInputAction.done,
@@ -69,7 +69,10 @@ class CustomTextField extends StatelessWidget {
                     hint != "Full name")
                 ? Icon(FluentIcons.mail_24_filled, size: iconSize)
                 : hint == "Full name"
-                    ? Icon(FluentIcons.person_24_filled,size: iconSize,)
+                    ? Icon(
+                        FluentIcons.person_24_filled,
+                        size: iconSize,
+                      )
                     : InkWell(
                         radius: iconSize / 2,
                         onTap: () => hint == "Password"
@@ -85,7 +88,8 @@ class CustomTextField extends StatelessWidget {
                                 ? Icon(FluentIcons.eye_off_24_filled,
                                     size: iconSize)
                                 : Icon(FluentIcons.eye_24_filled,
-                                    size: iconSize)),
+                                    size: iconSize),
+                      ),
           ),
           suffixIconColor: const Color.fromRGBO(33, 33, 33, 1),
 
@@ -101,7 +105,12 @@ class CustomTextField extends StatelessWidget {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.r),
           ),
-          
+          errorStyle: GoogleFonts.poppins(
+            fontSize: 13.sp,
+            fontWeight: FontWeight.w400,
+            color: Colors.red,
+          ),
+
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.r),
           ),

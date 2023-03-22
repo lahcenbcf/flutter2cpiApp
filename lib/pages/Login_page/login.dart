@@ -241,7 +241,7 @@ class Login extends StatelessWidget {
                                         ),
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(17.r),
+                                              BorderRadius.circular(15.r),
                                         ),
                                       ),
                                       onPressed: send,

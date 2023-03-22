@@ -115,7 +115,6 @@ class SchoolYear extends StatelessWidget {
                         ),
                         SizedBox(height: 37.h),
                         Container(
-                          height: 231.h,
                           width: 343.w,
                           padding: EdgeInsets.symmetric(horizontal: 9.w),
                           decoration: BoxDecoration(
@@ -130,9 +129,7 @@ class SchoolYear extends StatelessWidget {
                                 SizedBox(height: 50.h),
                                 //DropDownButton
                                 const YearSelecter(),
-                                SizedBox(
-                                  height: 9.h
-                                ),
+                                SizedBox(height: 9.h),
 
                                 //
                                 //
@@ -155,7 +152,7 @@ class SchoolYear extends StatelessWidget {
                                         ),
                                       );
                                     } else {
-                                      return const Text("");
+                                      return const Text(" ");
                                     }
                                   },
                                 ),
@@ -164,10 +161,9 @@ class SchoolYear extends StatelessWidget {
                                 //
                                 //
                                 // continue button
-                                SizedBox(height: 15.h),
+                                SizedBox(height: 10.h),
                                 ElevatedButton(
                                   onPressed: () {
-                                    // state.setYear = null;
                                     state.pressButton();
                                   },
                                   style: ElevatedButton.styleFrom(
@@ -187,7 +183,7 @@ class SchoolYear extends StatelessWidget {
                                   ),
                                   child: const Text("Continue"),
                                 ),
-                                SizedBox(height: 30.h)
+                                SizedBox(height: 50.h)
                               ],
                             ),
                           ),
