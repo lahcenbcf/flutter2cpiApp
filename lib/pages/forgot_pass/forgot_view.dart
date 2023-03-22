@@ -47,14 +47,14 @@ class _Forgot_passState extends State<Forgot_pass> {
                   SizedBox(
                     height: 90.h,
                     width: 85.w,
-                    child: Image.asset('lib/images/logo.png'),
+                    child: Image.asset('lib/images/g1.png'),
                   ),
                   SizedBox(height: 20.h),
                   SizedBox(
                     height: 39.h,
                     width: 170.w,
                     child: Image.asset(
-                      'lib/images/guide_text.png',
+                      '/lib/images/logo.png',
                     ),
                   ),
                   Padding(
