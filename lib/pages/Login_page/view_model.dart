@@ -41,7 +41,6 @@ class View extends ChangeNotifier {
     Response res = await ApiServices.loginUser(user);
     print(res.body);
     var finalResult = json.decode(res.body);
-    print(finalResult);
     if (finalResult?["message"] != null) {
       errorLoginMessage = finalResult["message"];
     } else {

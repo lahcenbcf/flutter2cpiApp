@@ -13,6 +13,7 @@ class ApiServices{
   }
 
   static Future<http.Response> loginUser(UserModal user)async {
+    debugPrint(user.password);
     Uri requestUri=Uri.parse("$_baseUrl/login");
     var response=await http.post(requestUri,body:{
       "email":user.email,

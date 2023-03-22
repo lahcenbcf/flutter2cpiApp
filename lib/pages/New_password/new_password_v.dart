@@ -139,84 +139,107 @@ class _NewPasswordState extends State<NewPassword> {
                       ),
                       SizedBox(height: 39.h),
                       ElevatedButton(
-                        onPressed: () async{
+                        onPressed: () async {
                           if (Navigator.of(context).canPop()) {
                             Navigator.of(context).pop();
                           }
                           if (formKey.currentState != null) {
                             if (formKey.currentState!.validate()) {
-
-                              await state.setNewPassword(state.newPasswordController.text,state2.email_controler1.text);
-                              showModalBottomSheet(
-                                backgroundColor: Colors.transparent,
-                                context: context,
-                                builder: (context) {
-                                  return Container(
-                                    width: size.width,
-                                    decoration: BoxDecoration(
-                                      color:
-                                          const Color.fromRGBO(41, 45, 54, 1),
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(40.r),
-                                          topRight: Radius.circular(40.r)),
-                                    ),
-                                    child: Wrap(
-                                     crossAxisAlignment: WrapCrossAlignment.center,
-                                     runAlignment: WrapAlignment.center,
-                                     direction: Axis.vertical,
-                                      children: [
-                                        SizedBox(height: 37.h),
-                                        SizedBox(
-                                          height: 90.w,
-                                          width: 90.w,
-                                          child: Image.asset(
-                                            "lib/images/checked.png",
-                                            filterQuality: FilterQuality.high,
-                                            fit: BoxFit.contain,
-                                          ),
-                                        ),
-                                        SizedBox(height: 22.h),
-                                        Text(
-                                          "Password Updated",
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 20.sp,
-                                            fontWeight: FontWeight.w700,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        SizedBox(height: 30.h),
-                                        ElevatedButton(
-                                          onPressed: () => Navigator.of(context)
-                                              .pushReplacementNamed("LogIn"),
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                                const Color.fromRGBO(
-                                                    32, 197, 122, 1),
-                                            foregroundColor:
-                                                const Color.fromRGBO(
-                                                    255, 255, 255, 0.91),
-                                            textStyle: GoogleFonts.poppins(
-                                                fontSize: 20.sp,
-                                                fontWeight: FontWeight.w700),
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 10.h,
-                                                horizontal: 54.w),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(15.r),
+                              await state.setNewPassword(
+                                  state.newPasswordController.text,
+                                  state2.email_controler1.text);
+                              // ignore: use_build_context_synchronously
+                              if (state.success!) {
+                                debugPrint("called");
+                                // ignore: use_build_context_synchronously
+                                showModalBottomSheet(
+                                  backgroundColor: Colors.transparent,
+                                  context: context,
+                                  builder: (context) {
+                                    return Container(
+                                      width: size.width,
+                                      decoration: BoxDecoration(
+                                        color:
+                                            const Color.fromRGBO(41, 45, 54, 1),
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(40.r),
+                                            topRight: Radius.circular(40.r)),
+                                      ),
+                                      child: Wrap(
+                                        crossAxisAlignment:
+                                            WrapCrossAlignment.center,
+                                        runAlignment: WrapAlignment.center,
+                                        direction: Axis.vertical,
+                                        children: [
+                                          SizedBox(height: 37.h),
+                                          SizedBox(
+                                            height: 90.w,
+                                            width: 90.w,
+                                            child: Image.asset(
+                                              "lib/images/checked.png",
+                                              filterQuality: FilterQuality.high,
+                                              fit: BoxFit.contain,
                                             ),
                                           ),
-                                          child: const Text(
-                                            "Return to login",
+                                          SizedBox(height: 22.h),
+                                          Text(
+                                            "Password Updated",
+                                            style: GoogleFonts.poppins(
+                                              fontSize: 20.sp,
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.white,
+                                            ),
                                           ),
-                                        ),
-                                        SizedBox(height: 37.h),
-
-                                      ],
+                                          SizedBox(height: 30.h),
+                                          ElevatedButton(
+                                            onPressed: () => Navigator.of(
+                                                    context)
+                                                .pushReplacementNamed("LogIn"),
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor:
+                                                  const Color.fromRGBO(
+                                                      32, 197, 122, 1),
+                                              foregroundColor:
+                                                  const Color.fromRGBO(
+                                                      255, 255, 255, 0.91),
+                                              textStyle: GoogleFonts.poppins(
+                                                  fontSize: 20.sp,
+                                                  fontWeight: FontWeight.w700),
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 10.h,
+                                                  horizontal: 54.w),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(15.r),
+                                              ),
+                                            ),
+                                            child: const Text(
+                                              "Return to login",
+                                            ),
+                                          ),
+                                          SizedBox(height: 37.h),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                );
+                              } else {
+                                // ignore: use_build_context_synchronously
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    dismissDirection:
+                                        DismissDirection.horizontal,
+                                    content: Text(
+                                      state.message!,
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 15.sp,
+                                        fontWeight: FontWeight.w300,
+                                        color: Colors.white,
+                                      ),
                                     ),
-                                  );
-                                },
-                              );
+                                  ),
+                                );
+                              }
                             }
                           }
                         },

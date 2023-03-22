@@ -94,298 +94,298 @@ class _LoginState extends State<Login> {
                         padding: EdgeInsets.only(
                             bottom: 57.h, right: 16.w, left: 16.w, top: 16.h),
                         child: Form(
+                          
+                          key: forme,
                           child: FrostedGlassBox(
                             width: 358.0.w,
                             height: 500.h,
-                            child: Container(
-                              key: forme,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Consumer<View>(
-                                    builder: (context, val, child) => Column(
-                                      children: [
-                                        TextFormField(
-                                          controller: val.email_controler,
-                                          autovalidateMode: AutovalidateMode
-                                              .onUserInteraction,
-                                          validator: (String? value) =>
-                                              val.validate(value),
-                                          enabled: true,
-                                          keyboardType: TextInputType.text,
-                                          textInputAction: TextInputAction.done,
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 15.sp,
-                                            fontWeight: FontWeight.w500,
-                                            color: const Color.fromRGBO(
-                                                0, 0, 0, 1),
-                                          ),
-                                          cursorColor:
-                                              const Color.fromRGBO(0, 0, 0, 1),
-                                          decoration: InputDecoration(
-                                            suffixIcon: Padding(
-                                              padding:  EdgeInsets.only(right: 13.w),
-                                              child: Icon(
-                                                FluentIcons.mail_24_filled,
-                                                size: 25 * iconSize,
-                                                color: Colors.black,
-                                              ),
-                                            ),
-                                            filled: true,
-                                            fillColor: Colors.white,
-                                            contentPadding: EdgeInsets.only(
-                                                left: 12.w,
-                                                top: 14.h,
-                                                bottom: 14.h),
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10.r),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10.r),
-                                            ),
-                                            hintText: 'Email',
-                                            hintStyle: GoogleFonts.poppins(
-                                              fontSize: 14.sp,
-                                              fontWeight: FontWeight.w500,
-                                              color: const Color.fromRGBO(
-                                                  0, 0, 0, 0.61),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(height: 20.h),
-                                        SizedBox(height: 20.h),
-                                        TextFormField(
-                                          enabled: true,
-                                          keyboardType: TextInputType.text,
-                                          textInputAction: TextInputAction.done,
-                                          obscureText: val.eyeoff,
-                                          cursorColor:
-                                              const Color.fromRGBO(0, 0, 0, 1),
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 15.sp,
-                                            fontWeight: FontWeight.w500,
-                                            color: const Color.fromRGBO(
-                                                0, 0, 0, 1),
-                                          ),
-                                          decoration: InputDecoration(
-                                            suffixIcon: InkWell(
-                                              onTap: () => val.switchState(),
-                                              child: val.eyeoff
-                                                  ? Padding(
-                                                    padding:  EdgeInsets.only(right: 13.w),
-                                                    child: Icon(
-                                                        FluentIcons.eye_24_filled,
-                                                        size: 25 * iconSize,
-                                                        color: Colors.black,
-                                                      ),
-                                                  )
-                                                  : Padding(
-                                                    padding:  EdgeInsets.only(right: 13.w),
-                                                    child: Icon(
-                                                        FluentIcons
-                                                            .eye_off_24_filled,
-                                                        size: 25 * iconSize,
-                                                        color: Colors.black,
-                                                      ),
-                                                  ),
-                                            ),
-                                            filled: true,
-                                            fillColor: Colors.white,
-                                            contentPadding: EdgeInsets.only(
-                                                left: 12.w,
-                                                top: 14.h,
-                                                bottom: 14.h),
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10.r),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10.r),
-                                            ),
-                                            hintText: 'Password',
-                                            hintStyle: GoogleFonts.poppins(
-                                              fontSize: 14.sp,
-                                              fontWeight: FontWeight.w500,
-                                              color: const Color.fromRGBO(
-                                                  0, 0, 0, 0.61),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                
-                                      
-                                 
-                                    Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 180.0.w,
-                                        top: 5.0.h,
-                                       // right: 7.w,
-                                        bottom: 16.h),
-                                    child: InkWell(
-                                      onTap: () {
-                                        Navigator.pushNamed(context,"forgotPassword");
-                                      },
-                                      child: Text(
-                                        'Forget passWord?',
-                                        textAlign: TextAlign.right,
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.white,
-                                            fontSize: 11.sp,
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                    ),
-                                  ),
-                                  
-                                  ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        foregroundColor: Colors.white,
-                                        backgroundColor: const Color.fromRGBO(
-                                            32, 197, 122, 1),
-                                        padding: EdgeInsets.symmetric(
-                                          vertical: 10.h,
-                                          horizontal: 72.5.w,
-                                        ),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(17.r),
-                                        ),
-                                      ),
-                                      onPressed: ()async {
-                                        
-                                        if(forme.currentState != null){
-                                          if(forme.currentState!.validate()){
-                                            
-                                            await state.loginUser(UserModal(email: state.email_controler.text, password:state.password_controller.text));
-                                            if(state.isLogged){
-                                              // redirection vers home page
-                                              // ignore: use_build_context_synchronously
-                                              Navigator.pushNamed(context,"HomePage");
-                                            }else{
-                                              // ignore: use_build_context_synchronously
-                                              ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      dismissDirection:
-                                          DismissDirection.horizontal,
-                                      content: Text(
-                                        state.errorLoginMessage!,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Consumer<View>(
+                                  builder: (context, val, child) => Column(
+                                    children: [
+                                      TextFormField(
+                                        controller: val.email_controler,
+                                        autovalidateMode: AutovalidateMode
+                                            .onUserInteraction,
+                                        validator: (String? value) =>
+                                            val.validate(value),
+                                        enabled: true,
+                                        keyboardType: TextInputType.text,
+                                        textInputAction: TextInputAction.done,
                                         style: GoogleFonts.poppins(
                                           fontSize: 15.sp,
-                                          fontWeight: FontWeight.w300,
-                                          color: Colors.white,
+                                          fontWeight: FontWeight.w500,
+                                          color: const Color.fromRGBO(
+                                              0, 0, 0, 1),
+                                        ),
+                                        cursorColor:
+                                            const Color.fromRGBO(0, 0, 0, 1),
+                                        decoration: InputDecoration(
+                                          suffixIcon: Padding(
+                                            padding:  EdgeInsets.only(right: 13.w),
+                                            child: Icon(
+                                              FluentIcons.mail_24_filled,
+                                              size: 25 * iconSize,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                          filled: true,
+                                          fillColor: Colors.white,
+                                          contentPadding: EdgeInsets.only(
+                                              left: 12.w,
+                                              top: 14.h,
+                                              bottom: 14.h),
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.r),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.r),
+                                          ),
+                                          hintText: 'Email',
+                                          hintStyle: GoogleFonts.poppins(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w500,
+                                            color: const Color.fromRGBO(
+                                                0, 0, 0, 0.61),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  );
-                                            }
-                                          }
-                                          
-                                        
-                                        }},
-                                      child: Text(
-                                        'Login',
+                                      SizedBox(height: 20.h),
+                                    
+                                      TextFormField(
+                                        enabled: true,
+                                        controller: state.password_controller,
+                                        keyboardType: TextInputType.text,
+                                        textInputAction: TextInputAction.done,
+                                        obscureText: val.eyeoff,
+                                        cursorColor:
+                                            const Color.fromRGBO(0, 0, 0, 1),
                                         style: GoogleFonts.poppins(
-                                          fontSize: 20.sp,
-                                          fontWeight: FontWeight.w700,
+                                          fontSize: 15.sp,
+                                          fontWeight: FontWeight.w500,
+                                          color: const Color.fromRGBO(
+                                              0, 0, 0, 1),
                                         ),
-                                      )),
-                                  SizedBox(height: 31.h),
-
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "Don't you have an account yet ?",
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 12.sp,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w300),
-                                      ),
-                                      InkWell(
-                                        child: Text(
-                                          " Register",
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 14.sp,
-                                              fontWeight: FontWeight.w700,
-                                              color: Colors.white),
+                                        decoration: InputDecoration(
+                                          suffixIcon: InkWell(
+                                            onTap: () => val.switchState(),
+                                            child: val.eyeoff
+                                                ? Padding(
+                                                  padding:  EdgeInsets.only(right: 13.w),
+                                                  child: Icon(
+                                                      FluentIcons.eye_24_filled,
+                                                      size: 25 * iconSize,
+                                                      color: Colors.black,
+                                                    ),
+                                                )
+                                                : Padding(
+                                                  padding:  EdgeInsets.only(right: 13.w),
+                                                  child: Icon(
+                                                      FluentIcons
+                                                          .eye_off_24_filled,
+                                                      size: 25 * iconSize,
+                                                      color: Colors.black,
+                                                    ),
+                                                ),
+                                          ),
+                                          filled: true,
+                                          fillColor: Colors.white,
+                                          contentPadding: EdgeInsets.only(
+                                              left: 12.w,
+                                              top: 14.h,
+                                              bottom: 14.h),
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.r),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.r),
+                                          ),
+                                          hintText: 'Password',
+                                          hintStyle: GoogleFonts.poppins(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w500,
+                                            color: const Color.fromRGBO(
+                                                0, 0, 0, 0.61),
+                                          ),
                                         ),
-                                        onTap: () {
-                                          Navigator.pushNamed(context,"SignUp");
-                                        },
                                       ),
                                     ],
                                   ),
-                                  SizedBox(
-                                    height: 12.h,
+                                ),
+                              
+                                    
+                               
+                                  Padding(
+                                  padding: EdgeInsets.only(
+                                      left: 180.0.w,
+                                      top: 5.0.h,
+                                     // right: 7.w,
+                                      bottom: 16.h),
+                                  child: InkWell(
+                                    onTap: () {
+                                      Navigator.pushNamed(context,"forgotPassword");
+                                    },
+                                    child: Text(
+                                      'Forget passWord?',
+                                      textAlign: TextAlign.right,
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.white,
+                                          fontSize: 11.sp,
+                                          fontWeight: FontWeight.w700),
+                                    ),
                                   ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Expanded(
-                                        child: Divider(
-                                          color: Color.fromRGBO(100, 98, 98, 1),
-                                          thickness: 1,
-                                        ),
+                                ),
+                                
+                                ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      foregroundColor: Colors.white,
+                                      backgroundColor: const Color.fromRGBO(
+                                          32, 197, 122, 1),
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: 10.h,
+                                        horizontal: 72.5.w,
                                       ),
-                                      SizedBox(
-                                        width: 16.5.w,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(17.r),
                                       ),
-                                      Text(
-                                        "OR",
-                                        style: GoogleFonts.inter(
-                                            fontSize: 15.sp,
+                                    ),
+                                    onPressed: ()async {
+                                      
+                                      if(forme.currentState != null){
+                                        if(forme.currentState!.validate()){
+                                          debugPrint("hello");
+                                          await state.loginUser(UserModal(email: state.email_controler.text, password:state.password_controller.text));
+                                          if(state.isLogged){
+                                            // redirection vers home page
+                                            // ignore: use_build_context_synchronously
+                                            Navigator.pushNamed(context,"HomePage");
+                                          }else{
+                                            // ignore: use_build_context_synchronously
+                                            ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    dismissDirection:
+                                        DismissDirection.horizontal,
+                                    content: Text(
+                                      state.errorLoginMessage!,
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 15.sp,
+                                        fontWeight: FontWeight.w300,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                                          }
+                                        }
+                                        
+                                      
+                                      }},
+                                    child: Text(
+                                      'Login',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 20.sp,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    )),
+                                SizedBox(height: 31.h),
+
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "Don't you have an account yet ?",
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 12.sp,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w300),
+                                    ),
+                                    InkWell(
+                                      child: Text(
+                                        " Register",
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 14.sp,
                                             fontWeight: FontWeight.w700,
                                             color: Colors.white),
                                       ),
-                                      SizedBox(
-                                        width: 16.5.w,
-                                      ),
-                                      const Expanded(
-                                        child: Divider(
-                                          color: Color.fromRGBO(100, 98, 98, 1),
-                                          thickness: 1,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 9.h,
-                                  ),
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(20.r),
-                                        side: const BorderSide(
-                                          color: Color.fromRGBO(0, 200, 152, 1),
-                                        ),
-                                      ),
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 15.h,
-                                          horizontal: 66
-                                              .w), //shape:MaterialStateProperty.all(BorderSide(color: )),
-
-                                      backgroundColor: Colors.grey.shade900,
+                                      onTap: () {
+                                        Navigator.pushNamed(context,"SignUp");
+                                      },
                                     ),
-                                    onPressed: () {
-                                      showDialogg(context);
-                                    },
-                                    child: Text(
-                                      "Enter as guest",
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 12.h,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Expanded(
+                                      child: Divider(
+                                        color: Color.fromRGBO(100, 98, 98, 1),
+                                        thickness: 1,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 16.5.w,
+                                    ),
+                                    Text(
+                                      "OR",
                                       style: GoogleFonts.inter(
-                                        fontSize: 15.sp,
-                                        fontWeight: FontWeight.w700,
-                                        color: const Color.fromRGBO(
-                                            205, 205, 205, 1),
+                                          fontSize: 15.sp,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.white),
+                                    ),
+                                    SizedBox(
+                                      width: 16.5.w,
+                                    ),
+                                    const Expanded(
+                                      child: Divider(
+                                        color: Color.fromRGBO(100, 98, 98, 1),
+                                        thickness: 1,
                                       ),
                                     ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 9.h,
+                                ),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(20.r),
+                                      side: const BorderSide(
+                                        color: Color.fromRGBO(0, 200, 152, 1),
+                                      ),
+                                    ),
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 15.h,
+                                        horizontal: 66
+                                            .w), //shape:MaterialStateProperty.all(BorderSide(color: )),
+
+                                    backgroundColor: Colors.grey.shade900,
                                   ),
-                                ],
-                            ),
+                                  onPressed: () {
+                                    showDialogg(context);
+                                  },
+                                  child: Text(
+                                    "Enter as guest",
+                                    style: GoogleFonts.inter(
+                                      fontSize: 15.sp,
+                                      fontWeight: FontWeight.w700,
+                                      color: const Color.fromRGBO(
+                                          205, 205, 205, 1),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                         ),
                       ),
