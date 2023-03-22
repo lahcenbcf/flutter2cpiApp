@@ -158,8 +158,8 @@ class _NewPasswordState extends State<NewPassword> {
                                     ),
                                     child: Wrap(
                                      crossAxisAlignment: WrapCrossAlignment.center,
-                                     runAlignment: WrapAlignment.center,
-                                     direction: Axis.vertical,
+                                      runAlignment: WrapAlignment.center,
+                                      direction: Axis.vertical,
                                       children: [
                                         SizedBox(height: 37.h),
                                         SizedBox(
@@ -182,8 +182,11 @@ class _NewPasswordState extends State<NewPassword> {
                                         ),
                                         SizedBox(height: 30.h),
                                         ElevatedButton(
-                                          onPressed: () => Navigator.of(context)
-                                              .pushReplacementNamed("LogIn"),
+                                          onPressed: () {
+                                            /*add your backend code here */
+                                            Navigator.of(context)
+                                                .pushReplacementNamed("LogIn");
+                                          },
                                           style: ElevatedButton.styleFrom(
                                             backgroundColor:
                                                 const Color.fromRGBO(
@@ -207,7 +210,6 @@ class _NewPasswordState extends State<NewPassword> {
                                           ),
                                         ),
                                         SizedBox(height: 37.h),
-
                                       ],
                                     ),
                                   );
