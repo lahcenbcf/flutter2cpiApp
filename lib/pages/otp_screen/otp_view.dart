@@ -1,11 +1,12 @@
+import 'package:flluter2cpi/pages/forgot_pass/forgot_view.dart';
 import 'package:flluter2cpi/pages/forgot_pass/forgot_view_model.dart';
 import 'package:flluter2cpi/pages/otp_screen/otp_view_model.dart';
+import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:flluter2cpi/pages/Login_page/log in.dart';
-
 
 class Otp extends StatefulWidget {
   @override
@@ -46,24 +47,35 @@ class _OtpState extends State<Otp> {
                   SizedBox(
                     height: 90.h,
                     width: 85.w,
-                    child: Image.asset('images/logo.png'),
+                    child: Image.asset('lib/images/logo.png'),
                   ),
                   SizedBox(height: 20.h),
                   SizedBox(
                     height: 39.h,
                     width: 170.w,
                     child: Image.asset(
-                      'images/guide_text.png',
+                      'lib/images/guide_text.png',
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 30, right: 16, left: 16, top: 16),
+                    padding: const EdgeInsets.only(
+                        bottom: 30, right: 16, left: 16, top: 16),
                     child: FrostedGlassBox(
                       width: 471.0.w,
-                      height: 510.h,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
+                          Container(alignment: Alignment.topRight,
+                            child: IconButton(
+                                onPressed: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return Forgot_pass();
+                                  }));
+                                },
+                                icon: Icon(FluentSystemIcons
+                                    .ic_fluent_dismiss_circle_filled),iconSize: 44),
+                          ),
                           ListTile(
                             title: Text(
                               'Code verification',
@@ -80,36 +92,44 @@ class _OtpState extends State<Otp> {
                             "Please enter the code sent to :user@esi-sba.dz ",
                             textAlign: TextAlign.left,
                             style: GoogleFonts.poppins(
-                                fontSize: 14.sp, fontWeight: FontWeight.w500, color: Colors.white),
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white),
                           ),
                           SizedBox(
                             height: 29.h,
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(right: 1, left: 1, bottom: 35),
+                            padding: const EdgeInsets.only(
+                                right: 1, left: 1, bottom: 35),
                             child: Container(
                                 decoration: BoxDecoration(
                                     color: const Color.fromRGBO(62, 67, 79, 1),
                                     borderRadius: BorderRadius.circular(25)),
-                                height: 118.h,
                                 width: 350.w,
                                 child: Container(
                                     padding: const EdgeInsets.all(28),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(12.r),
                                     ),
-                                    child: Consumer<View_model>(builder: (context, value, child) =>
-                                       Column(
+                                    child: Consumer<View_model>(
+                                      builder: (context, value, child) =>
+                                          Column(
                                         children: [
                                           Row(
-                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                           children: [
-                                             _otp_textfield(first: true, last: false),
-                                             _otp_textfield(first: false, last: false),
-                                             _otp_textfield(first: false, last: false),
-                                             _otp_textfield(first: false, last: true),
-                                           ],
-                                            ),
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              _otp_textfield(
+                                                  first: true, last: false),
+                                              _otp_textfield(
+                                                  first: false, last: false),
+                                              _otp_textfield(
+                                                  first: false, last: false),
+                                              _otp_textfield(
+                                                  first: false, last: true),
+                                            ],
+                                          ),
                                         ],
                                       ),
                                     ))),
@@ -117,9 +137,10 @@ class _OtpState extends State<Otp> {
                           ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 minimumSize: Size(80.w, 16.h),
-                                backgroundColor: const Color.fromRGBO(32, 197, 122, 1),
-                                padding:
-                                    (const EdgeInsets.only(bottom: 15, left: 30, right: 30, top: 15)),
+                                backgroundColor:
+                                    const Color.fromRGBO(32, 197, 122, 1),
+                                padding: (const EdgeInsets.only(
+                                    bottom: 15, left: 30, right: 30, top: 15)),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(13.r)),
                               ),
@@ -132,14 +153,16 @@ class _OtpState extends State<Otp> {
                                     fontWeight: FontWeight.w700,
                                     color: Colors.white),
                               )),
-                          SizedBox(height: 7.h,),
+                          SizedBox(
+                            height: 7.h,
+                          ),
                           InkWell(
                             child: Text(
                               "Resend code",
                               style: GoogleFonts.poppins(
                                   fontSize: 17.sp,
                                   fontWeight: FontWeight.w700,
-                                  color: Color.fromRGBO(32, 197, 122, 1)),
+                                  color: const Color.fromRGBO(32, 197, 122, 1)),
                             ),
                             onTap: () {},
                           )
@@ -157,7 +180,8 @@ class _OtpState extends State<Otp> {
   Widget _otp_textfield({required bool first, last}) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(9), color: Color.fromRGBO(217, 217, 217, 1)),
+          borderRadius: BorderRadius.circular(9.r),
+          color: Color.fromRGBO(217, 217, 217, 1)),
       height: 36.h,
       child: Expanded(
         child: AspectRatio(
@@ -175,7 +199,7 @@ class _OtpState extends State<Otp> {
             showCursor: true,
             readOnly: false,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.bold),
             keyboardType: TextInputType.number,
             maxLength: 1,
             decoration: InputDecoration(

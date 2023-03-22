@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
             return  MaterialApp(
               debugShowCheckedModeBanner: false,
               home: SafeArea(
-                child: Forgot_pass(),
+                child: Login(),
               ),
             );
           },
