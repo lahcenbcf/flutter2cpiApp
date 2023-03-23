@@ -5,8 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:flluter2cpi/pages/Login_page/login.dart';
 
-import '../otp_screen/otp_view.dart';
-
 class ForgotPass extends StatefulWidget {
   const ForgotPass({super.key});
   @override
@@ -49,14 +47,16 @@ class _ForgotPassState extends State<ForgotPass> {
                   SizedBox(
                     height: 90.h,
                     width: 85.w,
-                    child: Image.asset('images/logo.png'),
+                    child: Image.asset('lib/images/g1.png'),
                   ),
                   SizedBox(height: 20.h),
                   SizedBox(
                     height: 39.h,
                     width: 170.w,
                     child: Image.asset(
-                      'images/guide_text.png',
+                      'lib/images/guide_text.png',
+                      fit: BoxFit.contain,
+                    filterQuality: FilterQuality.high,
                     ),
                   ),
                   Padding(
@@ -64,7 +64,7 @@ class _ForgotPassState extends State<ForgotPass> {
                     child: Form(
                       child: FrostedGlassBox(
                         width: 471.0.w,
-                        height: 510.h,
+                        
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [

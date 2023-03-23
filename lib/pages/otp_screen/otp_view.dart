@@ -1,5 +1,7 @@
+import 'package:flluter2cpi/pages/forgot_pass/forgot_view.dart';
 import 'package:flluter2cpi/pages/forgot_pass/forgot_view_model.dart';
 import 'package:flluter2cpi/pages/otp_screen/otp_view_model.dart';
+import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,14 +9,17 @@ import 'package:provider/provider.dart';
 import 'package:flluter2cpi/pages/Login_page/login.dart';
 
 class Otp extends StatefulWidget {
+  const Otp({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _OtpState createState() => _OtpState();
 }
 
 class _OtpState extends State<Otp> {
   @override
   Widget build(BuildContext context) {
-    final state = Provider.of<Otp_view>(context, listen: false);
+    final state=Provider.of<Otp_view>(context,listen: false);
     final state2 = Provider.of<View_model>(context, listen: false);
     return SafeArea(
         child: Scaffold(
@@ -47,14 +52,14 @@ class _OtpState extends State<Otp> {
                   SizedBox(
                     height: 90.h,
                     width: 85.w,
-                    child: Image.asset('images/logo.png'),
+                    child: Image.asset('lib/images/g1.png'),
                   ),
                   SizedBox(height: 20.h),
                   SizedBox(
                     height: 39.h,
                     width: 170.w,
                     child: Image.asset(
-                      'images/guide_text.png',
+                      'lib/images/guide_text.png',
                     ),
                   ),
                   Padding(
@@ -62,10 +67,20 @@ class _OtpState extends State<Otp> {
                         bottom: 30, right: 16, left: 16, top: 16),
                     child: FrostedGlassBox(
                       width: 471.0.w,
-                      height: 510.h,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
+                          Container(alignment: Alignment.topRight,
+                            child: IconButton(
+                                onPressed: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return const ForgotPass();
+                                  }));
+                                },
+                                icon:const Icon(FluentSystemIcons
+                                    .ic_fluent_dismiss_circle_filled),iconSize: 44),
+                          ),
                           ListTile(
                             title: Text(
                               'Code verification',
@@ -96,7 +111,6 @@ class _OtpState extends State<Otp> {
                                 decoration: BoxDecoration(
                                     color: const Color.fromRGBO(62, 67, 79, 1),
                                     borderRadius: BorderRadius.circular(25)),
-                                height: 118.h,
                                 width: 350.w,
                                 child: Container(
                                     padding: const EdgeInsets.all(28),
@@ -112,21 +126,13 @@ class _OtpState extends State<Otp> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               _otp_textfield(
-                                                  first: true,
-                                                  last: false,
-                                                  digit: state.code1),
+                                                  first: true, last: false,digit:state.code1),
                                               _otp_textfield(
-                                                  first: false,
-                                                  last: false,
-                                                  digit: state.code2),
+                                                  first: false, last: false,digit: state.code2),
                                               _otp_textfield(
-                                                  first: false,
-                                                  last: false,
-                                                  digit: state.code3),
+                                                  first: false, last: false,digit:state.code3),
                                               _otp_textfield(
-                                                  first: false,
-                                                  last: true,
-                                                  digit: state.code4),
+                                                  first: false, last: true,digit:state.code4),
                                             ],
                                           ),
                                         ],
@@ -152,6 +158,7 @@ class _OtpState extends State<Otp> {
                                     state2.email_controler1.text);
                                 if (state.message_success != null) {
                                   // success
+                                  // ignore: use_build_context_synchronously
                                   Navigator.pushNamed(context,"newPassword");
                                 } else {
                                   debugPrint("failed");
@@ -174,10 +181,10 @@ class _OtpState extends State<Otp> {
                               style: GoogleFonts.poppins(
                                   fontSize: 17.sp,
                                   fontWeight: FontWeight.w700,
-                                  color: Color.fromRGBO(32, 197, 122, 1)),
+                                  color: const Color.fromRGBO(32, 197, 122, 1)),
                             ),
                             onTap: () async{
-                                await state2.sendEmailToVerify(state2.email_controler1.text);
+                              await state2.sendEmailToVerify(state2.email_controler1.text);
                             },
                           )
                         ],
@@ -191,11 +198,10 @@ class _OtpState extends State<Otp> {
     ));
   }
 
-  Widget _otp_textfield(
-      {required bool first, last, required TextEditingController digit}) {
+  Widget _otp_textfield({required bool first, last,required TextEditingController digit}) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(9),
+          borderRadius: BorderRadius.circular(9.r),
           color: Color.fromRGBO(217, 217, 217, 1)),
       height: 36.h,
       child: Expanded(
@@ -215,10 +221,10 @@ class _OtpState extends State<Otp> {
             showCursor: true,
             readOnly: false,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.bold),
             keyboardType: TextInputType.number,
             maxLength: 1,
-            decoration: const InputDecoration(
+            decoration:const InputDecoration(
                 contentPadding: EdgeInsets.only(bottom: 14),
                 counter: Offstage(),
                 border: InputBorder.none),

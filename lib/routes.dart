@@ -12,7 +12,7 @@ generateRoutes(BuildContext context) {
     "SignUp": (context) => const SignUp(),
     "SchoolYear": (context) => const SchoolYear(),
     "HomePage":(context)=>const HomePage(),
-    "LogIn":(context)=>const Login(),
+    "LogIn":(context)=> Login(),
     "forgotPassword":(context)=>const ForgotPass(),
     "otpView":(context)=>Otp(),
     "newPassword":(context)=>const NewPassword()

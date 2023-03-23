@@ -1,7 +1,5 @@
 import 'package:flluter2cpi/pages/Sign_up/Components/custom_text_field.dart';
 import 'package:flluter2cpi/pages/Sign_up/sign_up_view_model.dart';
-import 'package:flluter2cpi/services/api.dart';
-import 'package:flluter2cpi/pages/Sign_up/User_Modal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';

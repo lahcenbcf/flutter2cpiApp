@@ -30,8 +30,8 @@ class _LoginState extends State<Login> {
         extendBodyBehindAppBar: true,
         appBar: AppBar(backgroundColor: Colors.transparent),
         body: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,//the heigh of the frame
+           height: 844.h,
+            width: 390.w, //the heigh of the frame
             decoration: const BoxDecoration(
                 gradient: LinearGradient(
               colors: [
@@ -53,7 +53,7 @@ class _LoginState extends State<Login> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(
-                        height: 20.h,
+                        height: 30.h,
                       ),
                       SizedBox(
                         height: 90.h,
@@ -69,24 +69,20 @@ class _LoginState extends State<Login> {
                         height: 39.h,
                         width: 170.w,
                         child: Image.asset(
-                          'lib/images/logo.png',
-                          fit: BoxFit.contain,
-                          filterQuality: FilterQuality.high,
+                          'lib/images/guide_text.png',
+                          
+                          
                         ),
                       ),
-                      SizedBox(height: 40.h),
+                      SizedBox(height: 40.h,width: 20.w,),
                       // ListTile(
-                      Padding(
-                        padding: EdgeInsets.only(left: 16.w),
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          child: Text(
-                            'Login',
-                            style: GoogleFonts.poppins(
-                                fontSize: 32.sp,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white),
-                          ),
+                      ListTile(
+                        title: Text(
+                          'Login',
+                          style: GoogleFonts.poppins(
+                              fontSize: 32.sp,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white),
                         ),
                       ),
                       //),
@@ -98,7 +94,6 @@ class _LoginState extends State<Login> {
                           key: forme,
                           child: FrostedGlassBox(
                             width: 358.0.w,
-                            height: 500.h,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
@@ -155,7 +150,7 @@ class _LoginState extends State<Login> {
                                         ),
                                       ),
                                       SizedBox(height: 20.h),
-                                    
+                                      
                                       TextFormField(
                                         enabled: true,
                                         controller: state.password_controller,
@@ -204,7 +199,7 @@ class _LoginState extends State<Login> {
                                           ),
                                           focusedBorder: OutlineInputBorder(
                                             borderRadius:
-                                                BorderRadius.circular(10.r),
+                                               BorderRadius.circular(10.r),
                                           ),
                                           hintText: 'Password',
                                           hintStyle: GoogleFonts.poppins(
@@ -222,22 +217,25 @@ class _LoginState extends State<Login> {
                                     
                                
                                   Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 180.0.w,
-                                      top: 5.0.h,
-                                     // right: 7.w,
-                                      bottom: 16.h),
-                                  child: InkWell(
-                                    onTap: () {
-                                      Navigator.pushNamed(context,"forgotPassword");
-                                    },
-                                    child: Text(
-                                      'Forget passWord?',
-                                      textAlign: TextAlign.right,
-                                      style: GoogleFonts.poppins(
-                                          color: Colors.white,
-                                          fontSize: 11.sp,
-                                          fontWeight: FontWeight.w700),
+                                  padding: const EdgeInsets.only(
+                                      left: 140.0,
+                                      top: 5.0,
+                                     right: 7,
+                                      bottom: 16),
+                                  child: SizedBox(
+                                    width: 110.w,
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.pushNamed(context,"forgotPassword");
+                                      },
+                                      child: Text(
+                                        'Forget passWord?',
+                                        textAlign: TextAlign.right,
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.white,
+                                            fontSize: 11.sp,
+                                            fontWeight: FontWeight.w700),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -290,7 +288,7 @@ class _LoginState extends State<Login> {
                                     child: Text(
                                       'Login',
                                       style: GoogleFonts.poppins(
-                                        fontSize: 20.sp,
+                                        fontSize: 29.sp,
                                         fontWeight: FontWeight.w700,
                                       ),
                                     )),
@@ -406,15 +404,9 @@ fit:fill
 ],
 ),)*/
 class FrostedGlassBox extends StatelessWidget {
-
-final double width, height;
+ final double width;
   final Widget child;
-
-  const FrostedGlassBox(
-      {super.key,
-      required this.width,
-      required this.height,
-      required this.child});
+ const FrostedGlassBox({required this.width, required this.child});
   
   @override
   Widget build(BuildContext context) {
@@ -430,7 +422,7 @@ final double width, height;
                 sigmaY: 7.0,
               ),
               child: SizedBox(
-                  width: width, height: height, child: const Text(" ")),
+                  width: width, child: const Text(" ")),
             ),
             Container(
               padding: const EdgeInsets.only(
