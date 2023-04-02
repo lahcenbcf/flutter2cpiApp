@@ -258,12 +258,12 @@ class _LoginState extends State<Login> {
                                       
                                       if(forme.currentState != null){
                                         if(forme.currentState!.validate()){
-                                          debugPrint("hello");
-                                          await state.loginUser(UserModal(email: state.email_controler.text, password:state.password_controller.text));
+                                          Navigator.pushNamed(context,"HomePage");
+                                          /*await state.loginUser(UserModal(email: state.email_controler.text, password:state.password_controller.text));
                                           if(state.isLogged){
                                             // redirection vers home page
                                             // ignore: use_build_context_synchronously
-                                            Navigator.pushNamed(context,"HomePage");
+                                            
                                           }else{
                                             // ignore: use_build_context_synchronously
                                             ScaffoldMessenger.of(context).showSnackBar(
@@ -280,7 +280,7 @@ class _LoginState extends State<Login> {
                                     ),
                                   ),
                                 );
-                                          }
+                                          }*/
                                         }
                                         
                                       

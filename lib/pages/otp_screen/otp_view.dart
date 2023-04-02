@@ -59,7 +59,7 @@ class _OtpState extends State<Otp> {
                     height: 39.h,
                     width: 170.w,
                     child: Image.asset(
-                      'lib/images/guide_text.png',
+                      'lib/images/logo.png',
                     ),
                   ),
                   Padding(
@@ -150,19 +150,21 @@ class _OtpState extends State<Otp> {
                                     borderRadius: BorderRadius.circular(13.r)),
                               ),
                               onPressed: () async {
-                                await state.verifyDigits(
+                                Navigator.pushNamed(context,"newPassword");
+                                /*await state.verifyDigits(
                                     state.code1.text +
                                         state.code2.text +
                                         state.code3.text +
                                         state.code4.text,
                                     state2.email_controler1.text);
+                                    
                                 if (state.message_success != null) {
                                   // success
                                   // ignore: use_build_context_synchronously
-                                  Navigator.pushNamed(context,"newPassword");
+                                  
                                 } else {
                                   debugPrint("failed");
-                                }
+                                }*/
                               },
                               child: Text(
                                 textAlign: TextAlign.center,
@@ -200,21 +202,22 @@ class _OtpState extends State<Otp> {
 
   Widget _otp_textfield({required bool first, last,required TextEditingController digit}) {
     return Container(
+      alignment: Alignment.center,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(9.r),
-          color: Color.fromRGBO(217, 217, 217, 1)),
+          color: const Color.fromRGBO(217, 217, 217, 1)),
       height: 36.h,
       child: Expanded(
         child: AspectRatio(
           aspectRatio: 1,
-          child: TextField(
+          child: TextFormField(
             controller: digit,
             autofocus: true,
             onChanged: (value) {
               if (value.length == 1 && last == false) {
                 FocusScope.of(context).nextFocus();
               }
-              if (value.length == 0 && first == false) {
+              if (value.isEmpty && first == false) {
                 FocusScope.of(context).previousFocus();
               }
             },
@@ -224,10 +227,11 @@ class _OtpState extends State<Otp> {
             style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.bold),
             keyboardType: TextInputType.number,
             maxLength: 1,
-            decoration:const InputDecoration(
-                contentPadding: EdgeInsets.only(bottom: 14),
-                counter: Offstage(),
-                border: InputBorder.none),
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.only(bottom: 10.h),
+              counter: const Offstage(),
+              border: InputBorder.none,
+            ),
           ),
         ),
       ),

@@ -145,7 +145,7 @@ class SchoolYear extends StatelessWidget {
                                     // state.setYear = null;
                                     if(state.selectedYear !=null){
                                      
-                                      await state.pressButton(UserModal(
+                                      /*await state.pressButton(UserModal(
                                         fullName: Registerstate
                                             .fullNameController.text,
                                         email:
@@ -154,8 +154,10 @@ class SchoolYear extends StatelessWidget {
                                             .passwordController.text,
               
                                         schoolYear: state.selectedYear));
-                                        if(state.successRegister){
-                                          Navigator.of(context).pushNamed("LogIn");     
+                                          */
+                                        Navigator.of(context).pushNamed("LogIn"); 
+                                      /*  if(state.successRegister){
+                                             
                                       }else{
                                         ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
@@ -171,7 +173,7 @@ class SchoolYear extends StatelessWidget {
                                       ),
                                     ),
                                  );
-                                  }
+                                  }*/
 
                                     }else{
                                       ScaffoldMessenger.of(context).showSnackBar(
@@ -189,7 +191,7 @@ class SchoolYear extends StatelessWidget {
                                     ),
                                   );
                                     }
-                                    ;
+                                    
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor:

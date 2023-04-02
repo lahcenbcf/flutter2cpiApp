@@ -15,7 +15,7 @@ void showDialogg(context) {
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
                   child: Container(
-                    height: 480.h,
+                    height: 600.h,
                     width: 371.w,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25.0),

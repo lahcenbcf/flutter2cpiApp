@@ -22,14 +22,6 @@ class ApiServices{
     return response;
   }
 
-  static Future<http.Response> registerGuest(UserModal user)async{
-    Uri requestUri=Uri.parse("$_baseUrl/registerGuest");
-    var response=await http.post(requestUri,body: {
-      "name":user.fullName
-    });
-    return response;
-  }
-
   //logout
 
   static void logoutUser(BuildContext context){

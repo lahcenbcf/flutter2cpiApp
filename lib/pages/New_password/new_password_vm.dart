@@ -31,7 +31,6 @@ class NewPasswordViewModel extends ChangeNotifier {
   }
 
   setNewPassword(String password,String email)async{
-    notifyListeners();
     Response response=await ApiServices.setNewPassword(password, email);
     var resultfinal=response.body;
     if(resultfinal=="true"){

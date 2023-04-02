@@ -1,17 +1,8 @@
-
-
-import 'dart:convert';
-
-import 'package:flluter2cpi/pages/Sign_up/User_Modal.dart';
-import 'package:flluter2cpi/services/api.dart';
 import 'package:flluter2cpi/services/sharedServices.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 
 class GuestBoxViewModel extends ChangeNotifier{
   final TextEditingController _fullNameController = TextEditingController();
-  UserModal ?guestInfo;
-  String ?ErrorMessage;
 
   TextEditingController get fullNameController => _fullNameController;
   // check for dots and spaces and other charachters
@@ -60,6 +51,6 @@ class GuestBoxViewModel extends ChangeNotifier{
 
 registerguest(String guestName)async{
   notifyListeners();
-  await SharedPrefService.pref.setString("guest",guestName);
+  await SharedPrefService.pref.setString("guestName",guestName);
   await SharedPrefService.pref.setBool("isGuest",true);
 }}

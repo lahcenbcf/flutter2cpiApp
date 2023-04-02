@@ -39,7 +39,7 @@ class View extends ChangeNotifier {
 
   loginUser(UserModal user) async {
     Response res = await ApiServices.loginUser(user);
-    print(res.body);
+
     var finalResult = json.decode(res.body);
     if (finalResult?["message"] != null) {
       errorLoginMessage = finalResult["message"];

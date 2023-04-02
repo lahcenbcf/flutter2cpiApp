@@ -1,6 +1,5 @@
 import 'package:flluter2cpi/constants/theme_Styles.dart';
 import 'package:flluter2cpi/pages/Login_page/components/guest_box_view_model.dart';
-import 'package:flluter2cpi/pages/Sign_up/User_Modal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
@@ -47,6 +46,7 @@ class _GuestBox extends State<GuestBox> {
             Material(
               color: Colors.transparent,
               child: Form(
+                key: forme,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: TextFormField(
                   controller: state.fullNameController,
@@ -87,24 +87,11 @@ class _GuestBox extends State<GuestBox> {
                 if(forme.currentState != null){
                   if(forme.currentState!.validate()){
                     await state.registerguest(state.fullNameController.text);
-                    if(state.guestInfo !=null){
-                      //rediraction 
-                    }else{
-                      ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      dismissDirection:
-                                          DismissDirection.horizontal,
-                                      content: Text(
-                                        state.ErrorMessage!,
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 15.sp,
-                                          fontWeight: FontWeight.w300,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                    }
+                    
+                      //rediraction to Home page
+                      // ignore: use_build_context_synchronously
+                      Navigator.pushNamed(context, "HomePage");
+                    
                   }else{
                    
                   
