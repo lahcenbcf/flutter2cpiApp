@@ -176,7 +176,7 @@ class _NewPasswordState extends State<NewPassword> {
                                             "lib/images/checked.png",
                                             filterQuality: FilterQuality.high,
                                             fit: BoxFit.contain,
-                                          ),
+                                        ),
                                         ),
                                         SizedBox(height: 22.h),
                                         Text(
