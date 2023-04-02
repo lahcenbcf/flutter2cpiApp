@@ -1,6 +1,5 @@
 import 'package:flluter2cpi/constants/theme_Styles.dart';
 import 'package:flluter2cpi/pages/Login_page/components/guest_box_view_model.dart';
-import 'package:flluter2cpi/pages/Sign_up/User_Modal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';

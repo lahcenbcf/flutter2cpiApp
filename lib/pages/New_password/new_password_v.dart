@@ -146,7 +146,7 @@ class _NewPasswordState extends State<NewPassword> {
                           if (formKey.currentState != null) {
                             if (formKey.currentState!.validate()) {
 
-                              await state.setNewPassword(state.newPasswordController.text,state2.email_controler1.text);
+                             // await state.setNewPassword(state.newPasswordController.text,state2.email_controler1.text);
                               showModalBottomSheet(
                                 backgroundColor: Colors.transparent,
                                 context: context,
@@ -187,7 +187,7 @@ class _NewPasswordState extends State<NewPassword> {
                                         SizedBox(height: 30.h),
                                         ElevatedButton(
                                           onPressed: () => Navigator.of(context)
-                                              .pushReplacementNamed("LogIn"),
+                                              .pushNamed("LogIn"),
                                           style: ElevatedButton.styleFrom(
                                             backgroundColor:
                                                 const Color.fromRGBO(

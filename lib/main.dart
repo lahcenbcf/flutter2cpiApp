@@ -2,7 +2,6 @@ import 'package:flluter2cpi/pages/Home_page/home_page_view.dart';
 import 'package:flluter2cpi/pages/Login_page/components/guest_box_view_model.dart';
 import 'package:flluter2cpi/pages/New_password/new_password_vm.dart';
 import 'package:flluter2cpi/pages/School_year/school_year_view_model.dart';
-import 'package:flluter2cpi/pages/Sign_up/sign_up_view.dart';
 import 'package:flluter2cpi/pages/Sign_up/sign_up_view_model.dart';
 import 'package:flluter2cpi/pages/Login_page/view_model.dart';
 import 'package:flluter2cpi/pages/forgot_pass/forgot_view_model.dart';
@@ -13,7 +12,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-Widget _defaultScreen=const SignUp();
+import 'pages/Choice_page/choice_v.dart';
+
+Widget _defaultScreen=const Choice();
 
 void main()async{
  WidgetsFlutterBinding.ensureInitialized();
@@ -67,7 +68,7 @@ class MyApp extends StatelessWidget {
                     debugShowCheckedModeBanner: false,
                     theme: ThemeData(useMaterial3: true),
                     routes: generateRoutes(context),
-                    home: SafeArea(
+                    home:  SafeArea(
                       child: _defaultScreen,
                     ));
               });
