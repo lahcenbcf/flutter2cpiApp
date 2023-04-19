@@ -1,6 +1,7 @@
 import 'package:flluter2cpi/pages/Home_page/home_page_view.dart';
 import 'package:flluter2cpi/pages/Login_page/components/guest_box_view_model.dart';
 import 'package:flluter2cpi/pages/New_password/new_password_vm.dart';
+import 'package:flluter2cpi/pages/Post/components/likeButton/like_button_vm.dart';
 import 'package:flluter2cpi/pages/School_year/school_year_view_model.dart';
 import 'package:flluter2cpi/pages/Sign_up/sign_up_view_model.dart';
 import 'package:flluter2cpi/pages/Login_page/view_model.dart';
@@ -12,27 +13,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import 'pages/Choice_page/choice_v.dart';
+Widget _defaultScreen = const HomePage();
 
-Widget _defaultScreen=const Choice();
-
-void main()async{
- WidgetsFlutterBinding.ensureInitialized();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await SharedPrefService.init();
-  String?loginInfoSession=SharedPrefService.pref.getString("userInfo");
- bool?isGuest=SharedPrefService.pref.getBool("isGuest");// To limit the priviliges of the guest like reading only the posts no edit no add no delete no comments // is to say Hello to guest so we need the guest Name
-  if(loginInfoSession !=null || isGuest!=null){
-    _defaultScreen=const HomePage();
+  String? loginInfoSession = SharedPrefService.pref.getString("userInfo");
+  bool? isGuest = SharedPrefService.pref.getBool(
+      "isGuest"); // To limit the priviliges of the guest like reading only the posts no edit no add no delete no comments // is to say Hello to guest so we need the guest Name
+  if (loginInfoSession != null || isGuest != null) {
+    _defaultScreen = const HomePage();
   }
   runApp(const MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
- 
   const MyApp({super.key});
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -60,15 +56,18 @@ class MyApp extends StatelessWidget {
                   create: (context) => Otp_view(),
                 ),
                 ChangeNotifierProvider(
-                  create:(context)=>NewPasswordViewModel(),
-                )
+                  create: (context) => NewPasswordViewModel(),
+                ),
+                ChangeNotifierProvider(
+                  create: (context) => LikeButtonViewModel(),
+                ),
               ],
               builder: (context, child) {
                 return MaterialApp(
                     debugShowCheckedModeBanner: false,
                     theme: ThemeData(useMaterial3: true),
                     routes: generateRoutes(context),
-                    home:  SafeArea(
+                    home: SafeArea(
                       child: _defaultScreen,
                     ));
               });
