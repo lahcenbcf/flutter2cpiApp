@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
 
   List<Widget> pages = [
-     //for information
+    //for information
     const Center(child: Text("1")), //for information
     const Center(child: Text("2")), //for information
     const Center(child: Text("3")), //for information
@@ -81,7 +81,9 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: pages[selectedIndex],
-      bottomNavigationBar: Padding(
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+            border: Border(top: BorderSide(color: Colors.white,width: 0.5))),
         padding: const EdgeInsets.symmetric(vertical: 11),
         child: GNav(
           padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.w),
