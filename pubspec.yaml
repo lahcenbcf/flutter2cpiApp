@@ -47,6 +47,7 @@ dependencies:
   google_nav_bar: ^5.0.6
   iconsax: ^0.0.8
   jiffy: ^6.1.0
+  ionicons: ^0.2.2
 
 dev_dependencies:
   flutter_test:

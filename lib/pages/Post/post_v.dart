@@ -7,6 +7,7 @@ import 'package:jiffy/jiffy.dart';
 import 'components/buttons.dart';
 import 'components/title_description.dart';
 
+    var generatedColor = Random().nextInt(Colors.primaries.length);
 class Post extends StatelessWidget {
   const Post({
     super.key,
@@ -36,8 +37,6 @@ class Post extends StatelessWidget {
     //
     final size = MediaQuery.of(context).size;
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
-    int lineCount = 0;
-    var generatedColor = Random().nextInt(Colors.primaries.length);
     //
     //
     //

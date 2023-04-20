@@ -2,7 +2,9 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+
 import 'package:iconsax/iconsax.dart';
+import 'package:ionicons/ionicons.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -105,25 +107,25 @@ class _HomePageState extends State<HomePage> {
           },
           tabs: [
             GButton(
-              icon: FluentIcons.home_12_filled,
+              icon:selectedIndex==0? FluentIcons.home_12_filled:FluentIcons.home_12_regular,
               iconColor: Colors.white,
               text: "Home",
               textStyle: textStyle,
             ),
             GButton(
-              icon: FluentIcons.code_24_filled,
+              icon:selectedIndex==1? FluentIcons.code_24_filled:FluentIcons.code_24_regular,
               iconColor: Colors.white,
               text: "Esi-Flow",
               textStyle: textStyle,
             ),
             GButton(
-              icon: Iconsax.book_1,
+              icon: selectedIndex == 2?Ionicons.book :Ionicons.book_outline,
               iconColor: Colors.white,
               text: "Academic",
               textStyle: textStyle,
             ),
             GButton(
-              icon: FluentIcons.info_24_filled,
+              icon:selectedIndex==3? FluentIcons.info_24_filled:FluentIcons.info_24_regular,
               iconColor: Colors.white,
               text: "Information",
               textStyle: textStyle,
