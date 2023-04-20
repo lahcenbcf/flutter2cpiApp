@@ -18,13 +18,7 @@ class _HomePageState extends State<HomePage> {
   //
   int selectedIndex = 0;
 
-  List<Widget> pages = [
-    //for information
-    const Center(child: Text("1")), //for information
-    const Center(child: Text("2")), //for information
-    const Center(child: Text("3")), //for information
-    const Center(child: Text("4")), //for information
-  ];
+  
   //
 
   TextStyle textStyle = TextStyle(
@@ -37,6 +31,13 @@ class _HomePageState extends State<HomePage> {
   //
   @override
   Widget build(BuildContext context) {
+    List<Widget> pages = [
+    //for information
+     const Center(child: Text("17387534")), //for information
+    const Center(child: Text("2")), //for information
+    const Center(child: Text("3")), //for information
+    const Center(child: Text("4")), //for information
+  ];
     final size = MediaQuery.of(context).size;
 
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
@@ -100,6 +101,8 @@ class _HomePageState extends State<HomePage> {
           tabBorderRadius: 32.r,
           iconSize: 24 * iconSize,
           selectedIndex: selectedIndex,
+          duration: const Duration(milliseconds: 700),
+          curve: Curves.easeInToLinear,
           onTabChange: (value) {
             setState(() {
               selectedIndex = value;
