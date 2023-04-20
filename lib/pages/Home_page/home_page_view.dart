@@ -115,6 +115,7 @@ class _HomePageState extends State<HomePage> {
             GButton(
               icon:selectedIndex==1? FluentIcons.code_24_filled:FluentIcons.code_24_regular,
               iconColor: Colors.white,
+              iconSize: 32*iconSize,
               text: "Esi-Flow",
               textStyle: textStyle,
             ),
