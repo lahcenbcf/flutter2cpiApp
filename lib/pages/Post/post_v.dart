@@ -4,35 +4,61 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiffy/jiffy.dart';
+import '../CorePost/core_post_v.dart';
 import 'components/buttons.dart';
+import '../CorePost/components/comment_class.dart';
 import 'components/title_description.dart';
 
-    var generatedColor = Random().nextInt(Colors.primaries.length);
+var generatedColor = Random().nextInt(Colors.primaries.length);
+
 class Post extends StatelessWidget {
-  const Post({
-    super.key,
-    required this.likes,
-    required this.comments,
-    required this.title,
-    required this.description,
-    required this.date,
-    required this.userName,
-    required this.email,
-    required this.tag,
-  });
+  const Post(
+      {super.key,
+      required this.likesCount,
+      required this.commentsCount,
+      required this.title,
+      required this.description,
+      required this.date,
+      required this.userName,
+      required this.email,
+      required this.tag,
+      required this.comments});
   final String title;
   final String description;
   final String userName;
   final String email;
   final String tag;
-  final int likes;
-  final int comments;
+  final int likesCount;
+  final int commentsCount;
   final DateTime date;
+  final List<Comment> comments;
 
   @override
   Widget build(BuildContext context) {
     //
-    //
+
+    navigatToPostCore() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return PostCore(
+              likesCount: likesCount,
+              commentsCount: commentsCount,
+              title: title,
+              description: description,
+              date: date,
+              userName: userName,
+              email: email,
+              tag: tag,
+              comments: comments,
+              generatedColor: generatedColor,
+            );
+          },
+        ),
+      );
+    }
+
     //
     //
     final size = MediaQuery.of(context).size;
@@ -41,9 +67,9 @@ class Post extends StatelessWidget {
     //
     //
     //
-    
+
     return Container(
-    width: 360.w,
+      width: 360.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.r),
         gradient: const LinearGradient(
@@ -127,7 +153,7 @@ class Post extends StatelessWidget {
                     style: GoogleFonts.poppins(
                       color: Colors.white,
                       fontWeight: FontWeight.w700,
-                      fontSize: 10.sp,
+                      fontSize: 11.sp,
                     ),
                   ),
                 ),
@@ -138,9 +164,7 @@ class Post extends StatelessWidget {
 
           // for the title
           GestureDetector(
-            onTap: () {
-              print("hello");
-            },
+            onTap: navigatToPostCore,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -151,14 +175,13 @@ class Post extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 25).w,
                   child: TitleDescription(text: title, size: 16),
                 ),
-          
+
                 SizedBox(height: 10.h),
                 //for the description
                 Padding(
-                    padding:  EdgeInsets.only(left: 25.w,right: 6.w),
-                    child: TitleDescription(text: description, size: 13),
-                  ),
-               
+                  padding: EdgeInsets.only(left: 25.w, right: 6.w),
+                  child: TitleDescription(text: description, size: 13),
+                ),
               ],
             ),
           ),
@@ -166,8 +189,9 @@ class Post extends StatelessWidget {
           SizedBox(height: 13.h),
           Buttons(
             iconSize: iconSize,
-            likes: likes,
-            comments: comments,
+            likes: likesCount,
+            comments: commentsCount,
+            navigatToPostCore: navigatToPostCore,
           ),
           SizedBox(height: 4.h),
         ],

@@ -1,3 +1,5 @@
+import 'package:flluter2cpi/pages/CorePost/components/DisplayComments/display_comment_vm.dart';
+import 'package:flluter2cpi/pages/CorePost/core_post_vm.dart';
 import 'package:flluter2cpi/pages/Home_page/home_page_view.dart';
 import 'package:flluter2cpi/pages/Login_page/components/guest_box_view_model.dart';
 import 'package:flluter2cpi/pages/New_password/new_password_vm.dart';
@@ -60,6 +62,12 @@ class MyApp extends StatelessWidget {
                 ),
                 ChangeNotifierProvider(
                   create: (context) => LikeButtonViewModel(),
+                ),
+                ChangeNotifierProvider(
+                  create: (context) => CorePostViewModel(),
+                ),
+                ChangeNotifierProvider(
+                  create: (context) => DisplayCommentsViewModel(),
                 ),
               ],
               builder: (context, child) {

@@ -7,6 +7,7 @@ import 'package:flluter2cpi/pages/forgot_pass/forgot_view.dart';
 import 'package:flluter2cpi/pages/otp_screen/otp_view.dart';
 import 'package:flutter/material.dart';
 
+
 generateRoutes(BuildContext context) {
   return {
     "SignUp": (context) => const SignUp(),
@@ -14,8 +15,9 @@ generateRoutes(BuildContext context) {
     "HomePage":(context)=>const HomePage(),
     "LogIn":(context)=>const Login(),
     "forgotPassword":(context)=>const ForgotPass(),
-    "otpView":(context)=>Otp(),
-    "newPassword":(context)=>const NewPassword()
+    "otpView":(context)=>const Otp(),
+    "newPassword":(context)=>const NewPassword(),
+    
 
   };
 }

@@ -8,12 +8,15 @@ import 'likeButton/like_button_v.dart';
 import 'likeButton/like_button_vm.dart';
 
 class Buttons extends StatelessWidget {
-  const Buttons({
+  const Buttons(
+    {
     super.key,
+    required this.navigatToPostCore,
     required this.iconSize,
     required this.likes,
     required this.comments,
   });
+  final void Function() navigatToPostCore;
   final int likes;
   final int comments;
   final double iconSize;
@@ -37,7 +40,7 @@ class Buttons extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const LikeButton(),
-            Consumer<LikeButtonViewModel>(builder: (context, state, child) {
+        Consumer<LikeButtonViewModel>(builder: (context, state, child) {
               return Text(
                 state.displayLikes(),
                 style: GoogleFonts.poppins(
@@ -60,7 +63,7 @@ class Buttons extends StatelessWidget {
           children: [
             InkWell(
               onTap: () {
-                
+                navigatToPostCore();
               },
               child: Icon(
                 Iconsax.message,
@@ -68,7 +71,7 @@ class Buttons extends StatelessWidget {
                 size: 28 * iconSize,
               ),
             ),
-            Text(
+    Text(
              comments==0? "comments": "$comments",
               style: GoogleFonts.poppins(
                 color: Colors.white,
@@ -84,7 +87,7 @@ class Buttons extends StatelessWidget {
         //
         //
         // more button
-        InkWell(
+     InkWell(
           onTap: () {
             
           },
