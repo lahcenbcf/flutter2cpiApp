@@ -168,10 +168,9 @@ class _ForgotPassState extends State<ForgotPass> {
                                       ),
                                       onPressed: () async {
                                         Navigator.pushNamed(context, "otpView");
-                                        // //call apiService
-                                        // debugPrint("hello");
-                                        // await state.sendEmailToVerify(
-                                        //     state.email_controler1.text);
+                                         //call apiService
+                                         //await state.sendEmailToVerify(
+                                             //state.email_controler1.text);
                                         // if (state.CanPass) {
                                         //   // ignore: use_build_context_synchronously
                                         //   Navigator.pushNamed(

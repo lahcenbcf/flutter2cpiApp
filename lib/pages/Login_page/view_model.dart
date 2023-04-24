@@ -47,7 +47,8 @@ class View extends ChangeNotifier {
       //logged successufully
       isLogged = true;
       //store uerData Info session in the cacheDB
-      await SharedPrefService.pref.setString('userinfo',finalResult.toString());
+      List<String> loginInfo=[finalResult?["username"],finalResult?["email"],finalResult?["_id"]];
+      await SharedPrefService.pref.setStringList("loginInfo", loginInfo);
       await SharedPrefService.pref.setBool("isGuest",false);
     }
 }}

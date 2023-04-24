@@ -259,7 +259,7 @@ class _LoginState extends State<Login> {
                                       if(forme.currentState != null){
                                         if(forme.currentState!.validate()){
                                           Navigator.pushNamed(context,"HomePage");
-                                          /*await state.loginUser(UserModal(email: state.email_controler.text, password:state.password_controller.text));
+                                          await state.loginUser(UserModal(email: state.email_controler.text, password:state.password_controller.text));
                                           if(state.isLogged){
                                             // redirection vers home page
                                             // ignore: use_build_context_synchronously
@@ -280,7 +280,7 @@ class _LoginState extends State<Login> {
                                     ),
                                   ),
                                 );
-                                          }*/
+                                          }
                                         }
                                         
                                       
