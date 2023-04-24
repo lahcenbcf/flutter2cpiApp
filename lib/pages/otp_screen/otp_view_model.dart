@@ -13,7 +13,9 @@ class Otp_view extends ChangeNotifier{
   TextEditingController code2= TextEditingController();
   TextEditingController code3= TextEditingController();
   TextEditingController code4= TextEditingController();
+  // ignore: non_constant_identifier_names
   String?message_success;
+  // ignore: non_constant_identifier_names
   String?message_failed;
   verifyDigits(String code,String email)async{
     Response response=await ApiServices.verifyDigits(code,email);

@@ -52,14 +52,14 @@ class _OtpState extends State<Otp> {
                   SizedBox(
                     height: 90.h,
                     width: 85.w,
-                    child: Image.asset('lib/images/g1.png'),
+                    child: Image.asset('lib/images/logo.png'),
                   ),
                   SizedBox(height: 20.h),
                   SizedBox(
                     height: 39.h,
                     width: 170.w,
                     child: Image.asset(
-                      'lib/images/logo.png',
+                      'lib/images/guide_text.png',
                     ),
                   ),
                   Padding(
@@ -78,7 +78,7 @@ class _OtpState extends State<Otp> {
                                     return const ForgotPass();
                                   }));
                                 },
-                                icon:const Icon(FluentSystemIcons
+                                icon: Icon(FluentSystemIcons
                                     .ic_fluent_dismiss_circle_filled),iconSize: 44),
                           ),
                           ListTile(
@@ -228,10 +228,9 @@ class _OtpState extends State<Otp> {
             keyboardType: TextInputType.number,
             maxLength: 1,
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.only(bottom: 10.h),
-              counter: const Offstage(),
-              border: InputBorder.none,
-            ),
+                contentPadding: EdgeInsets.only(bottom: 14),
+                counter: Offstage(),
+                border: InputBorder.none),
           ),
         ),
       ),

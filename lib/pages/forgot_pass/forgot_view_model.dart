@@ -1,17 +1,16 @@
 import 'dart:convert';
-
-import 'package:flluter2cpi/services/api.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import '../../services/api.dart';
 
 // ignore: camel_case_types
 class View_model extends ChangeNotifier{
 
   // ignore: non_constant_identifier_names
   TextEditingController email_controler1=TextEditingController();
-  // ignore: non_constant_identifier_names
-  bool CanPass=false;
-  String?messageToShown;
+// ignore: non_constant_identifier_names
+bool?CanPass;
+String?messageToShown;
   bool checkSpaces(String input) {
     int i = 0;
     while (i < input.length && input[i] != " ") {

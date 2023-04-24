@@ -1,4 +1,5 @@
 import 'package:flluter2cpi/pages/forgot_pass/forgot_view_model.dart';
+import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -47,14 +48,14 @@ class _ForgotPassState extends State<ForgotPass> {
                   SizedBox(
                     height: 90.h,
                     width: 85.w,
-                    child: Image.asset('lib/images/logo.png'),
+                    child: Image.asset('lib/images/g1.png'),
                   ),
                   SizedBox(height: 20.h),
                   SizedBox(
                     height: 39.h,
                     width: 170.w,
                     child: Image.asset(
-                      'lib/images/g1.png',
+                      '/lib/images/logo.png',
                     ),
                   ),
                   Padding(
@@ -67,6 +68,17 @@ class _ForgotPassState extends State<ForgotPass> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
+                            Container(alignment: Alignment.topRight,
+                              child: IconButton(
+                                  onPressed: () {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return Login();
+                                    }));
+                                  },
+                                  icon: Icon(FluentSystemIcons
+                                      .ic_fluent_dismiss_circle_filled),iconSize: 44,),
+                            ),
                             ListTile(
                               title: Text(
                                 'Forgot password ?',
@@ -97,7 +109,6 @@ class _ForgotPassState extends State<ForgotPass> {
                                 decoration: BoxDecoration(
                                     color: const Color.fromRGBO(62, 67, 79, 1),
                                     borderRadius: BorderRadius.circular(25)),
-                                height: 208.h,
                                 width: 343.w,
                                 child: Column(
                                   children: [
@@ -143,7 +154,7 @@ class _ForgotPassState extends State<ForgotPass> {
                                             hintStyle: GoogleFonts.poppins(
                                                 fontSize: 14.sp,
                                                 fontWeight: FontWeight.w500,
-                                                color: const Color.fromRGBO(
+                                                color: Color.fromRGBO(
                                                     0, 0, 0, 0.61)),
                                           ),
                                         ),
