@@ -62,4 +62,13 @@ class ApiServices{
     });
     return response;
   }
+
+  static Future<http.Response> fetchAllPosts(String username)async {
+  Uri requestUrl=Uri.parse("$_baseUrl/getAllPosts");
+  var response=await http.post(requestUrl,body: {
+    "username":username
+  });
+  return response;
 }
+}
+
