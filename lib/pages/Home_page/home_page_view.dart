@@ -22,6 +22,10 @@ class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
 
   //
+  @override
+  void initState(){
+    
+  }
 
   TextStyle textStyle = TextStyle(
     color: Colors.white,
