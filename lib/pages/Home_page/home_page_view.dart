@@ -1,5 +1,4 @@
-import 'package:flluter2cpi/pages/CorePost/components/comment_class.dart';
-import 'package:flluter2cpi/pages/Post/post_v.dart';
+import 'package:flluter2cpi/test.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +7,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:ionicons/ionicons.dart';
 
+import '../Post & Comment classes/posts_tags.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,6 +15,17 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
+
+
+
+List<Widget> pages = [
+  ListView(
+    children: ePosts
+  ), //for information
+const Center(child: Test()),//for information
+  const Center(child: Text("3")), //for information
+  const Center(child: Text("4")), //for information
+];
 
 class _HomePageState extends State<HomePage> {
   //
@@ -33,63 +44,12 @@ class _HomePageState extends State<HomePage> {
   //
   @override
   Widget build(BuildContext context) {
-    List<Widget> pages = [
-      //for information
-      Center(
-        child: Post(
-          likesCount: 30,
-          commentsCount: 29,
-          title: "How to fix 'NoSuch MethodError' in Flutter app?",
-          description: "I have a Flutter app that is crashing when I try to navigate to a new screen. The error message I'm getting is Navigator operation requested with a context that does not include a Navigator.I have tried searching for a solution online and came across some suggestions, such as wrapping the widget that triggers the navigation with a Builder widget or using a MaterialApp instead of a CupertinoApp. However, none of these solutions worked for me.I also tried checking if the issue is caused by any third-party packages that I'm using, but I couldn't find any conflicting packages or versions.I'm not sure what else to try or where to look for a solution. Can anyone help me understand what is causing this error and how to fix it? Thank you in advance.",
-          date: DateTime.now(),
-          userName: "Aboubakr",
-          email: "la.belmiloud",
-          tag: "flutter",
-          comments: [
-            Comment(
-              userName: "me",
-              email: "belmiloud@esi-sba.dz",
-              comment: "Hi, it looks like the error message indicates that the context you're using to perform the Navigator operation doesn't include a Navigator. You can try wrapping the widget tree of the destination screen with a MaterialPageRoute or a CupertinoPageRoute, depending on the platform you're developing for. This will ensure that a Navigator is present in the context when the navigation operation is performed.",
-              likesCount: 1,
-              commentsCount: 0,
-              date: DateTime.now().subtract(
-                const Duration(minutes: 1),
-              ),
-            ),
-            Comment(
-              userName: "laid",
-              email: "la.belmiloud@esi-sba.dz",
+    print("build home page");
 
-              comment: "this is besma's comment\n with three\n lines",
-              likesCount: 0,
-              commentsCount: 0,
-              date: DateTime.now().subtract(
-                const Duration(days: 60),
-              ),
-            ),
-            Comment(
-              userName: "aboubakr",
-              email: "a.belmiloud@esi-sba.dz",
-
-              comment: "this is besma's comment\n with three\n lines",
-              likesCount: 30,
-              commentsCount: 2,
-              date: DateTime.now().subtract(
-                const Duration(days: 893),
-              ),
-            ),
-          ],
-        ),
-      ), //for information
-      const Center(child: Text("2")), //for information
-      const Center(child: Text("3")), //for information
-      const Center(child: Text("4")), //for information
-    ];
     final size = MediaQuery.of(context).size;
 
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
     return Scaffold(
-      extendBodyBehindAppBar: true,
       backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(113.h),
@@ -192,9 +152,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
-//
-//
-//
-//
 }

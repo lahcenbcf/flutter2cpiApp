@@ -1,14 +1,13 @@
-import 'package:flluter2cpi/pages/CorePost/components/DisplayComments/display_comment_vm.dart';
+import 'package:flluter2cpi/pages/CorePost/components/comment_like_button.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:provider/provider.dart';
 
-import '../profile_icon.dart';
+import 'profile_icon.dart';
 
-class DisplayComment extends StatelessWidget {
+class DisplayComment extends StatefulWidget {
   const DisplayComment({
     super.key,
     required this.userName,
@@ -16,8 +15,7 @@ class DisplayComment extends StatelessWidget {
     required this.comment,
     required this.likesCount,
     required this.commentsCount,
-    required this.date,
-    required this.number,
+    required this.date, required this.controllerTag,required this.index,
   });
   final String userName;
   final String email;
@@ -25,15 +23,21 @@ class DisplayComment extends StatelessWidget {
   final int likesCount;
   final int commentsCount;
   final DateTime date;
-  final int number;
+  final String controllerTag;
+  final int index;
 
+  @override
+  State<DisplayComment> createState() => _DisplayCommentState();
+}
+
+class _DisplayCommentState extends State<DisplayComment> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
-    final displayComment =
-        Provider.of<DisplayCommentsViewModel>(context, listen: false);
-    displayComment.likes = likesCount;
+    
+    
+    
     return Column(
       children: [
         //for the profile name and icon and date and 3 verticle dots point
@@ -45,10 +49,9 @@ class DisplayComment extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 ProfileIcon(
-                  iconSize: iconSize,
-                  generatedColor: number,
-                  userName: userName,
-                  email: email,
+                 
+                  userName: widget.userName,
+                  email: widget.email,
                 ),
                 SizedBox(width: 7.w),
                 Padding(
@@ -57,7 +60,7 @@ class DisplayComment extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        userName,
+                        widget.userName,
                         style: GoogleFonts.poppins(
                           color: Colors.white,
                           fontWeight: FontWeight.w800,
@@ -66,7 +69,7 @@ class DisplayComment extends StatelessWidget {
                       ),
                       SizedBox(width: 8.w),
                       Text(
-                        Jiffy.parseFromDateTime(date).fromNow(),
+                        Jiffy.parseFromDateTime(widget.date).fromNow(),
                         style: GoogleFonts.poppins(
                           color: const Color.fromRGBO(119, 119, 119, 1),
                           fontWeight: FontWeight.w700,
@@ -106,7 +109,7 @@ class DisplayComment extends StatelessWidget {
               SizedBox(width: 25.w),
               Expanded(
                 child: Text(
-                  comment,
+                  widget.comment,
                   style: GoogleFonts.poppins(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
@@ -118,30 +121,8 @@ class DisplayComment extends StatelessWidget {
           ),
         ),
         // for the like and comment button
-        // Row(
-        //   children: [
-        //     SizedBox(width: 54.w),
-        //     //like button
-        //     Row(
-        //       children: [
-        //         AnimatedSize(
-        //           duration: const Duration(milliseconds: 1000),
-        //           curve: Curves.fastLinearToSlowEaseIn,
-        //           child: GestureDetector(
-        //             onTap: () => displayComment.onTap(),
-        //             child: Icon(
-        //               displayComment.icon,
-        //               size: 28 * iconSize,
-        //               color: Colors.white,
-        //             ),
-        //           ),
-        //         )
-        //       ],
-        //     ),
-        //     //commentButton
-        //     Row(),
-        //   ],
-        // ),
+        SizedBox(height: 10.h),
+        CommentLikeButton(controllerTag: widget.controllerTag,index: widget.index, ),
       ],
     );
   }
