@@ -1,31 +1,27 @@
+import 'package:flluter2cpi/pages/Post/post_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:provider/provider.dart';
 
-import 'likeButton/like_button_v.dart';
-import 'likeButton/like_button_vm.dart';
+import 'like_button_v.dart';
 
 class Buttons extends StatelessWidget {
-  const Buttons(
-    {
+  const Buttons({
     super.key,
     required this.navigatToPostCore,
-    required this.iconSize,
-    required this.likes,
-    required this.comments,
+    required this.controllerTag,
   });
   final void Function() navigatToPostCore;
-  final int likes;
-  final int comments;
-  final double iconSize;
+
+  final String controllerTag;
+  // final LikeButtonController likeButtonState;
 
   @override
   Widget build(BuildContext context) {
-    final likeButton = Provider.of<LikeButtonViewModel>(listen: false, context);
-    likeButton.likes = likes;
-
+    final size = MediaQuery.of(context).size;
+    final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
     return Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -39,17 +35,20 @@ class Buttons extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const LikeButton(),
-        Consumer<LikeButtonViewModel>(builder: (context, state, child) {
-              return Text(
-                state.displayLikes(),
-                style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 10.5.sp,
-                ),
-              );
-            }),
+            LikeButton(controllerTag: controllerTag),
+            GetBuilder<PostController>(
+              tag: controllerTag,
+              builder: (state) {
+                return Text(
+                  state.displayLikes(),
+                  style: GoogleFonts.poppins(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 10.5.sp,
+                  ),
+                );
+              },
+            ),
           ],
         ),
         SizedBox(width: 50.w),
@@ -62,35 +61,33 @@ class Buttons extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             InkWell(
-              onTap: () {
-                navigatToPostCore();
-              },
+              onTap: () => navigatToPostCore(),
               child: Icon(
                 Iconsax.message,
                 color: Colors.white,
                 size: 28 * iconSize,
               ),
             ),
-    Text(
-             comments==0? "comments": "$comments",
-              style: GoogleFonts.poppins(
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
-                fontSize: 10.5.sp,
+            GetBuilder<PostController>(
+              tag: controllerTag,
+              builder: (state) => Text(
+                state.displayComments(),
+                style: GoogleFonts.poppins(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 10.5.sp,
+                ),
               ),
             ),
           ],
         ),
         SizedBox(width: 50.w),
         //
-        //
-        //
+
         //
         // more button
-     InkWell(
-          onTap: () {
-            
-          },
+        InkWell(
+          onTap: () {},
           child: Icon(
             Iconsax.more,
             color: Colors.white,

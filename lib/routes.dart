@@ -8,6 +8,7 @@ import 'package:flluter2cpi/pages/otp_screen/otp_view.dart';
 import 'package:flutter/material.dart';
 
 
+
 generateRoutes(BuildContext context) {
   return {
     "SignUp": (context) => const SignUp(),

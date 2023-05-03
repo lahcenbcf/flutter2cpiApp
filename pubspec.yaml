@@ -48,6 +48,9 @@ dependencies:
   iconsax: ^0.0.8
   jiffy: ^6.1.0
   ionicons: ^0.2.2
+  get: ^4.6.5
+  photo_view: ^0.14.0
+  image_picker: ^0.8.7+4
 
 dev_dependencies:
   flutter_test:

@@ -1,25 +1,23 @@
-import 'package:flluter2cpi/pages/CorePost/components/pictures.dart';
+import 'package:flluter2cpi/pages/CorePost/components/Image/display_image.dart';
+import 'package:flluter2cpi/pages/CorePost/components/input.dart';
+import 'package:flluter2cpi/pages/CorePost/components/Image/imagee.dart';
 import 'package:flluter2cpi/pages/CorePost/components/profile_icon.dart';
-import 'package:flluter2cpi/pages/CorePost/core_post_vm.dart';
+import 'package:flluter2cpi/pages/CorePost/core_post_controller.dart';
+import 'package:flluter2cpi/pages/Post/post_controller.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:provider/provider.dart';
-import '../Post/components/likeButton/like_button_v.dart';
-import '../Post/components/likeButton/like_button_vm.dart';
-import 'components/DisplayComments/display_comment_v.dart';
-import 'components/DisplayComments/display_comment_vm.dart';
-import 'components/comment_class.dart';
-import 'components/input.dart';
+import '../Post/components/like_button_v.dart';
+import 'components/display_comment_v.dart';
+import '../Post & Comment classes/comment_class.dart';
 
-class PostCore extends StatelessWidget {
+class PostCore extends StatefulWidget {
   const PostCore({
     super.key,
-    required this.likesCount,
-    required this.commentsCount,
     required this.title,
     required this.description,
     required this.date,
@@ -28,34 +26,40 @@ class PostCore extends StatelessWidget {
     required this.tag,
     required this.comments,
     required this.generatedColor,
+    //required this.likeButtonState,
+    required this.controllerTag,
   });
   final String title;
   final String description;
   final String userName;
   final String email;
   final String tag;
-  final int likesCount;
-  final int commentsCount;
   final DateTime date;
-  final List<Comment> comments;
+  final List<CommentClass> comments;
   final int generatedColor;
+  // final LikeButtonController likeButtonState;
+  final String controllerTag;
 
   @override
+  State<PostCore> createState() => _PostCoreState();
+}
+
+class _PostCoreState extends State<PostCore> {
+  @override
   Widget build(BuildContext context) {
-    final likeButton = Provider.of<LikeButtonViewModel>(context, listen: false);
-    final displayComment =
-        Provider.of<DisplayCommentsViewModel>(context, listen: false);
+    // final likeButton = Provider.of<LikeButtonViewModel>(context, listen: false);
 
     //
+
     //
-    final state = Provider.of<CorePostViewModel>(context, listen: false);
-    state.commentsCount = commentsCount;
-    state.commentList = comments;
+    final CorePostCotroller state = Get.find(tag: widget.controllerTag);
+
     //
     final size = MediaQuery.of(context).size;
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
     //
     //
+
     //
 
     var divider = Padding(
@@ -68,8 +72,6 @@ class PostCore extends StatelessWidget {
     //
     //
     //
-
-
     return Scaffold(
       backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
       extendBody: true,
@@ -92,7 +94,7 @@ class PostCore extends StatelessWidget {
         ),
         centerTitle: true,
         title: Text(
-          tag,
+          widget.tag,
           style: GoogleFonts.poppins(
             color: Colors.white,
             fontWeight: FontWeight.w800,
@@ -118,16 +120,14 @@ class PostCore extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ProfileIcon(
-                          iconSize: iconSize,
-                          generatedColor: generatedColor,
-                          userName: userName,
-                          email: email,
+                          userName: widget.userName,
+                          email: widget.email,
                         ),
                         SizedBox(width: 9.w),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 25).h,
                           child: Text(
-                            "@$userName",
+                            "@${widget.userName}",
                             style: GoogleFonts.poppins(
                               color: Colors.white,
                               fontWeight: FontWeight.w600,
@@ -155,7 +155,7 @@ class PostCore extends StatelessWidget {
                 //for the title
                 //
                 Text(
-                  title,
+                  widget.title,
                   style: GoogleFonts.poppins(
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
@@ -167,7 +167,7 @@ class PostCore extends StatelessWidget {
                 //for the description
                 //
                 Text(
-                  description,
+                  widget.description,
                   style: GoogleFonts.poppins(
                     color: Colors.white,
                     fontWeight: FontWeight.w600,
@@ -177,14 +177,22 @@ class PostCore extends StatelessWidget {
                 //
                 //for the image
                 //
-                SizedBox(height: 40.h),
-                const Pictures(),
+                if (state.image != null) SizedBox(height: 40.h),
+                if (state.image != null)
+                  InkWell(
+                      onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => DisplayImage(
+                                  controllerTag: widget.controllerTag,),
+                            ),
+                          ),
+                      child: Imagee(controllerTag: widget.controllerTag)),
                 //
                 SizedBox(height: 32.h),
 
                 //for the date
                 Text(
-                  Jiffy.parseFromDateTime(date)
+                  Jiffy.parseFromDateTime(widget.date)
                       .format(pattern: "HH[:]mm[   ]dd[/]MM[/]yyyy"),
                   style: GoogleFonts.poppins(
                     color: const Color.fromRGBO(139, 152, 165, 1),
@@ -198,16 +206,17 @@ class PostCore extends StatelessWidget {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Consumer<LikeButtonViewModel>(
-                        builder: (context, value, child) {
-                      return Text(
-                        likeButton.likes != 0 ? likeButton.displayLikes() : "",
+                    GetBuilder<PostController>(
+                      tag: widget.controllerTag,
+                      builder: (value) => Text(
+                        value.likesCount != 0 ? value.displayLikes() : "",
                         style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w700),
-                      );
-                    }),
+                          color: Colors.white,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
                     Text(
                       " Likes",
                       style: GoogleFonts.poppins(
@@ -217,12 +226,15 @@ class PostCore extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: 12.w),
-                    Text(
-                      state.display("comment"),
-                      style: GoogleFonts.poppins(
-                          color: Colors.white,
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w700),
+                    GetBuilder<PostController>(
+                      tag: widget.controllerTag,
+                      builder: (state) => Text(
+                        state.commentsCount != 0 ? state.displayComments() : "",
+                        style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w700),
+                      ),
                     ),
                     Text(
                       " Comments",
@@ -238,13 +250,11 @@ class PostCore extends StatelessWidget {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const LikeButton(),
+                    LikeButton(controllerTag: widget.controllerTag),
                     //
                     SizedBox(width: 70.w),
                     InkWell(
-                      onTap: () {
-                        state.unitCodeCtrlFocusNode.requestFocus();
-                      },
+                      onTap: () => state.unitCodeCtrlFocusNode.requestFocus(),
                       child: Icon(
                         Iconsax.message,
                         color: Colors.white,
@@ -256,10 +266,11 @@ class PostCore extends StatelessWidget {
                 divider,
                 //
                 //
+
                 //
                 // the comments
                 Container(
-                  child: state.commentList.isEmpty
+                  child: state.comments.isEmpty
                       ? Center(
                           child: Text(
                             "No comment yet",
@@ -270,26 +281,26 @@ class PostCore extends StatelessWidget {
                             ),
                           ),
                         ) // display all the comments of this post
-                      : ListView.separated(
-                          shrinkWrap: true,
-                          primary: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, index) =>
-                              Consumer<DisplayCommentsViewModel>(
-                            builder: (context, value, child) => DisplayComment(
-                              userName: state.commentList[index]
-                                  .userName, ///////            ommentList[index].userName,
-                              email: state.commentList[index].email,
-                              comment: state.commentList[index].comment,
-                              likesCount: state.commentList[index].likesCount,
+                      : GetBuilder<CorePostCotroller>(
+                          tag: widget.controllerTag,
+                          builder: (value) => ListView.separated(
+                            shrinkWrap: true,
+                            primary: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) => DisplayComment(
+                              userName: value.comments[index].userName,
+                              email: value.comments[index].email,
+                              comment: value.comments[index].comment,
+                              likesCount: value.comments[index].likesCount,
                               commentsCount:
-                                  state.commentList[index].commentsCount,
-                              date: state.commentList[index].date,
-                              number: (state.commentList.length * index) ~/ 18,
+                                  value.comments[index].commentsCount,
+                              date: value.comments[index].date,
+                              controllerTag: widget.controllerTag,
+                              index: index,
                             ),
+                            separatorBuilder: (context, index) => divider,
+                            itemCount: value.comments.length,
                           ),
-                          separatorBuilder: (context, index) => divider,
-                          itemCount: state.commentList.length,
                         ),
                 ),
                 //
@@ -300,8 +311,8 @@ class PostCore extends StatelessWidget {
         ),
       ),
       bottomSheet: Input(
-        state: state,
         hint: "Comment ...",
+        controllerTag: widget.controllerTag,
       ),
     );
   }

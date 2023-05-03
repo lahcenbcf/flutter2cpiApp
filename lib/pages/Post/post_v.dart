@@ -1,50 +1,76 @@
+import 'dart:io';
 import 'dart:math';
 
+import 'package:flluter2cpi/pages/CorePost/core_post_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiffy/jiffy.dart';
 import '../CorePost/core_post_v.dart';
 import 'components/buttons.dart';
-import '../CorePost/components/comment_class.dart';
+import '../Post & Comment classes/comment_class.dart';
 import 'components/title_description.dart';
-
-var generatedColor = Random().nextInt(Colors.primaries.length);
+import 'post_controller.dart';
 
 class Post extends StatelessWidget {
-  const Post(
-      {super.key,
-      required this.likesCount,
-      required this.commentsCount,
-      required this.title,
-      required this.description,
-      required this.date,
-      required this.userName,
-      required this.email,
-      required this.tag,
-      required this.comments});
+   Post({
+    super.key,
+    required this.type, // stack or academic
+    required this.likesCount,
+    required this.commentsCount,
+    required this.title,
+    required this.description,
+    required this.date,
+    required this.userName,
+    required this.email,
+    required this.tag,
+    required this.comments,
+    required this.isLiked,
+    required this.controllerTag,
+    required this.image,
+  });
+  final File? image;
+  final String type;
   final String title;
   final String description;
-  final String userName;
+  final String userName; // the name of the user that create the post
   final String email;
   final String tag;
-  final int likesCount;
-  final int commentsCount;
+   int likesCount;
+   int commentsCount;
   final DateTime date;
-  final List<Comment> comments;
-
+  final List<CommentClass> comments;
+   bool
+      isLiked; //check if the user that is logged in, has liked this post before so i just need true or false value
+  final String
+      controllerTag; 
+ // every post should have a distinct controllerTag in order to have his own state,otherwise the posts that hold the same tagController will share the same state of likeButton
   @override
   Widget build(BuildContext context) {
     //
+    print( "fdfdj   ${image == null}");
+    var generatedColor = Random().nextInt(Colors.primaries.length);
+    final postController = Get.put(PostController(), tag: controllerTag,permanent: true);
+    final corePostCotroller = Get.put(CorePostCotroller(),tag: controllerTag,permanent: true);
+    //init the comments of the post 
+    corePostCotroller.comments = comments;
+    corePostCotroller.type = type;
+    corePostCotroller.controllerTag = controllerTag;
+    corePostCotroller.image = image;
+    // inint the controller
+    postController.type = type;
+    postController.likesCount = likesCount;
+    postController.commentsCount = commentsCount;
+    postController.controllerTag = controllerTag;
+    postController.isLiked = isLiked;
 
+    @override
     navigatToPostCore() {
-      Navigator.push(
-        context,
+      Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) {
             return PostCore(
-              likesCount: likesCount,
-              commentsCount: commentsCount,
               title: title,
               description: description,
               date: date,
@@ -53,6 +79,7 @@ class Post extends StatelessWidget {
               tag: tag,
               comments: comments,
               generatedColor: generatedColor,
+              controllerTag: controllerTag,
             );
           },
         ),
@@ -99,11 +126,11 @@ class Post extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 23 * iconSize,
-                      backgroundColor: Colors.primaries[generatedColor],
+                      backgroundColor: const Color.fromRGBO (67, 69, 75,1),
                       child: Text(
                         userName[0].toUpperCase() + email[0].toUpperCase(),
                         style: GoogleFonts.poppins(
-                          color: Colors.black,
+                          color: Colors.white70,
                           fontWeight: FontWeight.w600,
                           fontStyle: FontStyle.italic,
                           fontSize: 18.sp,
@@ -188,10 +215,8 @@ class Post extends StatelessWidget {
           //for the buttons
           SizedBox(height: 13.h),
           Buttons(
-            iconSize: iconSize,
-            likes: likesCount,
-            comments: commentsCount,
             navigatToPostCore: navigatToPostCore,
+            controllerTag: controllerTag,
           ),
           SizedBox(height: 4.h),
         ],
