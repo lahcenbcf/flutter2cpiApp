@@ -62,6 +62,7 @@ class CorePostCotroller extends GetxController {
     } else {
       unitCodeCtrlFocusNode.unfocus();
       var newComment = CommentClass(
+        profilePic: null, // if Abouabkr have profile pic then add it
         userName: "Aboubakr", // add the user info here
         email: "email",// and here
         comment: controller.text,// do

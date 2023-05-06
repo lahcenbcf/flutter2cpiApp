@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:flluter2cpi/pages/Post/post_v.dart';
 import 'package:get/get.dart';
@@ -10,6 +12,7 @@ class PostController extends GetxController {
   bool isLiked = false;
   String controllerTag = "";
   String type = "";
+  File? profilePic;
 
   //
   int getIndex(List<Post> myList){

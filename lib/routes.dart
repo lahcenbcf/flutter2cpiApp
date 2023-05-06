@@ -18,5 +18,6 @@ generateRoutes(BuildContext context) {
     "forgotPassword":(context)=>const ForgotPass(),
     "otpView":(context)=>const Otp(),
     "newPassword":(context)=>const NewPassword(),
+   
   };
 }

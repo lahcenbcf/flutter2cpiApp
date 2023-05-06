@@ -12,9 +12,10 @@ class Buttons extends StatelessWidget {
     super.key,
     required this.navigatToPostCore,
     required this.controllerTag,
+    required this.isBlack,
   });
   final void Function() navigatToPostCore;
-
+  final bool isBlack;
   final String controllerTag;
   // final LikeButtonController likeButtonState;
 
@@ -23,7 +24,7 @@ class Buttons extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
     return Row(
-      mainAxisSize: MainAxisSize.max,
+      mainAxisSize:isBlack? MainAxisSize.max : MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         //
@@ -86,7 +87,7 @@ class Buttons extends StatelessWidget {
 
         //
         // more button
-        InkWell(
+     if(isBlack)   InkWell(
           onTap: () {},
           child: Icon(
             Iconsax.more,

@@ -122,6 +122,7 @@ class _PostCoreState extends State<PostCore> {
                         ProfileIcon(
                           userName: widget.userName,
                           email: widget.email,
+                          controllerTag:widget.controllerTag,
                         ),
                         SizedBox(width: 9.w),
                         Padding(
@@ -288,6 +289,7 @@ class _PostCoreState extends State<PostCore> {
                             primary: true,
                             physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) => DisplayComment(
+                              profilePic: value.comments[index].profilePic,
                               userName: value.comments[index].userName,
                               email: value.comments[index].email,
                               comment: value.comments[index].comment,

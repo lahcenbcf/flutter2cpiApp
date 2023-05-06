@@ -17,16 +17,16 @@ class Imagee extends StatelessWidget {
     return Container(
       width: double.maxFinite,
       height: 190.h,
-      decoration: BoxDecoration(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(15).r,
-      ),
+      decoration: const BoxDecoration(color: Colors.transparent),
       child: Hero(
         tag: controllerTag,
-        child: Image.file(
-          File(controller.image!.path),
-          filterQuality: FilterQuality.high,
-          fit: BoxFit.cover,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(15.r),
+          child: Image.file(
+            File(controller.image!.path),
+            filterQuality: FilterQuality.high,
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );

@@ -30,7 +30,7 @@ class TitleDescription extends StatelessWidget {
                             : text.substring(0, 165),
             style: GoogleFonts.poppins(
               fontSize: size.sp,
-              fontWeight: size == 16 ? FontWeight.w700 : FontWeight.w500,
+              fontWeight: size == 16 ? FontWeight.w700 : size == 15? FontWeight.w600 : FontWeight.w500,
               color: Colors.white,
             ),
           ),

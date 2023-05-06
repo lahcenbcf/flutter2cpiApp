@@ -1,3 +1,5 @@
+import 'package:flluter2cpi/pages/Main_Pages/EsiFlow/esi_flow.dart';
+import 'package:flluter2cpi/pages/Main_Pages/Home/home.dart';
 import 'package:flluter2cpi/test.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +9,8 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:ionicons/ionicons.dart';
 
-import '../Post & Comment classes/posts_tags.dart';
+
+  int selectedIndex = 2;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,20 +21,16 @@ class HomePage extends StatefulWidget {
 
 
 
-List<Widget> pages = [
-  ListView(
-    children: ePosts
-  ), //for information
-const Center(child: Test()),//for information
-  const Center(child: Text("3")), //for information
-  const Center(child: Text("4")), //for information
-];
-
 class _HomePageState extends State<HomePage> {
   //
   //
-  int selectedIndex = 0;
-
+List<Widget> pages = [
+   const Home(), 
+  const EsiFlow(), //for information
+  const Test(), //for information
+  const Center(child: Text("4")), //for information
+  
+];
   //
 
   TextStyle textStyle = TextStyle(
@@ -44,14 +43,15 @@ class _HomePageState extends State<HomePage> {
   //
   @override
   Widget build(BuildContext context) {
-    print("build home page");
+    
+    print(selectedIndex);
 
     final size = MediaQuery.of(context).size;
 
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
     return Scaffold(
       backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
-      appBar: PreferredSize(
+      appBar:selectedIndex == 0? PreferredSize(
         preferredSize: Size.fromHeight(113.h),
         child: Container(
           margin: EdgeInsets.only(left: 16.w, right: 16.w, top: 33.h),
@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-      ),
+      ) : null,
       body: pages[selectedIndex],
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
