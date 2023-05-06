@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:provider/provider.dart';
 import '../Post/components/like_button_v.dart';
 import 'components/display_comment_v.dart';
 import '../Post & Comment classes/comment_class.dart';
@@ -20,7 +21,7 @@ class PostCore extends StatefulWidget {
     super.key,
     required this.title,
     required this.description,
-    required this.date,
+    required this.Formatteddate,
     required this.userName,
     required this.email,
     required this.tag,
@@ -33,13 +34,12 @@ class PostCore extends StatefulWidget {
   final String description;
   final String userName;
   final String email;
-  final String tag;
-  final DateTime date;
-  final List<CommentClass> comments;
+  final List tag;
+  final String Formatteddate;
+  final List<dynamic> comments;
   final int generatedColor;
   // final LikeButtonController likeButtonState;
   final String controllerTag;
-
   @override
   State<PostCore> createState() => _PostCoreState();
 }
@@ -53,8 +53,10 @@ class _PostCoreState extends State<PostCore> {
 
     //
     final CorePostCotroller state = Get.find(tag: widget.controllerTag);
-
+    //state.getComments("lahcen", widget.controllerTag);
+   // print(state.postCoreComments);
     //
+    
     final size = MediaQuery.of(context).size;
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
     //
@@ -94,7 +96,8 @@ class _PostCoreState extends State<PostCore> {
         ),
         centerTitle: true,
         title: Text(
-          widget.tag,
+          //widget.tag,
+          "Html",
           style: GoogleFonts.poppins(
             color: Colors.white,
             fontWeight: FontWeight.w800,
@@ -192,8 +195,9 @@ class _PostCoreState extends State<PostCore> {
 
                 //for the date
                 Text(
-                  Jiffy.parseFromDateTime(widget.date)
-                      .format(pattern: "HH[:]mm[   ]dd[/]MM[/]yyyy"),
+                  //Jiffy.parseFromDateTime(widget.date)
+                  widget.Formatteddate,
+                     // .format(pattern: "HH[:]mm[   ]dd[/]MM[/]yyyy"),
                   style: GoogleFonts.poppins(
                     color: const Color.fromRGBO(139, 152, 165, 1),
                     fontSize: 14.sp,
@@ -291,12 +295,14 @@ class _PostCoreState extends State<PostCore> {
                               userName: value.comments[index].userName,
                               email: value.comments[index].email,
                               comment: value.comments[index].comment,
+                              commentId: value.comments[index].commentId!,
                               likesCount: value.comments[index].likesCount,
                               commentsCount:
                                   value.comments[index].commentsCount,
-                              date: value.comments[index].date,
+                              date: value.comments[index].formattedDate,
                               controllerTag: widget.controllerTag,
                               index: index,
+                              
                             ),
                             separatorBuilder: (context, index) => divider,
                             itemCount: value.comments.length,

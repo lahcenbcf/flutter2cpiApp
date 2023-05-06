@@ -5,14 +5,16 @@ class CommentClass {
     required this.comment,
     required this.likesCount,
     required this.commentsCount,
-    required this.date,
-     this.isLiked = false,
+    required this.formattedDate,
+    required this.isLiked,
+    this.commentId
   });
   final String userName;
   final String email;
   final String comment;
-    int likesCount;
+  final String ?commentId;
+  int likesCount;
   final int commentsCount;
-  final DateTime date;
-   bool isLiked;
+  final String formattedDate;
+  bool isLiked;
 }

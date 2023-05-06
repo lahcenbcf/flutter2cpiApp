@@ -10,9 +10,11 @@ class CommentLikeButton extends StatefulWidget {
     super.key,
     required this.controllerTag,
     required this.index,
+    required this.commentId
   });
   final String controllerTag;
   final int index;
+  final String commentId;
 
   @override
   State<CommentLikeButton> createState() => _CommentLikeButtonState();
@@ -44,7 +46,7 @@ class _CommentLikeButtonState extends State<CommentLikeButton> {
             duration: const Duration(milliseconds: 1000),
             curve: Curves.fastLinearToSlowEaseIn,
             child: GestureDetector(
-              onTap: () => state.onTap(widget.index),
+              onTap: () => state.onTap(widget.index,widget.commentId),
               child: Icon(
                 state.comments[widget.index].isLiked ? Iconsax.heart5 : Iconsax.heart4,
                 size: 20 * iconSize,

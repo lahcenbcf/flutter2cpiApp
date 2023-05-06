@@ -2,9 +2,12 @@ import 'package:flluter2cpi/pages/CorePost/components/comment_like_button.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiffy/jiffy.dart';
 
+import '../core_post_controller.dart';
 import 'profile_icon.dart';
 
 class DisplayComment extends StatefulWidget {
@@ -13,6 +16,7 @@ class DisplayComment extends StatefulWidget {
     required this.userName,
     required this.email,
     required this.comment,
+    required this.commentId,
     required this.likesCount,
     required this.commentsCount,
     required this.date, required this.controllerTag,required this.index,
@@ -22,7 +26,8 @@ class DisplayComment extends StatefulWidget {
   final String comment;
   final int likesCount;
   final int commentsCount;
-  final DateTime date;
+  final String date;
+  final String commentId;
   final String controllerTag;
   final int index;
 
@@ -35,7 +40,7 @@ class _DisplayCommentState extends State<DisplayComment> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
-    
+    final CorePostCotroller state = Get.find(tag: widget.controllerTag);
     
     
     return Column(
@@ -69,7 +74,8 @@ class _DisplayCommentState extends State<DisplayComment> {
                       ),
                       SizedBox(width: 8.w),
                       Text(
-                        Jiffy.parseFromDateTime(widget.date).fromNow(),
+                        //Jiffy.parseFromDateTime(widget.date).fromNow(),
+                        widget.date,
                         style: GoogleFonts.poppins(
                           color: const Color.fromRGBO(119, 119, 119, 1),
                           fontWeight: FontWeight.w700,
@@ -122,7 +128,7 @@ class _DisplayCommentState extends State<DisplayComment> {
         ),
         // for the like and comment button
         SizedBox(height: 10.h),
-        CommentLikeButton(controllerTag: widget.controllerTag,index: widget.index, ),
+        CommentLikeButton(controllerTag: widget.controllerTag,index: widget.index,commentId:widget.commentId ),
       ],
     );
   }
