@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:math';
+import 'dart:typed_data';
 
 import 'package:flluter2cpi/pages/CorePost/core_post_controller.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class Post extends StatelessWidget {
     required this.commentsCount,
     required this.title,
     required this.description,
-    required this.date,
+    required this.FormattedDate,
     required this.userName,
     required this.email,
     required this.tag,
@@ -30,17 +31,18 @@ class Post extends StatelessWidget {
     required this.controllerTag,
     required this.image,
   });
-  final File? image;
+  final Uint8List image;
   final String type;
   final String title;
   final String description;
   final String userName; // the name of the user that create the post
   final String email;
-  final String tag;
+  final List tag;
    int likesCount;
    int commentsCount;
-  final DateTime date;
-  final List<CommentClass> comments;
+  final String FormattedDate;
+   List<dynamic> comments;
+
    bool
       isLiked; //check if the user that is logged in, has liked this post before so i just need true or false value
   final String
@@ -49,12 +51,11 @@ class Post extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //
-    print( "fdfdj   ${image == null}");
     var generatedColor = Random().nextInt(Colors.primaries.length);
     final postController = Get.put(PostController(), tag: controllerTag,permanent: true);
     final corePostCotroller = Get.put(CorePostCotroller(),tag: controllerTag,permanent: true);
     //init the comments of the post 
-    corePostCotroller.comments = comments;
+    //corePostCotroller.comments = comments;
     corePostCotroller.type = type;
     corePostCotroller.controllerTag = controllerTag;
     corePostCotroller.image = image;
@@ -73,7 +74,7 @@ class Post extends StatelessWidget {
             return PostCore(
               title: title,
               description: description,
-              date: date,
+              Formatteddate: FormattedDate,
               userName: userName,
               email: email,
               tag: tag,
@@ -86,10 +87,14 @@ class Post extends StatelessWidget {
       );
     }
 
-    //
+    //ZZZZZZZ
     //
     final size = MediaQuery.of(context).size;
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
+    final CorePostCotroller state = Get.find(tag: controllerTag);
+    //I called get Comments 
+    state.getComments("lahcen",controllerTag);
+    
     //
     //
     //
@@ -155,7 +160,8 @@ class Post extends StatelessWidget {
                         SizedBox(height: 6.h),
                         //timeAgo
                         Text(
-                          Jiffy.parseFromDateTime(date).fromNow(),
+                          //Jiffy.parseFromDateTime(date).fromNow(),
+                          FormattedDate,
                           style: GoogleFonts.poppins(
                             color: const Color.fromRGBO(119, 119, 119, 1),
                             fontWeight: FontWeight.w700,
@@ -176,7 +182,7 @@ class Post extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15.r),
                   ),
                   child: Text(
-                    tag,
+                    "Tag",
                     style: GoogleFonts.poppins(
                       color: Colors.white,
                       fontWeight: FontWeight.w700,

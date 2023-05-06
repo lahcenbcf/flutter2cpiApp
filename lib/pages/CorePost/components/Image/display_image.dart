@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flluter2cpi/pages/CorePost/core_post_controller.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +19,11 @@ class DisplayImage extends StatelessWidget {
   Widget build(BuildContext context) {
     //
     final controller = Get.find<CorePostCotroller>(tag: controllerTag);
-
+    Future<File> uint8ListToFile(Uint8List uint8list, String filePath) async {
+    final file = File(filePath);
+    await file.writeAsBytes(uint8list);
+    return file;
+}
     final size = MediaQuery.of(context).size;
 
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
@@ -43,7 +50,8 @@ class DisplayImage extends StatelessWidget {
         ),
       ),
       body: PhotoView(
-        imageProvider: FileImage(controller.image!),
+        imageProvider: Image.memory(controller.image) as ImageProvider,
+        //uint8ListToFile,
         backgroundDecoration: const BoxDecoration(
           color: Colors.black54,
         ),

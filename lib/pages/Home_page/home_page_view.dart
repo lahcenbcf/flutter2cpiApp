@@ -1,3 +1,5 @@
+import 'package:flluter2cpi/pages/Home_page/Home_page_viewM.dart';
+import 'package:flluter2cpi/pages/Post/post_v.dart';
 import 'package:flluter2cpi/test.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 
 import 'package:iconsax/iconsax.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:provider/provider.dart';
 
 import '../Post & Comment classes/posts_tags.dart';
 
@@ -14,6 +17,7 @@ class HomePage extends StatefulWidget {
 
   @override
   State<HomePage> createState() => _HomePageState();
+  
 }
 
 
@@ -31,7 +35,6 @@ class _HomePageState extends State<HomePage> {
   //
   //
   int selectedIndex = 0;
-
   //
 
   TextStyle textStyle = TextStyle(
@@ -42,12 +45,11 @@ class _HomePageState extends State<HomePage> {
   //
   //
   //
+
   @override
-  Widget build(BuildContext context) {
-    print("build home page");
-
+  Widget build(BuildContext context){
+    // ignore: unused_local_variable
     final size = MediaQuery.of(context).size;
-
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
     return Scaffold(
       backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
@@ -90,7 +92,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: pages[selectedIndex],
+      body: ePosts[0],
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
             border: Border(top: BorderSide(color: Colors.white, width: 0.5))),

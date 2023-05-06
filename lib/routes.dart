@@ -1,3 +1,4 @@
+import 'package:flluter2cpi/pages/CorePost/core_post_v.dart';
 import 'package:flluter2cpi/pages/Home_page/home_page_view.dart';
 import 'package:flluter2cpi/pages/Login_page/login.dart';
 import 'package:flluter2cpi/pages/New_password/new_password_v.dart';
@@ -17,6 +18,6 @@ generateRoutes(BuildContext context) {
     "LogIn":(context)=>const Login(),
     "forgotPassword":(context)=>const ForgotPass(),
     "otpView":(context)=>const Otp(),
-    "newPassword":(context)=>const NewPassword(),
+    "newPassword":(context)=>const NewPassword()
   };
 }
