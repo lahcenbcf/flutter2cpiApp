@@ -11,7 +11,6 @@ import 'package:flluter2cpi/pages/otp_screen/otp_view_model.dart';
 import 'package:flluter2cpi/routes.dart';
 import 'package:flluter2cpi/services/api.dart';
 import 'package:flluter2cpi/services/sharedServices.dart';
-import 'package:flluter2cpi/utils/initPosts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +19,7 @@ Widget _defaultScreen = const HomePage();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await initPost.getStuckPost("lahcen");
+  //await initPost.getStuckPost("lahcen");
   await SharedPrefService.init();
   //await initPost.getAcademicPosts("lahcen");
   List<String>? loginInfoSession =

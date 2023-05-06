@@ -12,12 +12,12 @@ import '../Post/post_v.dart';
 // ignore: camel_case_types
 class Home_page_viewM extends ChangeNotifier {
 
-   static Future<List<Post>?> getStuckPosts(String username)async{
+   static Future<List<Post>> getStuckPosts(String username)async{
     Response response=await ApiServices.fetchStuckPosts(username);
     List<dynamic> result=jsonDecode(response.body);
     var stuckPosts=result.map<Post>((p) =>Post(type: p?["postType"], likesCount: p?["likes"].length, commentsCount:p?["comments"].length, title: p?["title"], description: p?["context"], FormattedDate: p?["date"], userName: p?["author"], email: "hhhh", tag: p?["tags"],comments: p?["comments"], isLiked: p?["isLiked"], controllerTag: p?["_id"], image:base64.decode(p?["image"]),
     )).toList();
-    ePosts=stuckPosts;
+    return stuckPosts;
 }
 /*static Future<List<Post>?> getAcademicPosts(String username)async{
   Response result=await ApiServices.fetchAcademicPosts(username);
