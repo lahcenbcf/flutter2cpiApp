@@ -10,39 +10,47 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:jiffy/jiffy.dart';
-import 'package:provider/provider.dart';
 import '../Post/components/like_button_v.dart';
 import 'components/display_comment_v.dart';
-import '../Post & Comment classes/comment_class.dart';
+
 
 class PostCore extends StatefulWidget {
   const PostCore({
     super.key,
     required this.title,
     required this.description,
+    // ignore: non_constant_identifier_names
     required this.Formatteddate,
     required this.userName,
     required this.email,
     required this.tag,
-    required this.comments,
+    this.module,
+    required this.isReported,
+    //required this.comments,
     required this.generatedColor,
     //required this.likeButtonState,
     required this.controllerTag,
+    required this.reportCounts
   });
   final String title;
+  int reportCounts;
+  final bool isReported;
   final String description;
   final String userName;
   final String email;
   final List tag;
+  final String ?module;
+  // ignore: non_constant_identifier_names
   final String Formatteddate;
-  final List<dynamic> comments;
+  //final List<CommentClass> comments;
   final int generatedColor;
   // final LikeButtonController likeButtonState;
   final String controllerTag;
   @override
   State<PostCore> createState() => _PostCoreState();
 }
+
+
 
 class _PostCoreState extends State<PostCore> {
   @override
@@ -53,7 +61,7 @@ class _PostCoreState extends State<PostCore> {
 
     //
     final CorePostCotroller state = Get.find(tag: widget.controllerTag);
-    //state.getComments("lahcen", widget.controllerTag);
+    state.getComments("lahcen", widget.controllerTag);
    // print(state.postCoreComments);
     //
     
@@ -98,6 +106,7 @@ class _PostCoreState extends State<PostCore> {
         title: Text(
           //widget.tag,
           "Html",
+          
           style: GoogleFonts.poppins(
             color: Colors.white,
             fontWeight: FontWeight.w800,
@@ -125,6 +134,7 @@ class _PostCoreState extends State<PostCore> {
                         ProfileIcon(
                           userName: widget.userName,
                           email: widget.email,
+                          controllerTag:widget.controllerTag,
                         ),
                         SizedBox(width: 9.w),
                         Padding(
@@ -301,7 +311,7 @@ class _PostCoreState extends State<PostCore> {
                                   value.comments[index].commentsCount,
                               date: value.comments[index].formattedDate,
                               controllerTag: widget.controllerTag,
-                              index: index,
+                              index: index, profilePic: value.comments[index].profilePic,
                               
                             ),
                             separatorBuilder: (context, index) => divider,

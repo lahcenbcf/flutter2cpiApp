@@ -1,17 +1,17 @@
-import 'package:flluter2cpi/pages/Home_page/Home_page_viewM.dart';
-import 'package:flluter2cpi/pages/Post/post_v.dart';
 import 'package:flluter2cpi/test.dart';
-import 'package:flluter2cpi/utils/initPosts.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-
+import '../Main_Pages/EsiFlow/esi_flow.dart';
+import '../Main_Pages/Home/home.dart';
+import '../Post/post_v.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:provider/provider.dart';
-import 'package:flluter2cpi/utils/initPosts.dart';
 import '../Post & Comment classes/posts_tags.dart';
+import '../Home_page/Home_page_viewM.dart';
+
+  int selectedIndex = 2;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,27 +23,26 @@ class HomePage extends StatefulWidget {
 
 
 List<Widget> pages = [
-  ListView(
-    children: ePosts
-  ), //for information
-const Center(child: Test()),//for information
-  const Center(child: Text("3")), //for information
+   const Home(), 
+  const EsiFlow(), //for information
+  const Test(), //for information
   const Center(child: Text("4")), //for information
+  
 ];
 
 class _HomePageState extends State<HomePage> {
   //
   //
   int selectedIndex = 0;
-  late Future<List<Post>> eposts;
+  late Future<List<List<Post>>> result;
   //
 
   @override 
   void initState(){
     // TODO: implement initState
     super.initState();
-    
-    eposts=Home_page_viewM.getStuckPosts("lahcen");
+    Home_page_viewM.updateTags();
+    result=Home_page_viewM.initPosts("lahcen");
   }
  
 
@@ -61,13 +60,15 @@ class _HomePageState extends State<HomePage> {
     // ignore: unused_local_variable
     final size = MediaQuery.of(context).size;
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
-    
-    return FutureBuilder<List<Post>>(future:eposts ,builder: (BuildContext context,AsyncSnapshot<List<Post>> snapshot){
+
+    return FutureBuilder(future: result,builder: ((context, snapshot){
+      
       if(snapshot.hasData){
-        ePosts=snapshot.data!;
+        ePosts=snapshot.data![0];
+        aPosts=snapshot.data![1];
         return Scaffold(
       backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
-      appBar: PreferredSize(
+      appBar:selectedIndex == 0? PreferredSize(
         preferredSize: Size.fromHeight(113.h),
         child: Container(
           margin: EdgeInsets.only(left: 16.w, right: 16.w, top: 33.h),
@@ -105,8 +106,8 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-      ),
-      body: ePosts[0],
+      ) : null,
+      body: pages[selectedIndex],
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
             border: Border(top: BorderSide(color: Colors.white, width: 0.5))),
@@ -167,15 +168,24 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+      }else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else {
+          return const CircularProgressIndicator();
+        }
+    }
+    )
+     );
+    
       }
-      else if (snapshot.hasError) {
+      /*else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
           return const CircularProgressIndicator();
         }
     }
     );
-  }
+  }*/
     /*return Scaffold(
       backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
       appBar: PreferredSize(

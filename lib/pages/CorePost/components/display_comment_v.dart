@@ -1,14 +1,12 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flluter2cpi/pages/CorePost/components/comment_like_button.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jiffy/jiffy.dart';
 
-import '../core_post_controller.dart';
-import 'profile_icon.dart';
 
 class DisplayComment extends StatefulWidget {
   const DisplayComment({
@@ -18,8 +16,11 @@ class DisplayComment extends StatefulWidget {
     required this.comment,
     required this.commentId,
     required this.likesCount,
+    required this.profilePic,
     required this.commentsCount,
-    required this.date, required this.controllerTag,required this.index,
+    required this.date,
+     required this.controllerTag,
+     required this.index,
   });
   final String userName;
   final String email;
@@ -30,6 +31,7 @@ class DisplayComment extends StatefulWidget {
   final String commentId;
   final String controllerTag;
   final int index;
+  final Uint8List? profilePic;
 
   @override
   State<DisplayComment> createState() => _DisplayCommentState();
@@ -40,9 +42,6 @@ class _DisplayCommentState extends State<DisplayComment> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
-    final CorePostCotroller state = Get.find(tag: widget.controllerTag);
-    
-    
     return Column(
       children: [
         //for the profile name and icon and date and 3 verticle dots point
@@ -53,11 +52,31 @@ class _DisplayCommentState extends State<DisplayComment> {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                ProfileIcon(
-                 
-                  userName: widget.userName,
-                  email: widget.email,
-                ),
+                // profile picture
+                widget.profilePic == null
+                    ? CircleAvatar(
+                        radius: 23 * iconSize,
+                        backgroundColor: const Color.fromRGBO(67, 69, 75, 1),
+                        child: Text(
+                          widget.userName[0].toUpperCase() +
+                              widget.email[0].toUpperCase(),
+                          style: GoogleFonts.poppins(
+                            color: Colors.white70,
+                            fontWeight: FontWeight.w600,
+                            fontStyle: FontStyle.italic,
+                            fontSize: 18.sp,
+                          ),
+                        ),
+                      )
+                    : ClipOval(
+                        child: SizedBox.fromSize(
+                          size: Size.fromRadius(23 * iconSize),
+                          child: /*Image.file(
+                            File(widget.profilePic!.path),
+                            fit: BoxFit.cover,
+                          )*/Image.memory(widget.profilePic!),
+                        ),
+                      ),
                 SizedBox(width: 7.w),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 27).h,

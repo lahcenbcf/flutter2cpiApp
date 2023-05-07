@@ -4,6 +4,7 @@ import 'dart:core';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:flluter2cpi/pages/Sign_up/User_Modal.dart';
 import 'package:flluter2cpi/services/sharedServices.dart';
 import 'package:flutter/material.dart';
@@ -131,5 +132,13 @@ static Future<http.Response> likeComment(String commentId,String userId)async{
   });
   return response;
 }
+static Future<http.Response> returnTags(String userId)async{
+  Uri requestUrl=Uri.parse("$_baseUrl/returnTags/$userId");
+  var response =await http.get(requestUrl);
+  return response;
+}
+
+
+
 }
 

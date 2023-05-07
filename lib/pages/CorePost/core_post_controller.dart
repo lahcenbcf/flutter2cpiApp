@@ -1,8 +1,7 @@
 
 import 'dart:convert';
-import 'package:intl/intl.dart';
-import 'dart:io';
 import 'dart:typed_data';
+import 'package:intl/intl.dart';
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/comment_class.dart';
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:flluter2cpi/pages/Post/post_controller.dart';
@@ -11,7 +10,6 @@ import 'package:flluter2cpi/services/api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CorePostCotroller extends GetxController {
@@ -32,7 +30,7 @@ class CorePostCotroller extends GetxController {
     List<dynamic> listOfComments=jsonDecode(result.body);
     //print(comments);
     if(listOfComments.isNotEmpty){
-    comments=listOfComments.map<CommentClass>((c) => CommentClass(userName:c?["author"] , email: "hhhh", comment: c?["text"], likesCount: c?["likes"].length, commentsCount: c?["replys"].length, formattedDate: c?["date"],isLiked: c?["isLiked"],commentId: c?["_id"])).toList();
+    comments=listOfComments.map<CommentClass>((c) => CommentClass(userName:c?["author"] , email: "hhhh", comment: c?["text"], likesCount: c?["likes"].length, commentsCount: c?["replys"].length, formattedDate: c?["date"],isLiked: c?["isLiked"],commentId: c?["_id"],profilePic: c?["ProfilePic"])).toList();
     // search index to push the comments to the post looks for
     //print(comments);
     int idx=getIndex(ePosts);
@@ -99,7 +97,7 @@ addComment(String date)async{
       );
     } else {
       // ignore: non_constant_identifier_names
-      String FormattedDate=DateFormat("yyyy - MM - dd - kk:mm").format(DateTime.now());
+      String FormattedDate=DateFormat("yyyy-MM-dd kk:mm").format(DateTime.now());
       unitCodeCtrlFocusNode.unfocus();
       var newComment = CommentClass(
         userName: "aboubakr", // add the user info here
@@ -108,6 +106,7 @@ addComment(String date)async{
         likesCount: 0,// not
         isLiked: false,
         commentId: "",
+        profilePic: new Uint8List(888),
         commentsCount: 0,// change
         formattedDate: FormattedDate, // needed
       );

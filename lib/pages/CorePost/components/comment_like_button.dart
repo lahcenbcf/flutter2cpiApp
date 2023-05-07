@@ -46,7 +46,7 @@ class _CommentLikeButtonState extends State<CommentLikeButton> {
             duration: const Duration(milliseconds: 1000),
             curve: Curves.fastLinearToSlowEaseIn,
             child: GestureDetector(
-              onTap: () => state.onTap(widget.index,widget.commentId),
+              onTap: () => state.onTap(widget.index,state.commentId!),
               child: Icon(
                 state.comments[widget.index].isLiked ? Iconsax.heart5 : Iconsax.heart4,
                 size: 20 * iconSize,

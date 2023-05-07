@@ -2,7 +2,6 @@ import 'package:flluter2cpi/pages/Home_page/Home_page_viewM.dart';
 import 'package:flluter2cpi/pages/Home_page/home_page_view.dart';
 import 'package:flluter2cpi/pages/Login_page/components/guest_box_view_model.dart';
 import 'package:flluter2cpi/pages/New_password/new_password_vm.dart';
-import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:flluter2cpi/pages/School_year/school_year_view_model.dart';
 import 'package:flluter2cpi/pages/Sign_up/sign_up_view_model.dart';
 import 'package:flluter2cpi/pages/Login_page/view_model.dart';
@@ -20,10 +19,10 @@ Widget _defaultScreen = const HomePage();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //await initPost.getStuckPost("lahcen");
+  //for redirection
   await SharedPrefService.init();
-  //await initPost.getAcademicPosts("lahcen");
   List<String>? loginInfoSession =
-      SharedPrefService.pref.getStringList("loginInfo");
+  SharedPrefService.pref.getStringList("loginInfo");
   debugPrint(loginInfoSession?[0]);
   bool? isGuest = SharedPrefService.pref.getBool(
       "isGuest"); // To limit the priviliges of the guest like reading only the posts no edit no add no delete no comments // is to say Hello to guest so we need the guest Name
@@ -67,7 +66,6 @@ class MyApp extends StatelessWidget {
             // ChangeNotifierProvider(
             //   create: (context) => LikeButtonViewModel(),
             // ),
-           
           
            
           ],

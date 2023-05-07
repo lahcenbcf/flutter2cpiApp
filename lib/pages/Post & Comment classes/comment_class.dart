@@ -1,3 +1,7 @@
+import 'dart:io';
+import 'dart:typed_data';
+
+
 class CommentClass {
   CommentClass({
     required this.userName,
@@ -6,9 +10,11 @@ class CommentClass {
     required this.likesCount,
     required this.commentsCount,
     required this.formattedDate,
-    required this.isLiked,
-    this.commentId
+    this.isLiked = false,
+    required this.commentId,
+    required this.profilePic,
   });
+  final Uint8List? profilePic;
   final String userName;
   final String email;
   final String comment;

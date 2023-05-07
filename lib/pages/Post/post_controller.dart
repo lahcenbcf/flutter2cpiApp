@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:flluter2cpi/pages/Post/post_v.dart';
@@ -13,8 +14,8 @@ class PostController extends GetxController {
   bool isLiked = false;
   String controllerTag = "";
   String type = "";
-  String errorMessage="";
-  String successMessage="";
+  String?message;
+  Uint8List? profilePic;
 
   //
   int getIndex(List<Post> myList){
@@ -37,9 +38,9 @@ while(!found && i< myList.length){
     var res=await ApiServices.likePost(controllerTag, "6439d42fac4d0cf5f4518a8d", type);
     var result=jsonDecode(res.body);
     if(result!=true){
-      errorMessage=result?["message"];
+      message=result?["message"];
     }else{
-      successMessage="added successufully";
+      message="added successufully";
     }
   }
   //

@@ -79,7 +79,6 @@ class _InputState extends State<Input> {
           suffixIcon: InkWell(
             onTap: () {
               state.sendComment(context);
-              //state.addComment("lahcen",state.controllerTag,state.type,state.controller.text);
               Get.forceAppUpdate();
             },
             child: Icon(
