@@ -1,5 +1,6 @@
 import 'package:flluter2cpi/services/api.dart';
 import 'package:flutter/material.dart';
+int selectedIndex=2;
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 

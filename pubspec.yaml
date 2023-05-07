@@ -44,6 +44,9 @@ dependencies:
   fluentui_icons: ^1.0.0
   http: ^0.13.5
   shared_preferences: ^2.0.5
+  image_picker: ^0.8.7+4
+  flutter_font_picker: ^1.2.0
+  url_launcher: ^6.1.10
 
 dev_dependencies:
   flutter_test:
