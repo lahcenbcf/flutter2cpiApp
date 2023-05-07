@@ -15,7 +15,7 @@ import 'components/display_comment_v.dart';
 
 
 class PostCore extends StatefulWidget {
-  const PostCore({
+  PostCore({
     super.key,
     required this.title,
     required this.description,
@@ -24,7 +24,6 @@ class PostCore extends StatefulWidget {
     required this.userName,
     required this.email,
     required this.tag,
-    this.module,
     required this.isReported,
     //required this.comments,
     required this.generatedColor,
@@ -33,13 +32,13 @@ class PostCore extends StatefulWidget {
     required this.reportCounts
   });
   final String title;
-  int reportCounts;
+  int reportCounts; 
   final bool isReported;
   final String description;
   final String userName;
   final String email;
-  final List tag;
-  final String ?module;
+  final String tag;
+
   // ignore: non_constant_identifier_names
   final String Formatteddate;
   //final List<CommentClass> comments;
@@ -196,7 +195,10 @@ class _PostCoreState extends State<PostCore> {
                       onTap: () => Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) => DisplayImage(
-                                  controllerTag: widget.controllerTag,),
+                                  controllerTag: widget.controllerTag,
+                                  image: state.image,
+                                  pathImage:state.pathImage! ,),
+                                  
                             ),
                           ),
                       child: Imagee(controllerTag: widget.controllerTag)),

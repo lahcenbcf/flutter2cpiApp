@@ -60,7 +60,7 @@ while(!found && i< myList.length){
      ePosts[index].isLiked =! ePosts[index].isLiked;
     update();
     // like post must call in the end to avoid the problem of "index out of the range"
-    likePost();
+    //likePost();
 
   }
   //

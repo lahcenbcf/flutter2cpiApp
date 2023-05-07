@@ -38,13 +38,13 @@ class _HomePageState extends State<HomePage> {
   //
 
   @override 
-  void initState(){
+  /*void initState(){
     // TODO: implement initState
     super.initState();
     Home_page_viewM.updateTags();
     result=Home_page_viewM.initPosts("lahcen");
   }
- 
+ */
 
   TextStyle textStyle = TextStyle(
     color: Colors.white,

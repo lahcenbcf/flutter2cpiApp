@@ -5,16 +5,14 @@ import 'package:flluter2cpi/pages/Post-Info/Post_info_v.dart';
 import '../Post/post_v.dart';
 import 'distinct_tags.dart';
 
-List<Post> ePosts = [
-  
-  
-  
+List<Post> ePosts = [ 
 ];
 List<Post> aPosts = [
   Post(
     isBlack: true,
     type: "academic",
     likesCount: 1,
+    reportCounts: 0,
     isReported: false,
     commentsCount: 99,
     title: "younes ferthat is fucking habacha",
@@ -32,6 +30,7 @@ List<Post> aPosts = [
     isBlack: true,
     isReported: false,
     type: "academic",
+    reportCounts: 0,
     likesCount: 2,
     commentsCount: 3,
     title: "younes ferthat is fucking habacha",

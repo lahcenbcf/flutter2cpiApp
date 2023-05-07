@@ -104,7 +104,8 @@ return response;
 
 //like post
 static Future<http.Response> likePost(String postId,String userId,String postType )async{
-  Uri requestUrl=Uri.parse("$_baseUrl/stuckPost/likePost/$postId");
+  String route=postType == "StuckPosts" ? "stuckPost" : "academicPost";
+  Uri requestUrl=Uri.parse("$_baseUrl/$route/likePost/$postId");
   var response=await http.post(requestUrl,body:{
     'userId':userId,
     'postType':postType
@@ -114,7 +115,8 @@ static Future<http.Response> likePost(String postId,String userId,String postTyp
 
 //add comment
 static Future<http.Response> addComment(String author,String postId,String postType,String text,String formatedDate)async{
-  Uri requestUrl=Uri.parse("$_baseUrl/stuckPost/addComment/$postId");
+  String route=postType == "StuckPosts" ? "stuckPost" : "academicPost";
+  Uri requestUrl=Uri.parse("$_baseUrl/$route/addComment/$postId");
   var response=await http.post(requestUrl,body:{
     "author":author,
     "postType":postType,

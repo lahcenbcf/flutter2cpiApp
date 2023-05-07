@@ -30,9 +30,9 @@ class Post extends StatelessWidget {
     required this.comments,
     required this.isLiked,
     required this.controllerTag,
+    required this.pathImage,
     this.image,
     this.profilePic,
-    this.module,
     required this.isBlack,
     required this.isReported
   });
@@ -41,12 +41,12 @@ class Post extends StatelessWidget {
   int reportCounts;
   final Uint8List? profilePic;
   final String type;
+  final String pathImage;
   final String title;
-  final String?module;
   final String description;
   final String userName; // the name of the user that create the post
   final String email;
-  final List tag;
+  final String tag;
    int likesCount;
    int commentsCount;
   // ignore: non_constant_identifier_names
@@ -74,6 +74,7 @@ class Post extends StatelessWidget {
     corePostCotroller.type = type;
     corePostCotroller.controllerTag = controllerTag;
     corePostCotroller.image = image!;
+    corePostCotroller.pathImage=pathImage;
     // inint the controller
     postController.type = type;
     postController.likesCount = likesCount;
@@ -97,7 +98,6 @@ class Post extends StatelessWidget {
               email: email,
               tag: tag,
               isReported:isReported ,
-
               //comments: comments,
               generatedColor: generatedColor,
               controllerTag: controllerTag,
@@ -113,7 +113,7 @@ class Post extends StatelessWidget {
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
     final CorePostCotroller state = Get.find(tag: controllerTag);
     //I called get Comments 
-    state.getComments("lahcen",controllerTag);
+    //state.getComments("lahcen",controllerTag);
     //
 
     //
@@ -353,6 +353,8 @@ class Post extends StatelessWidget {
                                   MaterialPageRoute(
                                     builder: (context) => DisplayImage(
                                       controllerTag: controllerTag,
+                                      image: image!,
+                                      pathImage: pathImage,
                                     ),
                                   ),
                                 );

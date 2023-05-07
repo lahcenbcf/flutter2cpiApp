@@ -1,5 +1,6 @@
 
 import 'dart:convert';
+import 'dart:io';
 import 'dart:typed_data';
 import 'package:intl/intl.dart';
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/comment_class.dart';
@@ -14,6 +15,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CorePostCotroller extends GetxController {
   Uint8List image=Uint8List(1000);
+  String?pathImage;
   //String?image;
   final TextEditingController controller = TextEditingController();
   final FocusNode unitCodeCtrlFocusNode = FocusNode();
@@ -125,7 +127,7 @@ addComment(String date)async{
       state.commentsCount++; // to update the comment count in the ui
 
       update();
-      addComment(FormattedDate);
+      //addComment(FormattedDate);
       controller.text = "";
       //addComment();
     }
@@ -159,10 +161,17 @@ addComment(String date)async{
         : aPosts[postNumber].comments[index].isLiked =
             !aPosts[postNumber].comments[index].isLiked;
 
-    likeComment(commentId, "6439d42fac4d0cf5f4518a8d");
+    //likeComment(commentId, "6439d42fac4d0cf5f4518a8d");
     update();
 
   }
+
+  //prepare image file
+  static Future<File> uint8ListToFile(Uint8List uint8list, String filePath) async {
+    final file = File(filePath);
+    await file.writeAsBytes(uint8list);
+    return file;
+}
 
   //
   //
