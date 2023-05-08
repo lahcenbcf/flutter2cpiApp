@@ -308,7 +308,7 @@ class _Module_contentState extends State<Module_content> {
                     color: Colors.white),
               ),
               centerTitle: true,
-              bottom: TabBar(
+              bottom: TabBar(dividerColor: Colors.transparent,
                 labelColor: Colors.black,
                 indicatorColor: Colors.transparent,
                 labelStyle: GoogleFonts.inter(

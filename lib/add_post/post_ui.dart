@@ -1,7 +1,10 @@
 import 'dart:io';
 import 'dart:ui';
+import 'package:flluter2cpi/Main_Pages/Academic_years/first_CS/module_content_1CS.dart';
+import 'package:flluter2cpi/Main_Pages/Esi_info/info_ui.dart';
 import 'package:flluter2cpi/add_post/post_view_mode.dart';
 import 'package:flluter2cpi/add_post/select_tag_ui.dart';
+import 'package:flluter2cpi/pages/Home_page/home_page_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -114,7 +117,9 @@ File? imageFile;
                                   style: const ButtonStyle(
                                       backgroundColor: MaterialStatePropertyAll(
                                           Color.fromRGBO(32, 197, 122, 1))),
-                                  onPressed: () {
+                                  onPressed: () {if (selectedIndex==4) {
+                                    
+                                  }
                                    
                                         context.read<Post_Model>().title;
               

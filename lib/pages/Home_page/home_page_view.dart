@@ -1,6 +1,7 @@
 import 'package:flluter2cpi/test.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import '../Main_Pages/EsiFlow/esi_flow.dart';
@@ -13,6 +14,10 @@ import '../Home_page/Home_page_viewM.dart';
 
 int selectedIndex = 0;
 
+=======
+int selectedIndex=3; //the index of selected page to display the tags for each page
+//if the index is 4 it means we are adding a post to esi info page and this post will be added by admin without tags
+>>>>>>> dcdcd5a86782391d8e26f6be81a35de9505f8b9a
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
   @override

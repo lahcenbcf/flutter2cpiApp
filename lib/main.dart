@@ -1,6 +1,7 @@
 import 'package:flluter2cpi/Main_Pages/Academic_years/first_cpi/first_prepa_year.dart';
 import 'package:flluter2cpi/Main_Pages/Academic_years/first_cpi/module_content.dart';
 import 'package:flluter2cpi/Main_Pages/Academic_years/first_cpi/module_ressources.dart';
+import 'package:flluter2cpi/Main_Pages/Esi_info/info_ui.dart';
 import 'package:flluter2cpi/add_post/post_ui.dart';
 import 'package:flluter2cpi/add_post/post_view_mode.dart';
 import 'package:flluter2cpi/add_post/select_tag_ui.dart';
@@ -19,7 +20,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
+<<<<<<< HEAD
 
+=======
+import 'Main_Pages/Editing_profile/edit_profile_ui.dart';
+import 'Main_Pages/Editing_profile/second_edit_page.dart';
+>>>>>>> dcdcd5a86782391d8e26f6be81a35de9505f8b9a
 import 'Main_Pages/academic_view.dart';
 import 'add_post/select_tag_view_model.dart';
 
@@ -81,7 +87,7 @@ class MyApp extends StatelessWidget {
                     theme: ThemeData(useMaterial3: true),
                     routes: generateRoutes(context),
                     home:  const SafeArea(
-                      child:Academic_page()
+                      child:Esi_info(index:0, title: 'Esi community',),
                     ));
               });
         });
