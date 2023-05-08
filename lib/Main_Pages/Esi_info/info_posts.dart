@@ -11,16 +11,16 @@ import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:flluter2cpi/constants.dart';
-class Module_posts extends StatefulWidget {
-  const Module_posts(this.tag,{super.key } );
-final String tag;
+class Info_posts extends StatefulWidget {
+  const Info_posts({super.key});
+
   @override
-  State<Module_posts> createState() => _Module_postsState();
+  State<Info_posts> createState() => _Info_postsState();
 }
 
-class _Module_postsState extends State<Module_posts> {
+class _Info_postsState extends State<Info_posts> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: SingleChildScrollView(child: Text('hh'),),);
+    return Scaffold(backgroundColor:Color.fromRGBO(35, 47, 56, 1), );
   }
 }

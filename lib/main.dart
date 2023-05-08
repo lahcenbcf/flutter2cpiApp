@@ -1,6 +1,7 @@
 import 'package:flluter2cpi/Main_Pages/Academic_years/first_cpi/first_prepa_year.dart';
 import 'package:flluter2cpi/Main_Pages/Academic_years/first_cpi/module_content.dart';
 import 'package:flluter2cpi/Main_Pages/Academic_years/first_cpi/module_ressources.dart';
+import 'package:flluter2cpi/Main_Pages/Esi_info/info_ui.dart';
 import 'package:flluter2cpi/add_post/post_ui.dart';
 import 'package:flluter2cpi/add_post/post_view_mode.dart';
 import 'package:flluter2cpi/add_post/select_tag_ui.dart';
@@ -80,7 +81,7 @@ class MyApp extends StatelessWidget {
                     theme: ThemeData(useMaterial3: true),
                     routes: generateRoutes(context),
                     home:  const SafeArea(
-                      child:Academic_page()
+                      child:Esi_info(index:0, title: 'ESI',)
                     ));
               });
         });
