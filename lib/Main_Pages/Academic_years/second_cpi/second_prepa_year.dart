@@ -22,9 +22,9 @@ class _Second_prepaState extends State<Second_prepa> {
   @override
   Widget build(BuildContext context) {
     return Scaffold( appBar: AppBar(
-        backgroundColor: Color.fromRGBO(35, 47, 56, 1),
+        backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.white,
           ),

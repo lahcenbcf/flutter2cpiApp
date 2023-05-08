@@ -60,7 +60,7 @@ class _PostCoreState extends State<PostCore> {
 
     //
     final CorePostCotroller state = Get.find(tag: widget.controllerTag);
-    state.getComments("lahcen", widget.controllerTag);
+    //state.getComments("lahcen", widget.controllerTag);
    // print(state.postCoreComments);
     //
     

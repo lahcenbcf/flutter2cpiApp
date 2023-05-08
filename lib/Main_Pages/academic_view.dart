@@ -56,7 +56,7 @@ class _Academic_pageState extends State<Academic_page> {
                             color: Colors.white),
                       ),
                       Container(
-                          color: Color.fromRGBO(32, 197, 122, 1),
+                          color: const Color.fromRGBO(32, 197, 122, 1),
                           child: SizedBox(
                             width: 79.w,
                             height: 3.h,
@@ -80,7 +80,7 @@ class _Academic_pageState extends State<Academic_page> {
                     TextButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => First_prepa()));
+                              builder: (context) =>const First_prepa()));
                         },
                         child: Text(
                           '1CPI (First preparatory year)',

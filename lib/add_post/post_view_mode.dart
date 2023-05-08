@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:flluter2cpi/pages/Post/post_v.dart';
 import 'package:flluter2cpi/services/api.dart';
@@ -28,7 +29,8 @@ class Post_Model extends ChangeNotifier{
     }
     */
     String formattedDate=DateFormat("yyyy-MM-dd kk:mm").format(DateTime.now());
-    Post p=new Post(type: postType, likesCount: 0, commentsCount: 0, title: title, description: desc, FormattedDate:formattedDate , reportCounts: 0, userName: "younes", email: "y.ferhat@esi-sba.dz", tag: tag!, comments: [], isLiked: false, controllerTag: controllerTag, pathImage: pathImage, isBlack:false, isReported: false);
+    Uint8List imageBytes=await imageFile!.readAsBytes();
+    Post p=new Post(image: imageBytes,type: postType, likesCount: 0, commentsCount: 0, title: title, description: desc, FormattedDate:formattedDate , reportCounts: 0, userName: "younes", email: "y.ferhat@esi-sba.dz", tag: tag!, comments: [], isLiked: false, controllerTag: controllerTag, pathImage: pathImage, isBlack:false, isReported: false);
     if(postType == "StuckPosts"){
       ePosts.add(p);
     }else{
