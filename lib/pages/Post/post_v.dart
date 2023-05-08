@@ -230,10 +230,7 @@ class Post extends StatelessWidget {
             onTap: navigatToPostCore,
             child: Container(
               margin: const EdgeInsets.all(5).w,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.r),
-                border: Border.all(color: Colors.white, width: 1),
-              ),
+              
               child: Padding(
                 padding: EdgeInsets.only(
                   left: 16.w,
@@ -344,7 +341,7 @@ class Post extends StatelessWidget {
                                 "check photo",
                                 style: GoogleFonts.poppins(
                                   fontSize: 14.sp,
-                                  color: Colors.white,
+                                  color: const Color.fromRGBO(32, 197, 122, 1),
                                   fontWeight: FontWeight.w800,
                                 ),
                               ),

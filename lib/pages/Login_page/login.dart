@@ -246,7 +246,7 @@ class _LoginState extends State<Login> {
                                       backgroundColor: const Color.fromRGBO(
                                           32, 197, 122, 1),
                                       padding: EdgeInsets.symmetric(
-                                        vertical: 10.h,
+                                        vertical: 8.h,
                                         horizontal: 72.5.w,
                                       ),
                                       shape: RoundedRectangleBorder(
@@ -258,7 +258,7 @@ class _LoginState extends State<Login> {
                                       
                                       if(forme.currentState != null){
                                         if(forme.currentState!.validate()){
-                                          Navigator.pushNamed(context,"HomePage");
+                                          Navigator.pushReplacementNamed(context,"HomePage");
                                           await state.loginUser(UserModal(email: state.email_controler.text, password:state.password_controller.text));
                                           if(state.isLogged){
                                             // ignore: use_build_context_synchronously
@@ -408,7 +408,7 @@ fit:fill
 class FrostedGlassBox extends StatelessWidget {
  final double width;
   final Widget child;
- const FrostedGlassBox({required this.width, required this.child});
+ const FrostedGlassBox({super.key, required this.width, required this.child});
   
   @override
   Widget build(BuildContext context) {

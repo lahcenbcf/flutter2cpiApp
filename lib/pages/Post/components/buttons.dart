@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toast/toast.dart';
 
 import 'like_button_v.dart';
 
@@ -21,10 +23,12 @@ class Buttons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     ToastContext().init(context);
+
     final size = MediaQuery.of(context).size;
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
     return Row(
-      mainAxisSize:isBlack? MainAxisSize.max : MainAxisSize.min,
+      mainAxisSize: isBlack ? MainAxisSize.max : MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         //
@@ -62,7 +66,25 @@ class Buttons extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             InkWell(
-              onTap: () => navigatToPostCore(),
+              onTap: () async {
+                final pref = await SharedPreferences.getInstance();
+                bool isGuest = pref.getBool("isGuest") ?? false;
+                if (isGuest) {
+                  Toast.show(
+                    "you are not logged in",
+                    duration: Toast.lengthLong,
+                    gravity: Toast.center,
+                    textStyle: GoogleFonts.poppins(
+                      fontSize: 17.sp,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
+                    backgroundColor: const Color.fromRGBO(157, 170, 181, 1),
+                  );
+                } else {
+                  navigatToPostCore();
+                }
+              },
               child: Icon(
                 Iconsax.message,
                 color: Colors.white,
@@ -87,14 +109,15 @@ class Buttons extends StatelessWidget {
 
         //
         // more button
-     if(isBlack)   InkWell(
-          onTap: () {},
-          child: Icon(
-            Iconsax.more,
-            color: Colors.white,
-            size: 28 * iconSize,
+        if (isBlack)
+          InkWell(
+            onTap: () {},
+            child: Icon(
+              Iconsax.more,
+              color: Colors.white,
+              size: 28 * iconSize,
+            ),
           ),
-        ),
       ],
     );
   }
