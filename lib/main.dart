@@ -19,6 +19,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
+import 'Main_Pages/Editing_profile/edit_profile_ui.dart';
+import 'Main_Pages/Editing_profile/second_edit_page.dart';
 import 'Main_Pages/academic_view.dart';
 import 'add_post/select_tag_view_model.dart';
 import 'pages/Choice_page/choice_v.dart';
@@ -81,7 +83,7 @@ class MyApp extends StatelessWidget {
                     theme: ThemeData(useMaterial3: true),
                     routes: generateRoutes(context),
                     home:  const SafeArea(
-                      child:Esi_info(index:0, title: 'ESI',)
+                      child:Esi_info(index:0, title: 'Esi community',),
                     ));
               });
         });

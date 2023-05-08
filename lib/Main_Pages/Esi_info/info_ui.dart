@@ -17,6 +17,7 @@ class Esi_info extends StatefulWidget {
   const Esi_info({super.key, required this.index, required this.title});
 final int index;
 final String title;
+int get_index(){return index;}
   @override
   State<Esi_info> createState() => _Esi_infoState();
 }
@@ -49,17 +50,27 @@ class _Esi_infoState extends State<Esi_info> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   }),
-              title: Text(
-                widget.title,
-                style: GoogleFonts.inter(
-                    fontSize: 26.sp,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white),
+              title: Column(
+                children: [
+                  Text(
+                    widget.title,
+                    style: GoogleFonts.inter(
+                        fontSize: 26.sp,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white),
+                  ), Container(
+                          color: Color.fromRGBO(32, 197, 122, 1),
+                          child: SizedBox(
+                            width: 79.w,
+                            height: 3.h,
+                          ))
+                ],
               ),
               centerTitle: true,
-              bottom: TabBar(
+              bottom: TabBar(dividerColor: Colors.transparent,
                 labelColor: Colors.black,
                 indicatorColor: Colors.transparent,
+                
                 labelStyle: GoogleFonts.inter(
                     fontSize: 16.sp, fontWeight: FontWeight.w600),
                 onTap: (x) => on_tap_new(x),
@@ -74,7 +85,7 @@ class _Esi_infoState extends State<Esi_info> {
                             ? Color.fromRGBO(32, 197, 122, 1)
                             : Colors.white,
                       ),
-                      child: Tab(
+                      child: const Tab( 
                         text: 'News',
                       )),
                   Container(
@@ -84,10 +95,10 @@ class _Esi_infoState extends State<Esi_info> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15.r),
                         color: selcted_tab == 1
-                            ? Color.fromRGBO(32, 197, 122, 1)
+                            ? const Color.fromRGBO(32, 197, 122, 1)
                             : Colors.white,
                       ),
-                      child: Tab(
+                      child: const Tab(
                         text: 'Questions',
                       ))
                 ],

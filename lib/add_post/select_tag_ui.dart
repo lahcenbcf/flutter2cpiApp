@@ -217,8 +217,8 @@ class _TagChooserState extends State<TagChooser> {
     ),ItemTag(
       itemtext: 'Administrative',
       click: true,
-    ),]
-    
+    ),],
+    [ItemTag(click: true, itemtext: '')]
   ];
 
   @override
@@ -308,7 +308,19 @@ class ItemTag extends StatefulWidget {
 }
 
 class _ItemTagState extends State<ItemTag> {
+
   bool val = false;
+   bool _isCheckboxSelected = false;
+
+  void _onCheckboxChanged(bool value) {
+    if (!_isCheckboxSelected) {
+      setState(() {
+        _isCheckboxSelected = true;
+      });
+
+     
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -328,11 +340,16 @@ class _ItemTagState extends State<ItemTag> {
                     width: 1.0, color: Color.fromRGBO(32, 197, 122, 1)),
                 value: val,
                 onChanged: (bool? click) {
+                   
+   
                   setState(() {
+
                     val = click!;
+                    
                     if (val) {  model.text=widget.itemtext;  //geting the string value of the tag after checking the box
                     print(widget.itemtext);
                     model.addSelectedText(widget.itemtext);
+                    
                     }});
                     print(model.selectedTexts);    // test if the table of strings is beig updated after cheking the box
                 },),

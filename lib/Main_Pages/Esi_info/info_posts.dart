@@ -11,6 +11,8 @@ import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:flluter2cpi/constants.dart';
+
+import '../../add_post/post_ui.dart';
 class Info_posts extends StatefulWidget {
   const Info_posts({super.key});
 
@@ -21,6 +23,17 @@ class Info_posts extends StatefulWidget {
 class _Info_postsState extends State<Info_posts> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor:Color.fromRGBO(35, 47, 56, 1), );
+    return Scaffold(backgroundColor:Color.fromRGBO(35, 47, 56, 1),floatingActionButton: FloatingActionButton( shape: CircleBorder(side: BorderSide()
+           
+     ),
+          onPressed: () => Navigator.of(context)
+              .push(MaterialPageRoute(builder: ((context) => AddPostScreen()))),
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+          backgroundColor: Color.fromRGBO(32, 197, 122, 1),
+          
+        ) );
   }
 }
