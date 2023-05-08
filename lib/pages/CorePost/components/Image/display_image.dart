@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flluter2cpi/pages/CorePost/core_post_controller.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -37,13 +38,17 @@ class _DisplayImageState extends State<DisplayImage> {
   Widget build(BuildContext context) {
     //
     final controller = Get.find<CorePostCotroller>(tag: widget.controllerTag);
-    
+    File image;
     final size = MediaQuery.of(context).size;
   
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
     //
     //
-    return Scaffold(
+    return FutureBuilder(future: fileImage
+    ,builder: (context,snapShot){
+      if(snapShot.hasData){
+        image=snapShot.data!;
+        return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -64,7 +69,7 @@ class _DisplayImageState extends State<DisplayImage> {
         ),
       ),
       body: PhotoView(
-        imageProvider: Image.memory(controller.image) as ImageProvider,
+        imageProvider: FileImage(image),
         //uint8ListToFile,
         backgroundDecoration: const BoxDecoration(
           color: Colors.black54,
@@ -77,10 +82,15 @@ class _DisplayImageState extends State<DisplayImage> {
         filterQuality: FilterQuality.medium,
       ),
     );
+      }
+      else if(snapShot.hasError) {
+          return Text('Error: ${snapShot.error}');
+        } else {
+          return const CircularProgressIndicator();
+        }
+      }
+    );
+    
   }
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<CorePostCotroller>('controller', controller));
-  }
+
 }

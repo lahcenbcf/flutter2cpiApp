@@ -1,3 +1,4 @@
+import 'package:flluter2cpi/add_post/post_ui.dart';
 import 'package:flluter2cpi/pages/Main_Pages/EsiFlow/tag_search.dart';
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
@@ -221,8 +222,17 @@ class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
                       )
                     : DisplayPosts(filtered: filtered)
                 : DisplayPosts(filtered: filtered),
+         FloatingActionButton(onPressed: (){
+          Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const AddPostScreen()
+        ));
+         }
+         )
           ],
+          
         ),
+      
       ),
     );
   }

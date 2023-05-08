@@ -11,8 +11,8 @@ import '../Post/post_v.dart';
 import 'package:flluter2cpi/services/sharedServices.dart';
 // ignore: camel_case_types
 class Home_page_viewM extends ChangeNotifier {
-
-   /*static Future<List<List<Post>>> initPosts(String username)async{
+/*
+   static Future<List<List<Post>>> initPosts(String username)async{
     Response response=await ApiServices.fetchStuckPosts(username);
     List<dynamic> result=jsonDecode(response.body);
     List<Post> stuckPosts=[];
@@ -43,7 +43,6 @@ static void updateTags(){
 
    eTags=newList;
   }
-  print(eTags);
 }
 
 */

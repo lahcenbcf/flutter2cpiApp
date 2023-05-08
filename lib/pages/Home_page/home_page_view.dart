@@ -11,7 +11,7 @@ import 'package:ionicons/ionicons.dart';
 import '../Post & Comment classes/posts_tags.dart';
 import '../Home_page/Home_page_viewM.dart';
 
-  int selectedIndex = 2;
+int selectedIndex = 0;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

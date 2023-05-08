@@ -88,13 +88,14 @@ static Future<http.Response> getComments(String userName,String postId)async{
 }
 
 //add post 
-static Future<http.Response> addPost(String title,String ctx,String author,List<dynamic> tags,String postType,File image)async{
+static Future<http.Response> addPost(String title,String ctx,String author,String tag,String postType,File image)async{
 Uint8List imageBytes =await image.readAsBytes();
+String route=postType == "StuckPosts" ? "stuckPost" : "academicPost";
 String base64Image=base64Encode(imageBytes);
 Map<String,dynamic> bodyRequest={
   'image':base64Image
 };
-Uri requestUrl=Uri.parse("$_baseUrl/stuckPost/addPost");
+Uri requestUrl=Uri.parse("$_baseUrl/$route/addPost");
 var response=await http.post(requestUrl,body:bodyRequest,headers: {
   'Content-Type':'application/json'
 });
