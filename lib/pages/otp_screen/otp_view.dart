@@ -78,7 +78,7 @@ class _OtpState extends State<Otp> {
                                     return const ForgotPass();
                                   }));
                                 },
-                                icon: Icon(FluentSystemIcons
+                                icon: const Icon(FluentSystemIcons
                                     .ic_fluent_dismiss_circle_filled),iconSize: 44),
                           ),
                           ListTile(
@@ -227,7 +227,7 @@ class _OtpState extends State<Otp> {
             style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.bold),
             keyboardType: TextInputType.number,
             maxLength: 1,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
                 contentPadding: EdgeInsets.only(bottom: 14),
                 counter: Offstage(),
                 border: InputBorder.none),

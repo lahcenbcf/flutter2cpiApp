@@ -1,3 +1,4 @@
+import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:flluter2cpi/pages/Post/post_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,26 +8,32 @@ import 'package:iconsax/iconsax.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 
+import '../post_v.dart';
 import 'like_button_v.dart';
 
 class Buttons extends StatelessWidget {
-  const Buttons({
+  Buttons({
     super.key,
     required this.navigatToPostCore,
     required this.controllerTag,
     required this.isBlack,
+    required this.isReported,
   });
   final void Function() navigatToPostCore;
   final bool isBlack;
   final String controllerTag;
-  // final LikeButtonController likeButtonState;
+  bool isReported;
 
+  // final LikeButtonController likeButtonState;
   @override
   Widget build(BuildContext context) {
-     ToastContext().init(context);
+    ToastContext().init(context);
 
     final size = MediaQuery.of(context).size;
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
+    final PostController x =
+        Get.put<PostController>(PostController(), tag: controllerTag);
+    print("BUILD");
     return Row(
       mainAxisSize: isBlack ? MainAxisSize.max : MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -41,18 +48,22 @@ class Buttons extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             LikeButton(controllerTag: controllerTag),
-            GetBuilder<PostController>(
-              tag: controllerTag,
-              builder: (state) {
-                return Text(
-                  state.displayLikes(),
-                  style: GoogleFonts.poppins(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 10.5.sp,
-                  ),
-                );
-              },
+            StatefulBuilder(
+              builder: (context, setState) => GetBuilder<PostController>(
+                tag: controllerTag,
+                builder: (state) {
+                  print("BUILD likes    ${state.controllerTag} $controllerTag");
+
+                  return Text(
+                    state.displayLikes(),
+                    style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 10.5.sp,
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ),
@@ -93,14 +104,16 @@ class Buttons extends StatelessWidget {
             ),
             GetBuilder<PostController>(
               tag: controllerTag,
-              builder: (state) => Text(
-                state.displayComments(),
-                style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 10.5.sp,
-                ),
-              ),
+              builder: (x) {
+                return Text(
+                  x.displayComments(),
+                  style: GoogleFonts.poppins(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 10.5.sp,
+                  ),
+                );
+              },
             ),
           ],
         ),
@@ -110,8 +123,76 @@ class Buttons extends StatelessWidget {
         //
         // more button
         if (isBlack)
-          InkWell(
-            onTap: () {},
+          GestureDetector(
+            onTapDown: (details) {
+              showMenu(
+                context: context,
+                position: RelativeRect.fromLTRB(
+                  details.globalPosition.dx,
+                  details.globalPosition.dy,
+                  details.globalPosition.dx,
+                  details.globalPosition.dy,
+                ),
+                color: const Color.fromRGBO(157, 170, 181, 1),
+                items: [
+                  PopupMenuItem(
+                    height: 0,
+                    onTap: () {
+                      isReported = true;
+                      bool found = false;
+                      int i = 0;
+                      print(aPosts.length);
+
+                      while (!found && i < 3) {
+                        List<Post> list = [];
+                        switch (i) {
+                          case 0:
+                            list = ePosts;
+                            break;
+                          case 1:
+                            list = aPosts;
+                            break;
+                          default:
+                            list = infoPosts;
+                        }
+                        int j = 0;
+                        while (!found && j < list.length) {
+                          if (list[j].controllerTag == controllerTag) {
+                            switch (i) {
+                              case 0:
+                                ePosts.removeAt(j);
+
+                                break;
+                              case 1:
+                                aPosts.removeAt(j);
+
+                                break;
+                              default:
+                                infoPosts.removeAt(j);
+                                
+                            }
+                            found = true;
+Get.forceAppUpdate();
+                          } else {
+                            j++;
+                          }
+                        }
+                        i++;
+                      }
+                      print(aPosts.length);
+                    },
+                    child: Text(
+                      "Report this post",
+                      style: GoogleFonts.poppins(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600,
+                        color: const Color.fromRGBO(0, 0, 0, 1),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
             child: Icon(
               Iconsax.more,
               color: Colors.white,

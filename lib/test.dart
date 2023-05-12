@@ -2,12 +2,11 @@
 
 import 'dart:io';
 
-import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/distinct_tags.dart';
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:flluter2cpi/pages/Post/post_v.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
-
+File? image;
 class Test extends StatefulWidget {
   const Test({super.key});
 
@@ -16,7 +15,6 @@ class Test extends StatefulWidget {
 }
 
 class _TestState extends State<Test> {
-  File? image;
   File? image1;
   File? image2;
   File? image3;
@@ -50,70 +48,18 @@ class _TestState extends State<Test> {
           children: [
             ElevatedButton(
               onPressed: () async{
-              await  getImage(0);
-               await getImage(1);
-              await  getImage(2);
-              await  getImage(3);
-             
+              
+             await getImage(0);
                 ePosts.addAll(
                   [
+                    
                     Post(
+                      links: [],
                       image: image,
-                      isBlack: true,
-                      type: "stack",
-                      likesCount: 2,
-                      commentsCount: 3,
-                      title: "younes ferthat is fucking habacha",
-                      description:
-                          "this is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
-                      date: DateTime.now(),
-                      userName: "Aboubakr",
-                      email: "la.belmi",
-                      tag: originalETags[1],
-                      comments: [],
-                      isLiked: true,
-                      controllerTag: generateTag(),
-                    ),
-                    Post(
-                      image: image1,
-                      isBlack: true,
-                      type: "stack",
-                      likesCount: 2,
-                      commentsCount: 3,
-                      title: "younes ferthat is fucking habacha",
-                      description:
-                          "this is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
-                      date: DateTime.now(),
-                      userName: "Aboubakr",
-                      email: "la.belmi",
-                      tag: originalETags[1],
-                      comments: [],
-                      isLiked: true,
-                      controllerTag: generateTag(),
-                    ),
-                    Post(
-                      image: image2,
-                      isBlack: true,
-                      type: "stack",
-                      likesCount: 2,
-                      commentsCount: 3,
-                      title: "younes ferthat is fucking habacha",
-                      description:
-                          "this is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
-                      date: DateTime.now(),
-                      userName: "Aboubakr",
-                      email: "la.belmi",
-                      tag: originalETags[1],
-                      comments: [],
-                      isLiked: true,
-                      controllerTag: generateTag(),
-                    ),
-                    Post(
-                      image: null,
                       isBlack: false,
                       type: "stack",
-                      likesCount: 2,
-                      commentsCount: 3,
+                      likesCount: 0,
+                      commentsCount: 0,
                       title: "younes ferthat is fucking habacha",
                       description:
                           "this is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
@@ -123,30 +69,32 @@ class _TestState extends State<Test> {
                       tag: originalETags[0],
                       comments: [],
                       isLiked: true,
-                      controllerTag: generateTag(),
+                      controllerTag: "1",
                     ),
                     Post(
+                      links: [],
                       image: image,
                       isBlack: false,
                       type: "stack",
-                      likesCount: 2,
-                      commentsCount: 3,
-                      title: "younes ferthat is fucking habacha",
+                      likesCount: 1,
+                      commentsCount: 2,
+                      title: "python",
                       description:
-                          "this is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
+                          "Python this is just d descriptionthis isjust d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
                       date: DateTime.now(),
                       userName: "Aboubakr",
                       email: "la.belmi",
                       tag: originalETags[1],
                       comments: [],
                       isLiked: true,
-                      controllerTag: generateTag(),
+                      controllerTag:"2",
                     ),
                     Post(
-                      image: image1,
+                      links: [],
+                      image: image,
                       isBlack: false,
                       type: "stack",
-                      likesCount: 2,
+                      likesCount: 3,
                       commentsCount: 3,
                       title: "younes ferthat is fucking habacha",
                       description:
@@ -156,9 +104,10 @@ class _TestState extends State<Test> {
                       email: "la.belmi",
                       tag: originalETags[2],
                       comments: [],
-                      isLiked: true,
-                      controllerTag: generateTag(),
+                      isLiked: false,
+                      controllerTag: "3",
                     ),
+                   
                   ],
                 );
               },

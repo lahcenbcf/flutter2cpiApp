@@ -1,13 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flluter2cpi/pages/Sign_up/User_Modal.dart';
 import 'package:flluter2cpi/services/api.dart';
 import 'package:flluter2cpi/services/sharedServices.dart';
 import 'package:flutter/material.dart';
 
 
-class View extends ChangeNotifier {
+class Vieww extends ChangeNotifier {
   bool eyeoff = true;
   String? errorLoginMessage;
   bool isLogged = false;

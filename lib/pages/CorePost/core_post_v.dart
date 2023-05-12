@@ -11,12 +11,16 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toast/toast.dart';
+import '../Post & Comment classes/posts_tags.dart';
 import '../Post/components/like_button_v.dart';
+import '../Post/post_v.dart';
 import 'components/display_comment_v.dart';
 import '../Post & Comment classes/comment_class.dart';
 
 class PostCore extends StatefulWidget {
-  const PostCore({
+  PostCore({
     super.key,
     required this.title,
     required this.description,
@@ -28,7 +32,10 @@ class PostCore extends StatefulWidget {
     required this.generatedColor,
     //required this.likeButtonState,
     required this.controllerTag,
+    required this.isReported,
+    required this.links,
   });
+  final List<String> links;
   final String title;
   final String description;
   final String userName;
@@ -39,6 +46,7 @@ class PostCore extends StatefulWidget {
   final int generatedColor;
   // final LikeButtonController likeButtonState;
   final String controllerTag;
+  bool isReported;
 
   @override
   State<PostCore> createState() => _PostCoreState();
@@ -72,6 +80,7 @@ class _PostCoreState extends State<PostCore> {
     //
     //
     //
+
     return Scaffold(
       backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
       extendBody: true,
@@ -122,7 +131,8 @@ class _PostCoreState extends State<PostCore> {
                         ProfileIcon(
                           userName: widget.userName,
                           email: widget.email,
-                          controllerTag:widget.controllerTag,
+                          controllerTag: widget.controllerTag,
+                          links: widget.links,
                         ),
                         SizedBox(width: 9.w),
                         Padding(
@@ -140,8 +150,73 @@ class _PostCoreState extends State<PostCore> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 25).h,
-                      child: InkWell(
-                        onTap: () {},
+                      child: GestureDetector(
+                        onTapDown: (details) {
+                          widget.isReported = true;
+                          bool found = false;
+                          int i = 0;
+
+                          while (!found && i < 3) {
+                            List<Post> list = [];
+                            switch (i) {
+                              case 0:
+                                list = ePosts;
+                                break;
+                              case 1:
+                                list = aPosts;
+                                break;
+                              default:
+                                list = infoPosts;
+                            }
+                            int j = 0;
+                            while (!found && j < list.length) {
+                              if (list[j].controllerTag ==
+                                  widget.controllerTag) {
+                                switch (i) {
+                                  case 0:
+                                    ePosts.removeAt(j);
+
+                                    break;
+                                  case 1:
+                                    aPosts.removeAt(j);
+
+                                    break;
+                                  default:
+                                    infoPosts.removeAt(j);
+                                }
+                                found = true;
+                                Get.forceAppUpdate();
+                              } else {
+                                j++;
+                              }
+                            }
+                            i++;
+                          }
+                          showMenu(
+                            context: context,
+                            position: RelativeRect.fromLTRB(
+                              details.globalPosition.dx,
+                              details.globalPosition.dy,
+                              details.globalPosition.dx,
+                              details.globalPosition.dy,
+                            ),
+                            color: const Color.fromRGBO(157, 170, 181, 1),
+                            items: [
+                              PopupMenuItem(
+                                height: 0,
+                                onTap: () => widget.isReported = true,
+                                child: Text(
+                                  "Report this post",
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.w600,
+                                    color: const Color.fromRGBO(0, 0, 0, 1),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          );
+                        },
                         child: Icon(
                           FluentIcons.more_horizontal_32_filled,
                           color: Colors.white,
@@ -184,7 +259,8 @@ class _PostCoreState extends State<PostCore> {
                       onTap: () => Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) => DisplayImage(
-                                  controllerTag: widget.controllerTag,),
+                                controllerTag: widget.controllerTag,
+                              ),
                             ),
                           ),
                       child: Imagee(controllerTag: widget.controllerTag)),
@@ -255,7 +331,26 @@ class _PostCoreState extends State<PostCore> {
                     //
                     SizedBox(width: 70.w),
                     InkWell(
-                      onTap: () => state.unitCodeCtrlFocusNode.requestFocus(),
+                      onTap: () async {
+                        final pref = await SharedPreferences.getInstance();
+                        bool isGuest = pref.getBool("isGuest") ?? false;
+                        if (isGuest) {
+                          Toast.show(
+                            "you are not logged in",
+                            duration: Toast.lengthLong,
+                            gravity: Toast.center,
+                            textStyle: GoogleFonts.poppins(
+                              fontSize: 17.sp,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            ),
+                            backgroundColor:
+                                const Color.fromRGBO(157, 170, 181, 1),
+                          );
+                        } else {
+                          state.unitCodeCtrlFocusNode.requestFocus();
+                        }
+                      },
                       child: Icon(
                         Iconsax.message,
                         color: Colors.white,
@@ -289,6 +384,8 @@ class _PostCoreState extends State<PostCore> {
                             primary: true,
                             physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) => DisplayComment(
+                              links: value.comments[index].links,
+                              isReported: value.comments[index].isReported,
                               profilePic: value.comments[index].profilePic,
                               userName: value.comments[index].userName,
                               email: value.comments[index].email,

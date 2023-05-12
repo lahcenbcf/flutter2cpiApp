@@ -17,14 +17,14 @@ class Page1 extends StatelessWidget {
           width: 170.w,
           child: FittedBox(
             fit: BoxFit.cover,
-            child: SvgPicture.asset("lib/images/w.svg"),
+            child: Image.asset("lib/images/white.png"),
           ),
         ),
         SizedBox(height: 55.0.h),
         SizedBox(
           height: 268.h,
           width: 353.w,
-          child: SvgPicture.asset("lib/images/pic1.svg"),
+          child: Hero(tag:"w",child: SvgPicture.asset("lib/images/pic1.svg")),
         ),
         SizedBox(height: 49.0.h),
         RichText(

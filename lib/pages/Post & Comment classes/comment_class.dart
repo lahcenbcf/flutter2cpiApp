@@ -11,6 +11,8 @@ class CommentClass {
     required this.date,
     this.isLiked = false,
     required this.profilePic,
+    this.isReported = false,
+    required this.links,
   });
   final File? profilePic;
   final String userName;
@@ -20,4 +22,6 @@ class CommentClass {
   final int commentsCount;
   final DateTime date;
   bool isLiked;
+  bool isReported;
+  final List<String> links;
 }

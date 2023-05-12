@@ -1,4 +1,4 @@
-// ignore_for_file: await_only_futures
+// ignore_for_file: await_only_futures, must_be_immutable
 
 import 'dart:io';
 import 'dart:math';
@@ -35,7 +35,11 @@ class Post extends StatelessWidget {
     this.image,
     this.profilePic,
     required this.isBlack,
+    this.isReported = false,
+    required this.links,
   });
+  final List<String> links;
+  bool isReported;
   final File? image;
   final File? profilePic;
   final String type;
@@ -48,19 +52,20 @@ class Post extends StatelessWidget {
   int commentsCount;
   final DateTime date;
   final List<CommentClass> comments;
-  final bool isBlack;
+   bool isBlack;
   bool
       isLiked; //check if the user that is logged in, has liked this post before so i just need true or false value
   final String controllerTag;
+
   // every post should have a distinct controllerTag in order to have his own state,otherwise the posts that hold the same tagController will share the same state of likeButton
   @override
   Widget build(BuildContext context) {
     //
     var generatedColor = Random().nextInt(Colors.primaries.length);
     final postController =
-        Get.put(PostController(), tag: controllerTag, permanent: true);
+        Get.put<PostController>(PostController(), tag: controllerTag);
     final corePostCotroller =
-        Get.put(CorePostCotroller(), tag: controllerTag, permanent: true);
+        Get.put<CorePostCotroller>(CorePostCotroller(), tag: controllerTag);
     //init the comments of the post
     corePostCotroller.comments = comments;
     corePostCotroller.type = type;
@@ -72,7 +77,7 @@ class Post extends StatelessWidget {
     postController.commentsCount = commentsCount;
     postController.controllerTag = controllerTag;
     postController.isLiked = isLiked;
-    postController.profilePic = profilePic;
+    postController.profilePic = profilePic; // this is the profile pic of the post maker
 
     @override
     navigatToPostCore() {
@@ -80,6 +85,7 @@ class Post extends StatelessWidget {
         MaterialPageRoute(
           builder: (context) {
             return PostCore(
+              links: links,
               title: title,
               description: description,
               date: date,
@@ -89,6 +95,7 @@ class Post extends StatelessWidget {
               comments: comments,
               generatedColor: generatedColor,
               controllerTag: controllerTag,
+              isReported: isReported,
             );
           },
         ),
@@ -97,8 +104,7 @@ class Post extends StatelessWidget {
 
     //
     //
-    final size = MediaQuery.of(context).size;
-    final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
+
     //
 
     //
@@ -136,6 +142,7 @@ class Post extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           ProfileIcon(
+                            links: links,
                             userName: userName,
                             email: email,
                             controllerTag: controllerTag,
@@ -221,6 +228,7 @@ class Post extends StatelessWidget {
                   navigatToPostCore: navigatToPostCore,
                   controllerTag: controllerTag,
                   isBlack: isBlack,
+                  isReported: isReported,
                 ),
                 SizedBox(height: 4.h),
               ],
@@ -230,10 +238,9 @@ class Post extends StatelessWidget {
             onTap: navigatToPostCore,
             child: Container(
               margin: const EdgeInsets.all(5).w,
-              
               child: Padding(
                 padding: EdgeInsets.only(
-                  left: 16.w,
+                  left: 16.w, 
                   right: 16.w,
                   bottom: 16.h,
                   top: 16.h,
@@ -252,6 +259,7 @@ class Post extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               ProfileIcon(
+                                links: links,
                                 userName: userName,
                                 email: email,
                                 controllerTag: controllerTag,
@@ -305,49 +313,30 @@ class Post extends StatelessWidget {
                       //for the description
                       //
                       TitleDescription(text: description, size: 15),
-                      // Text(
-                      //   description,
-                      //   style: GoogleFonts.poppins(
-                      //     color: Colors.white,
-                      //     fontWeight: FontWeight.w600,
-                      //     fontSize: 16.sp,
-                      //   ),
-                      // ),
 
                       //
                       SizedBox(height: 20.h),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Buttons(
-                            navigatToPostCore: navigatToPostCore,
-                            controllerTag: controllerTag,
-                            isBlack: isBlack,
-                          ),
-                          if (image != null)
-                            InkWell(
-                              onTap: ()  {
-                                 navigatToPostCore();
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => DisplayImage(
-                                      controllerTag: controllerTag,
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: Text(
-                                "check photo",
-                                style: GoogleFonts.poppins(
-                                  fontSize: 14.sp,
-                                  color: const Color.fromRGBO(32, 197, 122, 1),
-                                  fontWeight: FontWeight.w800,
+                      if (image != null)
+                        InkWell(
+                          onTap: () {
+                            navigatToPostCore();
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => DisplayImage(
+                                  controllerTag: controllerTag,
                                 ),
                               ),
+                            );
+                          },
+                          child: Text(
+                            "check photo",
+                            style: GoogleFonts.poppins(
+                              fontSize: 14.sp,
+                              color: const Color.fromRGBO(32, 197, 122, 1),
+                              fontWeight: FontWeight.w800,
                             ),
-                        ],
-                      ),
+                          ),
+                        ),
                     ],
                   ),
                 ),

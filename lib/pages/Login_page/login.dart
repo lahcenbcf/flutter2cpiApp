@@ -22,7 +22,7 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    final state=Provider.of<View>(context,listen: false);
+    final state=Provider.of<Vieww>(context,listen: false);
     final size = MediaQuery.of(context).size;
     final iconSize = ((size.height / 844) + (size.width / 390)) / 2;
     return SafeArea(
@@ -97,7 +97,7 @@ class _LoginState extends State<Login> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Consumer<View>(
+                                Consumer<Vieww>(
                                   builder: (context, val, child) => Column(
                                     children: [
                                       TextFormField(

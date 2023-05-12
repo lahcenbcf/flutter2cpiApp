@@ -1,22 +1,21 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
+import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/comment_class.dart';
 import 'package:flluter2cpi/pages/Post-Info/Post_info_v.dart';
 
+import '../../test.dart';
 import '../Post/post_v.dart';
 import 'distinct_tags.dart';
 
 List<Post> ePosts = [
-  
-  
-  
-];
-List<Post> aPosts = [
   Post(
+    links: ["https://www.linkedin.com/","https://github.com/AboubakrLaid",""],
+    image: image,
     isBlack: true,
-    type: "academic",
-    likesCount: 1,
-    commentsCount: 99,
-    title: "younes ferthat is fucking habacha",
+    type: "StuckPosts",
+    likesCount: 2,
+    commentsCount: 3,
+    title: "ytitle title title",
     description:
         "this is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
     date: DateTime.now(),
@@ -28,8 +27,137 @@ List<Post> aPosts = [
     controllerTag: generateTag(),
   ),
   Post(
+    links: [],
+
+    image: null,
     isBlack: true,
-    type: "academic",
+    type: "StuckPosts",
+    likesCount: 2,
+    commentsCount: 3,
+    title: "title 2",
+    description:
+        "this is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
+    date: DateTime.now(),
+    userName: "Aboubakr",
+    email: "la.belmi",
+    tag: "python",
+    comments: [],
+    isLiked: true,
+    controllerTag: generateTag(),
+  ),
+  Post(
+    links: [],
+
+    image: image,
+    isBlack: true,
+    type: "StuckPosts",
+    likesCount: 2,
+    commentsCount: 3,
+    title: "title 3",
+    description:
+        "this is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
+    date: DateTime.now(),
+    userName: "Aboubakr",
+    email: "la.belmi",
+    tag: "pascal",
+    comments: [],
+    isLiked: true,
+    controllerTag: generateTag(),
+  ),
+  Post(
+   links: [], image: null,
+    isBlack: false,
+    type: "StuckPosts",
+    likesCount: 3,
+    commentsCount: 3,
+    title: "title 4",
+    description:
+        "this is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
+    date: DateTime.now(),
+    userName: "Aboubakr",
+    email: "la.belmi",
+    tag: originalETags[2],
+    comments: [],
+    isLiked: false,
+    controllerTag: "4",
+  ),
+  Post(
+    links: [],
+    image: null,
+    isBlack: false,
+    type: "StuckPosts",
+    likesCount: 0,
+    commentsCount: 0,
+    title: "title 5",
+    description:
+        "this is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
+    date: DateTime.now(),
+    userName: "Aboubakr",
+    email: "la.belmi",
+    tag: originalETags[0],
+    comments: [],
+    isLiked: false,
+    controllerTag: "1",
+  ),
+  Post(
+    links: [],
+    image: null,
+    isBlack: false,
+    type: "StuckPosts",
+    likesCount: 1,
+    commentsCount: 2,
+    title: "python",
+    description:
+        "Python this is just d descriptionthis isjust d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
+    date: DateTime.now(),
+    userName: "Aboubakr",
+    email: "la.belmi",
+    tag: originalETags[1],
+    comments: [],
+    isLiked: true,
+    controllerTag: "2",
+  ),
+  Post(
+    links: [],
+    image: null,
+    isBlack: false,
+    type: "StuckPosts",
+    likesCount: 3,
+    commentsCount: 3,
+    title: "younes ferthat is fucking habacha",
+    description:
+        "this is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
+    date: DateTime.now(),
+    userName: "Aboubakr",
+    email: "la.belmi",
+    tag: originalETags[2],
+    comments: [],
+    isLiked: false,
+    controllerTag: "3",
+  ),
+];
+List<Post> aPosts = [
+  Post(
+    links: [],
+    isBlack: true,
+    type: "academicPosts",
+    likesCount: 1,
+    commentsCount: 99,
+    title: "younes ferthat is fucking habacha",
+    description:
+        "this is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descript just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
+    date: DateTime.now(),
+    userName: "Aboubakr",
+    email: "la.belmi",
+    tag: "flutter",
+    comments: [],
+    isLiked: true,
+    controllerTag: generateTag(),
+  ),
+  Post(
+    links: [],
+    isBlack: true,
+    type: "academicPosts",
     likesCount: 2,
     commentsCount: 3,
     title: "younes ferthat is fucking habacha",
@@ -43,8 +171,9 @@ List<Post> aPosts = [
     controllerTag: generateTag(),
   ),
   Post(
+    links: [],
     isBlack: true,
-    type: "academic",
+    type: "academicPosts",
     likesCount: 2,
     commentsCount: 3,
     title: "younes ferthat is fucking habacha",
@@ -58,7 +187,88 @@ List<Post> aPosts = [
     controllerTag: generateTag(),
   ),
 ];
-List<PostInfo> iPosts = [
+List<Post> infoPosts = [
+  Post(
+    links: [],
+    type: "infoPosts",
+    likesCount: 0,
+    commentsCount: 0,
+    title: "info posts",
+    description: "also info posts",
+    date: DateTime.now(),
+    userName: "li kan",
+    email: "fani li ka",
+    tag: "general",
+    comments: [
+      CommentClass(
+        links: [],
+          userName: "ana",
+          email: "howa",
+          comment: "hado howa comment",
+          likesCount: 13,
+          commentsCount: 0,
+          date: DateTime.now(),
+          profilePic: null)
+    ],
+    isLiked: true,
+    controllerTag: generateTag(),
+    isBlack: true,
+  ),
+  Post(
+    links: [],
+    type: "infoPosts",
+    likesCount: 0,
+    commentsCount: 0,
+    title: "info posts",
+    description: "also info posts",
+    date: DateTime.now(),
+    userName: "li kan",
+    email: "fani li ka",
+    tag: "general",
+    comments: [
+      CommentClass(
+        links: [],
+          userName: "ana",
+          email: "howa",
+          comment: "hado howa comment",
+          likesCount: 13,
+          commentsCount: 0,
+          date: DateTime.now(),
+          profilePic: null)
+    ],
+    isLiked: true,
+    controllerTag: generateTag(),
+    isBlack: true,
+  ),
+  Post(
+    links: [],
+    type: "infoPosts",
+    likesCount: 0,
+    commentsCount: 0,
+    title: "info posts",
+    description: "also info posts",
+    date: DateTime.now(),
+    userName: "li kan",
+    email: "fani li ka",
+    tag: "general",
+    comments: [
+      CommentClass(
+        links: [],
+          userName: "ana",
+          email: "howa",
+          comment: "hado howa comment",
+          likesCount: 13,
+          commentsCount: 0,
+          date: DateTime.now(),
+          profilePic: null)
+    ],
+    isLiked: true,
+    controllerTag: generateTag(),
+    isBlack: true,
+  ),
+];
+ // can be from stack or academic or info "that can be liked"
+List<PostInfo> articlePosts = [
   PostInfo(
       image: null,
       title: "this is post info",
@@ -75,10 +285,8 @@ List<PostInfo> iPosts = [
       description: "and this is the descriptio",
       date: DateTime.now()),
 ];
-List<String> followedTags = [
-  
-];
-List<String> originalETags =[
+List<String> followedTags = [];
+List<String> originalETags = [
   "Pascal",
   "Python",
   "Java",
@@ -104,7 +312,7 @@ List<String> originalETags =[
   "HTML",
   "Nest js",
   ".net",
-]; 
+];
 List<String> eTags = [
   "Pascal",
   "Python",
@@ -132,4 +340,3 @@ List<String> eTags = [
   "Nest js",
   ".net",
 ];
-

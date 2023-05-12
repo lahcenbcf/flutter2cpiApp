@@ -1,7 +1,6 @@
 import 'package:flluter2cpi/pages/School_year/Components/year_selecter.dart';
 import 'package:flluter2cpi/pages/School_year/school_year_view_model.dart';
-import 'package:flluter2cpi/pages/Sign_up/User_Modal.dart';
-import 'package:flluter2cpi/pages/Sign_up/sign_up_view_model.dart';
+//import 'package:flluter2cpi/pages/Sign_up/sign_up_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,7 +13,7 @@ class SchoolYear extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = Provider.of<SchoolYearViewModel>(context, listen: false);
-    final Registerstate = Provider.of<SignUpViewModel>(context, listen: false);
+  //  final Registerstate = Provider.of<SignUpViewModel>(context, listen: false);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(

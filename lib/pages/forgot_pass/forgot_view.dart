@@ -16,7 +16,7 @@ class ForgotPass extends StatefulWidget {
 class _ForgotPassState extends State<ForgotPass> {
   @override
   Widget build(BuildContext context) {
-    final state = Provider.of<View_model>(context, listen: false);
+ //   final state = Provider.of<View_model>(context, listen: false);
     return SafeArea(
         child: Scaffold(
       body: Container(
@@ -73,10 +73,10 @@ class _ForgotPassState extends State<ForgotPass> {
                                   onPressed: () {
                                     Navigator.push(context,
                                         MaterialPageRoute(builder: (context) {
-                                      return Login();
+                                      return const Login();
                                     }));
                                   },
-                                  icon: Icon(FluentSystemIcons
+                                  icon: const Icon(FluentSystemIcons
                                       .ic_fluent_dismiss_circle_filled),iconSize: 44,),
                             ),
                             ListTile(
@@ -154,7 +154,7 @@ class _ForgotPassState extends State<ForgotPass> {
                                             hintStyle: GoogleFonts.poppins(
                                                 fontSize: 14.sp,
                                                 fontWeight: FontWeight.w500,
-                                                color: Color.fromRGBO(
+                                                color: const Color.fromRGBO(
                                                     0, 0, 0, 0.61)),
                                           ),
                                         ),

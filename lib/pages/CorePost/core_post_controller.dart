@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/comment_class.dart';
@@ -62,26 +61,35 @@ class CorePostCotroller extends GetxController {
     } else {
       unitCodeCtrlFocusNode.unfocus();
       var newComment = CommentClass(
+        links: ["","",""], // add the links of the user here and the list should be always of length 3 so if any link is missing just add ""  , link order is linkedin github telegram
         profilePic: null, // if Abouabkr have profile pic then add it
         userName: "Aboubakr", // add the user info here
-        email: "email",// and here
-        comment: controller.text,// do
-        likesCount: 0,// not
-        commentsCount: 0,// change
+        email: "email", // and here
+        comment: controller.text, // do
+        likesCount: 0, // not
+        commentsCount: 0, // change
         date: DateTime.now(), // those
       );
-      if (type == "stack") {
-        int i = getIndex(ePosts);
-        ePosts[i].comments.insert(0, newComment); //keep trace
-        ePosts[i].commentsCount++;
-      } else {
-        int i = getIndex(aPosts);
-        aPosts[i].comments.insert(0, newComment); //keep trace
-        aPosts[i].commentsCount++;
+      switch (type) {
+        case "StuckPosts":
+          int i = getIndex(ePosts);
+          ePosts[i].comments.insert(0, newComment); //keep trace
+          ePosts[i].commentsCount++;
+          break;
+        case "academicPosts":
+          int i = getIndex(aPosts);
+          aPosts[i].comments.insert(0, newComment); //keep trace
+          aPosts[i].commentsCount++;
+
+          break;
+        default:
+          int i = getIndex(infoPosts);
+          infoPosts[i].comments.insert(0, newComment); //keep trace
+          infoPosts[i].commentsCount++;
       }
 
       controller.text = "";
-      final PostController state = Get.find(tag: controllerTag);
+      final PostController state = Get.find<PostController>(tag: controllerTag);
       state.commentsCount++; // to update the comment count in the ui
 
       update();
@@ -92,24 +100,58 @@ class CorePostCotroller extends GetxController {
   //
   //
   onTap(int index) {
-    int postNumber = type == "stack" ? getIndex(ePosts) : getIndex(aPosts);// index of the post
+    int postNumber = 0;
+    
+    switch (type) {
+      case "StuckPosts":
+        postNumber = getIndex(ePosts);
+        break;
+      case "academicPosts":
+        postNumber = getIndex(aPosts);
+        break;
+      default:
+        postNumber = getIndex(infoPosts);
+    }
     // parameter index stand for the position of the comment in the post
     if (comments[index].isLiked) {
-      
-      type == "stack"
-          ? ePosts[postNumber].comments[index].likesCount--
-          : aPosts[postNumber].comments[index].likesCount--;
+      switch (type) {
+        case "StuckPosts":
+          ePosts[postNumber].comments[index].likesCount--;
+          break;
+        case "academicPosts":
+          aPosts[postNumber].comments[index].likesCount--;
+
+          break;
+        default:
+          infoPosts[postNumber].comments[index].likesCount--;
+      }
     } else {
-      
-      type == "stack"
-          ? ePosts[postNumber].comments[index].likesCount++
-          : aPosts[postNumber].comments[index].likesCount++;
+      switch (type) {
+        case "StuckPosts":
+          ePosts[postNumber].comments[index].likesCount++;
+          break;
+        case "academicPosts":
+          aPosts[postNumber].comments[index].likesCount++;
+
+          break;
+        default:
+          infoPosts[postNumber].comments[index].likesCount++;
+      }
     }
-    type == "stack"
-        ? ePosts[postNumber].comments[index].isLiked =
-            !ePosts[postNumber].comments[index].isLiked
-        : aPosts[postNumber].comments[index].isLiked =
+    switch (type) {
+      case "StuckPosts":
+        ePosts[postNumber].comments[index].isLiked =
+            !ePosts[postNumber].comments[index].isLiked;
+        break;
+      case "academicPosts":
+        aPosts[postNumber].comments[index].isLiked =
             !aPosts[postNumber].comments[index].isLiked;
+
+        break;
+      default:
+        infoPosts[postNumber].comments[index].isLiked =
+            !infoPosts[postNumber].comments[index].isLiked;
+    }
 
     //
     //

@@ -9,6 +9,9 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:ionicons/ionicons.dart';
 
+import '../../display_profile_pic.dart';
+import '../Drawer/drawer.dart';
+
 
   int selectedIndex = 2;
 
@@ -63,20 +66,19 @@ List<Widget> pages = [
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             mainAxisSize: MainAxisSize.max,
             children: [
-              CircleAvatar(
-                radius: 21 * iconSize,
-                backgroundColor: const Color.fromRGBO(39, 39, 39, 1),
-                child: Icon(
-                  FluentIcons.person_24_filled,
-                  color: Colors.white,
-                  size: 32 * iconSize,
-                ),
+              Builder(
+                builder: (context) {
+                  return InkWell(
+                    onTap: () => Scaffold.of(context).openDrawer(),
+                    child: const DisplayProfilePic(22)
+                  );
+                }
               ),
               SizedBox(
                 height: 39.h,
                 width: 170.w,
                 child: Image.asset(
-                  "lib/images/logo.png",
+                  "lib/images/white.png",
                   fit: BoxFit.contain,
                   filterQuality: FilterQuality.high,
                 ),
@@ -89,7 +91,9 @@ List<Widget> pages = [
             ],
           ),
         ),
+        
       ) : null,
+      drawer:selectedIndex==0? const Drawerr() : null,
       body: pages[selectedIndex],
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(

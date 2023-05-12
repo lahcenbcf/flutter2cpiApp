@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shimmer/shimmer.dart';
 
 import 'display_followed_tags.dart';
 
@@ -18,8 +19,9 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     //
-    PageController controller = PageController(initialPage: 0,viewportFraction: 0.95);
-   
+    PageController controller =
+        PageController(initialPage: 0, viewportFraction: 0.9);
+
     //
     //
     //
@@ -66,7 +68,16 @@ class _HomeState extends State<Home> {
               style: GoogleFonts.poppins(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.w700,
-                color: Colors.white,
+                color: Colors.transparent,
+                decoration: TextDecoration.underline,
+                decorationThickness: 3,
+                decorationColor: const Color.fromRGBO(32, 197, 122, 1),
+                shadows: [
+                  const Shadow(
+                    color: Colors.white,
+                    offset: Offset(0, -5),
+                  )
+                ],
               ),
             ),
           ),
@@ -107,12 +118,21 @@ class _HomeState extends State<Home> {
           LimitedBox(
             maxHeight: 250,
             child: PageView.builder(
-              itemCount: 3,
+              itemCount: ePosts
+                  .where((element) => element.isBlack == true)
+                  .toList()
+                  .length,
               controller: controller,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5).w,
-                child: ePosts[index],
+                child: SizedBox(
+                  height: 260.h,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: aPosts[index],
+                  ),
+                ),
               ),
             ),
           ),
@@ -127,7 +147,16 @@ class _HomeState extends State<Home> {
               style: GoogleFonts.poppins(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.w700,
-                color: Colors.white,
+                color: Colors.transparent,
+                decoration: TextDecoration.underline,
+                decorationThickness: 3,
+                decorationColor: const Color.fromRGBO(32, 197, 122, 1),
+                shadows: [
+                  const Shadow(
+                    color: Colors.white,
+                    offset: Offset(0, -5),
+                  )
+                ],
               ),
             ),
           ),
@@ -166,14 +195,23 @@ class _HomeState extends State<Home> {
           //
           SizedBox(height: 13.h),
           LimitedBox(
-            maxHeight: 250,
+            maxHeight: 260,
             child: PageView.builder(
-              itemCount: 3,
+              itemCount: aPosts
+                  .where((element) => element.isBlack == true)
+                  .toList()
+                  .length,
               controller: controller,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5).w,
-                child: aPosts[index],
+                child: SizedBox(
+                  height: 260.h,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: aPosts[index],
+                  ),
+                ),
               ),
             ),
           ),
@@ -187,7 +225,16 @@ class _HomeState extends State<Home> {
               style: GoogleFonts.poppins(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.w700,
-                color: Colors.white,
+                color: Colors.transparent,
+                decoration: TextDecoration.underline,
+                decorationThickness: 3,
+                decorationColor: const Color.fromRGBO(32, 197, 122, 1),
+                shadows: [
+                  const Shadow(
+                    color: Colors.white,
+                    offset: Offset(0, -5),
+                  )
+                ],
               ),
             ),
           ),
@@ -224,18 +271,78 @@ class _HomeState extends State<Home> {
           ),
           SizedBox(height: 13.h),
           LimitedBox(
-            maxHeight: 250,
+            maxHeight: 260,
             child: PageView.builder(
-              itemCount: 3,
+              itemCount: infoPosts
+                  .where((element) => element.isBlack == true)
+                  .toList()
+                  .length,
               controller: controller,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5).w,
-                child: iPosts[index],
+                child: SizedBox(
+                  height: 260,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: infoPosts[index],
+                  ),
+                ),
               ),
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+// PageView.builder(
+//               itemCount: infoPosts
+//                   .where((element) => element.isBlack == true)
+//                   .toList()
+//                   .length,
+//               controller: controller,
+//               physics: const BouncingScrollPhysics(),
+//               itemBuilder: (context, index) => Padding(
+//                 padding: const EdgeInsets.symmetric(horizontal: 5).w,
+//                 child: infoPosts[index],
+//               ),
+//             ),
+class PostShimmer extends StatelessWidget {
+  const PostShimmer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    PageController controller =
+        PageController(initialPage: 0, viewportFraction: 0.90);
+    return PageView.builder(
+      itemCount:
+          infoPosts.where((element) => element.isBlack == true).toList().length,
+      controller: controller,
+      physics: const BouncingScrollPhysics(),
+      itemBuilder: (context, index) => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 5).w,
+        child: Shimmer.fromColors(
+          period: const Duration(seconds: 2),
+          baseColor: const Color.fromRGBO(0, 0, 0, 0.8),
+          highlightColor: const Color.fromRGBO(0, 0, 0, 0.5),
+          child: Container(
+            width: 360.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.r),
+              gradient: const LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                stops: [0.5, 1],
+                colors: [
+                  Color.fromRGBO(0, 0, 0, 0.73),
+                  Color.fromRGBO(30, 30, 30, 0.73),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

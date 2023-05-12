@@ -1,13 +1,13 @@
 import 'package:flluter2cpi/pages/Main_Pages/EsiFlow/tag_search.dart';
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../display_profile_pic.dart';
 import '../../Post/post_v.dart';
 
-int selectedTab = 0;
+int selectedTab = 1;
 
 class EsiFlow extends StatefulWidget {
   const EsiFlow({super.key});
@@ -25,7 +25,11 @@ class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
     final TabController controller =
         TabController(length: eTags.length + 1, vsync: this);
-   
+    @override
+    void dispose() {
+      super.dispose();
+      controller.dispose();
+    }
 
     return Scaffold(
       backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
@@ -34,17 +38,10 @@ class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
         centerTitle: true,
         backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
         leading: Padding(
-          padding: const EdgeInsets.only( left: 16.0).w,
-          child: CircleAvatar(
-            radius: 21 * iconSize,
-            backgroundColor: const Color.fromRGBO(39, 39, 39, 1),
-            child: Icon(
-              FluentIcons.person_24_filled,
-              color: Colors.white,
-              size: 32 * iconSize,
-            ),
-          ),
+          padding:  EdgeInsets.only(left: 16.0.w, top: 2.0.h),
+          child: const DisplayProfilePic(22),
         ),
+
         // actions: [
         //   Padding(
         //     padding: const EdgeInsets.only(right: 16).w,
@@ -77,7 +74,7 @@ class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
             Text(
               "Explore",
               style: GoogleFonts.poppins(
-                fontSize: 28.sp,
+                fontSize: 25.sp,
                 fontWeight: FontWeight.w700,
                 color: Colors.white,
                 decoration: TextDecoration.underline,
@@ -89,7 +86,7 @@ class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
             Text(
               "Esi Flow",
               style: GoogleFonts.poppins(
-                fontSize: 28.sp,
+                fontSize: 25.sp,
                 fontWeight: FontWeight.w700,
                 color: Colors.white,
               ),
@@ -205,109 +202,129 @@ class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
           ),
         ),
       ),
-      body: MediaQuery.removePadding(
-        context: context,
-        removeTop: true,
-        child: SingleChildScrollView(
-          child: filtered.isNotEmpty
-              ? Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(height: 10.h),
-                    if (selectedTab != 0)
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            eTags[selectedTab - 1],
-                            style: GoogleFonts.poppins(
-                              fontSize: 30.sp,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ),
+      body: filtered.isNotEmpty
+          ? Builder(builder: (context) {
+              List<Post> x = selectedTab != 0
+                  ? filtered
+                      .where((element) => element.tag == eTags[selectedTab - 1])
+                      .toList()
+                  : [];
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(height: 10.h),
+                  if (selectedTab != 0)
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          eTags[selectedTab - 1],
+                          style: GoogleFonts.poppins(
+                            fontSize: 30.sp,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
                           ),
-                          SizedBox(width: 11.w),
-                          followedTags.contains(eTags[selectedTab - 1])
-                              ? InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      followedTags
-                                          .remove(eTags[selectedTab - 1]);
-                                      int x = originalETags
-                                          .indexOf(eTags[selectedTab - 1]);
-                                      String y = eTags[selectedTab - 1];
-                                      eTags.remove(eTags[selectedTab - 1]);
-                                      eTags.insert(x, y);
-                                    });
-                                  },
-                                  child: Icon(
-                                    FluentIcons.dismiss_circle_48_filled,
-                                    color: Colors.red,
-                                    size: 28 * iconSize,
+                        ),
+                        SizedBox(width: 11.w),
+                        followedTags.contains(eTags[selectedTab - 1])
+                            ? InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    followedTags.remove(eTags[selectedTab - 1]);
+                                    int x = originalETags
+                                        .indexOf(eTags[selectedTab - 1]);
+                                    String y = eTags[selectedTab - 1];
+                                    eTags.remove(eTags[selectedTab - 1]);
+                                    eTags.insert(x, y);
+                                  });
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 7.w,
+                                    vertical: 4.h,
                                   ),
-                                )
-                              : InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      followedTags.insert(
-                                          0, eTags[selectedTab - 1]);
-                                      String x =
-                                          eTags.removeAt(selectedTab - 1);
-                                      eTags.insert(0, x);
-                                      selectedTab = 1;
-                                    });
-                                  },
-                                  child: Icon(
-                                    FluentIcons.add_circle_24_filled,
-                                    color:
-                                        const Color.fromRGBO(32, 197, 122, 1),
-                                    size: 28 * iconSize,
-                                  ),
-                                ),
-                        ],
-                      ),
-                    if (selectedTab != 0) SizedBox(height: 30.h),
-                    selectedTab != 0
-                        ? filtered
-                                .where((element) =>
-                                    element.tag == eTags[selectedTab - 1])
-                                .toList()
-                                .isEmpty
-                            ? SizedBox(
-                                width:
-                                    MediaQuery.of(context).size.width * (0.8),
-                                child: Align(
-                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15.r),
+                                      color: const Color.fromRGBO(
+                                          119, 119, 119, 1)),
                                   child: Text(
-                                    "no post available for ${eTags[selectedTab - 1]}",
+                                    "Unfollow",
                                     style: GoogleFonts.poppins(
-                                      fontSize: 20.sp,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.white,
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w700,
+                                      color: const Color.fromRGBO(0, 0, 0, 1),
                                     ),
                                   ),
                                 ),
                               )
-                            : DisplayPosts(filtered: filtered)
-                        : DisplayPosts(filtered: filtered),
-                  ],
-                )
-              : Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 40.0).h,
-                    child: Text(
-                      "no post available",
-                      style: GoogleFonts.poppins(
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
-                      ),
+                            : InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    followedTags.insert(
+                                        0, eTags[selectedTab - 1]);
+                                    String x = eTags.removeAt(selectedTab - 1);
+                                    eTags.insert(0, x);
+                                    selectedTab = 1;
+                                  });
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 7.w,
+                                    vertical: 4.h,
+                                  ),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15.r),
+                                      color: const Color.fromRGBO(
+                                          32, 197, 122, 1)),
+                                  child: Text(
+                                    "Follow",
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w700,
+                                      color: const Color.fromRGBO(0, 0, 0, 1),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                      ],
                     ),
+                  if (selectedTab != 0) SizedBox(height: 30.h),
+                  selectedTab != 0
+                      ? x.isEmpty
+                          ? SizedBox(
+                              width: MediaQuery.of(context).size.width * (0.8),
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "no post available for ${eTags[selectedTab - 1]}",
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            )
+                          : Expanded(child: DisplayPosts(filteredd: x))
+                      : Expanded(child: DisplayPosts(filteredd: filtered)),
+                ],
+              );
+            })
+          : Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 40.0).h,
+                child: Text(
+                  "no post is available",
+                  style: GoogleFonts.poppins(
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
                   ),
                 ),
-        ),
-      ),
+              ),
+            ),
     );
   }
 }
@@ -315,23 +332,19 @@ class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
 class DisplayPosts extends StatelessWidget {
   const DisplayPosts({
     super.key,
-    required this.filtered,
+    required this.filteredd,
   });
 
-  final List<Post> filtered;
+  final List<Post> filteredd;
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
+      // physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-        return selectedTab == 0
-            ? filtered[index]
-            : filtered
-                .where((element) => element.tag == eTags[selectedTab - 1])
-                .toList()[index];
+        return filteredd[index];
       },
+
       separatorBuilder: (context, index) => Divider(
         color: Colors.white,
         height: 3.h,
@@ -339,15 +352,11 @@ class DisplayPosts extends StatelessWidget {
         endIndent: 15.w,
         indent: 15.w,
       ),
-      itemCount: selectedTab == 0
-          ? filtered.length
-          : filtered
-              .where((element) => element.tag == eTags[selectedTab - 1])
-              .toList()
-              .length,
+      itemCount: filteredd.length,
     );
   }
 }
+
 //  InkWell(
 //               onTap: () async {
 //                 String res = await showSearch(

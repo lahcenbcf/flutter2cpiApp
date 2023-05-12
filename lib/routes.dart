@@ -1,4 +1,7 @@
 import 'package:flluter2cpi/pages/Choice_page/choice_v.dart';
+import 'package:flluter2cpi/pages/Drawer/about_the_app_page.dart';
+import 'package:flluter2cpi/pages/Drawer/drawer.dart';
+import 'package:flluter2cpi/pages/Drawer/liked_posts.dart';
 import 'package:flluter2cpi/pages/Home_page/home_page_view.dart';
 import 'package:flluter2cpi/pages/Login_page/login.dart';
 import 'package:flluter2cpi/pages/New_password/new_password_v.dart';
@@ -22,6 +25,9 @@ generateRoutes(BuildContext context) {
     "newPassword":(context)=>const NewPassword(),
     "choice":(context)=>const Choice(),
     "onBoarding":(context)=>const OnBoardingScreen(),
+    "drawer":(context)=>const Drawerr(),
+    "aboutTheApp":(context)=>const AboutTheApp(),
+    "likedPosts":(context)=>const LikedPosts(),
    
   };
 }

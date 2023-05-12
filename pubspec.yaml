@@ -55,6 +55,10 @@ dependencies:
   flutter_svg: ^2.0.5
   smooth_page_indicator: ^1.1.0
   toast: ^0.3.0
+  animated_splash_screen: ^1.3.0
+  flutter_native_splash: ^2.2.19
+  url_launcher: ^6.1.11
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_test:
