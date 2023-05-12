@@ -9,7 +9,7 @@ import 'distinct_tags.dart';
 
 List<Post> ePosts = [
   Post(
-    links: ["https://www.linkedin.com/","https://github.com/AboubakrLaid",""],
+    links: ["https://www.linkedin.com/", "https://github.com/AboubakrLaid", ""],
     image: image,
     isBlack: true,
     type: "StuckPosts",
@@ -28,7 +28,6 @@ List<Post> ePosts = [
   ),
   Post(
     links: [],
-
     image: null,
     isBlack: true,
     type: "StuckPosts",
@@ -47,7 +46,6 @@ List<Post> ePosts = [
   ),
   Post(
     links: [],
-
     image: image,
     isBlack: true,
     type: "StuckPosts",
@@ -65,7 +63,8 @@ List<Post> ePosts = [
     controllerTag: generateTag(),
   ),
   Post(
-   links: [], image: null,
+    links: [],
+    image: null,
     isBlack: false,
     type: "StuckPosts",
     likesCount: 3,
@@ -82,6 +81,7 @@ List<Post> ePosts = [
     controllerTag: "4",
   ),
   Post(
+    isReported: false,
     links: [],
     image: null,
     isBlack: false,
@@ -95,7 +95,11 @@ List<Post> ePosts = [
     userName: "Aboubakr",
     email: "la.belmi",
     tag: originalETags[0],
-    comments: [],
+    comments: [
+      CommentClass(userName: "re", email: "ere", comment: "sfdsfs", likesCount: 0, commentsCount: 0, date: DateTime.now(), profilePic: null, links: ["","",""],isLiked: false),
+      CommentClass(userName: "re", email: "ere", comment: "sfdsfs", likesCount: 0, commentsCount: 0, date: DateTime.now(), profilePic: null, links: ["","",""], isReported: true),
+      CommentClass(userName: "re", email: "ere", comment: "sfdsfs", likesCount: 0, commentsCount: 0, date: DateTime.now(), profilePic: null, links: ["","",""]),
+    ],
     isLiked: false,
     controllerTag: "1",
   ),
@@ -201,7 +205,7 @@ List<Post> infoPosts = [
     tag: "general",
     comments: [
       CommentClass(
-        links: [],
+          links: [],
           userName: "ana",
           email: "howa",
           comment: "hado howa comment",
@@ -227,7 +231,7 @@ List<Post> infoPosts = [
     tag: "general",
     comments: [
       CommentClass(
-        links: [],
+          links: [],
           userName: "ana",
           email: "howa",
           comment: "hado howa comment",
@@ -253,7 +257,7 @@ List<Post> infoPosts = [
     tag: "general",
     comments: [
       CommentClass(
-        links: [],
+          links: [],
           userName: "ana",
           email: "howa",
           comment: "hado howa comment",
@@ -267,7 +271,7 @@ List<Post> infoPosts = [
     isBlack: true,
   ),
 ];
- // can be from stack or academic or info "that can be liked"
+// can be from stack or academic or info "that can be liked"
 List<PostInfo> articlePosts = [
   PostInfo(
       image: null,

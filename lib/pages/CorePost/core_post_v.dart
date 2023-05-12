@@ -383,20 +383,34 @@ class _PostCoreState extends State<PostCore> {
                             shrinkWrap: true,
                             primary: true,
                             physics: const NeverScrollableScrollPhysics(),
-                            itemBuilder: (context, index) => DisplayComment(
-                              links: value.comments[index].links,
-                              isReported: value.comments[index].isReported,
-                              profilePic: value.comments[index].profilePic,
-                              userName: value.comments[index].userName,
-                              email: value.comments[index].email,
-                              comment: value.comments[index].comment,
-                              likesCount: value.comments[index].likesCount,
-                              commentsCount:
-                                  value.comments[index].commentsCount,
-                              date: value.comments[index].date,
-                              controllerTag: widget.controllerTag,
-                              index: index,
-                            ),
+                            itemBuilder: (context, index) => value
+                                    .comments[index].isReported
+                                ? Text(
+                                    "this comment has been deleted",
+                                    style: GoogleFonts.poppins(
+                                      color: const Color.fromRGBO(
+                                          139, 152, 165, 1),
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  )
+                                : DisplayComment(
+                                    links: value.comments[index].links,
+                                    isReported:
+                                        value.comments[index].isReported,
+                                    profilePic:
+                                        value.comments[index].profilePic,
+                                    userName: value.comments[index].userName,
+                                    email: value.comments[index].email,
+                                    comment: value.comments[index].comment,
+                                    likesCount:
+                                        value.comments[index].likesCount,
+                                    commentsCount:
+                                        value.comments[index].commentsCount,
+                                    date: value.comments[index].date,
+                                    controllerTag: widget.controllerTag,
+                                    index: index,
+                                  ),
                             separatorBuilder: (context, index) => divider,
                             itemCount: value.comments.length,
                           ),

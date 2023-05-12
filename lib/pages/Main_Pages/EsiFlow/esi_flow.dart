@@ -206,7 +206,7 @@ class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
           ? Builder(builder: (context) {
               List<Post> x = selectedTab != 0
                   ? filtered
-                      .where((element) => element.tag == eTags[selectedTab - 1])
+                      .where((element) => element.tag == eTags[selectedTab - 1] && !element.isReported)
                       .toList()
                   : [];
               return Column(
@@ -308,7 +308,7 @@ class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
                               ),
                             )
                           : Expanded(child: DisplayPosts(filteredd: x))
-                      : Expanded(child: DisplayPosts(filteredd: filtered)),
+                      : Expanded(child: DisplayPosts(filteredd: filtered.where((element) =>  !element.isReported).toList())),
                 ],
               );
             })
