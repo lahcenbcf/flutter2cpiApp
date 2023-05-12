@@ -10,7 +10,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 import '../pages/Home_page/home_page_view.dart';
 
 class TagChooser extends StatefulWidget {
@@ -18,219 +17,238 @@ class TagChooser extends StatefulWidget {
 
   @override
   State<TagChooser> createState() => _TagChooserState();
-  
 }
+
 class _TagChooserState extends State<TagChooser> {
-  
-  List<List<ItemTag>> containerList = [[ItemTag(itemtext: 'Pascal', click: true),
-    ItemTag(itemtext: 'Jquery', click: true),
-    ItemTag(itemtext: 'Linux', click: true),
-    ItemTag(itemtext: 'Python', click: true),
-    ItemTag(itemtext: 'CSS', click: true),
-    ItemTag(itemtext: 'Ruby', click: true),
-    ItemTag(itemtext: 'Java', click: true),
-    ItemTag(
-      itemtext: 'SQL',
-      click: true
-    ),
-    ItemTag(itemtext: 'XML', click: true),
-    ItemTag(itemtext: 'C#', click: true),
-    ItemTag(itemtext: 'MySql', click: true),
-    ItemTag(itemtext: 'Firebase', click: true),
-    ItemTag(itemtext: 'C', click: true),
-    ItemTag(
-      itemtext: 'Node js',
-      click: true,
-    ),
-    ItemTag(
-      itemtext: 'HTML',
-      click: true,
-    ),
-    ItemTag(
-      itemtext: 'C ++',
-      click: true,
-    ),
-    ItemTag(
-      itemtext: 'React js',
-      click: true,
-    ),
-    ItemTag(itemtext: 'Nest js', click: true),
-    ItemTag(
-      itemtext: 'Django',
-      click: true,
-    ),
-    ItemTag(
-      itemtext: 'Php',
-      click: true,
-    ),
-    ItemTag(
-      itemtext: '.net',
-      click: true,
-    ),
-    ItemTag(
-      itemtext: 'TypeScript',
-      click: true,
-    ),
-    ItemTag(itemtext: 'JavaScript', click: true),
-    ItemTag(
-      itemtext: 'React native',
-      click: true,
-    ),
-    ItemTag(
-      itemtext: 'Android Studio',
-      click: true,
-    ),
-    ],[ItemTag(itemtext: 'Algebra 1', click: true),
-    ItemTag(itemtext: 'Algebra 2', click: true),
-    ItemTag(itemtext: 'Algebra 3', click: true),
-    ItemTag(itemtext: 'Analysis 1', click: true),
-    ItemTag(itemtext: 'Analysis 2', click: true),
-    ItemTag(itemtext: 'Analysis 3', click: true),
-    ItemTag(itemtext: 'Analysis 4', click: true),
-    ItemTag(
-      itemtext: 'Archi 1',
-      click: true
-    ),
-    ItemTag(itemtext: 'Archi 2', click: true),
-    ItemTag(itemtext: 'ALSDS', click: true),
-    ItemTag(itemtext: 'BWEB', click: true),
-    ItemTag(itemtext: 'ELECT', click: true),
-    ItemTag(itemtext: 'SYST1 (1CPI)', click: true),
-    ItemTag(
-      itemtext: 'TEE',
-      click: true,
-    ),
-    ItemTag(
-      itemtext: 'ALSDD',
-      click: true,
-    ),
-    ItemTag(
-      itemtext: 'ELECF 1',
-      click: true,
-    ),
-    ItemTag(
-      itemtext: 'English 1 ',
-      click: true,
-    ),
-    ItemTag(itemtext: 'Mechanics', click: true),
-    ItemTag(
-      itemtext: 'SYST2 (1CPI)',
-      click: true,
-    ),
-    ItemTag(
-      itemtext: 'TEO',
-      click: true,
-    ),
-    ItemTag(
-      itemtext: 'Economie',
-      click: true,
-    ),
-    ItemTag(
-      itemtext: 'English 2',
-      click: true,
-    ),
-    ItemTag(itemtext: 'SFSD', click: true),
-    ItemTag(
-      itemtext: 'Proba 1',
-      click: true,
-    ),
-    ItemTag(
-      itemtext: 'Proba 2',
-      click: true,
-    ),
-    ItemTag(
-      itemtext: 'ELECF 2',
-      click: true,
-    ),
-    ItemTag(
-      itemtext: 'ISI',
-      click: true,
-    ),
-    ItemTag(
-      itemtext: 'Logique',
-      click: true,
-    ),
-    ItemTag(
-      itemtext: 'English 3',
-      click: true,
-    ),
-    ItemTag(
-      itemtext: 'Optique',
-      click: true,
-    ),
-    ItemTag(
-      itemtext: 'POO',
-      click: true,
-    ) ,ItemTag(
-      itemtext: 'SYST1 (1CS)',
-      click: true,
-    ),ItemTag(
-      itemtext: 'Resaux 1',
-      click: true,
-    ),ItemTag(
-      itemtext: 'IGL',
-      click: true,
-    ),ItemTag(
-      itemtext: 'BDD',
-      click: true,
-    ),ItemTag(
-      itemtext: 'Theorie des langages',
-      click: true,
-    ),ItemTag(
-      itemtext: 'Analyse numerique',
-      click: true,
-    ),ItemTag(
-      itemtext: 'RO',
-      click: true,
-    ),ItemTag(
-      itemtext: 'Langue Anglaise 1',
-      click: true,
-    ),ItemTag(
-      itemtext: 'SYST2 (1CS)',
-      click: true,
-    ),ItemTag(
-      itemtext: 'Resaux 2',
-      click: true,
-    ),ItemTag(
-      itemtext: 'Archi évoulué',
-      click: true,
-    ),ItemTag(
-      itemtext: 'Analyse SI',
-      click: true,
-    ),ItemTag(
-      itemtext: 'WEB',
-      click: true,
-    ),ItemTag(
-      itemtext: 'Intro à la sécurité',
-      click: true,
-    ),ItemTag(
-      itemtext: 'Gestion de projet',
-      click: true,
-    ),ItemTag(
-      itemtext: 'Langue Anglaise 2',
-      click: true,
-    ),],[ ItemTag(
-      itemtext: 'General',
-      click: true,
-    ),ItemTag(
-      itemtext: 'Campus',
-      click: true,
-    ),ItemTag(
-      itemtext: 'Administrative',
-      click: true,
-    ),],
-    [ItemTag(click: true, itemtext: '')]
+  List<List<ItemTag>> containerList = [
+    [
+      ItemTag(itemtext: 'Pascal', click: true),
+      ItemTag(itemtext: 'Jquery', click: true),
+      ItemTag(itemtext: 'Linux', click: true),
+      ItemTag(itemtext: 'Python', click: true),
+      ItemTag(itemtext: 'CSS', click: true),
+      ItemTag(itemtext: 'Ruby', click: true),
+      ItemTag(itemtext: 'Java', click: true),
+      ItemTag(itemtext: 'SQL', click: true),
+      ItemTag(itemtext: 'XML', click: true),
+      ItemTag(itemtext: 'C#', click: true),
+      ItemTag(itemtext: 'MySql', click: true),
+      ItemTag(itemtext: 'Firebase', click: true),
+      ItemTag(itemtext: 'C', click: true),
+      ItemTag(
+        itemtext: 'Node js',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'HTML',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'C ++',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'React js',
+        click: true,
+      ),
+      ItemTag(itemtext: 'Nest js', click: true),
+      ItemTag(
+        itemtext: 'Django',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'Php',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: '.net',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'TypeScript',
+        click: true,
+      ),
+      ItemTag(itemtext: 'JavaScript', click: true),
+      ItemTag(
+        itemtext: 'React native',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'Android Studio',
+        click: true,
+      ),
+    ],
+    [
+      ItemTag(itemtext: 'Algebra 1', click: true),
+      ItemTag(itemtext: 'Algebra 2', click: true),
+      ItemTag(itemtext: 'Algebra 3', click: true),
+      ItemTag(itemtext: 'Analysis 1', click: true),
+      ItemTag(itemtext: 'Analysis 2', click: true),
+      ItemTag(itemtext: 'Analysis 3', click: true),
+      ItemTag(itemtext: 'Analysis 4', click: true),
+      ItemTag(itemtext: 'Archi 1', click: true),
+      ItemTag(itemtext: 'Archi 2', click: true),
+      ItemTag(itemtext: 'ALSDS', click: true),
+      ItemTag(itemtext: 'BWEB', click: true),
+      ItemTag(itemtext: 'ELECT', click: true),
+      ItemTag(itemtext: 'SYST1 (1CPI)', click: true),
+      ItemTag(
+        itemtext: 'TEE',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'ALSDD',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'ELECF 1',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'English 1 ',
+        click: true,
+      ),
+      ItemTag(itemtext: 'Mechanics', click: true),
+      ItemTag(
+        itemtext: 'SYST2 (1CPI)',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'TEO',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'Economie',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'English 2',
+        click: true,
+      ),
+      ItemTag(itemtext: 'SFSD', click: true),
+      ItemTag(
+        itemtext: 'Proba 1',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'Proba 2',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'ELECF 2',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'ISI',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'Logique',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'English 3',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'Optique',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'POO',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'SYST1 (1CS)',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'Resaux 1',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'IGL',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'BDD',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'Theorie des langages',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'Analyse numerique',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'RO',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'Langue Anglaise 1',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'SYST2 (1CS)',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'Resaux 2',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'Archi évoulué',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'Analyse SI',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'WEB',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'Intro à la sécurité',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'Gestion de projet',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'Langue Anglaise 2',
+        click: true,
+      ),
+    ],
+    [
+      ItemTag(
+        itemtext: 'General',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'Campus',
+        click: true,
+      ),
+      ItemTag(
+        itemtext: 'Administrative',
+        click: true,
+      ),
+    ],
   ];
 
   @override
   Widget build(BuildContext context) {
-    final AddPostState=Provider.of<Post_Model>(context,listen: false);
+    final AddPostState = Provider.of<Post_Model>(context, listen: false);
+   
+    List<String> type = ['StuckPosts', 'academicPosts', 'infoPosts'];
     return Scaffold(
         backgroundColor: Color.fromRGBO(35, 47, 56, 1),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
-             
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -254,9 +272,24 @@ class _TagChooserState extends State<TagChooser> {
                           style: const ButtonStyle(
                               backgroundColor: MaterialStatePropertyAll(
                                   Color.fromRGBO(32, 197, 122, 1))),
-                          onPressed: () async{
-                            await AddPostState.addPost(AddPostState.get_title(), AddPostState.get_des(), AddPostState.imageFile!, AddPostState.pathImage,selectedIndex==2 ? "academicPosts" :"StuckPosts");
-                          },//here
+                          onPressed: () async {
+                              await AddPostState.addPost(
+                                AddPostState.get_title(),
+                                AddPostState.get_des(),
+                                AddPostState.imageFile!,
+                                AddPostState.pathImage,
+                               selectedIndex == 3
+                                    ? "infoPosts"
+                                    : "StuckPosts");
+
+                            if (Navigator.of(context).canPop()) {
+                              Navigator.of(context).pop();
+                            }
+                            if (Navigator.of(context).canPop()) {
+                              Navigator.of(context).pop();
+                            }
+                           
+                          }, //here
                           child: const Text(
                             'Finish',
                             style: TextStyle(color: Colors.white),
@@ -288,13 +321,17 @@ class _TagChooserState extends State<TagChooser> {
                 ),
                 SizedBox(
                   height: 30.h,
-                 
-                  
                 ),
-                Container(width: 300.w,alignment: Alignment.topLeft,child: Text('Select Tag for your post  : ',style: GoogleFonts.inter(fontSize: 15,color: Colors.white,fontWeight: FontWeight.w400))),
-                 MyGridView(containers: containerList[selectedIndex-1]),
-                
-              ],//the selected index refer to the tab that 
+                Container(
+                    width: 300.w,
+                    alignment: Alignment.topLeft,
+                    child: Text('Select Tag for your post  : ',
+                        style: GoogleFonts.inter(
+                            fontSize: 15,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400))),
+                MyGridView(containers: containerList[selectedIndex - 1]),
+              ], //the selected index refer to the tab that
             ),
           ),
         ));
@@ -305,33 +342,32 @@ class ItemTag extends StatefulWidget {
   ItemTag({super.key, required this.click, required this.itemtext});
   String itemtext;
   final bool click;
-  String gettext()=>itemtext;
+  String gettext() => itemtext;
 
   @override
   State<ItemTag> createState() => _ItemTagState();
 }
 
 class _ItemTagState extends State<ItemTag> {
-
   bool val = false;
-   bool _isCheckboxSelected = false;
+  bool _isCheckboxSelected = false;
 
   void _onCheckboxChanged(bool value) {
     if (!_isCheckboxSelected) {
       setState(() {
         _isCheckboxSelected = true;
       });
-
-     
     }
   }
+
   @override
   Widget build(BuildContext context) {
-    final AddPostState=Provider.of<Post_Model>(context,listen: false);
+    final AddPostState = Provider.of<Post_Model>(context, listen: false);
+    print(selectedIndex);
     return Row(
       children: [
-        Consumer<TagModel>(builder: (context, model, child) => 
-           Theme(
+        Consumer<TagModel>(
+          builder: (context, model, child) => Theme(
             data: ThemeData(
               checkboxTheme: CheckboxThemeData(
                 shape: RoundedRectangleBorder(
@@ -340,35 +376,24 @@ class _ItemTagState extends State<ItemTag> {
               ),
             ),
             child: Checkbox(
-                activeColor: const Color.fromRGBO(32, 197, 122, 1),
-                side: const BorderSide(
-                    width: 1.0, color: Color.fromRGBO(32, 197, 122, 1)),
-                value: val,
-                onChanged: (bool? click) {
-                   
-   
-                  setState(() {
-
-                    val = click!;
-<<<<<<< HEAD
-                    if (val) {  
-                      //model.text=widget.itemtext; 
-                      AddPostState.tag=model.text;
-                       //geting the string value of the tag after checking the box
+              activeColor: const Color.fromRGBO(32, 197, 122, 1),
+              side: const BorderSide(
+                  width: 1.0, color: Color.fromRGBO(32, 197, 122, 1)),
+              value: val,
+              onChanged: (bool? click) {
+                setState(() {
+                  val = click!;
+                  if (val) {
+                    model.text = widget.itemtext;
+                    AddPostState.tag = model.text;
+                    //geting the string value of the tag after checking the box
                     //print(widget.itemtext);
                     //model.addSelectedText(widget.itemtext);
-
-=======
-                    
-                    if (val) {  model.text=widget.itemtext;  //geting the string value of the tag after checking the box
-                    print(widget.itemtext);
-                    model.addSelectedText(widget.itemtext);
-                    
->>>>>>> dcdcd5a86782391d8e26f6be81a35de9505f8b9a
-                    }});
-                     // test if the table of strings is beig updated after cheking the box
-                },),
-                
+                  }
+                });
+                // test if the table of strings is beig updated after cheking the box
+              },
+            ),
           ),
         ),
         SizedBox(
@@ -391,20 +416,19 @@ class MyGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(containers.length);
     return GridView.builder(
-   
       itemCount: containers.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 9,
           mainAxisSpacing: 0.1,
           childAspectRatio: 4.0),
-      shrinkWrap: true,physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
       itemBuilder: (BuildContext context, int index) {
         return containers[index];
       },
     );
   }
 }
-
-

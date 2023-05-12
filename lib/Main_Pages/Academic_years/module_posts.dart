@@ -10,10 +10,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-<<<<<<< HEAD
-=======
-
->>>>>>> dcdcd5a86782391d8e26f6be81a35de9505f8b9a
 import 'package:flluter2cpi/constants.dart';
 
 import '../../pages/Post/post_v.dart';
@@ -28,10 +24,10 @@ class Module_posts extends StatefulWidget {
 class _Module_postsState extends State<Module_posts> {
   @override
   Widget build(BuildContext context) {
-    List<Post> filteredList = aPosts.length > 3
-        ? aPosts.sublist(3).where((p) => p.tag == widget.tag).toList()
-        : [];
-    print(filteredList.length);
+    List<Post> filteredList = 
+        aPosts.where((p) => p.tag == widget.tag).toList();
+       
+    print("${filteredList.length}  lenght");
 
     print(widget.tag);
     return Scaffold(
@@ -50,7 +46,7 @@ class _Module_postsState extends State<Module_posts> {
                 );
               },
             )
-          : Text("kayna"),
+          : Text("no posts yet"),
     );
   }
 }

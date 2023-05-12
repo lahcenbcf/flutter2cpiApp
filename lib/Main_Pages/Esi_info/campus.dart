@@ -11,6 +11,8 @@ import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../add_post/post_ui.dart';
+import '../../pages/Post & Comment classes/posts_tags.dart';
+
 class Campus extends StatefulWidget {
   const Campus({super.key});
 
@@ -21,36 +23,47 @@ class Campus extends StatefulWidget {
 class _CampusState extends State<Campus> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor:  Color.fromRGBO(35, 47, 56, 1),appBar: AppBar(centerTitle: true,backgroundColor: Color.fromRGBO(35, 47, 56, 1),
-              leading: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  }),
-              title: Column(
-                children: [
-                  Text(
-                    'Campus q&a',
-                    style: GoogleFonts.inter(
-                        fontSize: 26.sp,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white),
-                  ), 
-                ],
-              ),),floatingActionButton: FloatingActionButton( shape: CircleBorder(side: BorderSide()
-           
-     ),
-          onPressed: () => Navigator.of(context)
-              .push(MaterialPageRoute(builder: ((context) => AddPostScreen()))),
-          child: Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
-          backgroundColor: Color.fromRGBO(32, 197, 122, 1),
-          
-        ));
+    return Scaffold(
+      backgroundColor: Color.fromRGBO(35, 47, 56, 1),
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Color.fromRGBO(35, 47, 56, 1),
+        leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            }),
+        title: Column(
+          children: [
+            Text(
+              'Campus q&a',
+              style: GoogleFonts.inter(
+                  fontSize: 26.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white),
+            ),
+          ],
+        ),
+      ),
+      body: infoPosts.where((element) => element.tag=='Campus').toList().isNotEmpty
+          ? ListView.separated(
+              itemBuilder: (BuildContext context, int index) =>
+                  infoPosts.where((element) => element.tag=='Campus').toList()[index],
+              itemCount: infoPosts.where((element) => element.tag=='Campus').toList().length,
+              separatorBuilder: (BuildContext context, int index) {
+                return Divider(
+                  color: Colors.white,
+                  height: 3.h,
+                  thickness: 1,
+                  endIndent: 15.w,
+                  indent: 15.w,
+                );
+              },
+            )
+          : Text('no posts yet'),
+    );
   }
 }

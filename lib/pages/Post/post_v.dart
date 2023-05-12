@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jiffy/jiffy.dart';
 import '../CorePost/components/Image/display_image.dart';
 import '../CorePost/core_post_v.dart';
 import 'components/buttons.dart';
@@ -22,7 +24,7 @@ class Post extends StatelessWidget {
     required this.title,
     required this.description,
     // ignore: non_constant_identifier_names
-    required this.FormattedDate,
+   // required this.FormattedDate,
     required this.reportCounts,
     required this.userName,
     required this.email,
@@ -30,18 +32,19 @@ class Post extends StatelessWidget {
     required this.comments,
     required this.isLiked,
     required this.controllerTag,
-    required this.pathImage,
+    required this.date,
+  //  required this.pathImage,
     this.image,
-    this.profilePic,
+   // this.profilePic,
     required this.isBlack,
-    required this.isReported
+    required this.isReported, required String FormattedDate, required String pathImage
   });
-  final Uint8List? image;
+  final File? image;
   final bool isReported;
   int reportCounts;
-  final Uint8List? profilePic;
+  //final Uint8List? profilePic;
   final String type;
-  final String pathImage;
+  //final String pathImage;
   final String title;
   final String description;
   final String userName; // the name of the user that create the post
@@ -50,8 +53,9 @@ class Post extends StatelessWidget {
    int likesCount;
    int commentsCount;
   // ignore: non_constant_identifier_names
-  final String FormattedDate;
+  //final String FormattedDate;
    List<dynamic> comments;
+   final DateTime date;
 
    bool
       isLiked; //check if the user that is logged in, has liked this post before so i just need true or false value
@@ -73,15 +77,15 @@ class Post extends StatelessWidget {
     //corePostCotroller.comments = comments;
     corePostCotroller.type = type;
     corePostCotroller.controllerTag = controllerTag;
-    corePostCotroller.image = image!;
-    corePostCotroller.pathImage=pathImage;
+    //corePostCotroller.image = image!;
+  //  corePostCotroller.pathImage=pathImage;
     // inint the controller
     postController.type = type;
     postController.likesCount = likesCount;
     postController.commentsCount = commentsCount;
     postController.controllerTag = controllerTag;
     postController.isLiked = isLiked;
-    postController.profilePic = profilePic;
+  //  postController.profilePic = profilePic;
     
 
     @override
@@ -91,9 +95,10 @@ class Post extends StatelessWidget {
           builder: (context) {
             return PostCore(
               title: title,
+              date: date,
               reportCounts: reportCounts,
               description: description,
-              Formatteddate: FormattedDate,
+            //  Formatteddate: FormattedDate,
               userName: userName,
               email: email,
               tag: tag,
@@ -173,8 +178,8 @@ class Post extends StatelessWidget {
                               SizedBox(height: 6.h),
                               //timeAgo
                               Text(
-                                //Jiffy.parseFromDateTime(date).fromNow(),
-                                FormattedDate,
+                                Jiffy.parseFromDateTime(date).fromNow(),
+                             
                                 style: GoogleFonts.poppins(
                                   color: const Color.fromRGBO(119, 119, 119, 1),
                                   fontWeight: FontWeight.w700,
@@ -195,7 +200,7 @@ class Post extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15.r),
                         ),
                         child: Text(
-                          tag[0],
+                          tag,
                           style: GoogleFonts.poppins(
                             color: Colors.white,
                             fontWeight: FontWeight.w700,
@@ -293,8 +298,8 @@ class Post extends StatelessWidget {
                                   SizedBox(height: 6.h),
                                   //timeAgo
                                   Text(
-                                    //Jiffy.parseFromDateTime(date).fromNow(),
-                                    FormattedDate,
+                                    Jiffy.parseFromDateTime(date).fromNow(),
+                                  //  FormattedDate,
                                     style: GoogleFonts.poppins(
                                       color: const Color.fromRGBO(
                                           119, 119, 119, 1),
@@ -353,8 +358,8 @@ class Post extends StatelessWidget {
                                   MaterialPageRoute(
                                     builder: (context) => DisplayImage(
                                       controllerTag: controllerTag,
-                                      image: image!,
-                                      pathImage: pathImage,
+                                      image: image,
+                                     // pathImage: pathImage,
                                     ),
                                   ),
                                 );

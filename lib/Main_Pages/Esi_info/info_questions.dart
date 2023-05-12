@@ -10,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../add_post/post_ui.dart';
 import 'adminstrative_qst.dart';
 import 'campus.dart';
 import 'general_qst.dart';
@@ -30,7 +31,16 @@ class _QuestionsState extends State<Questions> {
       endIndent: 10,
       height: 1,
     );
-    return Scaffold(
+    return Scaffold(floatingActionButton: FloatingActionButton(
+          shape: CircleBorder(side: BorderSide()),
+          onPressed: () => Navigator.of(context)
+              .push(MaterialPageRoute(builder: ((context) => AddPostScreen()))),
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+          backgroundColor: Color.fromRGBO(32, 197, 122, 1),
+        ),
         backgroundColor: Color.fromRGBO(35, 47, 56, 1),
         body: SingleChildScrollView(
             child: Column(children: [
@@ -48,7 +58,7 @@ class _QuestionsState extends State<Questions> {
             ),
           ),
           SizedBox(
-            height: 145.h,
+            height: 80.h,
           ),
           Column(children: [
             Row(
@@ -58,10 +68,10 @@ class _QuestionsState extends State<Questions> {
                 TextButton(
                     onPressed: () {
                       Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => General()));
+                          MaterialPageRoute(builder: (context) => Administrative()));
                     },
                     child: Text(
-                      'General questions',
+                      'Administrative question',
                       style: GoogleFonts.inter(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
@@ -70,7 +80,7 @@ class _QuestionsState extends State<Questions> {
                 IconButton(
                     onPressed: () {
                       Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => General()));
+                          MaterialPageRoute(builder: (context) => Administrative()));
                     },
                     icon: Icon(Icons.arrow_forward_ios),
                     color: Color.fromRGBO(32, 197, 122, 1))
@@ -114,9 +124,9 @@ class _QuestionsState extends State<Questions> {
                 TextButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Administrative()));
+                          builder: (context) => General()));
                     },
-                    child: Text('Administrative questions',
+                    child: Text('Genreal question ',
                         style: GoogleFonts.inter(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
@@ -124,13 +134,13 @@ class _QuestionsState extends State<Questions> {
                 IconButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Administrative()));
+                          builder: (context) => General()));
                     },
                     icon: Icon(Icons.arrow_forward_ios),
                     color: Color.fromRGBO(32, 197, 122, 1))
               ],
-            )
-          ])
-        ])));
+            ),
+          ]),
+        ],)),);
   }
 }

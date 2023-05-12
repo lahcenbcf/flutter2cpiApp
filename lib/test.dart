@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/distinct_tags.dart';
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
+import 'package:flluter2cpi/pages/Post-Info/Post_info_v.dart';
 import 'package:flluter2cpi/pages/Post/post_v.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
@@ -45,8 +46,8 @@ class _TestState extends State<Test> {
   @override
   Widget build(BuildContext context) {
     
-    return Text("Hi");
-/*
+    
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -57,110 +58,13 @@ class _TestState extends State<Test> {
                await getImage(1);
               await  getImage(2);
               await  getImage(3);
-                ePosts.addAll(
+                articlePosts.addAll(
                   [
-                    Post(
-                      image: image,
-                      isBlack: true,
-                      type: "stack",
-                      likesCount: 2,
-                      commentsCount: 3,
-                      title: "younes ferthat is fucking habacha",
-                      description:
-                          "this is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
-                      date: DateTime.now(),
-                      userName: "Aboubakr",
-                      email: "la.belmi",
-                      tag: originalETags[1],
-                      comments: [],
-                      isLiked: true,
-                      controllerTag: generateTag(),
-                    ),
-                    Post(
-                      image: image1,
-                      isBlack: true,
-                      type: "stack",
-                      likesCount: 2,
-                      commentsCount: 3,
-                      title: "younes ferthat is fucking habacha",
-                      description:
-                          "this is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
-                      date: DateTime.now(),
-                      userName: "Aboubakr",
-                      email: "la.belmi",
-                      tag: originalETags[1],
-                      comments: [],
-                      isLiked: true,
-                      controllerTag: generateTag(),
-                    ),
-                    Post(
-                      image: image2,
-                      isBlack: true,
-                      type: "stack",
-                      likesCount: 2,
-                      commentsCount: 3,
-                      title: "younes ferthat is fucking habacha",
-                      description:
-                          "this is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
-                      date: DateTime.now(),
-                      userName: "Aboubakr",
-                      email: "la.belmi",
-                      tag: originalETags[1],
-                      comments: [],
-                      isLiked: true,
-                      controllerTag: generateTag(),
-                    ),
-                    Post(
-                      image: null,
-                      isBlack: false,
-                      type: "stack",
-                      likesCount: 2,
-                      commentsCount: 3,
-                      title: "younes ferthat is fucking habacha",
-                      description:
-                          "this is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
-                      date: DateTime.now(),
-                      userName: "Aboubakr",
-                      email: "la.belmi",
-                      tag: originalETags[0],
-                      comments: [],
-                      isLiked: true,
-                      controllerTag: generateTag(),
-                    ),
-                    Post(
-                      image: image,
-                      isBlack: false,
-                      type: "stack",
-                      likesCount: 2,
-                      commentsCount: 3,
-                      title: "younes ferthat is fucking habacha",
-                      description:
-                          "this is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
-                      date: DateTime.now(),
-                      userName: "Aboubakr",
-                      email: "la.belmi",
-                      tag: originalETags[1],
-                      comments: [],
-                      isLiked: true,
-                      controllerTag: generateTag(),
-                    ),
-                    Post(
-                      image: image1,
-                      isBlack: false,
-                      type: "stack",
-                      likesCount: 2,
-                      commentsCount: 3,
-                      title: "younes ferthat is fucking habacha",
-                      description:
-                          "this is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
-                      date: DateTime.now(),
-                      userName: "Aboubakr",
-                      email: "la.belmi",
-                      tag: originalETags[2],
-                      comments: [],
-                      isLiked: true,
-                      controllerTag: generateTag(),
-                    ),
+                    PostInfo(image: image, title: 'the first post ', description: 'this is just the discription', date: DateTime.now()),
+                    PostInfo(image: image1, title: 'the first post ', description: 'this is just the discription', date: DateTime.now()),
+                    PostInfo(image: image2, title: 'the first post ', description: 'this is just the discription', date: DateTime.now()),
+                    PostInfo(image: image3, title: 'the first post ', description: 'this is just the discription', date: DateTime.now()),
+                  
                   ],
                 );
               },
@@ -171,6 +75,6 @@ class _TestState extends State<Test> {
         ),
       ),
     );
-    */
+    
   }
 }

@@ -20,7 +20,7 @@ class EsiFlow extends StatefulWidget {
 class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    List<Post> filtered = ePosts.sublist(3);
+    List<Post> filtered = ePosts;
     final size = MediaQuery.of(context).size;
 
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);

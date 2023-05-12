@@ -1,9 +1,10 @@
+import 'package:flluter2cpi/Main_Pages/Esi_info/info_ui.dart';
 import 'package:flluter2cpi/test.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import '../../Main_Pages/Academic_years/academic_view.dart';
 import '../Main_Pages/EsiFlow/esi_flow.dart';
 import '../Main_Pages/Home/home.dart';
 import '../Post/post_v.dart';
@@ -12,12 +13,8 @@ import 'package:ionicons/ionicons.dart';
 import '../Post & Comment classes/posts_tags.dart';
 import '../Home_page/Home_page_viewM.dart';
 
-int selectedIndex = 0;
+int selectedIndex =3;
 
-=======
-int selectedIndex=3; //the index of selected page to display the tags for each page
-//if the index is 4 it means we are adding a post to esi info page and this post will be added by admin without tags
->>>>>>> dcdcd5a86782391d8e26f6be81a35de9505f8b9a
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
   @override
@@ -28,18 +25,19 @@ class HomePage extends StatefulWidget {
 
 
 List<Widget> pages = [
-   const Home(), 
-  const EsiFlow(), //for information
-  const Test(), //for information
-  const Center(child: Text("4")), //for information
+   const Test(), 
+  const EsiFlow(),
+  const Academic_page(),
+  const Esi_info(index: 0, title: 'Esi community'), //for information
+ 
   
 ];
 
 class _HomePageState extends State<HomePage> {
   //
   //
-  int selectedIndex = 0;
-  late Future<List<List<Post>>> result;
+
+ // late Future<List<List<Post>>> result;
   //
 
   @override 
@@ -66,7 +64,7 @@ class _HomePageState extends State<HomePage> {
     final size = MediaQuery.of(context).size;
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
 
-    return FutureBuilder(future: result,builder: ((context, snapshot){
+    /*return FutureBuilder(future: result,builder: ((context, snapshot){
       
       if(snapshot.hasData){
         ePosts=snapshot.data![0];
@@ -182,7 +180,7 @@ class _HomePageState extends State<HomePage> {
     )
      );
     
-      }
+      }*/
       /*else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
@@ -191,9 +189,9 @@ class _HomePageState extends State<HomePage> {
     }
     );
   }*/
-    /*return Scaffold(
+    return Scaffold(
       backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
-      appBar: PreferredSize(
+      appBar:selectedIndex==0? PreferredSize(
         preferredSize: Size.fromHeight(113.h),
         child: Container(
           margin: EdgeInsets.only(left: 16.w, right: 16.w, top: 33.h),
@@ -231,8 +229,8 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-      ),
-      body: Text("//ePosts[0]"),
+      ):null,
+      body: pages[selectedIndex],
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
             border: Border(top: BorderSide(color: Colors.white, width: 0.5))),
@@ -293,6 +291,6 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-  }*/
+  }
 }
 

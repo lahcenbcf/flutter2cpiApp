@@ -52,7 +52,7 @@ class _Profile_1st_screenState extends State<Profile_1st_screen> {
           children: [
             Column(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   backgroundImage: NetworkImage(
                       'https://images.unsplash.com/photo-1677741001200-79163963249d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDJ8Ym84alFLVGFFMFl8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=60'),
                 ),

@@ -14,25 +14,25 @@ class DisplayImage extends StatefulWidget {
   const DisplayImage({
     super.key,
     required this.image,
-    required this.pathImage,
+   // required this.pathImage,
     required this.controllerTag,
   });
   final String controllerTag;
-  final Uint8List image;
-  final String pathImage;
+  final File? image;
+  //final String pathImage;
 
   @override
   State<DisplayImage> createState() => _DisplayImageState();
 }
 
 class _DisplayImageState extends State<DisplayImage> {
-  late Future<File> fileImage;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    fileImage=CorePostCotroller.uint8ListToFile(widget.image,widget.pathImage);
-  }
+  // late Future<File> fileImage;
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   fileImage=CorePostCotroller.uint8ListToFile(widget.image,widget.pathImage);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +44,10 @@ class _DisplayImageState extends State<DisplayImage> {
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
     //
     //
-    return FutureBuilder(future: fileImage
-    ,builder: (context,snapShot){
-      if(snapShot.hasData){
-        image=snapShot.data!;
+    // return FutureBuilder(future: fileImage
+    // ,builder: (context,snapShot){
+    //   if(snapShot.hasData){
+    //     image=snapShot.data!;
         return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
@@ -68,8 +68,8 @@ class _DisplayImageState extends State<DisplayImage> {
           ),
         ),
       ),
-      body: PhotoView(
-        imageProvider: FileImage(image),
+      body:widget.image!=null? PhotoView(
+        imageProvider: FileImage(widget.image!),
         //uint8ListToFile,
         backgroundDecoration: const BoxDecoration(
           color: Colors.black54,
@@ -80,17 +80,17 @@ class _DisplayImageState extends State<DisplayImage> {
         maxScale: PhotoViewComputedScale.covered * 1.5,
         basePosition: Alignment.center,
         filterQuality: FilterQuality.medium,
-      ),
+      ):null,
     );
-      }
-      else if(snapShot.hasError) {
-          return Text('Error: ${snapShot.error}');
-        } else {
-          return const CircularProgressIndicator();
-        }
-      }
-    );
+  //     }
+  //     else if(snapShot.hasError) {
+  //         return Text('Error: ${snapShot.error}');
+  //       } else {
+  //         return const CircularProgressIndicator();
+  //       }
+  //     }
+  //   );
     
-  }
+  // }
 
-}
+  }}
