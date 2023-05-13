@@ -20,12 +20,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
-<<<<<<< HEAD
-
-=======
-import 'Main_Pages/Editing_profile/edit_profile_ui.dart';
-import 'Main_Pages/Editing_profile/second_edit_page.dart';
->>>>>>> dcdcd5a86782391d8e26f6be81a35de9505f8b9a
 import 'Main_Pages/academic_view.dart';
 import 'add_post/select_tag_view_model.dart';
 

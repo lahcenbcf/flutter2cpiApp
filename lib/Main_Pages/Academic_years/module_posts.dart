@@ -10,10 +10,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-<<<<<<< HEAD
-=======
-
->>>>>>> dcdcd5a86782391d8e26f6be81a35de9505f8b9a
 import 'package:flluter2cpi/constants.dart';
 
 import '../../pages/Post/post_v.dart';

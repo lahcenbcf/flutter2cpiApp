@@ -350,21 +350,10 @@ class _ItemTagState extends State<ItemTag> {
                   setState(() {
 
                     val = click!;
-<<<<<<< HEAD
-                    if (val) {  
-                      //model.text=widget.itemtext; 
-                      AddPostState.tag=model.text;
-                       //geting the string value of the tag after checking the box
-                    //print(widget.itemtext);
-                    //model.addSelectedText(widget.itemtext);
-
-=======
                     
-                    if (val) {  model.text=widget.itemtext;  //geting the string value of the tag after checking the box
-                    print(widget.itemtext);
-                    model.addSelectedText(widget.itemtext);
+                    if (val) {  //geting the string value of the tag after checking the box
+                    AddPostState.tag=widget.itemtext;
                     
->>>>>>> dcdcd5a86782391d8e26f6be81a35de9505f8b9a
                     }});
                      // test if the table of strings is beig updated after cheking the box
                 },),
