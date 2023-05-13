@@ -231,7 +231,7 @@ class _HomeState extends State<Home> {
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5).w,
-                child: iPosts[index],
+                child: infoPosts[index],
               ),
             ),
           ),

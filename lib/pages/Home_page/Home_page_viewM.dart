@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:html';
+// import 'dart:html';
 import 'dart:typed_data';
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:flluter2cpi/services/api.dart';
@@ -11,20 +11,19 @@ import '../Post/post_v.dart';
 import 'package:flluter2cpi/services/sharedServices.dart';
 // ignore: camel_case_types
 class Home_page_viewM extends ChangeNotifier {
-/*
    static Future<List<List<Post>>> initPosts(String username)async{
     Response response=await ApiServices.fetchStuckPosts(username);
     List<dynamic> result=jsonDecode(response.body);
     List<Post> stuckPosts=[];
     if(result.isNotEmpty){
-       stuckPosts=result.map<Post>((p) =>Post(type: p?["postType"], likesCount: p?["likes"].length, commentsCount:p?["comments"].length, title: p?["title"], description: p?["context"], FormattedDate: p?["date"], userName: p?["author"], email: "hhhh", tag: p?["tag"],comments: p?["comments"], isLiked: p?["isLiked"], controllerTag: p?["_id"], image:base64.decode(p?["image"]),isBlack: p?["isBlack"],isReported: p?["isReported"],reportCounts: p?["reports"].length,pathImage: p?["pathImage"],
+       stuckPosts=result.map<Post>((p) =>Post(type: p?["postType"], likesCount: p?["likes"].length, commentsCount:p?["comments"].length, title: p?["title"], description: p?["context"], FormattedDate: p?["date"], userName: p?["author"], email: "hhhh", tag: p?["tag"],comments: p?["comments"], isLiked: p?["isLiked"], controllerTag: p?["_id"], image:base64.decode(p?["image"]),isBlack: p?["isBlack"],isReported: p?["isReported"],reportCounts: p?["reports"].length,pathImage: p?["pathImage"],profilePic: p?["profilePic"],
     )).toList();
     }
   response=await ApiServices.fetchAcademicPosts(username);
   List<Post> academicPosts=[];
    result=jsonDecode(response.body);
   if(result.isNotEmpty){
-    academicPosts=result.map<Post>((p) => Post(type: p?["postType"],title: p?["title"],description: p?["context"],FormattedDate: p?["date"],likesCount: p?["likes"].length,commentsCount: p?["comments"].length,comments: p?["comments"],email:"hhh",tag:p?["tag"],isLiked:p?["isLiked"],controllerTag: p?["_id"],userName: p?["author"],image:base64.decode(p?["image"]),isBlack: p?["isBlack"],isReported: p?["isReported"],reportCounts: p?["reports"].length,pathImage: p?["pathImage"],)).toList();
+    academicPosts=result.map<Post>((p) => Post(type: p?["postType"],title: p?["title"],description: p?["context"],FormattedDate: p?["date"],likesCount: p?["likes"].length,commentsCount: p?["comments"].length,comments: p?["comments"],email:"hhh",tag:p?["tag"],isLiked:p?["isLiked"],controllerTag: p?["_id"],userName: p?["author"],image:base64.decode(p?["image"]),isBlack: p?["isBlack"],isReported: p?["isReported"],reportCounts: p?["reports"].length,pathImage: p?["pathImage"],profilePic: p?["profilePic"])).toList();
   }
  
   return [stuckPosts,academicPosts];
@@ -45,5 +44,5 @@ static void updateTags(){
   }
 }
 
-*/
+
 }

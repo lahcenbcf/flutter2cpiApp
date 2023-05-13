@@ -24,10 +24,10 @@ class Module_posts extends StatefulWidget {
 class _Module_postsState extends State<Module_posts> {
   @override
   Widget build(BuildContext context) {
-    List<Post> filteredList = aPosts.length > 3
-        ? aPosts.sublist(3).where((p) => p.tag == widget.tag).toList()
-        : [];
-    print(filteredList.length);
+    List<Post> filteredList = 
+        aPosts.where((p) => p.tag == widget.tag).toList();
+       
+    print("${filteredList.length}  lenght");
 
     print(widget.tag);
     return Scaffold(
@@ -46,7 +46,7 @@ class _Module_postsState extends State<Module_posts> {
                 );
               },
             )
-          : Text("kayna"),
+          : Text("no posts yet"),
     );
   }
 }

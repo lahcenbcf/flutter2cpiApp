@@ -20,7 +20,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
-import 'Main_Pages/academic_view.dart';
+
+import 'Main_Pages/Academic_years/academic_view.dart';
+import 'Main_Pages/Editing_profile/final_edit_profile.dart';
+import 'Main_Pages/Editing_profile/view_model.dart';
+import 'Main_Pages/Editing_profile/view_model_1.dart';
 import 'add_post/select_tag_view_model.dart';
 
 Widget _defaultScreen = const HomePage();
@@ -74,14 +78,16 @@ class MyApp extends StatelessWidget {
                 ),
                 ChangeNotifierProvider(create: (context)=>Post_Model()),
                 ChangeNotifierProvider(create: ((context) =>TagModel() )),
+                ChangeNotifierProvider(create: ((context)=>MODEL_profile())),
+                ChangeNotifierProvider(create: ((context)=>Model()))
               ],
               builder: (context, child) {
                 return MaterialApp(
                     debugShowCheckedModeBanner: false,
                     theme: ThemeData(useMaterial3: true),
                     routes: generateRoutes(context),
-                    home:  const SafeArea(
-                      child:Esi_info(index:0, title: 'Esi community',),
+                    home:   SafeArea(
+                      child: _defaultScreen,
                     ));
               });
         });

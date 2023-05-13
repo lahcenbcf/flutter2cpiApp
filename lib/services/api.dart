@@ -141,7 +141,32 @@ static Future<http.Response> returnTags(String userId)async{
   return response;
 }
 
+// edit profile page
+static Future<http.Response> editProfile(String name,String bio,String tlg,String linkd,String git,Uint8List imagesByte,String imagePath)async{
+// get userId 
+String userId="";
+Uri requestUrl=Uri.parse("$_baseUrl/editProfileInfo");
+var response=await http.post(requestUrl,body: {
+"_id":userId,
+"name":name,
+"profilePic":imagesByte,
+"imagePath":imagePath,
+"telegram":tlg,
+"linkedin":linkd,
+"github":git,
+"bio":bio
 
-
+});
+return response;
 }
 
+static Future<http.Response> editPassword(String newPassword,String imageEncodede,String imagePath)async{
+  String userId="";
+  Uri requestUrl=Uri.parse("$_baseUrl/editPassword");
+  var response=await http.post(requestUrl,body:{
+    "newPassword":newPassword,
+    "_id":userId
+  });
+  return response;
+}
+}

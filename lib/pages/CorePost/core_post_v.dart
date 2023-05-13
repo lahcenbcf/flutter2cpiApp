@@ -10,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:jiffy/jiffy.dart';
 import '../Post/components/like_button_v.dart';
 import 'components/display_comment_v.dart';
 
@@ -20,7 +21,7 @@ class PostCore extends StatefulWidget {
     required this.title,
     required this.description,
     // ignore: non_constant_identifier_names
-    required this.Formatteddate,
+    //required this.Formatteddate,
     required this.userName,
     required this.email,
     required this.tag,
@@ -29,7 +30,7 @@ class PostCore extends StatefulWidget {
     required this.generatedColor,
     //required this.likeButtonState,
     required this.controllerTag,
-    required this.reportCounts
+    required this.reportCounts, required this.date
   });
   final String title;
   int reportCounts; 
@@ -38,9 +39,10 @@ class PostCore extends StatefulWidget {
   final String userName;
   final String email;
   final String tag;
+  final String date;
 
   // ignore: non_constant_identifier_names
-  final String Formatteddate;
+  // final String Formatteddate;
   //final List<CommentClass> comments;
   final int generatedColor;
   // final LikeButtonController likeButtonState;
@@ -103,8 +105,8 @@ class _PostCoreState extends State<PostCore> {
         ),
         centerTitle: true,
         title: Text(
-          //widget.tag,
-          "Html",
+          widget.tag,
+        
           
           style: GoogleFonts.poppins(
             color: Colors.white,
@@ -191,24 +193,26 @@ class _PostCoreState extends State<PostCore> {
                 //
                 if (state.image != null) SizedBox(height: 40.h),
                 if (state.image != null)
-                  InkWell(
-                      onTap: () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => DisplayImage(
-                                  controllerTag: widget.controllerTag,
-                                  image: state.image,
-                                  pathImage:state.pathImage! ,),
+                  // InkWell(
+                  //     onTap: () => Navigator.of(context).push(
+                  //           MaterialPageRoute(
+                  //             builder: (context) => DisplayImage(
+                  //                 controllerTag: widget.controllerTag,
+                  //                 image: state.image,
+                  //                 pathImage:state.pathImage! ,),
                                   
-                            ),
-                          ),
-                      child: Imagee(controllerTag: widget.controllerTag)),
+                  //           ),
+                  //         ),
+                  //     child: Imagee(controllerTag: widget.controllerTag)),
                 //
                 SizedBox(height: 32.h),
 
                 //for the date
                 Text(
-                  //Jiffy.parseFromDateTime(widget.date)
-                  widget.Formatteddate,
+                  
+                  Jiffy.parseFromDateTime(DateTime.parse(widget.date)).fromNow(),
+                  
+                  // widget.Formatteddate,
                      // .format(pattern: "HH[:]mm[   ]dd[/]MM[/]yyyy"),
                   style: GoogleFonts.poppins(
                     color: const Color.fromRGBO(139, 152, 165, 1),

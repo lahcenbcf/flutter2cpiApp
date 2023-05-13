@@ -42,14 +42,7 @@ class _Esi_infoState extends State<Esi_info> {
           preferredSize: Size.fromHeight(170.h),
           child: AppBar(
               backgroundColor: Color.fromRGBO(35, 47, 56, 1),
-              leading: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  }),
+              
               title: Column(
                 children: [
                   Text(

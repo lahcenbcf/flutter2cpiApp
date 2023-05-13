@@ -67,7 +67,7 @@ class _Academic_pageState extends State<Academic_page> {
               ),
             ),
             SizedBox(
-              height: 200.h,
+              height: 100.h,
             ),
             Column(
               children: [
@@ -223,9 +223,10 @@ SizedBox(height: 10.h,),
                   ],
                 )
               ],
-            )
+            ),
           ],
         )),
+        
         floatingActionButton: FloatingActionButton( shape: CircleBorder(side: BorderSide()
            
      ),

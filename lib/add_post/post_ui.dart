@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 import 'package:flluter2cpi/Main_Pages/Academic_years/first_CS/module_content_1CS.dart';
+import 'package:flluter2cpi/Main_Pages/Esi_info/info_posts.dart';
 import 'package:flluter2cpi/Main_Pages/Esi_info/info_ui.dart';
 import 'package:flluter2cpi/add_post/post_view_mode.dart';
 import 'package:flluter2cpi/add_post/select_tag_ui.dart';
@@ -117,22 +118,21 @@ File? imageFile;
                                   style: const ButtonStyle(
                                       backgroundColor: MaterialStatePropertyAll(
                                           Color.fromRGBO(32, 197, 122, 1))),
-                                  onPressed: () {if (selectedIndex==4) {
-                                    
-                                  }
+                                  onPressed: () {
                                    
                                         context.read<Post_Model>().title;
               
                                     if (model.get_title().length > 1) {
                                       if (model.get_des().length > 1) {
-                                        Navigator.of(context)
+                                        //if(selectedIndex==3 ){Navigator.of(context).pop(MaterialPageRoute(builder: (context)=>Info_posts()));}
+                                       /* else*/ {Navigator.of(context)
                                             .push(MaterialPageRoute(
                                           builder: (context) => TagChooser(),
                                         ));
                                       }
                                     }
-                                    ;
-                                  },
+                                    
+                                  }},
                                   child: const Text(
                                     'Post',
                                     style: TextStyle(color: Colors.white),
