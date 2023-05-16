@@ -27,12 +27,12 @@ class _GeneralState extends State<General> {
   Widget build(BuildContext context) {
     List<Post> info=infoPosts.where((element) => element.tag=='General').toList();
     return Scaffold(
-      backgroundColor: Color.fromRGBO(35, 47, 56, 1),
+      backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(35, 47, 56, 1),
+        backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
         leading: IconButton(
-            icon: Icon(
+            icon:const Icon(
               Icons.arrow_back,
               color: Colors.white,
             ),

@@ -8,7 +8,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_font_picker/flutter_font_picker.dart';
 class Third_cs extends StatefulWidget {
   const Third_cs({super.key});
 
@@ -19,6 +18,6 @@ class Third_cs extends StatefulWidget {
 class _Third_csState extends State<Third_cs> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Color.fromRGBO(35, 47, 56, 1), );
+    return const Scaffold(backgroundColor: Color.fromRGBO(35, 47, 56, 1), );
   }
 }

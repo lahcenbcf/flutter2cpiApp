@@ -3,7 +3,7 @@ import 'dart:core';
 
 import 'dart:io';
 import 'dart:typed_data';
-
+import 'package:flutter/material.dart';
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:flluter2cpi/pages/Sign_up/User_Modal.dart';
 import 'package:flluter2cpi/services/sharedServices.dart';
@@ -88,12 +88,15 @@ static Future<http.Response> getComments(String userName,String postId)async{
 }
 
 //add post 
-static Future<http.Response> addPost(String title,String ctx,String author,String tag,String postType,File image)async{
+static Future<http.Response> addPost(String title,String ctx,String author,String tag,String postType,File image,String imagePath)async{
+String userId=""; //ta3 user
 Uint8List imageBytes =await image.readAsBytes();
 String route=postType == "StuckPosts" ? "stuckPost" : "academicPost";
 String base64Image=base64Encode(imageBytes);
 Map<String,dynamic> bodyRequest={
-  'image':base64Image
+  'image':base64Image,
+  'imagePath':imagePath,
+  "_id":userId
 };
 Uri requestUrl=Uri.parse("$_baseUrl/$route/addPost");
 var response=await http.post(requestUrl,body:bodyRequest,headers: {
@@ -105,7 +108,7 @@ return response;
 
 //like post
 static Future<http.Response> likePost(String postId,String userId,String postType )async{
-  String route=postType == "StuckPosts" ? "stuckPost" : "academicPost";
+  String route=postType == "StuckPosts" ? "stuckPost" : (postType=="infoPosts" ? "infoPost":"academicPost");
   Uri requestUrl=Uri.parse("$_baseUrl/$route/likePost/$postId");
   var response=await http.post(requestUrl,body:{
     'userId':userId,
@@ -116,13 +119,14 @@ static Future<http.Response> likePost(String postId,String userId,String postTyp
 
 //add comment
 static Future<http.Response> addComment(String author,String postId,String postType,String text,String formatedDate)async{
+  String userId="";//ta3 user;
   String route=postType == "StuckPosts" ? "stuckPost" : "academicPost";
   Uri requestUrl=Uri.parse("$_baseUrl/$route/addComment/$postId");
   var response=await http.post(requestUrl,body:{
-    "author":author,
     "postType":postType,
     "date":formatedDate,
-    "text":text
+    "text":text,
+    "_id":userId
   });
   return response;
 }
@@ -167,6 +171,69 @@ static Future<http.Response> editPassword(String newPassword,String imageEncoded
     "newPassword":newPassword,
     "_id":userId
   });
+  return response;
+}
+//report post
+static Future<http.Response> reportPost(String postId,String postType)async{
+String userId=SharedPrefService.pref.getStringList("loginInfo")![0];
+Uri requestUrl=Uri.parse("$_baseUrl/stuckPost/reportPost");
+var response=await http.post(requestUrl,body:{
+  "postId":postId,
+  "postType":postType,
+  "userId":userId
+});
+return response;
+
+}
+
+//report Comment
+static Future<http.Response> reportComment(String postType,String postId,String commentId)async{
+String userId=SharedPrefService.pref.getStringList("loginInfo")![0];
+Uri requestUrl=Uri.parse("$_baseUrl/stuckPost/reportComment");
+var response=await http.post(requestUrl,body:{
+  "postId":postId,
+  "postType":postType,
+  "userId":userId,
+  "commentId":commentId
+});
+return response;
+}
+
+//delete comment
+
+
+static Future<http.Response> deleteReportedComment(String commentId,String postType,String postId)async{
+  Uri requestUrl=Uri.parse("$_baseUrl/stuckPost/deleteComment");
+  var response=await http.post(requestUrl,body: {
+    "commentId":commentId,
+    "postId":postId,
+    "postType":postType
+  });
+  return response;
+}
+/*static Future<http.Response> deleteReportedPost(String postType,String postId)async{
+  Uri requestUrl=Uri.parse("$_baseUrl/stuckPost/deletePost/$postId");
+  var response=await http.post(requestUrl,body:{
+    
+    "postType":postType
+  });
+  return response;
+}*/
+
+//save followed tags
+static Future<http.Response> saveTags()async{
+  String userId="";
+  Uri requestUrl=Uri.parse("$_baseUrl/saveFollowedtags");
+  var response=await http.post(requestUrl,body:{
+    "userId":userId,
+    "followedTags":followedTags
+  });
+  return response;
+}
+//get Artcles
+static Future<http.Response> returnArticles()async{
+  Uri requestUrl=Uri.parse("$_baseUrl/infoPost/getArticles");
+  var response=await http.get(requestUrl);
   return response;
 }
 }

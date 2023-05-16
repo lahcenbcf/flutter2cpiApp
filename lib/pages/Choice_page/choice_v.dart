@@ -120,7 +120,8 @@ class Choice extends StatelessWidget {
                             onTap: () =>
                                 Navigator.of(context).pushNamed("LogIn"),
                             child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 15.h,horizontal: 52.w),
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 15.h, horizontal: 52.w),
                               child: Text(
                                 "Log in",
                                 style: GoogleFonts.poppins(
@@ -134,8 +135,8 @@ class Choice extends StatelessWidget {
                             onTap: () =>
                                 Navigator.of(context).pushNamed("SignUp"),
                             child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 15.h,horizontal: 52.w),
-                              
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 15.h, horizontal: 52.w),
                               decoration: BoxDecoration(
                                   color: const Color.fromRGBO(32, 197, 122, 1),
                                   borderRadius: BorderRadius.circular(10.r),
@@ -189,9 +190,10 @@ class Choice extends StatelessWidget {
                     ),
                     SizedBox(height: 29.h),
                     InkWell(
-                      onTap: () =>  showDialogg(context),
+                      onTap: () {
+                        showDialogg(context);
+                      },
                       child: Container(
-                       
                         padding: EdgeInsets.symmetric(
                             horizontal: 60.w, vertical: 15.h),
                         decoration: BoxDecoration(
@@ -200,18 +202,20 @@ class Choice extends StatelessWidget {
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
                             colors: [
-                              Color.fromRGBO(38,38,38,0.05),
-                              Color.fromRGBO(75,75,75,0.48),
+                              Color.fromRGBO(38, 38, 38, 0.05),
+                              Color.fromRGBO(75, 75, 75, 0.48),
                             ],
                           ),
-                          border:const GradientBoxBorder(gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: [
-                              Color.fromRGBO(20,244,123,0.41),
-                              Color.fromRGBO(20,244,123,0.09),
-                            ],
-                          ),), 
+                          border: const GradientBoxBorder(
+                            gradient: LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [
+                                Color.fromRGBO(20, 244, 123, 0.41),
+                                Color.fromRGBO(20, 244, 123, 0.09),
+                              ],
+                            ),
+                          ),
                         ),
                         child: Text(
                           "Enter as guest",

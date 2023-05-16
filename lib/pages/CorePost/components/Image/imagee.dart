@@ -23,11 +23,12 @@ class Imagee extends StatelessWidget {
       child: Hero(
         tag: controllerTag,
         child: /*Image.file(
-          File(controller.image!.path),
+          File(controller.pathImage!),
           filterQuality: FilterQuality.high,
-          fit: BoxFit.cover,*/
-          Image.memory(controller.image)
-        ),
+          fit: BoxFit.cover*/
+          Image.memory(controller.image!)
+        )
+        
       );
   }
 }

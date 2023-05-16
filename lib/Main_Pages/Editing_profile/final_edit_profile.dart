@@ -355,8 +355,8 @@ class _Profile_3rd_screenState extends State<Profile_3rd_screen> {
                 onPressed: () async{ if (formState.currentState != null) {
                                 if (formState.currentState!.validate()) {
                                   //hna nab3ath facebook
-                                    await state2.editPassword(imageFile!, imagePath!);
-                                    if(state2.message=="succces your password updated !"){
+                                    //await state2.editPassword(imageFile!, imagePath!);
+                                   /* if(state2.message=="succces your password updated !"){
                                         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const HomePage() ));
                                     }else{
                                       ScaffoldMessenger.of(context).showSnackBar(
@@ -373,7 +373,7 @@ class _Profile_3rd_screenState extends State<Profile_3rd_screen> {
                                       ),
                                     )
                                     );
-                                    };
+                                    };*/
                                   
                                 } else {
                                   ScaffoldMessenger.of(context).showSnackBar(

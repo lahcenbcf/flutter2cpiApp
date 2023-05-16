@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiffy/jiffy.dart';
@@ -12,11 +13,15 @@ class CorePostInfo extends StatelessWidget {
       
       required this.title,
       required this.description,
-      required this.date, required this.image,});
-  final File? image;
+      required this.date, required this.image,
+      //required this.imagePath
+      });
+  final Uint8List? image;
+ // final String imagePath;
   final String title;
   final String description;
-  final DateTime date;
+
+  final String date;
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +80,7 @@ class CorePostInfo extends StatelessWidget {
                       SizedBox(height: 4.h),
                       //timeAgo
                       Text(
-                        Jiffy.parseFromDateTime(date).fromNow(),
+                        Jiffy.parseFromDateTime(DateTime.parse(date)).fromNow(),
                         style: GoogleFonts.poppins(
                           color: const Color.fromRGBO(119, 119, 119, 1),
                           fontWeight: FontWeight.w700,
@@ -107,11 +112,12 @@ class CorePostInfo extends StatelessWidget {
               SizedBox(height: 25.h),
             if(image != null)  ClipRRect(
                 borderRadius: BorderRadius.circular(5).r,
-                child: Image.file(
+                child: /*Image.file(
                   File(image!.path),
                   fit: BoxFit.cover,
                   filterQuality: FilterQuality.medium,
-                ),
+                ),*/
+                Image.memory(image!)
               ),
             ],
           ),
@@ -120,3 +126,5 @@ class CorePostInfo extends StatelessWidget {
     );
   }
 }
+
+

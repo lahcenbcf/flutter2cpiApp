@@ -2,6 +2,7 @@ import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
@@ -11,6 +12,11 @@ class DisplayFollowedTags extends StatefulWidget {
 
   @override
   State<DisplayFollowedTags> createState() => _DisplayFollowedTagsState();
+
+  @override 
+  void initState(){
+    
+  }
 }
 
 class _DisplayFollowedTagsState extends State<DisplayFollowedTags> {
@@ -38,9 +44,9 @@ class _DisplayFollowedTagsState extends State<DisplayFollowedTags> {
                     setState(() {
                       String w= followedTags.removeAt(index);
                             int x = originalETags.indexOf(w);
-                           
                             eTags.remove(w);
                             eTags.insert(x, w);
+                            Get.forceAppUpdate();
                     });
                   },
                   child: Icon(

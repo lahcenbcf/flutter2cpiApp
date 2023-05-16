@@ -1,14 +1,13 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
-
+/*
 import 'dart:io';
 
-import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/distinct_tags.dart';
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:flluter2cpi/pages/Post-Info/Post_info_v.dart';
 import 'package:flluter2cpi/pages/Post/post_v.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
-
+File? image;
 class Test extends StatefulWidget {
   const Test({super.key});
 
@@ -17,7 +16,6 @@ class Test extends StatefulWidget {
 }
 
 class _TestState extends State<Test> {
-  File? image;
   File? image1;
   File? image2;
   File? image3;
@@ -54,17 +52,66 @@ class _TestState extends State<Test> {
           children: [
             ElevatedButton(
               onPressed: () async{
-              await  getImage(0);
-               await getImage(1);
-              await  getImage(2);
-              await  getImage(3);
-                articlePosts.addAll(
+              
+             await getImage(0);
+                ePosts.addAll(
                   [
-                    PostInfo(image: image, title: 'the first post ', description: 'this is just the discription', date: DateTime.now()),
-                    PostInfo(image: image1, title: 'the first post ', description: 'this is just the discription', date: DateTime.now()),
-                    PostInfo(image: image2, title: 'the first post ', description: 'this is just the discription', date: DateTime.now()),
-                    PostInfo(image: image3, title: 'the first post ', description: 'this is just the discription', date: DateTime.now()),
-                  
+                    
+                    Post(
+                      links: [],
+                      image: image,
+                      isBlack: false,
+                      type: "stack",
+                      likesCount: 0,
+                      commentsCount: 0,
+                      title: "younes ferthat is fucking habacha",
+                      description:
+                          "this is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
+                      date: DateTime.now(),
+                      userName: "Aboubakr",
+                      email: "la.belmi",
+                      tag: originalETags[0],
+                      comments: [],
+                      isLiked: true,
+                      controllerTag: "1",
+                    ),
+                    Post(
+                      links: [],
+                      image: image,
+                      isBlack: false,
+                      type: "stack",
+                      likesCount: 1,
+                      commentsCount: 2,
+                      title: "python",
+                      description:
+                          "Python this is just d descriptionthis isjust d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
+                      date: DateTime.now(),
+                      userName: "Aboubakr",
+                      email: "la.belmi",
+                      tag: originalETags[1],
+                      comments: [],
+                      isLiked: true,
+                      controllerTag:"2",
+                    ),
+                    Post(
+                      links: [],
+                      image: image,
+                      isBlack: false,
+                      type: "stack",
+                      likesCount: 3,
+                      commentsCount: 3,
+                      title: "younes ferthat is fucking habacha",
+                      description:
+                          "this is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d descriptionthis is just d description",
+                      date: DateTime.now(),
+                      userName: "Aboubakr",
+                      email: "la.belmi",
+                      tag: originalETags[2],
+                      comments: [],
+                      isLiked: false,
+                      controllerTag: "3",
+                    ),
+                   
                   ],
                 );
               },
@@ -77,4 +124,4 @@ class _TestState extends State<Test> {
     );
     
   }
-}
+}*/

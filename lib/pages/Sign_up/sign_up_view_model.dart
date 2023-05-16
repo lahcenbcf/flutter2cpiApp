@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flluter2cpi/services/api.dart';
-import 'package:flluter2cpi/pages/Sign_up/User_Modal.dart';
 class SignUpViewModel extends ChangeNotifier {
   bool _isEyeOffPassword = false;
   bool _isEyeOffConfirmPassword = false;
-  bool _isDuplicate=false;
+  final bool _isDuplicate=false;
 
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();

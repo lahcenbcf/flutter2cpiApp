@@ -1,13 +1,13 @@
 import 'dart:convert';
+import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:http/http.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flluter2cpi/pages/Sign_up/User_Modal.dart';
 import 'package:flluter2cpi/services/api.dart';
 import 'package:flluter2cpi/services/sharedServices.dart';
 import 'package:flutter/material.dart';
 
 
-class View extends ChangeNotifier {
+class Vieww extends ChangeNotifier {
   bool eyeoff = true;
   String? errorLoginMessage;
   bool isLogged = false;
@@ -47,7 +47,9 @@ class View extends ChangeNotifier {
       //logged successufully
       isLogged = true;
       //store uerData Info session in the cacheDB
-      List<String> loginInfo=[finalResult?["username"],finalResult?["email"],finalResult?["_id"]];
+      List<String> loginInfo=[finalResult?["username"],finalResult?["email"],finalResult?["_id"],];
+      List<String> FollowedTags=finalResult.followedTags.map<String>((i)=>i);
+      followedTags=FollowedTags;
       await SharedPrefService.pref.setStringList("loginInfo", loginInfo);
       await SharedPrefService.pref.setBool("isGuest",false);
     }

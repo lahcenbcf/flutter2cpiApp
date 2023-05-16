@@ -273,19 +273,23 @@ class _TagChooserState extends State<TagChooser> {
                               backgroundColor: MaterialStatePropertyAll(
                                   Color.fromRGBO(32, 197, 122, 1))),
                           onPressed: () async {
-                              await AddPostState.addPost(
+                              /*await AddPostState.addPost(
                                 AddPostState.get_title(),
                                 AddPostState.get_des(),
                                 AddPostState.imageFile!,
-                                AddPostState.pathImage,
+                                AddPostState.pathImage!,
                                selectedIndex == 3
                                     ? "infoPosts"
-                                    : "StuckPosts");
-
+                                    :(selectedIndex ==2 ? "academicPosts" :"StuckPosts"));
+*/
+                            // ignore: use_build_context_synchronously
                             if (Navigator.of(context).canPop()) {
+                              // ignore: use_build_context_synchronously
                               Navigator.of(context).pop();
                             }
+                            // ignore: use_build_context_synchronously
                             if (Navigator.of(context).canPop()) {
+                              // ignore: use_build_context_synchronously
                               Navigator.of(context).pop();
                             }
                            

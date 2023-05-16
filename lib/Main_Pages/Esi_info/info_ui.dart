@@ -3,16 +3,11 @@ import 'dart:ui';
 import 'package:flluter2cpi/Main_Pages/Academic_years/module_posts.dart';
 import 'package:flluter2cpi/Main_Pages/Esi_info/info_posts.dart';
 import 'package:flluter2cpi/Main_Pages/Esi_info/info_questions.dart';
-import 'package:flluter2cpi/add_post/post_view_mode.dart';
-import 'package:flluter2cpi/add_post/select_tag_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_font_picker/flutter_font_picker.dart';
-import 'package:flluter2cpi/constants.dart';
 class Esi_info extends StatefulWidget {
   const Esi_info({super.key, required this.index, required this.title});
 final int index;
@@ -37,11 +32,11 @@ class _Esi_infoState extends State<Esi_info> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: Color.fromRGBO(35, 47, 56, 1),
+        backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(170.h),
           child: AppBar(
-              backgroundColor: Color.fromRGBO(35, 47, 56, 1),
+              backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
               
               title: Column(
                 children: [
@@ -52,7 +47,7 @@ class _Esi_infoState extends State<Esi_info> {
                         fontWeight: FontWeight.w600,
                         color: Colors.white),
                   ), Container(
-                          color: Color.fromRGBO(32, 197, 122, 1),
+                          color: const Color.fromRGBO(32, 197, 122, 1),
                           child: SizedBox(
                             width: 79.w,
                             height: 3.h,
@@ -75,7 +70,7 @@ class _Esi_infoState extends State<Esi_info> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15.r),
                         color: selcted_tab == 0
-                            ? Color.fromRGBO(32, 197, 122, 1)
+                            ? const Color.fromRGBO(32, 197, 122, 1)
                             : Colors.white,
                       ),
                       child: const Tab( 

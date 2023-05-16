@@ -2,28 +2,31 @@ import 'dart:convert';
 // import 'dart:html';
 import 'dart:typed_data';
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
+
 import 'package:flluter2cpi/services/api.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:http/http.dart';
 
 import '../Post/post_v.dart';
 import 'package:flluter2cpi/services/sharedServices.dart';
+
+import '../post-info/post-info.dart';
 // ignore: camel_case_types
 class Home_page_viewM extends ChangeNotifier {
+  String?message;
    static Future<List<List<Post>>> initPosts(String username)async{
     Response response=await ApiServices.fetchStuckPosts(username);
     List<dynamic> result=jsonDecode(response.body);
     List<Post> stuckPosts=[];
     if(result.isNotEmpty){
-       stuckPosts=result.map<Post>((p) =>Post(type: p?["postType"], likesCount: p?["likes"].length, commentsCount:p?["comments"].length, title: p?["title"], description: p?["context"], FormattedDate: p?["date"], userName: p?["author"], email: "hhhh", tag: p?["tag"],comments: p?["comments"], isLiked: p?["isLiked"], controllerTag: p?["_id"], image:base64.decode(p?["image"]),isBlack: p?["isBlack"],isReported: p?["isReported"],reportCounts: p?["reports"].length,pathImage: p?["pathImage"],profilePic: p?["profilePic"],
+       stuckPosts=result.map<Post>((p) =>Post(type: p?["postType"], likesCount: p?["likes"].length, commentsCount:p?["comments"].length, title: p?["title"], description: p?["context"], FormattedDate: p?["date"], userName: p?["author"], email: "hhhh", tag: p?["tag"],comments: p?["comments"], isLiked: p?["isLiked"], controllerTag: p?["_id"], image:base64.decode(p?["image"]),isBlack: p?["isBlack"],isReported: p?["isReported"],reportCounts: p?["reports"].length/*pathImage: p?["pathImage"]*/,profilePic: p?["profilePic"],links: p?["links"],
     )).toList();
     }
   response=await ApiServices.fetchAcademicPosts(username);
   List<Post> academicPosts=[];
    result=jsonDecode(response.body);
   if(result.isNotEmpty){
-    academicPosts=result.map<Post>((p) => Post(type: p?["postType"],title: p?["title"],description: p?["context"],FormattedDate: p?["date"],likesCount: p?["likes"].length,commentsCount: p?["comments"].length,comments: p?["comments"],email:"hhh",tag:p?["tag"],isLiked:p?["isLiked"],controllerTag: p?["_id"],userName: p?["author"],image:base64.decode(p?["image"]),isBlack: p?["isBlack"],isReported: p?["isReported"],reportCounts: p?["reports"].length,pathImage: p?["pathImage"],profilePic: p?["profilePic"])).toList();
+    academicPosts=result.map<Post>((p) => Post(type: p?["postType"],title: p?["title"],description: p?["context"],FormattedDate: p?["date"],likesCount: p?["likes"].length,commentsCount: p?["comments"].length,comments: p?["comments"],email:"hhh",tag:p?["tag"],isLiked:p?["isLiked"],controllerTag: p?["_id"],userName: p?["author"],image:base64.decode(p?["image"]),isBlack: p?["isBlack"],isReported: p?["isReported"],reportCounts: p?["reports"].length,/*pathImage: p?["pathImage"]*/profilePic: p?["profilePic"],links: p?["links"],)).toList();
   }
  
   return [stuckPosts,academicPosts];
@@ -42,6 +45,22 @@ static void updateTags(){
 
    eTags=newList;
   }
+}
+
+static void saveFollowedTags()async{
+  var response=await ApiServices.saveTags();
+  var result=jsonDecode(response.body);
+}
+
+//fetch article posts
+static Future<List<PostInfo>> fetchArtclePosts()async{
+  var response=await ApiServices.returnArticles();
+  List<dynamic> result=jsonDecode(response.body);
+  List<PostInfo> articles=[];
+  if(result.isNotEmpty){
+    articles=result.map<PostInfo>((p) => PostInfo(image:p?["image"] , title:p?["title"], description:p?["context"], date: p?["date"])).toList();
+  }
+  return articles;
 }
 
 

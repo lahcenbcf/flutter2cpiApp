@@ -1,7 +1,8 @@
+// ignore_for_file: await_only_futures, must_be_immutable
+
 import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
-
 import 'package:flluter2cpi/pages/CorePost/components/profile_icon.dart';
 import 'package:flluter2cpi/pages/CorePost/core_post_controller.dart';
 import 'package:flutter/material.dart';
@@ -23,11 +24,12 @@ class Post extends StatelessWidget {
     required this.commentsCount,
     required this.title,
     required this.description,
+    required this.links,
     // ignore: non_constant_identifier_names
    required this.FormattedDate,
     required this.reportCounts,
     required this.userName,
-    required this.pathImage,
+    //required this.pathImage,
     required this.email,
     required this.tag,
     required this.comments,
@@ -36,17 +38,17 @@ class Post extends StatelessWidget {
     required this.profilePic,
 
   //required this.pathImage,
-    this.image,
+    required this.image,
    // this.profilePic,
     required this.isBlack,
     required this.isReported,
   });
-  final Uint8List? image;
-  final String pathImage;
+  final Uint8List image;
+  //final String pathImage;
   final bool isReported;
   int reportCounts;
-  
-  final Uint8List? profilePic;
+  List<String> links;
+   Uint8List profilePic;
   final String type;
   final String title;
   final String description;
@@ -73,23 +75,25 @@ class Post extends StatelessWidget {
     //
     var generatedColor = Random().nextInt(Colors.primaries.length);
     final postController =
-        Get.put(PostController(), tag: controllerTag, permanent: true);
+        Get.put<PostController>(PostController(), tag: controllerTag);
     final corePostCotroller =
-        Get.put(CorePostCotroller(), tag: controllerTag, permanent: true);
+        Get.put<CorePostCotroller>(CorePostCotroller(), tag: controllerTag);
     //init the comments of the post
     //corePostCotroller.comments = comments;
     corePostCotroller.type = type;
     corePostCotroller.controllerTag = controllerTag;
-    //corePostCotroller.image = image!;
-  //  corePostCotroller.pathImage=pathImage;
+    corePostCotroller.image = image;
+   //corePostCotroller.pathImage=pathImage;
+   //CorePostCotroller.postType=type;
     // inint the controller
     postController.type = type;
     postController.likesCount = likesCount;
     postController.commentsCount = commentsCount;
     postController.controllerTag = controllerTag;
     postController.isLiked = isLiked;
-  //  postController.profilePic = profilePic;
-    
+    postController.profilePic = profilePic; 
+    //postController.profilePath=pathImage;
+    // this is the profile pic of the post maker
 
     @override
     navigatToPostCore() {
@@ -97,18 +101,19 @@ class Post extends StatelessWidget {
         MaterialPageRoute(
           builder: (context) {
             return PostCore(
+              links: links,
               title: title,
-              date: FormattedDate,
+              
               reportCounts: reportCounts,
               description: description,
-            //  Formatteddate: FormattedDate,
+            Formatteddate: FormattedDate,
               userName: userName,
               email: email,
               tag: tag,
               isReported:isReported ,
               //comments: comments,
               generatedColor: generatedColor,
-              controllerTag: controllerTag,
+              controllerTag: controllerTag
             );
           },
         ),
@@ -159,6 +164,7 @@ class Post extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           ProfileIcon(
+                            links: links,
                             userName: userName,
                             email: email,
                             controllerTag: controllerTag,
@@ -245,6 +251,7 @@ class Post extends StatelessWidget {
                   navigatToPostCore: navigatToPostCore,
                   controllerTag: controllerTag,
                   isBlack: isBlack,
+                  isReported: isReported,
                 ),
                 SizedBox(height: 4.h),
               ],
@@ -254,13 +261,9 @@ class Post extends StatelessWidget {
             onTap: navigatToPostCore,
             child: Container(
               margin: const EdgeInsets.all(5).w,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.r),
-                border: Border.all(color: Colors.white, width: 1),
-              ),
               child: Padding(
                 padding: EdgeInsets.only(
-                  left: 16.w,
+                  left: 16.w, 
                   right: 16.w,
                   bottom: 16.h,
                   top: 16.h,
@@ -279,6 +282,7 @@ class Post extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               ProfileIcon(
+                                links: links,
                                 userName: userName,
                                 email: email,
                                 controllerTag: controllerTag,
@@ -333,52 +337,32 @@ class Post extends StatelessWidget {
                       //for the description
                       //
                       TitleDescription(text: description, size: 15),
-                      // Text(
-                      //   description,
-                      //   style: GoogleFonts.poppins(
-                      //     color: Colors.white,
-                      //     fontWeight: FontWeight.w600,
-                      //     fontSize: 16.sp,
-                      //   ),
-                      // ),
 
                       //
                       SizedBox(height: 20.h),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Buttons(
-                            navigatToPostCore: navigatToPostCore,
-                            controllerTag: controllerTag,
-                            isBlack: isBlack,
-                          ),
-                          if (image != null)
-                            InkWell(
-                              onTap: ()  {
-                                 navigatToPostCore();
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => DisplayImage(
-                                      pathImage: pathImage,
-                                      controllerTag: controllerTag,
-                                      image: image,
-                                     // pathImage: pathImage,
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: Text(
-                                "check photo",
-                                style: GoogleFonts.poppins(
-                                  fontSize: 14.sp,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w800,
+                      if (image != null)
+                        InkWell(
+                          onTap: () {
+                            navigatToPostCore();
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => DisplayImage(
+                                  controllerTag: controllerTag,
+                                  image:state.image ,
+                                  //pathImage: state.pathImage!,
                                 ),
                               ),
+                            );
+                          },
+                          child: Text(
+                            "check photo",
+                            style: GoogleFonts.poppins(
+                              fontSize: 14.sp,
+                              color: const Color.fromRGBO(32, 197, 122, 1),
+                              fontWeight: FontWeight.w800,
                             ),
-                        ],
-                      ),
+                          ),
+                        ),
                     ],
                   ),
                 ),

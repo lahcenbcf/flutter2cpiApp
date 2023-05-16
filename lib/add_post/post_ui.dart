@@ -33,7 +33,7 @@ File? imageFile;
       setState(() {
         if (pickedFile != null) {
           imageFile = File(pickedFile.path);
-          state.imageFile = imageFile;
+          state.pathImage=pickedFile.path;
         }
       });
     }
@@ -43,8 +43,8 @@ File? imageFile;
           await ImagePicker().pickImage(source: ImageSource.gallery);
       setState(() {
         if (pickedFile != null) {
-          imageFile = File(pickedFile.path);
-          state.imageFile = imageFile;
+          
+          state.pathImage=pickedFile.path;
         }
       });
     }
@@ -237,10 +237,11 @@ File? imageFile;
                                       ),
                                     ),
                                     Center(
-                                      child: state.imageFile == null
+                                      child: state.pathImage == null
                                           ? const Text('No image selected')
                                           : Image.file(
-                                              File(state.imageFile!.path),
+                                              //File(state.imageFile!.path),
+                                              File(state.pathImage!),
                                               fit: BoxFit.contain,
                                             ),
                                     )

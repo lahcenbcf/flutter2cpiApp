@@ -1,26 +1,39 @@
+import 'dart:typed_data';
+import 'package:flluter2cpi/pages/CorePost/components/comment_like_button.dart';
+import 'package:flluter2cpi/pages/CorePost/core_post_controller.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:jiffy/jiffy.dart';
+import 'package:provider/provider.dart';
+import 'package:toast/toast.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'dart:io';
 import 'dart:typed_data';
-
-import 'package:flluter2cpi/pages/CorePost/components/comment_like_button.dart';
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
-
+import '../../Post & Comment classes/posts_tags.dart';
+import '../../Post/post_v.dart';
 
 class DisplayComment extends StatefulWidget {
-  const DisplayComment({
+  DisplayComment({
     super.key,
     required this.userName,
     required this.email,
     required this.comment,
     required this.commentId,
     required this.likesCount,
-    required this.profilePic,
+    required this.profilePath,
     required this.commentsCount,
     required this.date,
-     required this.controllerTag,
-     required this.index,
+    required this.profilePic,
+    required this.controllerTag,
+    required this.index,
+    required this.isReported,
+    required this.links,
   });
   final String userName;
   final String email;
@@ -31,7 +44,10 @@ class DisplayComment extends StatefulWidget {
   final String commentId;
   final String controllerTag;
   final int index;
-  final Uint8List? profilePic;
+  final String profilePath;
+  final Uint8List profilePic;
+  bool isReported;
+  final List<String> links;
 
   @override
   State<DisplayComment> createState() => _DisplayCommentState();
@@ -42,6 +58,7 @@ class _DisplayCommentState extends State<DisplayComment> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
+    final state=Provider.of<CorePostCotroller>(context,listen:false);
     return Column(
       children: [
         //for the profile name and icon and date and 3 verticle dots point
@@ -53,30 +70,277 @@ class _DisplayCommentState extends State<DisplayComment> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 // profile picture
-                widget.profilePic == null
-                    ? CircleAvatar(
-                        radius: 23 * iconSize,
-                        backgroundColor: const Color.fromRGBO(67, 69, 75, 1),
-                        child: Text(
-                          widget.userName[0].toUpperCase() +
-                              widget.email[0].toUpperCase(),
+
+                GestureDetector(
+                  onTapDown: (details) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return Dialog(
+              child: Container(
+                padding: const EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15.r),
+                  color: const Color.fromRGBO(35, 47, 56, 1),
+                  border: Border.all(
+                      color: const Color.fromRGBO(255, 255, 255, 1), width: 1),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                       CircleAvatar(
+                    radius: 23 * iconSize,
+                    backgroundColor: widget.profilePath == null
+                        ? const Color.fromRGBO(67, 69, 75, 1)
+                        : null,
+                    backgroundImage: widget.profilePath != null
+                        ? FileImage(
+                            File(widget.profilePath),
+                          )
+                        : null,
+                    child: widget.profilePath== null
+                        ? Text(
+                            widget.userName[0].toUpperCase() +
+                                widget.email[0].toUpperCase(),
+                            style: GoogleFonts.poppins(
+                              color: Colors.white70,
+                              fontWeight: FontWeight.w600,
+                              fontStyle: FontStyle.italic,
+                              fontSize: 18.sp,
+                            ),
+                          )
+                        : null,
+                  ),
+                        SizedBox(width: 10.0.w),
+                        Text(
+                          "@${widget.userName}",
                           style: GoogleFonts.poppins(
-                            color: Colors.white70,
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                            fontSize: 16.0.sp,
                             fontWeight: FontWeight.w600,
-                            fontStyle: FontStyle.italic,
-                            fontSize: 18.sp,
                           ),
                         ),
-                      )
-                    : ClipOval(
-                        child: SizedBox.fromSize(
-                          size: Size.fromRadius(23 * iconSize),
-                          child: /*Image.file(
-                            File(widget.profilePic!.path),
-                            fit: BoxFit.cover,
-                          )*/Image.memory(widget.profilePic!),
+                        SizedBox(width: 62.0.w),
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            InkWell(
+                              onTap: () => Navigator.of(context).pop(),
+                              child: Text(
+                                "Exit",
+                                style: GoogleFonts.poppins(
+                                  color: const Color.fromRGBO(32, 197, 122, 1),
+                                  fontSize: 18.0.sp,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 30.h),
+                          ],
                         ),
-                      ),
+                      ],
+                    ),
+                    SizedBox(height: 12.4.h),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          "E-mail:",
+                          style: GoogleFonts.poppins(
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                            fontSize: 16.0.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        SizedBox(width: 15.0.h),
+                        Text(
+                          widget.email,
+                          style: GoogleFonts.poppins(
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                            fontSize: 16.0.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        SizedBox(width: 10.0.w),
+                        InkWell(
+                          onTap: () async {
+                            await Clipboard.setData(ClipboardData(text: widget.email))
+                                .then(
+                              (_) => Toast.show(
+                                "${widget.email} copied to clipboard",
+                                duration: Toast.lengthShort,
+                                gravity: Toast.center,
+                                textStyle: GoogleFonts.poppins(
+                                  fontSize: 17.sp,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
+                                backgroundColor:
+                                    const Color.fromRGBO(157, 170, 181, 1),
+                              ),
+                            );
+                            // copied successfully
+                          },
+                          child: Icon(
+                            FluentIcons.copy_24_filled,
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                            size: iconSize * 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 18.0.h),
+                    if (widget.links.isNotEmpty)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15).w,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            if (widget.links[0].isNotEmpty)
+                              InkWell(
+                                onTap: () async {
+                                  Uri uri = Uri.parse(widget.links[0]);
+                                  if (await canLaunchUrl(uri)) {
+                                    await launchUrl(uri);
+                                  } else {
+                                    throw 'Could not launch ${widget.links[0]}';
+                                  }
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SizedBox(
+                                      height: 36.h,
+                                      width: 36.h,
+                                      child: Image.asset(
+                                        "lib/images/linkedin.png",
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    SizedBox(height: 6.h),
+                                    Text(
+                                      "Linkedin",
+                                      style: GoogleFonts.poppins(
+                                        color: const Color.fromRGBO(
+                                            255, 255, 255, 1),
+                                        fontSize: 11.0.sp,
+                                        fontWeight: FontWeight.w300,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            // SizedBox(width: 48.0.w),
+                            if (widget.links[1].isNotEmpty)
+                              InkWell(
+                                onTap: () async {
+                                  Uri uri = Uri.parse(widget.links[1]);
+                                  if (await canLaunchUrl(uri)) {
+                                    await launchUrl(uri);
+                                  } else {
+                                    throw 'Could not launch ${widget.links[1]}';
+                                  }
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SizedBox(
+                                      height: 36.h,
+                                      width: 36.h,
+                                      child: Image.asset(
+                                        "lib/images/github.png",
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    SizedBox(height: 6.h),
+                                    Text(
+                                      "GitHub",
+                                      style: GoogleFonts.poppins(
+                                        color: const Color.fromRGBO(
+                                            255, 255, 255, 1),
+                                        fontSize: 11.0.sp,
+                                        fontWeight: FontWeight.w300,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            //  SizedBox(width: 48.0.w),
+                            if (widget.links[2].isNotEmpty)
+                              InkWell(
+                                onTap: () async {
+                                  Uri uri = Uri.parse(widget.links[2]);
+                                  print("ff");
+                                  if (await canLaunchUrl(uri)) {
+                                    await launchUrl(uri);
+                                  } else {
+                                    throw 'Could not launch ${widget.links[2]}';
+                                  }
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SizedBox(
+                                      height: 36.h,
+                                      width: 36.h,
+                                      child: Image.asset(
+                                        "lib/images/telegram.png",
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    SizedBox(height: 6.h),
+                                    Text(
+                                      "Telegram",
+                                      style: GoogleFonts.poppins(
+                                        color: const Color.fromRGBO(
+                                            255, 255, 255, 1),
+                                        fontSize: 11.0.sp,
+                                        fontWeight: FontWeight.w300,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                          ],
+                        ),
+                      )
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+                  child: CircleAvatar(
+                    radius: 23 * iconSize,
+                    backgroundColor: widget.profilePath == null
+                        ? const Color.fromRGBO(67, 69, 75, 1)
+                        : null,
+                    backgroundImage: widget.profilePath != null
+                        ? FileImage(
+                            File(widget.profilePath),
+                          )
+                        : null,
+                    child: widget.profilePath == null
+                        ? Text(
+                            widget.userName[0].toUpperCase() +
+                                widget.email[0].toUpperCase(),
+                            style: GoogleFonts.poppins(
+                              color: Colors.white70,
+                              fontWeight: FontWeight.w600,
+                              fontStyle: FontStyle.italic,
+                              fontSize: 18.sp,
+                            ),
+                          )
+                        : null,
+                  ),
+                ),
+
                 SizedBox(width: 7.w),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 27).h,
@@ -108,10 +372,84 @@ class _DisplayCommentState extends State<DisplayComment> {
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 27).h,
-              child: InkWell(
-                onTap: () {},
+              child: GestureDetector(
+                onTapDown: (details) {
+                  showMenu(
+                    context: context,
+                    position: RelativeRect.fromLTRB(
+                      details.globalPosition.dx,
+                      details.globalPosition.dy,
+                      details.globalPosition.dx,
+                      details.globalPosition.dy,
+                    ),
+                    color: const Color.fromRGBO(157, 170, 181, 1),
+                    items: [
+                      PopupMenuItem(
+                        height: 0,
+                        onTap: () {
+                          widget.isReported = true;
+                          bool found = false;
+                          int i = 0;
+
+                          while (!found && i < 3) {
+                            List<Post> list = [];
+                            switch (i) {
+                              case 0:
+                                list = ePosts;
+                                break;
+                              case 1:
+                                list = aPosts;
+                                break;
+                              default:
+                                list = infoPosts;
+                            }
+                            int j = 0;
+                            while (!found && j < list.length) {
+                              if (list[j].controllerTag ==
+                                  widget.controllerTag) {
+                                switch (i) {
+                                  case 0:
+                                    ePosts[j].comments.removeAt(widget.index);
+                                    if(ePosts[j].reportCounts>=3){
+                                      //send http request to delete the comment
+
+                                    }
+                                    ePosts[j].commentsCount--;
+                                    break;
+                                  case 1:
+                                    aPosts[j].comments.removeAt(widget.index);
+                                    aPosts[j].commentsCount--;
+
+                                    break;
+                                  default:
+                                    infoPosts[j]
+                                        .comments
+                                        .removeAt(widget.index);
+                                    infoPosts[j].commentsCount--;
+                                }
+                                found = true;
+                                Get.forceAppUpdate();
+                              } else {
+                                j++;
+                              }
+                            }
+                            i++;
+                          }
+                        },
+                        child: Text(
+                          "Report this comment",
+                          style: GoogleFonts.poppins(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w600,
+                            color: const Color.fromRGBO(0, 0, 0, 1),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
                 child: Icon(
-                  FluentIcons.more_horizontal_32_filled,
+                  Iconsax.more,
                   color: Colors.white,
                   size: 28 * iconSize,
                 ),

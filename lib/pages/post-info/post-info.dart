@@ -1,10 +1,10 @@
 import 'dart:io';
-
-import 'package:flluter2cpi/pages/Post-Info/core_post_info.dart';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiffy/jiffy.dart';
+import 'info-post-core.dart';
 
 class PostInfo extends StatelessWidget {
   const PostInfo({
@@ -13,11 +13,13 @@ class PostInfo extends StatelessWidget {
     required this.title,
     required this.description,
     required this.date,
+    //required this.pathImage
   });
-  final File? image;
+  final Uint8List? image;
   final String title;
   final String description;
-  final DateTime date;
+  final String date;
+  //final String pathImage;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,7 @@ class PostInfo extends StatelessWidget {
               title: title,
               description: description,
               date: date,
+              //imagePath: pathImage,
               image: image,
             ),
           ),
@@ -60,11 +63,12 @@ class PostInfo extends StatelessWidget {
                   child: SizedBox(
                     height: 90.h,
                     width: 160.w,
-                    child: Image.file(
+                    child: /*Image.file(
                       File(image!.path),
                       fit: BoxFit.cover,
                       filterQuality: FilterQuality.medium,
-                    ),
+                    ),*/
+                    Image.memory(image!)
                   ),
                 ):SizedBox(height: 90.h,width: 160.w,),
                 SizedBox(width: 6.w),
@@ -130,7 +134,7 @@ class PostInfo extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 17).w,
               child: Text(
-                Jiffy.parseFromDateTime(date).fromNow(),
+                Jiffy.parseFromDateTime(DateTime.parse(date)).fromNow(),
                 style: GoogleFonts.poppins(
                   color: const Color.fromRGBO(119, 119, 119, 1),
                   fontWeight: FontWeight.w700,

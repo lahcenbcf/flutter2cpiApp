@@ -13,7 +13,11 @@ import 'package:ionicons/ionicons.dart';
 import '../Post & Comment classes/posts_tags.dart';
 import '../Home_page/Home_page_viewM.dart';
 
-int selectedIndex =3;
+import '../../display_profile_pic.dart';
+import '../Drawer/drawer.dart';
+
+
+  int selectedIndex = 2;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,7 +29,7 @@ class HomePage extends StatefulWidget {
 
 
 List<Widget> pages = [
-   const Test(), 
+   const Home(), 
   const EsiFlow(),
   const Academic_page(),
   const Esi_info(index: 0, title: 'Esi community'), //for information
@@ -37,17 +41,24 @@ class _HomePageState extends State<HomePage> {
   //
   //
 
- // late Future<List<List<Post>>> result;
+  late Future<List<List<Post>>> result;
   //
 
   @override 
-  /*void initState(){
+  void initState(){
     // TODO: implement initState
     super.initState();
     Home_page_viewM.updateTags();
     result=Home_page_viewM.initPosts("lahcen");
   }
- */
+ 
+
+@override
+  void dispose() {
+   //send http request to save follwoed tags
+    super.dispose();
+    Home_page_viewM.saveFollowedTags();
+  }
 
   TextStyle textStyle = TextStyle(
     color: Colors.white,
@@ -83,20 +94,19 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             mainAxisSize: MainAxisSize.max,
             children: [
-              CircleAvatar(
-                radius: 21 * iconSize,
-                backgroundColor: const Color.fromRGBO(39, 39, 39, 1),
-                child: Icon(
-                  FluentIcons.person_24_filled,
-                  color: Colors.white,
-                  size: 32 * iconSize,
-                ),
+              Builder(
+                builder: (context) {
+                  return InkWell(
+                    onTap: () => Scaffold.of(context).openDrawer(),
+                    child: const DisplayProfilePic(22)
+                  );
+                }
               ),
               SizedBox(
                 height: 39.h,
                 width: 170.w,
                 child: Image.asset(
-                  "lib/images/logo.png",
+                  "lib/images/white.png",
                   fit: BoxFit.contain,
                   filterQuality: FilterQuality.high,
                 ),
@@ -109,7 +119,9 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
+        
       ) : null,
+      drawer:selectedIndex==0? const Drawerr() : null,
       body: pages[selectedIndex],
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(

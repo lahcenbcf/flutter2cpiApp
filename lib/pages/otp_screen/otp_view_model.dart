@@ -2,9 +2,7 @@ import 'dart:convert';
 
 import 'package:flluter2cpi/services/api.dart';
 import 'package:http/http.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-import 'otp_view.dart';
 
 
 // ignore: camel_case_types
