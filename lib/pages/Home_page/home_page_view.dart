@@ -1,6 +1,6 @@
+import 'package:flluter2cpi/pages/Main_Pages/Academic_years/academic_view.dart';
 import 'package:flluter2cpi/pages/Main_Pages/EsiFlow/esi_flow.dart';
 import 'package:flluter2cpi/pages/Main_Pages/Home/home.dart';
-import 'package:flluter2cpi/test.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,9 +11,10 @@ import 'package:ionicons/ionicons.dart';
 
 import '../../display_profile_pic.dart';
 import '../Drawer/drawer.dart';
+import '../Main_Pages/Esi_info/info_ui.dart';
 
 
-  int selectedIndex = 2;
+  int selectedIndex = 0;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -30,9 +31,8 @@ class _HomePageState extends State<HomePage> {
 List<Widget> pages = [
    const Home(), 
   const EsiFlow(), //for information
-  const Test(), //for information
-  const Center(child: Text("4")), //for information
-  
+  const Academic_page() ,//for information
+  const Esi_info(index: 0,title: "Esi info",)
 ];
   //
 

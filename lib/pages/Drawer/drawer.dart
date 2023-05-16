@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../Main_Pages/Editing_profile/edit_profile_ui.dart';
+
 class Drawerr extends StatelessWidget {
   const Drawerr({super.key});
 
@@ -49,7 +51,7 @@ class Drawerr extends StatelessWidget {
             SizedBox(height: 79.0.h),
             InkWell(
               onTap: () {
-                
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Profile_1st_screen(),));
               },
               child: Row(
                 mainAxisSize: MainAxisSize.min,

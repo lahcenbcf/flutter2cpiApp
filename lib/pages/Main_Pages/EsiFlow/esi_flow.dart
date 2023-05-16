@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../display_profile_pic.dart';
 import '../../Post/post_v.dart';
+import '../../add_post/post_ui.dart';
 
 int selectedTab = 1;
 
@@ -325,7 +326,17 @@ class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
                 ),
               ),
             ),
-    );
+  
+   floatingActionButton: FloatingActionButton(
+          shape: const CircleBorder(side: BorderSide()),
+          onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: ((context) => const AddPostScreen()))),
+          backgroundColor: const Color.fromRGBO(32, 197, 122, 1),
+          child: const Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+        )  );
   }
 }
 
