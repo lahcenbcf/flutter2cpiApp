@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../Home_page/home_page_view.dart';
 import '../../Post/post_v.dart';
 
 int selectedTab = 0;
@@ -222,18 +223,25 @@ class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
                       )
                     : DisplayPosts(filtered: filtered)
                 : DisplayPosts(filtered: filtered),
-         FloatingActionButton(onPressed: (){
-          Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const AddPostScreen()
-        ));
-         }
-         )
+        
           ],
           
         ),
       
       ),
+      floatingActionButton:    isGuest ==false
+            ? FloatingActionButton(
+                shape: const CircleBorder(side: BorderSide()),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: ((context) => const AddPostScreen())));
+                },
+                backgroundColor: const Color.fromRGBO(32, 197, 122, 1),
+                child: const Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ))
+            : null
     );
   }
 }

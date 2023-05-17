@@ -7,6 +7,8 @@ import 'package:flluter2cpi/services/api.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../pages/Post-Info/Post_info_v.dart';
+
 class Post_Model extends ChangeNotifier {
   File? imageFile;
   String? tag;
@@ -56,15 +58,18 @@ class Post_Model extends ChangeNotifier {
       isReported: false,
       date: DateTime.now(),
     );
-   aPosts.add(p);
+    PostInfo o=PostInfo(image: image, title: title, description: desc, date: DateTime.now());
+   aPosts.add(p); 
+  if(postType == "StuckPosts"){
+       ePosts.add(p); }
+       else if(postType=="articalePosts"){articlePosts.add(o);}
    infoPosts.add(p);
-    if(postType == "StuckPosts"){
-      ePosts.add(p);
+  //  ePosts.add(p);
+    // articlePosts.insert(0,o);   
     
-   
-      
-        
-      }
+  //     }
+  //   
+  
     
   
 

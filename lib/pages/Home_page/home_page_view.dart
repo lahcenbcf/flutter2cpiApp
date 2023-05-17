@@ -13,8 +13,9 @@ import 'package:ionicons/ionicons.dart';
 import '../Post & Comment classes/posts_tags.dart';
 import '../Home_page/Home_page_viewM.dart';
 
-int selectedIndex =3;
-
+int selectedIndex = 2;
+  bool isGuest=false;
+  bool isAdmin=true;
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
   @override
@@ -28,7 +29,7 @@ List<Widget> pages = [
    const Test(), 
   const EsiFlow(),
   const Academic_page(),
-  const Esi_info(index: 0, title: 'Esi community'), //for information
+  const Esi_info(), //for information
  
   
 ];
@@ -290,7 +291,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-    );
+    floatingActionButton: null,);
   }
 }
 

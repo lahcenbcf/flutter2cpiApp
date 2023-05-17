@@ -14,6 +14,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flluter2cpi/constants.dart';
 
 import '../../add_post/post_ui.dart';
+import '../../pages/Home_page/home_page_view.dart';
 
 class Info_posts extends StatefulWidget {
   const Info_posts({super.key});
@@ -40,15 +41,18 @@ class _Info_postsState extends State<Info_posts> {
             );
           },
         ):Text("no posts yet"),
-        floatingActionButton: FloatingActionButton(
-          shape: CircleBorder(side: BorderSide()),
-          onPressed: () => Navigator.of(context)
-              .push(MaterialPageRoute(builder: ((context) => AddPostScreen()))),
-          child: Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
-          backgroundColor: Color.fromRGBO(32, 197, 122, 1),
-        ));
+       floatingActionButton: isAdmin == true
+            ? FloatingActionButton(
+                shape: const CircleBorder(side: BorderSide()),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: ((context) => const AddPostScreen())));
+                },
+                backgroundColor: const Color.fromRGBO(32, 197, 122, 1),
+                child: const Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ))
+            : null);
   }
 }

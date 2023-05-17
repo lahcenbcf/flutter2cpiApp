@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flluter2cpi/Main_Pages/Academic_years/first_cpi/first_prepa_year.dart';
 import 'package:flluter2cpi/Main_Pages/Academic_years/first_cpi/module_content.dart';
 import 'package:flluter2cpi/Main_Pages/Academic_years/first_cpi/module_ressources.dart';
@@ -91,5 +93,71 @@ class MyApp extends StatelessWidget {
                     ));
               });
         });
+  }
+  
+}
+class SplashScreen extends StatefulWidget{
+
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+
+    super.initState();
+    Timer(Duration(seconds: 5),
+            ()=>Navigator.pushReplacement(context,
+            MaterialPageRoute(builder:
+                (context) =>
+                    _defaultScreen
+            )
+        )
+    );
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+
+            colors: [ Color.fromRGBO(3, 117, 89, 0.85),
+              //      Color.fromRGBO(1, 61, 46, 0.8), //1
+              Color.fromRGBO(0, 75, 57, 0.88),
+              Color.fromRGBO(41, 45, 54, 0.97), //2
+              Color.fromRGBO(39, 42, 48, 0.98),
+              Color.fromRGBO(24, 26, 32, 0.97),
+              Color.fromRGBO(0, 0, 0, 0.98),
+            ],
+            
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Column(
+              children: [
+                Image.asset(
+                  "lib/images/logo_white.png",
+                  height: 300.0,
+                  width: 300.0,
+                ),
+                
+              ],
+            ),
+
+            const CircularProgressIndicator( backgroundColor: Colors.black,
+              valueColor:  AlwaysStoppedAnimation<Color>(Color.fromARGB(255, 255, 255, 255)),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

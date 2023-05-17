@@ -26,7 +26,7 @@ File? imageFile;
   Widget build(BuildContext context) {
     
     final state = Provider.of<Post_Model>(context);
-
+ final AddPostState = Provider.of<Post_Model>(context, listen: false);
     Future takePhoto() async {
       final pickedFile =
           await ImagePicker().pickImage(source: ImageSource.camera);
@@ -118,21 +118,31 @@ File? imageFile;
                                   style: const ButtonStyle(
                                       backgroundColor: MaterialStatePropertyAll(
                                           Color.fromRGBO(32, 197, 122, 1))),
-                                  onPressed: () {
-                                   
-                                        context.read<Post_Model>().title;
-              
+                                  onPressed: () async{    context.read<Post_Model>().title;
+
                                     if (model.get_title().length > 1) {
                                       if (model.get_des().length > 1) {
-                                        //if(selectedIndex==3 ){Navigator.of(context).pop(MaterialPageRoute(builder: (context)=>Info_posts()));}
-                                       /* else*/ {Navigator.of(context)
-                                            .push(MaterialPageRoute(
-                                          builder: (context) => TagChooser(),
-                                        ));
+                                        if (selcted_tab1 == 0 && selectedIndex==3) {
+                                           await AddPostState.addPost(
+                                AddPostState.get_title(),
+                                AddPostState.get_des(),
+                                AddPostState.imageFile!,
+                                AddPostState.pathImage,
+                               selectedIndex == 3
+                                    ? "infoPosts"
+                                    : "StuckPosts");
+                                          Navigator.of(context).pop(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      Info_posts()));
+                                        } else {
+                                          Navigator.of(context)
+                                              .push(MaterialPageRoute(
+                                            builder: (context) => TagChooser(),
+                                          ));
+                                        }
                                       }
-                                    }
-                                    
-                                  }},
+                                    }},
                                   child: const Text(
                                     'Post',
                                     style: TextStyle(color: Colors.white),

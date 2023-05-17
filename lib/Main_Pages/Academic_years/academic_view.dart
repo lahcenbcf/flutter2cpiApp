@@ -12,6 +12,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flluter2cpi/Main_Pages/Academic_years/first_cpi/first_prepa_year.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../pages/Home_page/home_page_view.dart';
+
 class Academic_page extends StatefulWidget {
   const Academic_page({super.key});
 
@@ -227,17 +229,18 @@ SizedBox(height: 10.h,),
           ],
         )),
         
-        floatingActionButton: FloatingActionButton( shape: CircleBorder(side: BorderSide()
-           
-     ),
-          onPressed: () => Navigator.of(context)
-              .push(MaterialPageRoute(builder: ((context) => AddPostScreen()))),
-          child: Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
-          backgroundColor: Color.fromRGBO(32, 197, 122, 1),
-          
-        ));
+        floatingActionButton:  isGuest==false
+            ? FloatingActionButton(
+                shape: const CircleBorder(side: BorderSide()),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: ((context) => const AddPostScreen())));
+                },
+                backgroundColor: const Color.fromRGBO(32, 197, 122, 1),
+                child: const Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ))
+            : null);
   }
 }

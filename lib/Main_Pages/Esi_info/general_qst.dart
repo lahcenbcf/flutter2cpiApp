@@ -25,7 +25,7 @@ class General extends StatefulWidget {
 class _GeneralState extends State<General> {
   @override
   Widget build(BuildContext context) {
-    List<Post> info=infoPosts.where((element) => element.tag=='General').toList();
+    List<Post> info=infoPosts.where((element) => element.tag=='General'&& element.isReported==false).toList();
     return Scaffold(
       backgroundColor: Color.fromRGBO(35, 47, 56, 1),
       appBar: AppBar(
