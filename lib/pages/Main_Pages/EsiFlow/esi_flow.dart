@@ -3,6 +3,8 @@ import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toast/toast.dart';
 
 import '../../../display_profile_pic.dart';
 import '../../Post/post_v.dart';
@@ -20,7 +22,7 @@ class EsiFlow extends StatefulWidget {
 class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    List<Post> filtered = ePosts.length > 3 ? ePosts.sublist(3) : [];
+    List<Post> filtered = ePosts;
     final size = MediaQuery.of(context).size;
 
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
@@ -326,17 +328,35 @@ class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
                 ),
               ),
             ),
-  
-   floatingActionButton: FloatingActionButton(
+  floatingActionButton: FloatingActionButton(
           shape: const CircleBorder(side: BorderSide()),
-          onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: ((context) => const AddPostScreen()))),
+          onPressed: () async {
+            final pref = await SharedPreferences.getInstance();
+            bool isGuest = pref.getBool("isGuest") ?? false;
+            if (isGuest) {
+              Toast.show(
+                "you are not logged in",
+                duration: Toast.lengthLong,
+                gravity: Toast.center,
+                textStyle: GoogleFonts.poppins(
+                  fontSize: 17.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
+                backgroundColor: const Color.fromRGBO(157, 170, 181, 1),
+              );
+            } else {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: ((context) => const AddPostScreen())));
+            }
+          },
           backgroundColor: const Color.fromRGBO(32, 197, 122, 1),
           child: const Icon(
             Icons.add,
             color: Colors.white,
           ),
-        )  );
+        ),
+    );
   }
 }
 
@@ -353,7 +373,7 @@ class DisplayPosts extends StatelessWidget {
     return ListView.separated(
       // physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-        return filteredd[index];
+        return Post(type: filteredd[index].type, likesCount: filteredd[index].likesCount, commentsCount: filteredd[index].commentsCount, title: filteredd[index].title, description: filteredd[index].description, date: filteredd[index].date, userName: filteredd[index].userName, email: filteredd[index].email, tag: filteredd[index].tag, comments: filteredd[index].comments, isLiked: filteredd[index].isLiked, controllerTag: filteredd[index].controllerTag, isBlack:false, links: filteredd[index].links);
       },
 
       separatorBuilder: (context, index) => Divider(

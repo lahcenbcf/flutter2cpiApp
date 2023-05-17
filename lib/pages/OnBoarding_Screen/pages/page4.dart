@@ -12,7 +12,7 @@ class Page4 extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SizedBox(height: 55.0.h),
+        SizedBox(height: 40.0.h),
         SizedBox(
           height: 39.h,
           width: 170.w,

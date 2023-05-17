@@ -13,7 +13,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 // import '../../pages/Home_page/home_page_view.dart';
 import '../../Home_page/home_page_view.dart';
-import 'edit_profile_ui.dart';
 import 'final_edit_profile.dart';
 
 class Profile_2nd_screen extends StatefulWidget {
@@ -114,8 +113,7 @@ class _Profile_2nd_screenState extends State<Profile_2nd_screen> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const Profile_1st_screen()));
+                Navigator.of(context).pop();
               },
             ),
           ),
@@ -316,7 +314,7 @@ class _Profile_2nd_screenState extends State<Profile_2nd_screen> {
                                     color: Colors.white)),
                           ),
                           SizedBox(
-                              width: 250.w,
+                              width: 230.w,
                               child: TextFormField(enabled: is_enabled1,
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,

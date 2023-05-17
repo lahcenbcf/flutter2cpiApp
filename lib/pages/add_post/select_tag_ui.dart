@@ -2,6 +2,7 @@
 // import 'package:flluter2cpi/add_post/post_view_mode.dart';
 // import 'package:flluter2cpi/add_post/select_tag_view_model.dart';
 import 'package:flluter2cpi/display_profile_pic.dart';
+import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:flluter2cpi/pages/add_post/post_view_mode.dart';
 import 'package:flluter2cpi/pages/add_post/select_tag_view_model.dart';
 import 'package:flutter/material.dart';
@@ -22,31 +23,7 @@ class TagChooser extends StatefulWidget {
 class _TagChooserState extends State<TagChooser> {
   List<List<ItemTag>> containerList = [
     [
-      ItemTag(itemtext: 'Pascal', click: true),
-      ItemTag(itemtext: 'Jquery', click: true),
-      ItemTag(itemtext: 'Linux', click: true),
-      ItemTag(itemtext: 'Python', click: true),
-      ItemTag(itemtext: 'CSS', click: true),
-      ItemTag(itemtext: 'Ruby', click: true),
-      ItemTag(itemtext: 'Java', click: true),
-      ItemTag(itemtext: 'SQL', click: true),
-      ItemTag(itemtext: 'XML', click: true),
-      ItemTag(itemtext: 'C#', click: true),
-      ItemTag(itemtext: 'MySql', click: true),
-      ItemTag(itemtext: 'Firebase', click: true),
-      ItemTag(itemtext: 'C', click: true),
-      ItemTag(itemtext: 'Node js', click: true),
-      ItemTag(itemtext: 'HTML', click: true),
-      ItemTag(itemtext: 'C ++', click: true),
-      ItemTag(itemtext: 'React js', click: true),
-      ItemTag(itemtext: 'Nest js', click: true),
-      ItemTag(itemtext: 'Django', click: true),
-      ItemTag(itemtext: 'Php', click: true),
-      ItemTag(itemtext: '.net', click: true),
-      ItemTag(itemtext: 'TypeScript', click: true),
-      ItemTag(itemtext: 'JavaScript', click: true),
-      ItemTag(itemtext: 'React native', click: true),
-      ItemTag(itemtext: 'Android Studio', click: true),
+      for (var x in originalETags) ItemTag(itemtext: x, click: true),
     ],
     [
       ItemTag(itemtext: 'Algebra 1', click: true),
@@ -137,16 +114,19 @@ class _TagChooserState extends State<TagChooser> {
                           style: const ButtonStyle(
                               backgroundColor: MaterialStatePropertyAll(
                                   Color.fromRGBO(32, 197, 122, 1))),
-                          onPressed: () async {
-                            await AddPostState.addPost(
-                                AddPostState.get_title(),
-                                AddPostState.get_des(),
-                                AddPostState.imageFile!,
-                               // AddPostState.pathImage!,
-                               selectedIndex == 3
-                                    ? "infoPosts"
-                                    :(selectedIndex ==2 ? "academicPosts" :"StuckPosts"));
-
+                          onPressed: () {
+                            AddPostState.addPost(
+                              AddPostState.get_title(),
+                              AddPostState.get_des(),
+                              AddPostState.imageFile!,
+                              // AddPostState.pathImage!,
+                              selectedIndex == 3
+                                  ? "infoPosts"
+                                  : (selectedIndex == 2
+                                      ? "academicPosts"
+                                      : "StuckPosts"),
+                            );
+                            print("DONE");
                             // ignore: use_build_context_synchronously
                             if (Navigator.of(context).canPop()) {
                               // ignore: use_build_context_synchronously

@@ -32,7 +32,7 @@ List<Widget> pages = [
    const Home(), 
   const EsiFlow(), //for information
   const Academic_page() ,//for information
-  const Esi_info(index: 0,title: "Esi info",)
+   const Esi_info()
 ];
   //
 

@@ -36,6 +36,7 @@ File? imageFile;
         if (pickedFile != null) {
           imageFile = File(pickedFile.path);
           state.pathImage=pickedFile.path;
+          state.imageFile = imageFile;
         }
       });
     }
@@ -45,8 +46,11 @@ File? imageFile;
           await ImagePicker().pickImage(source: ImageSource.gallery);
       setState(() {
         if (pickedFile != null) {
+          imageFile = File(pickedFile.path);
           
           state.pathImage=pickedFile.path;
+          state.imageFile = imageFile;
+
         }
       });
     }
@@ -240,7 +244,7 @@ File? imageFile;
                                           ? const Text('No image selected')
                                           : Image.file(
                                               //File(state.imageFile!.path),
-                                              File(state.pathImage!),
+                                              File(state.pathImage),
                                               fit: BoxFit.contain,
                                             ),
                                     )

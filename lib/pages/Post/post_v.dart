@@ -1,4 +1,3 @@
-// ignore_for_file: await_only_futures, must_be_immutable
 
 import 'dart:io';
 import 'dart:math';
@@ -34,7 +33,7 @@ class Post extends StatelessWidget {
     required this.controllerTag,
     this.image,
     this.profilePic,
-    required this.isBlack,
+     this.isBlack = false,
     this.isReported = false,
     required this.links,
   });

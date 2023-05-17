@@ -2,6 +2,7 @@
 // import 'package:flluter2cpi/add_post/post_view_mode.dart';
 // import 'package:flluter2cpi/add_post/select_tag_view_model.dart';
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
+import 'package:flluter2cpi/pages/Post-Info/post_info_v.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -69,7 +70,7 @@ class _Info_postsState extends State<Info_posts> {
         body: articlePosts.isNotEmpty
             ? ListView.separated(
                 itemBuilder: (BuildContext context, int index) =>
-                    articlePosts[index],
+                    PostInfo(image: articlePosts[index].image, title: articlePosts[index].title, description: articlePosts[index].description, date: articlePosts[index].date),
                 itemCount: articlePosts.length,
                 separatorBuilder: (BuildContext context, int index) {
                   return Divider(

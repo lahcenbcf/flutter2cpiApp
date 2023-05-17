@@ -4,7 +4,6 @@ import 'dart:io';
 // import 'package:flluter2cpi/Main_Pages/Editing_profile/second_edit_page.dart';
 // import 'package:flluter2cpi/Main_Pages/Editing_profile/view_model.dart';
 // import 'package:flluter2cpi/add_post/post_ui.dart';
-import 'package:flluter2cpi/pages/Main_Pages/Editing_profile/second_edit_page.dart';
 import 'package:flluter2cpi/pages/Main_Pages/Editing_profile/view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,7 +20,7 @@ class Profile_3rd_screen extends StatefulWidget {
 
 class _Profile_3rd_screenState extends State<Profile_3rd_screen> {
   File? imageFile;
-  String?imagePath;
+  String? imagePath;
   var divider = const Divider(
     color: Color.fromRGBO(119, 119, 119, 1),
     height: 1,
@@ -29,7 +28,7 @@ class _Profile_3rd_screenState extends State<Profile_3rd_screen> {
   final GlobalKey<FormState> formState = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final state2=Provider.of<MODEL_profile>(context,listen:false);
+    final state2 = Provider.of<MODEL_profile>(context, listen: false);
     Future takePhoto() async {
       final pickedFile =
           await ImagePicker().pickImage(source: ImageSource.camera);
@@ -106,8 +105,7 @@ class _Profile_3rd_screenState extends State<Profile_3rd_screen> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const Profile_2nd_screen()));
+                Navigator.of(context).pop();
               },
             ),
           ),
@@ -142,7 +140,8 @@ class _Profile_3rd_screenState extends State<Profile_3rd_screen> {
                               File(imageFile!.path),
                             )
                           : null,
-                      child: imageFile == null ? const Icon(Icons.person) : null,
+                      child:
+                          imageFile == null ? const Icon(Icons.person) : null,
                     ),
                   ),
                   SizedBox(
@@ -163,7 +162,8 @@ class _Profile_3rd_screenState extends State<Profile_3rd_screen> {
             height: 89.h,
           ),
           Consumer<MODEL_profile>(
-            builder: (BuildContext context, value, Widget? child) => Form( key: formState,
+            builder: (BuildContext context, value, Widget? child) => Form(
+              key: formState,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -255,7 +255,8 @@ class _Profile_3rd_screenState extends State<Profile_3rd_screen> {
                         ),
                         SizedBox(
                             width: 250.w,
-                            child: TextFormField(validator: (String? val)=>value.confirmold(val),
+                            child: TextFormField(
+                              validator: (String? val) => value.confirmold(val),
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -264,8 +265,8 @@ class _Profile_3rd_screenState extends State<Profile_3rd_screen> {
                               decoration: const InputDecoration(
                                 focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
-                                        color:
-                                            Color.fromARGB(255, 255, 255, 255))),
+                                        color: Color.fromARGB(
+                                            255, 255, 255, 255))),
                                 fillColor: Colors.white,
                               ),
                               controller: value.oldpss,
@@ -288,7 +289,7 @@ class _Profile_3rd_screenState extends State<Profile_3rd_screen> {
                         SizedBox(width: 12.w),
                         SizedBox(
                             width: 250.w,
-                            child: TextFormField( 
+                            child: TextFormField(
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -297,8 +298,8 @@ class _Profile_3rd_screenState extends State<Profile_3rd_screen> {
                               decoration: const InputDecoration(
                                 focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
-                                        color:
-                                            Color.fromARGB(255, 255, 255, 255))),
+                                        color: Color.fromARGB(
+                                            255, 255, 255, 255))),
                                 fillColor: Colors.white,
                               ),
                               controller: value.newpass,
@@ -311,18 +312,22 @@ class _Profile_3rd_screenState extends State<Profile_3rd_screen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
-                    child: Row(children: [
-                      Text('Confirm password',
-                          style: GoogleFonts.inter(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white)),
-                      SizedBox(width: 12.w),
-                      SizedBox(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Confirm password',
+                            style: GoogleFonts.inter(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white)),
+                        //   SizedBox(width: 12.w),
+                        SizedBox(
                           width: 250.w,
                           child: TextFormField(
-                            validator: (String? val)=>value.confirmPasswordValidator(val),
-                            autovalidateMode: AutovalidateMode.onUserInteraction,
+                            validator: (String? val) =>
+                                value.confirmPasswordValidator(val),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 16,
@@ -331,12 +336,15 @@ class _Profile_3rd_screenState extends State<Profile_3rd_screen> {
                             decoration: const InputDecoration(
                               focusedBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
-                                      color: Color.fromARGB(255, 255, 255, 255))),
+                                      color:
+                                          Color.fromARGB(255, 255, 255, 255))),
                               fillColor: Colors.white,
                             ),
                             controller: value.confirm_new,
-                          ))
-                    ]),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -350,11 +358,12 @@ class _Profile_3rd_screenState extends State<Profile_3rd_screen> {
                 style: const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(
                         Color.fromRGBO(32, 197, 122, 1))),
-                onPressed: () async{ if (formState.currentState != null) {
-                                if (formState.currentState!.validate()) {
-                                  //hna nab3ath facebook
-                                    //await state2.editPassword(imageFile!, imagePath!);
-                                   /* if(state2.message=="succces your password updated !"){
+                onPressed: () async {
+                  if (formState.currentState != null) {
+                    if (formState.currentState!.validate()) {
+                      //hna nab3ath facebook
+                      //await state2.editPassword(imageFile!, imagePath!);
+                      /* if(state2.message=="succces your password updated !"){
                                         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const HomePage() ));
                                     }else{
                                       ScaffoldMessenger.of(context).showSnackBar(
@@ -372,24 +381,23 @@ class _Profile_3rd_screenState extends State<Profile_3rd_screen> {
                                     )
                                     );
                                     };*/
-                                  
-                                } else {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      dismissDirection:
-                                          DismissDirection.horizontal,
-                                      content: Text(
-                                        "please make sure there is no error.",
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 15.sp,
-                                          fontWeight: FontWeight.w300,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                }
-                              }},
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          dismissDirection: DismissDirection.horizontal,
+                          content: Text(
+                            "please make sure there is no error.",
+                            style: GoogleFonts.poppins(
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                  }
+                },
                 child: const Text(
                   'Save password',
                   style: TextStyle(color: Colors.white),

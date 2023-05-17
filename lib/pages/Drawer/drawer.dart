@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../test.dart';
 import '../Main_Pages/Editing_profile/edit_profile_ui.dart';
 
 class Drawerr extends StatelessWidget {
@@ -124,8 +125,8 @@ class Drawerr extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top:300).h,
               child: InkWell(
-                onTap: () {
-                  
+                onTap: () async{
+                  await getImage(0);
                 },
                 splashColor: const Color.fromRGBO(255, 0, 0, 0.7),
                 borderRadius: BorderRadius.circular(10),

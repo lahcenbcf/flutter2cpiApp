@@ -1,10 +1,10 @@
-// import 'package:flluter2cpi/Main_Pages/Academic_years/first_CS/first_cs_year.dart';
-// import 'package:flluter2cpi/Main_Pages/Academic_years/second_cpi/second_prepa_year.dart';
-// import 'package:flluter2cpi/add_post/post_ui.dart';
+
 import 'package:flluter2cpi/pages/Main_Pages/Academic_years/second_cpi/second_prepa_year.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toast/toast.dart';
 // import 'package:flluter2cpi/Main_Pages/Academic_years/first_cpi/first_prepa_year.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -226,18 +226,34 @@ SizedBox(height: 10.h,),
             ),
           ],
         )),
-        
-        floatingActionButton: FloatingActionButton( shape: const CircleBorder(side: BorderSide()
-           
-     ),
-          onPressed: () => Navigator.of(context)
-              .push(MaterialPageRoute(builder: ((context) => const AddPostScreen()))),
+        floatingActionButton: FloatingActionButton(
+          shape: const CircleBorder(side: BorderSide()),
+          onPressed: () async {
+            final pref = await SharedPreferences.getInstance();
+            bool isGuest = pref.getBool("isGuest") ?? false;
+            if (isGuest) {
+              Toast.show(
+                "you are not logged in",
+                duration: Toast.lengthLong,
+                gravity: Toast.center,
+                textStyle: GoogleFonts.poppins(
+                  fontSize: 17.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
+                backgroundColor: const Color.fromRGBO(157, 170, 181, 1),
+              );
+            } else {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: ((context) => const AddPostScreen())));
+            }
+          },
           backgroundColor: const Color.fromRGBO(32, 197, 122, 1),
           child: const Icon(
             Icons.add,
             color: Colors.white,
           ),
-          
-        ));
+        ),
+     );
   }
 }

@@ -32,7 +32,6 @@ void main() async {
   debugPrint(loginInfoSession?[0]);
   bool? isGuest = SharedPrefService.pref.getBool(
       "isGuest"); // To limit the priviliges of the guest like reading only the posts no edit no add no delete no comments // is to say Hello to guest so we need the guest Name
-  pref.clear();
 
   if (loginInfoSession != null || isGuest != null) {
     _defaultScreen = const HomePage();

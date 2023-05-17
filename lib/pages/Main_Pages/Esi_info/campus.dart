@@ -1,6 +1,7 @@
 // import 'package:flluter2cpi/Main_Pages/Academic_years/module_posts.dart';
 // import 'package:flluter2cpi/add_post/post_view_mode.dart';
 // import 'package:flluter2cpi/add_post/select_tag_view_model.dart';
+import 'package:flluter2cpi/pages/Post/post_v.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,6 +18,7 @@ class Campus extends StatefulWidget {
 }
 
 class _CampusState extends State<Campus> {
+  var info = infoPosts.where((element) => element.tag=='Campus').toList();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,8 +48,8 @@ class _CampusState extends State<Campus> {
       ),
       body: infoPosts.where((element) => element.tag=='Campus').toList().isNotEmpty
           ? ListView.separated(
-              itemBuilder: (BuildContext context, int index) =>
-                  infoPosts.where((element) => element.tag=='Campus').toList()[index],
+                 
+              itemBuilder: (BuildContext context, int index) => Post(type:  info[index].type, likesCount:  info[index].likesCount, commentsCount:  info[index].commentsCount, title:  info[index].title, description:  info[index].description, date:  info[index].date, userName:  info[index].userName, email:  info[index].email, tag:  info[index].tag, comments:  info[index].comments, isLiked:  info[index].isLiked, controllerTag:  info[index].controllerTag, links:  info[index].links),
               itemCount: infoPosts.where((element) => element.tag=='Campus').toList().length,
               separatorBuilder: (BuildContext context, int index) {
                 return Divider(

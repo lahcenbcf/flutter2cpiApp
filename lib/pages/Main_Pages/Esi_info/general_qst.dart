@@ -52,7 +52,7 @@ class _GeneralState extends State<General> {
       body: info.isNotEmpty
           ? ListView.separated(
               itemBuilder: (BuildContext context, int index) =>
-                  info[index],
+                 Post(type:  info[index].type, likesCount:  info[index].likesCount, commentsCount:  info[index].commentsCount, title:  info[index].title, description:  info[index].description, date:  info[index].date, userName:  info[index].userName, email:  info[index].email, tag:  info[index].tag, comments:  info[index].comments, isLiked:  info[index].isLiked, controllerTag:  info[index].controllerTag, links:  info[index].links),
               itemCount:  info.length,
               separatorBuilder: (BuildContext context, int index) {
                 return Divider(

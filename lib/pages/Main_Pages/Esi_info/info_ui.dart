@@ -1,33 +1,37 @@
 // import 'package:flluter2cpi/Main_Pages/Academic_years/module_posts.dart';
 // import 'package:flluter2cpi/Main_Pages/Esi_info/info_posts.dart';
 // import 'package:flluter2cpi/Main_Pages/Esi_info/info_questions.dart';
+import 'package:flluter2cpi/display_profile_pic.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toast/toast.dart';
 
+import '../../add_post/post_ui.dart';
 import 'info_posts.dart';
 import 'info_questions.dart';
+
 class Esi_info extends StatefulWidget {
-  const Esi_info({super.key, required this.index, required this.title});
-final int index;
-final String title;
-int get_index(){return index;}
+  const Esi_info({super.key});
+
   @override
   State<Esi_info> createState() => _Esi_infoState();
 }
-final List<List<Widget>> content = [[const Info_posts(),const Questions()]];
+
+final List<Widget> content = [const Info_posts(), const Questions()];
+final List<String> title = ["See latest news", "Esi-community"];
 int selcted_tab = 0;
 
 class _Esi_infoState extends State<Esi_info> {
   @override
   Widget build(BuildContext context) {
-     on_tap_new(int selected) {
+    on_tap_new(int selected) {
       setState(() {
         selcted_tab = selected;
       });
     }
 
-    
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -36,28 +40,29 @@ class _Esi_infoState extends State<Esi_info> {
           preferredSize: Size.fromHeight(170.h),
           child: AppBar(
               backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
-              
               title: Column(
                 children: [
                   Text(
-                    widget.title,
+                    title[selcted_tab],
                     style: GoogleFonts.inter(
                         fontSize: 26.sp,
                         fontWeight: FontWeight.w600,
                         color: Colors.white),
-                  ), Container(
-                          color: const Color.fromRGBO(32, 197, 122, 1),
-                          child: SizedBox(
-                            width: 79.w,
-                            height: 3.h,
-                          ))
+                  ),
+                  Container(
+                      color: const Color.fromRGBO(32, 197, 122, 1),
+                      child: SizedBox(
+                        width: 79.w,
+                        height: 3.h,
+                      ))
                 ],
               ),
               centerTitle: true,
-              bottom: TabBar(dividerColor: Colors.transparent,
+              leading: const DisplayProfilePic(21),
+              bottom: TabBar(
+                dividerColor: Colors.transparent,
                 labelColor: Colors.black,
                 indicatorColor: Colors.transparent,
-                
                 labelStyle: GoogleFonts.inter(
                     fontSize: 16.sp, fontWeight: FontWeight.w600),
                 onTap: (x) => on_tap_new(x),
@@ -72,7 +77,7 @@ class _Esi_infoState extends State<Esi_info> {
                             ? const Color.fromRGBO(32, 197, 122, 1)
                             : Colors.white,
                       ),
-                      child: const Tab( 
+                      child: const Tab(
                         text: 'News',
                       )),
                   Container(
@@ -91,7 +96,35 @@ class _Esi_infoState extends State<Esi_info> {
                 ],
               )),
         ),
-        body: content[widget.index][selcted_tab],
+        body: content[selcted_tab],
+        floatingActionButton: FloatingActionButton(
+          shape: const CircleBorder(side: BorderSide()),
+          onPressed: () async {
+            final pref = await SharedPreferences.getInstance();
+            bool isGuest = pref.getBool("isGuest") ?? false;
+            if (isGuest) {
+              Toast.show(
+                "you are not logged in",
+                duration: Toast.lengthLong,
+                gravity: Toast.center,
+                textStyle: GoogleFonts.poppins(
+                  fontSize: 17.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
+                backgroundColor: const Color.fromRGBO(157, 170, 181, 1),
+              );
+            } else {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: ((context) => const AddPostScreen())));
+            }
+          },
+          backgroundColor: const Color.fromRGBO(32, 197, 122, 1),
+          child: const Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+        ),
       ),
     );
   }

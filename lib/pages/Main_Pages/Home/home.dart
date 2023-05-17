@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../Post/post_v.dart';
 import 'display_followed_tags.dart';
 
 class Home extends StatefulWidget {
@@ -116,12 +117,9 @@ class _HomeState extends State<Home> {
           SizedBox(height: 13.h),
           //
           LimitedBox(
-            maxHeight: 250,
+            maxHeight: 250.0.h,
             child: PageView.builder(
-              itemCount: ePosts
-                  .where((element) => element.isBlack == true)
-                  .toList()
-                  .length,
+              itemCount: 3,
               controller: controller,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Padding(
@@ -130,7 +128,21 @@ class _HomeState extends State<Home> {
                   height: 260.h,
                   child: Align(
                     alignment: Alignment.center,
-                    child: aPosts[index],
+                    child: Post(
+                        type: ePosts[index].type,
+                        likesCount: ePosts[index].likesCount,
+                        commentsCount: ePosts[index].commentsCount,
+                        title: ePosts[index].title,
+                        description: ePosts[index].description,
+                        date: ePosts[index].date,
+                        userName: ePosts[index].userName,
+                        email: ePosts[index].email,
+                        tag: ePosts[index].tag,
+                        comments: ePosts[index].comments,
+                        isLiked: ePosts[index].isLiked,
+                        controllerTag: ePosts[index].controllerTag,
+                        isBlack: true,
+                        links: ePosts[index].links),
                   ),
                 ),
               ),
@@ -195,12 +207,9 @@ class _HomeState extends State<Home> {
           //
           SizedBox(height: 13.h),
           LimitedBox(
-            maxHeight: 260,
+            maxHeight: 250.0.h,
             child: PageView.builder(
-              itemCount: aPosts
-                  .where((element) => element.isBlack == true)
-                  .toList()
-                  .length,
+              itemCount: 3,
               controller: controller,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Padding(
@@ -209,7 +218,21 @@ class _HomeState extends State<Home> {
                   height: 260.h,
                   child: Align(
                     alignment: Alignment.center,
-                    child: aPosts[index],
+                    child: Post(
+                        type: aPosts[index].type,
+                        likesCount: aPosts[index].likesCount,
+                        commentsCount: aPosts[index].commentsCount,
+                        title: aPosts[index].title,
+                        description: aPosts[index].description,
+                        date: aPosts[index].date,
+                        userName: aPosts[index].userName,
+                        email: aPosts[index].email,
+                        tag: aPosts[index].tag,
+                        comments: aPosts[index].comments,
+                        isLiked: aPosts[index].isLiked,
+                        controllerTag: aPosts[index].controllerTag,
+                        isBlack: true,
+                        links: aPosts[index].links),
                   ),
                 ),
               ),
@@ -271,12 +294,9 @@ class _HomeState extends State<Home> {
           ),
           SizedBox(height: 13.h),
           LimitedBox(
-            maxHeight: 260,
+            maxHeight: 250.0.h,
             child: PageView.builder(
-              itemCount: infoPosts
-                  .where((element) => element.isBlack == true)
-                  .toList()
-                  .length,
+              itemCount: 3,
               controller: controller,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Padding(
@@ -285,7 +305,22 @@ class _HomeState extends State<Home> {
                   height: 260,
                   child: Align(
                     alignment: Alignment.center,
-                    child: infoPosts[index],
+                    child: Post(
+                      type: infoPosts[index].type,
+                      likesCount: infoPosts[index].likesCount,
+                      commentsCount: infoPosts[index].commentsCount,
+                      title: infoPosts[index].title,
+                      description: infoPosts[index].description,
+                      date: infoPosts[index].date,
+                      userName: infoPosts[index].userName,
+                      email: infoPosts[index].email,
+                      tag: infoPosts[index].tag,
+                      comments: infoPosts[index].comments,
+                      isLiked: infoPosts[index].isLiked,
+                      controllerTag: infoPosts[index].controllerTag,
+                      isBlack: true,
+                      links: infoPosts[index].links,
+                    ),
                   ),
                 ),
               ),

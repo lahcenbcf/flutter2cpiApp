@@ -2,6 +2,7 @@
 // import 'package:flluter2cpi/Main_Pages/Academic_years/second_cpi/second_prepa_year.dart';
 // import 'package:flluter2cpi/Main_Pages/Editing_profile/second_edit_page.dart';
 // import 'package:flluter2cpi/add_post/post_ui.dart';
+import 'package:flluter2cpi/display_profile_pic.dart';
 import 'package:flluter2cpi/pages/Main_Pages/Editing_profile/second_edit_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -40,124 +41,129 @@ class _Profile_1st_screenState extends State<Profile_1st_screen> {
           ),
         ),
       ),
-      body: Column(children: [
-        SizedBox(
-          height: 50.h,
-        ),
-        Row(
+      body: SingleChildScrollView(
+        child: Column(
           children: [
-            Column(
+            SizedBox(
+              height: 50.h,
+            ),
+            Row(
               children: [
-                const CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      'https://images.unsplash.com/photo-1677741001200-79163963249d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDJ8Ym84alFLVGFFMFl8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=60'),
+                Column(
+                  children: [
+                    const DisplayProfilePic(22),
+                    SizedBox(
+                      height: 8.w,
+                    ),
+                    Text(
+                      '@username',
+                      style: GoogleFonts.inter(
+                          fontSize: 16.sp,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600),
+                    )
+                  ],
                 ),
                 SizedBox(
-                  height: 8.w,
+                  width: 176.w,
                 ),
-                Text(
-                  '@username',
-                  style: GoogleFonts.inter(
-                      fontSize: 16.sp,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const Profile_2nd_screen()));
+                  },
+                  style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(
+                      Color.fromRGBO(32, 197, 122, 1),
+                    ),
+                  ),
+                  child: Text(
+                    'Edit profile',
+                    style: GoogleFonts.inter(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white),
+                  ),
                 )
               ],
             ),
             SizedBox(
-              width: 176.w,
+              height: 106.h,
             ),
-            TextButton(
-              onPressed: () {Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const Profile_2nd_screen()));},
-              style: const ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(
-                  Color.fromRGBO(32, 197, 122, 1),
-                ),
-              ),
-              child: Text(
-                'Edit profile',
-                style: GoogleFonts.inter(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.white),
-              ),
-            )
-          ],
-        ),
-        SizedBox(
-          height: 106.h,
-        ),
-        Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Text(
-                  'First name',
-                  style: GoogleFonts.inter(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w400,
-                      color: const Color.fromARGB(255, 255, 255, 255)),
-                ),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              divider,
-              SizedBox(
-                height: 25.h,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Text('Last name',
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Text(
+                    'First name',
                     style: GoogleFonts.inter(
                         fontSize: 15,
                         fontWeight: FontWeight.w400,
-                        color: Colors.white)),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              divider,
-              SizedBox(
-                height: 29.h,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Text('Bio',
-                    style: GoogleFonts.inter(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white)),
-              ),
-              SizedBox(
-                height: 65.h,
-              ),
-              divider,
-              SizedBox(
-                height: 16.h,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Row(
-                  children: [
-                    Text('E-mail:',
-                        style: GoogleFonts.inter(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white)),
-                    SizedBox(width: 12.w),
-                    Text('user@esi-sba.com',
-                        style: GoogleFonts.inter(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white)),
-                  ],
+                        color: const Color.fromARGB(255, 255, 255, 255)),
+                  ),
                 ),
-              ),
-            ])
-      ]),
+                SizedBox(
+                  height: 20.h,
+                ),
+                divider,
+                SizedBox(
+                  height: 25.h,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Text('Last name',
+                      style: GoogleFonts.inter(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white)),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                divider,
+                SizedBox(
+                  height: 29.h,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Text('Bio',
+                      style: GoogleFonts.inter(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white)),
+                ),
+                SizedBox(
+                  height: 65.h,
+                ),
+                divider,
+                SizedBox(
+                  height: 16.h,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Row(
+                    children: [
+                      Text('E-mail:',
+                          style: GoogleFonts.inter(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white)),
+                      SizedBox(width: 12.w),
+                      Text('user@esi-sba.com',
+                          style: GoogleFonts.inter(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white)),
+                    ],
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
     );
   }
 }

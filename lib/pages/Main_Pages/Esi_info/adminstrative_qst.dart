@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../Post & Comment classes/posts_tags.dart';
+import '../../Post/post_v.dart';
 //import '../../add_post/post_ui.dart';
 //import '../../pages/Post & Comment classes/posts_tags.dart';
 
@@ -17,6 +18,7 @@ class Administrative extends StatefulWidget {
 }
 
 class _AdministrativeState extends State<Administrative> {
+   var info = infoPosts.where((element) => element.tag=='Administrative').toList();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,8 +48,9 @@ class _AdministrativeState extends State<Administrative> {
       ),
       body: infoPosts.where((element) => element.tag=='Administrative').toList().isNotEmpty
           ? ListView.separated(
+            
               itemBuilder: (BuildContext context, int index) =>
-                  infoPosts.where((element) => element.tag=='Administrative').toList()[index],
+                Post(type:  info[index].type, likesCount:  info[index].likesCount, commentsCount:  info[index].commentsCount, title:  info[index].title, description:  info[index].description, date:  info[index].date, userName:  info[index].userName, email:  info[index].email, tag:  info[index].tag, comments:  info[index].comments, isLiked:  info[index].isLiked, controllerTag:  info[index].controllerTag, links:  info[index].links),
               itemCount: infoPosts.where((element) => element.tag=='Administrative').toList().length,
               separatorBuilder: (BuildContext context, int index) {
                 return Divider(
