@@ -19,6 +19,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+
 Widget _defaultScreen = const OnBoardingScreen();
 
 void main() async {
@@ -93,7 +94,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               theme: ThemeData(useMaterial3: true),
               routes: generateRoutes(context),
-              home: SafeArea(
+              home:  SafeArea(
                 child: _defaultScreen,
               ),
             );

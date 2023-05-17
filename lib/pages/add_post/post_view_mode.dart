@@ -25,10 +25,11 @@ class Post_Model extends ChangeNotifier {
   }
 
   addPost(
-      String title,
-      String desc,
-      File image, //String imagePath,
-      String postType) {
+    String title,
+    String desc,
+    File image, //String imagePath,
+    String postType,
+  ) {
     /*var response=await ApiServices.addPost(title, desc, "younes", tag!, postType, image); 
     var result=jsonDecode(response.body); 
     if(result?["message"]!=null){ 
@@ -60,16 +61,16 @@ class Post_Model extends ChangeNotifier {
     );
 
     if (postType == "StuckPosts") {
-      ePosts.add(p);
+      ePosts.insert(0, p);
       print("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
     } else if (postType == "infoPosts") {
-      infoPosts.add(p);
+      infoPosts.insert(0, p);
     } else if (postType == "academicPosts") {
-      aPosts.add(p);
+      aPosts.insert(0, p);
     } else {
       PostInfo o = PostInfo(
           image: image, title: title, description: desc, date: DateTime.now());
-      articlePosts.add(o);
+      articlePosts.insert(0, o);
     }
     Get.forceAppUpdate();
   }

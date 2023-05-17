@@ -9,6 +9,7 @@ import 'package:toast/toast.dart';
 import '../../../display_profile_pic.dart';
 import '../../Post/post_v.dart';
 import '../../add_post/post_ui.dart';
+import '../Editing_profile/edit_profile_ui.dart';
 
 int selectedTab = 1;
 
@@ -42,7 +43,10 @@ class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
         backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
         leading: Padding(
           padding:  EdgeInsets.only(left: 16.0.w, top: 2.0.h),
-          child: const DisplayProfilePic(22),
+          child: InkWell(onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Profile_1st_screen(),));
+            
+          },child: const DisplayProfilePic(22)),
         ),
 
         // actions: [

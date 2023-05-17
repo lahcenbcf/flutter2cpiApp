@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../../Post/post_v.dart';
 import 'display_followed_tags.dart';
@@ -62,23 +61,18 @@ class _HomeState extends State<Home> {
             ),
           ),
           SizedBox(height: 40.h),
-          Padding(
-            padding: const EdgeInsets.only(left: 16).w,
+          Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25.r),
+                color: const Color.fromRGBO(32, 197, 122, 1)),
+            margin: const EdgeInsets.only(left: 16).w,
+            padding: EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 16.0.w),
             child: Text(
               "Coding q&a",
               style: GoogleFonts.poppins(
-                fontSize: 18.sp,
+                fontSize: 20.sp,
                 fontWeight: FontWeight.w700,
-                color: Colors.transparent,
-                decoration: TextDecoration.underline,
-                decorationThickness: 3,
-                decorationColor: const Color.fromRGBO(32, 197, 122, 1),
-                shadows: [
-                  const Shadow(
-                    color: Colors.white,
-                    offset: Offset(0, -5),
-                  )
-                ],
+                color: const Color.fromRGBO(255, 255, 255, 1),
               ),
             ),
           ),
@@ -97,29 +91,11 @@ class _HomeState extends State<Home> {
           ),
           SizedBox(height: 16.h),
 
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0).w,
-            child: InkWell(
-              onTap: () {
-                selectedIndex = 1;
-                Get.forceAppUpdate();
-              },
-              child: Text(
-                "... See more ",
-                style: GoogleFonts.poppins(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w700,
-                  color: const Color.fromRGBO(32, 197, 122, 1),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(height: 13.h),
           //
           LimitedBox(
             maxHeight: 250.0.h,
             child: PageView.builder(
-              itemCount: 3,
+              itemCount: 4,
               controller: controller,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Padding(
@@ -128,21 +104,36 @@ class _HomeState extends State<Home> {
                   height: 260.h,
                   child: Align(
                     alignment: Alignment.center,
-                    child: Post(
-                        type: ePosts[index].type,
-                        likesCount: ePosts[index].likesCount,
-                        commentsCount: ePosts[index].commentsCount,
-                        title: ePosts[index].title,
-                        description: ePosts[index].description,
-                        date: ePosts[index].date,
-                        userName: ePosts[index].userName,
-                        email: ePosts[index].email,
-                        tag: ePosts[index].tag,
-                        comments: ePosts[index].comments,
-                        isLiked: ePosts[index].isLiked,
-                        controllerTag: ePosts[index].controllerTag,
-                        isBlack: true,
-                        links: ePosts[index].links),
+                    child: index != 3
+                        ? Post(
+                            type: ePosts[index].type,
+                            likesCount: ePosts[index].likesCount,
+                            commentsCount: ePosts[index].commentsCount,
+                            title: ePosts[index].title,
+                            description: ePosts[index].description,
+                            date: ePosts[index].date,
+                            userName: ePosts[index].userName,
+                            email: ePosts[index].email,
+                            tag: ePosts[index].tag,
+                            comments: ePosts[index].comments,
+                            isLiked: ePosts[index].isLiked,
+                            controllerTag: ePosts[index].controllerTag,
+                            isBlack: true,
+                            links: ePosts[index].links)
+                        : InkWell(
+                            onTap: () {
+                              selectedIndex = 1;
+                              Get.forceAppUpdate();
+                            },
+                            child: Text(
+                              "... See more ",
+                              style: GoogleFonts.poppins(
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w700,
+                                color: const Color.fromRGBO(32, 197, 122, 1),
+                              ),
+                            ),
+                          ),
                   ),
                 ),
               ),
@@ -152,23 +143,18 @@ class _HomeState extends State<Home> {
           //
           //
           SizedBox(height: 25.h),
-          Padding(
-            padding: const EdgeInsets.only(left: 16).w,
+          Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(25.r)),
+                color: const Color.fromRGBO(32, 197, 122, 1)),
+            margin: const EdgeInsets.only(left: 16).w,
+            padding: EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 16.0.w),
             child: Text(
               "Academic q&a",
               style: GoogleFonts.poppins(
-                fontSize: 18.sp,
+                fontSize: 20.sp,
                 fontWeight: FontWeight.w700,
-                color: Colors.transparent,
-                decoration: TextDecoration.underline,
-                decorationThickness: 3,
-                decorationColor: const Color.fromRGBO(32, 197, 122, 1),
-                shadows: [
-                  const Shadow(
-                    color: Colors.white,
-                    offset: Offset(0, -5),
-                  )
-                ],
+                color: const Color.fromRGBO(255, 255, 255, 1),
               ),
             ),
           ),
@@ -187,29 +173,12 @@ class _HomeState extends State<Home> {
           ),
           SizedBox(height: 16.h),
 
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0).w,
-            child: InkWell(
-              onTap: () {
-                selectedIndex = 2;
-                Get.forceAppUpdate();
-              },
-              child: Text(
-                "... See more ",
-                style: GoogleFonts.poppins(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w700,
-                  color: const Color.fromRGBO(32, 197, 122, 1),
-                ),
-              ),
-            ),
-          ),
           //
-          SizedBox(height: 13.h),
+
           LimitedBox(
             maxHeight: 250.0.h,
             child: PageView.builder(
-              itemCount: 3,
+              itemCount: 4,
               controller: controller,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Padding(
@@ -218,21 +187,36 @@ class _HomeState extends State<Home> {
                   height: 260.h,
                   child: Align(
                     alignment: Alignment.center,
-                    child: Post(
-                        type: aPosts[index].type,
-                        likesCount: aPosts[index].likesCount,
-                        commentsCount: aPosts[index].commentsCount,
-                        title: aPosts[index].title,
-                        description: aPosts[index].description,
-                        date: aPosts[index].date,
-                        userName: aPosts[index].userName,
-                        email: aPosts[index].email,
-                        tag: aPosts[index].tag,
-                        comments: aPosts[index].comments,
-                        isLiked: aPosts[index].isLiked,
-                        controllerTag: aPosts[index].controllerTag,
-                        isBlack: true,
-                        links: aPosts[index].links),
+                    child: index != 3
+                        ? Post(
+                            type: aPosts[index].type,
+                            likesCount: aPosts[index].likesCount,
+                            commentsCount: aPosts[index].commentsCount,
+                            title: aPosts[index].title,
+                            description: aPosts[index].description,
+                            date: aPosts[index].date,
+                            userName: aPosts[index].userName,
+                            email: aPosts[index].email,
+                            tag: aPosts[index].tag,
+                            comments: aPosts[index].comments,
+                            isLiked: aPosts[index].isLiked,
+                            controllerTag: aPosts[index].controllerTag,
+                            isBlack: true,
+                            links: aPosts[index].links)
+                        : InkWell(
+                            onTap: () {
+                              selectedIndex = 2;
+                              Get.forceAppUpdate();
+                            },
+                            child: Text(
+                              "... See more ",
+                              style: GoogleFonts.poppins(
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w700,
+                                color: const Color.fromRGBO(32, 197, 122, 1),
+                              ),
+                            ),
+                          ),
                   ),
                 ),
               ),
@@ -241,23 +225,18 @@ class _HomeState extends State<Home> {
           //
           //
           SizedBox(height: 25.h),
-          Padding(
-            padding: const EdgeInsets.only(left: 16).w,
+          Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25.r),
+                color: const Color.fromRGBO(32, 197, 122, 1)),
+            margin: const EdgeInsets.only(left: 16).w,
+            padding: EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 16.0.w),
             child: Text(
               "News and Information",
               style: GoogleFonts.poppins(
-                fontSize: 18.sp,
+                fontSize: 20.sp,
                 fontWeight: FontWeight.w700,
-                color: Colors.transparent,
-                decoration: TextDecoration.underline,
-                decorationThickness: 3,
-                decorationColor: const Color.fromRGBO(32, 197, 122, 1),
-                shadows: [
-                  const Shadow(
-                    color: Colors.white,
-                    offset: Offset(0, -5),
-                  )
-                ],
+                color: const Color.fromRGBO(255, 255, 255, 1),
               ),
             ),
           ),
@@ -275,28 +254,11 @@ class _HomeState extends State<Home> {
             ),
           ),
           SizedBox(height: 16.h),
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0).w,
-            child: InkWell(
-              onTap: () {
-                selectedIndex = 3;
-                Get.forceAppUpdate();
-              },
-              child: Text(
-                "check for more",
-                style: GoogleFonts.poppins(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w700,
-                  color: const Color.fromRGBO(32, 197, 122, 1),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(height: 13.h),
+
           LimitedBox(
             maxHeight: 250.0.h,
             child: PageView.builder(
-              itemCount: 3,
+              itemCount: 4,
               controller: controller,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Padding(
@@ -305,22 +267,37 @@ class _HomeState extends State<Home> {
                   height: 260,
                   child: Align(
                     alignment: Alignment.center,
-                    child: Post(
-                      type: infoPosts[index].type,
-                      likesCount: infoPosts[index].likesCount,
-                      commentsCount: infoPosts[index].commentsCount,
-                      title: infoPosts[index].title,
-                      description: infoPosts[index].description,
-                      date: infoPosts[index].date,
-                      userName: infoPosts[index].userName,
-                      email: infoPosts[index].email,
-                      tag: infoPosts[index].tag,
-                      comments: infoPosts[index].comments,
-                      isLiked: infoPosts[index].isLiked,
-                      controllerTag: infoPosts[index].controllerTag,
-                      isBlack: true,
-                      links: infoPosts[index].links,
-                    ),
+                    child: index != 3
+                        ? Post(
+                            type: infoPosts[index].type,
+                            likesCount: infoPosts[index].likesCount,
+                            commentsCount: infoPosts[index].commentsCount,
+                            title: infoPosts[index].title,
+                            description: infoPosts[index].description,
+                            date: infoPosts[index].date,
+                            userName: infoPosts[index].userName,
+                            email: infoPosts[index].email,
+                            tag: infoPosts[index].tag,
+                            comments: infoPosts[index].comments,
+                            isLiked: infoPosts[index].isLiked,
+                            controllerTag: infoPosts[index].controllerTag,
+                            isBlack: true,
+                            links: infoPosts[index].links,
+                          )
+                        : InkWell(
+                            onTap: () {
+                              selectedIndex = 3;
+                              Get.forceAppUpdate();
+                            },
+                            child: Text(
+                              "check for more",
+                              style: GoogleFonts.poppins(
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w700,
+                                color: const Color.fromRGBO(32, 197, 122, 1),
+                              ),
+                            ),
+                          ),
                   ),
                 ),
               ),
@@ -344,41 +321,4 @@ class _HomeState extends State<Home> {
 //                 child: infoPosts[index],
 //               ),
 //             ),
-class PostShimmer extends StatelessWidget {
-  const PostShimmer({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    PageController controller =
-        PageController(initialPage: 0, viewportFraction: 0.90);
-    return PageView.builder(
-      itemCount:
-          infoPosts.where((element) => element.isBlack == true).toList().length,
-      controller: controller,
-      physics: const BouncingScrollPhysics(),
-      itemBuilder: (context, index) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 5).w,
-        child: Shimmer.fromColors(
-          period: const Duration(seconds: 2),
-          baseColor: const Color.fromRGBO(0, 0, 0, 0.8),
-          highlightColor: const Color.fromRGBO(0, 0, 0, 0.5),
-          child: Container(
-            width: 360.w,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15.r),
-              gradient: const LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                stops: [0.5, 1],
-                colors: [
-                  Color.fromRGBO(0, 0, 0, 0.73),
-                  Color.fromRGBO(30, 30, 30, 0.73),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}

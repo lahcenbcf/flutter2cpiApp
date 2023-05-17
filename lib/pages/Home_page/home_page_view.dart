@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-import 'package:iconsax/iconsax.dart';
 import 'package:ionicons/ionicons.dart';
 
 import '../../display_profile_pic.dart';
 import '../Drawer/drawer.dart';
+import '../Main_Pages/Editing_profile/edit_profile_ui.dart';
 import '../Main_Pages/Esi_info/info_ui.dart';
 
 
@@ -70,7 +70,11 @@ List<Widget> pages = [
                 builder: (context) {
                   return InkWell(
                     onTap: () => Scaffold.of(context).openDrawer(),
-                    child: const DisplayProfilePic(22)
+                    child: Icon(
+                    FluentIcons.navigation_24_filled,
+                    color: const Color.fromRGBO(255, 255, 255, 1),
+                    size: 30*iconSize,
+                               ),
                   );
                 }
               ),
@@ -83,11 +87,17 @@ List<Widget> pages = [
                   filterQuality: FilterQuality.high,
                 ),
               ),
-              Icon(
-                Iconsax.notification5,
-                color: Colors.white,
-                size: 32 * iconSize,
-              )
+               Builder(
+                builder: (context) {
+                  return InkWell(
+                    onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Profile_1st_screen(),));
+                    },
+                    child: const DisplayProfilePic(22)
+                  );
+                }
+              ),
+              
             ],
           ),
         ),

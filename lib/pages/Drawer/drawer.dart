@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../test.dart';
 import '../Main_Pages/Editing_profile/edit_profile_ui.dart';
 
 class Drawerr extends StatelessWidget {
@@ -126,7 +126,12 @@ class Drawerr extends StatelessWidget {
               padding: const EdgeInsets.only(top:300).h,
               child: InkWell(
                 onTap: () async{
-                  await getImage(0);
+                 final pref = await SharedPreferences.getInstance();
+                 pref.setBool("isGuest", false);
+                 //
+                 // clear loggin session
+                 //
+                 Navigator.of(context).pushReplacementNamed("choice");
                 },
                 splashColor: const Color.fromRGBO(255, 0, 0, 0.7),
                 borderRadius: BorderRadius.circular(10),
