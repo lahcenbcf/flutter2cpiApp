@@ -155,8 +155,8 @@ List<Widget> pages = [
             ),
             GButton(
               icon: selectedIndex == 3
-                  ? FluentIcons.info_24_filled
-                  : FluentIcons.info_24_regular,
+                  ? FluentIcons.news_28_filled
+                  : FluentIcons.news_28_regular,
               iconColor: Colors.white,
               text: "Information",
               textStyle: textStyle,
