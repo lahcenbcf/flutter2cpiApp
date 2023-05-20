@@ -9,6 +9,7 @@ import 'package:flluter2cpi/add_post/post_view_mode.dart';
 import 'package:flluter2cpi/add_post/select_tag_ui.dart';
 import 'package:flluter2cpi/pages/Home_page/home_page_view.dart';
 import 'package:flluter2cpi/pages/Login_page/components/guest_box_view_model.dart';
+import 'package:flluter2cpi/pages/Main_Pages/Home/home.dart';
 import 'package:flluter2cpi/pages/New_password/new_password_vm.dart';
 import 'package:flluter2cpi/pages/School_year/school_year_view_model.dart';
 import 'package:flluter2cpi/pages/Sign_up/sign_up_view_model.dart';
@@ -89,7 +90,7 @@ class MyApp extends StatelessWidget {
                     theme: ThemeData(useMaterial3: true),
                     routes: generateRoutes(context),
                     home:   SafeArea(
-                      child: _defaultScreen,
+                      child: SplashScreen(),
                     ));
               });
         });
