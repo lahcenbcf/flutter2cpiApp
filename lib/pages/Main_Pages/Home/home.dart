@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flluter2cpi/pages/Home_page/home_page_view.dart';
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../services/sharedServices.dart';
 import '../../Post/post_v.dart';
 import 'display_followed_tags.dart';
 
@@ -16,6 +19,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  
   @override
   Widget build(BuildContext context) {
     //
@@ -23,6 +27,10 @@ class _HomeState extends State<Home> {
         PageController(initialPage: 0, viewportFraction: 0.9);
 
     //
+    List<Post> e = ePosts.where((element) => !element.isReported).toList();
+    List<Post> a = aPosts.where((element) => !element.isReported).toList();
+    List<Post> i = infoPosts.where((element) => !element.isReported).toList();
+print(followedTags);
     //
     //
     return SingleChildScrollView(
@@ -95,7 +103,7 @@ class _HomeState extends State<Home> {
           LimitedBox(
             maxHeight: 250.0.h,
             child: PageView.builder(
-              itemCount: 4,
+              itemCount:e.length>4 ?  4 : e.length+1 ,
               controller: controller,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Padding(
@@ -104,22 +112,24 @@ class _HomeState extends State<Home> {
                   height: 260.h,
                   child: Align(
                     alignment: Alignment.center,
-                    child: index != 3
-                        ? Post(
-                            type: ePosts[index].type,
-                            likesCount: ePosts[index].likesCount,
-                            commentsCount: ePosts[index].commentsCount,
-                            title: ePosts[index].title,
-                            description: ePosts[index].description,
-                            date: ePosts[index].date,
-                            userName: ePosts[index].userName,
-                            email: ePosts[index].email,
-                            tag: ePosts[index].tag,
-                            comments: ePosts[index].comments,
-                            isLiked: ePosts[index].isLiked,
-                            controllerTag: ePosts[index].controllerTag,
+                    child: (e.length>4 ? index != 3 : index!=e.length ) 
+                      ?Post(
+                            type: e[index].type,
+                            image: e[index].image,
+                            profilePic: e[index].profilePic,
+                            likesCount: e[index].likesCount,
+                            commentsCount: e[index].commentsCount,
+                            title: e[index].title,
+                            description: e[index].description,
+                            date: e[index].date,
+                            userName: e[index].userName,
+                            email: e[index].email,
+                            tag: e[index].tag,
+                            comments: e[index].comments,
+                            isLiked: e[index].isLiked,
+                            controllerTag: e[index].controllerTag,
                             isBlack: true,
-                            links: ePosts[index].links)
+                            links: e[index].links)  // ?  ePosts.where((element) => !element.isReported).toList()[index]
                         : InkWell(
                             onTap: () {
                               selectedIndex = 1;
@@ -178,7 +188,7 @@ class _HomeState extends State<Home> {
           LimitedBox(
             maxHeight: 250.0.h,
             child: PageView.builder(
-              itemCount: 4,
+              itemCount: a.length>4 ?  4 : a.length+1 ,
               controller: controller,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Padding(
@@ -187,22 +197,24 @@ class _HomeState extends State<Home> {
                   height: 260.h,
                   child: Align(
                     alignment: Alignment.center,
-                    child: index != 3
+                    child: (a.length>4 ? index != 3 : index!=a.length ) 
                         ? Post(
-                            type: aPosts[index].type,
-                            likesCount: aPosts[index].likesCount,
-                            commentsCount: aPosts[index].commentsCount,
-                            title: aPosts[index].title,
-                            description: aPosts[index].description,
-                            date: aPosts[index].date,
-                            userName: aPosts[index].userName,
-                            email: aPosts[index].email,
-                            tag: aPosts[index].tag,
-                            comments: aPosts[index].comments,
-                            isLiked: aPosts[index].isLiked,
-                            controllerTag: aPosts[index].controllerTag,
+                            type: a[index].type,
+                            likesCount: a[index].likesCount,
+                            image: a[index].image,
+                            commentsCount: a[index].commentsCount,
+                            title: a[index].title,
+                            description: a[index].description,
+                            date: a[index].date,
+                            userName: a[index].userName,
+                            email: a[index].email,
+                            profilePic: a[index].profilePic,
+                            tag: a[index].tag,
+                            comments: a[index].comments,
+                            isLiked: a[index].isLiked,
+                            controllerTag: a[index].controllerTag,
                             isBlack: true,
-                            links: aPosts[index].links)
+                            links: a[index].links)
                         : InkWell(
                             onTap: () {
                               selectedIndex = 2;
@@ -258,7 +270,7 @@ class _HomeState extends State<Home> {
           LimitedBox(
             maxHeight: 250.0.h,
             child: PageView.builder(
-              itemCount: 4,
+              itemCount:i.length>4 ?  4 : i.length+1,
               controller: controller,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Padding(
@@ -267,22 +279,24 @@ class _HomeState extends State<Home> {
                   height: 260,
                   child: Align(
                     alignment: Alignment.center,
-                    child: index != 3
+                    child: (i.length>4 ? index != 3 : index!=i.length ) 
                         ? Post(
-                            type: infoPosts[index].type,
-                            likesCount: infoPosts[index].likesCount,
-                            commentsCount: infoPosts[index].commentsCount,
-                            title: infoPosts[index].title,
-                            description: infoPosts[index].description,
-                            date: infoPosts[index].date,
-                            userName: infoPosts[index].userName,
-                            email: infoPosts[index].email,
-                            tag: infoPosts[index].tag,
-                            comments: infoPosts[index].comments,
-                            isLiked: infoPosts[index].isLiked,
-                            controllerTag: infoPosts[index].controllerTag,
+                            type: i[index].type,
+                            image: i[index].image,
+                            profilePic: i[index].profilePic,
+                            likesCount: i[index].likesCount,
+                            commentsCount: i[index].commentsCount,
+                            title: i[index].title,
+                            description: i[index].description,
+                            date: i[index].date,
+                            userName: i[index].userName,
+                            email: i[index].email,
+                            tag: i[index].tag,
+                            comments: i[index].comments,
+                            isLiked: i[index].isLiked,
+                            controllerTag: i[index].controllerTag,
                             isBlack: true,
-                            links: infoPosts[index].links,
+                            links: i[index].links,
                           )
                         : InkWell(
                             onTap: () {

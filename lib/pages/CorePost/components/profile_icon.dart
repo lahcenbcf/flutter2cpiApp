@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flluter2cpi/pages/Post/post_controller.dart';
@@ -21,7 +22,7 @@ class ProfileIcon extends StatelessWidget {
   final String userName;
   final String email;
   final String controllerTag;
-  final List<String> links;
+  final List<dynamic> links;
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +55,9 @@ class ProfileIcon extends StatelessWidget {
                           backgroundColor: state.profilePic == null
                               ? const Color.fromRGBO(67, 69, 75, 1)
                               : null,
-                          backgroundImage: state.profilePic != null
-                              ? FileImage(File(state.profilePic!.path))
+                          backgroundImage: state.profilePic != ""
+                              ? //FileImage(File(state.profilePic!.path))
+                              MemoryImage(base64.decode(state.profilePic!))
                               : null,
                           child: state.profilePic == null
                               ? Text(
@@ -101,7 +103,8 @@ class ProfileIcon extends StatelessWidget {
                     ),
                     SizedBox(height: 12.4.h),
                     Row(
-                      mainAxisSize: MainAxisSize.min,
+                      // mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           "E-mail:",
@@ -111,7 +114,7 @@ class ProfileIcon extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        SizedBox(width: 15.0.h),
+                        // SizedBox(width: 15.0.h),
                         Text(
                           email,
                           style: GoogleFonts.poppins(
@@ -120,7 +123,7 @@ class ProfileIcon extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        SizedBox(width: 10.0.w),
+                        // SizedBox(width: 10.0.w),
                         InkWell(
                           onTap: () async {
                             await Clipboard.setData(ClipboardData(text: email))
@@ -159,7 +162,7 @@ class ProfileIcon extends StatelessWidget {
                             if (links[0].isNotEmpty)
                               InkWell(
                                 onTap: () async {
-                                  Uri uri = Uri.parse(links[0]);
+                                  Uri uri = Uri.parse("https://www.linkedin.com/in/$links[0]");
                                   if (await canLaunchUrl(uri)) {
                                     await launchUrl(uri);
                                   } else {
@@ -194,7 +197,7 @@ class ProfileIcon extends StatelessWidget {
                             if (links[1].isNotEmpty)
                               InkWell(
                                 onTap: () async {
-                                  Uri uri = Uri.parse(links[1]);
+                                  Uri uri = Uri.parse("https://github.com/$links[1]");
                                   if (await canLaunchUrl(uri)) {
                                     await launchUrl(uri);
                                   } else {
@@ -229,8 +232,8 @@ class ProfileIcon extends StatelessWidget {
                             if (links[2].isNotEmpty)
                               InkWell(
                                 onTap: () async {
-                                  Uri uri = Uri.parse(links[2]);
-                                  print("ff");
+                                  Uri uri = Uri.parse("https://t.me/$links[2]");
+                                  
                                   if (await canLaunchUrl(uri)) {
                                     await launchUrl(uri);
                                   } else {
@@ -273,13 +276,14 @@ class ProfileIcon extends StatelessWidget {
       },
       child: CircleAvatar(
         radius: 23 * iconSize,
-        backgroundColor: state.profilePic == null
+        backgroundColor: state.profilePic == ""
             ? const Color.fromRGBO(67, 69, 75, 1)
             : null,
-        backgroundImage: state.profilePic != null
-            ? FileImage(File(state.profilePic!.path))
+        backgroundImage: state.profilePic != ""
+            ? //FileImage(File(state.profilePic!.path))
+            MemoryImage(base64.decode(state.profilePic!))
             : null,
-        child: state.profilePic == null
+        child: state.profilePic == ""
             ? Text(
                 userName[0].toUpperCase() + email[0].toUpperCase(),
                 style: GoogleFonts.poppins(

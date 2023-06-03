@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 
 class CommentClass {
@@ -10,18 +11,20 @@ class CommentClass {
     required this.commentsCount,
     required this.date,
     this.isLiked = false,
-    required this.profilePic,
+    required this.commentId,
+     required this.profilePic,
     this.isReported = false,
     required this.links,
   });
-  final File? profilePic;
+  final String profilePic;
   final String userName;
   final String email;
   final String comment;
+  String commentId;
   int likesCount;
   final int commentsCount;
-  final DateTime date;
+  final String date;
   bool isLiked;
   bool isReported;
-  final List<String> links;
+  final List<dynamic> links;
 }

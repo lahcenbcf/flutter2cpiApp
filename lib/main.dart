@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flluter2cpi/pages/Choice_page/choice_v.dart';
 import 'package:flluter2cpi/pages/Home_page/home_page_view.dart';
 import 'package:flluter2cpi/pages/Login_page/components/guest_box_view_model.dart';
@@ -5,6 +7,7 @@ import 'package:flluter2cpi/pages/Main_Pages/Editing_profile/view_model.dart';
 import 'package:flluter2cpi/pages/Main_Pages/Editing_profile/view_model_1.dart';
 import 'package:flluter2cpi/pages/New_password/new_password_vm.dart';
 import 'package:flluter2cpi/pages/OnBoarding_Screen/on_boarding_screen.dart';
+import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:flluter2cpi/pages/School_year/school_year_view_model.dart';
 import 'package:flluter2cpi/pages/Sign_up/sign_up_view_model.dart';
 import 'package:flluter2cpi/pages/Login_page/view_model.dart';
@@ -21,24 +24,33 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 
 Widget _defaultScreen = const OnBoardingScreen();
-
+bool isGuestt = false;
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await SharedPrefService.init();
-  final pref = await SharedPreferences.getInstance();
+   WidgetsFlutterBinding.ensureInitialized();
+ await SharedPrefService.init();
+var pref = await SharedPreferences.getInstance();
+bool? isGuest = SharedPrefService.pref.getBool(
+      "isGuest");
+      
   final showChoicePage = pref.getBool("showChoicePage") ?? false;
-
   List<String>? loginInfoSession =
       SharedPrefService.pref.getStringList("loginInfo");
-  debugPrint(loginInfoSession?[0]);
-  bool? isGuest = SharedPrefService.pref.getBool(
-      "isGuest"); // To limit the priviliges of the guest like reading only the posts no edit no add no delete no comments // is to say Hello to guest so we need the guest Name
+      if(loginInfoSession != null){
+        userInfo=loginInfoSession;
+        followedTags=pref.getStringList("followedTags")!;
+      }
+     
 
+  // To limit the priviliges of the guest like reading only the posts no edit no add no delete no comments // is to say Hello to guest so we need the guest Name
+isGuestt = isGuest ?? false;
   if (loginInfoSession != null || isGuest != null) {
     _defaultScreen = const HomePage();
   } else if (showChoicePage) {
     _defaultScreen = const Choice();
   }
+  
+  
+  
   runApp(const MyApp());
 }
 

@@ -258,11 +258,12 @@ class _LoginState extends State<Login> {
                                       
                                       if(forme.currentState != null){
                                         if(forme.currentState!.validate()){
-                                          Navigator.pushReplacementNamed(context,"HomePage");
+                                         
                                           await state.loginUser(UserModal(email: state.email_controler.text, password:state.password_controller.text));
                                           if(state.isLogged){
                                             // ignore: use_build_context_synchronously
-                                            Navigator.pushNamed(context, "LogIn");
+                                            //Navigator.pushNamed(context, "LogIn");
+                                             Navigator.pushReplacementNamed(context,"HomePage");
                                             // redirection vers home page
                                             // ignore: use_build_context_synchronously
                                             

@@ -11,6 +11,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../Home_page/home_page_view.dart';
+
 class Profile_3rd_screen extends StatefulWidget {
   const Profile_3rd_screen({super.key});
 
@@ -20,7 +22,7 @@ class Profile_3rd_screen extends StatefulWidget {
 
 class _Profile_3rd_screenState extends State<Profile_3rd_screen> {
   File? imageFile;
-  String? imagePath;
+  //String? imagePath;
   var divider = const Divider(
     color: Color.fromRGBO(119, 119, 119, 1),
     height: 1,
@@ -35,7 +37,7 @@ class _Profile_3rd_screenState extends State<Profile_3rd_screen> {
       setState(() {
         if (pickedFile != null) {
           imageFile = File(pickedFile.path);
-          //  state.imageFile = imageFile;
+          state2.imageFile = imageFile;
         }
       });
     }
@@ -362,8 +364,9 @@ class _Profile_3rd_screenState extends State<Profile_3rd_screen> {
                   if (formState.currentState != null) {
                     if (formState.currentState!.validate()) {
                       //hna nab3ath facebook
-                      //await state2.editPassword(imageFile!, imagePath!);
-                      /* if(state2.message=="succces your password updated !"){
+                      print("ayjat");
+                      await state2.editPassword(/*imageFile!, imagePath!*/);
+                      if(state2.message=="succces your password updated !"){
                                         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const HomePage() ));
                                     }else{
                                       ScaffoldMessenger.of(context).showSnackBar(
@@ -380,7 +383,7 @@ class _Profile_3rd_screenState extends State<Profile_3rd_screen> {
                                       ),
                                     )
                                     );
-                                    };*/
+                                    };
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

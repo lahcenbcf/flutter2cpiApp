@@ -125,6 +125,8 @@ class _LikedPostsState extends State<LikedPosts> {
                             itemBuilder: (context, index) =>
                                 likedPosts[i][index].isBlack
                                     ? Post(
+                                      image: likedPosts[i][index].image,
+                                      profilePic: likedPosts[i][index].profilePic,
                                       links: likedPosts[i][index].links,
                                         type: likedPosts[i][index].type,
                                         likesCount:

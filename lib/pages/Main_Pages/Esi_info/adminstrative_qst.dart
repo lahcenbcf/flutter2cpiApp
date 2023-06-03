@@ -50,7 +50,7 @@ class _AdministrativeState extends State<Administrative> {
           ? ListView.separated(
             
               itemBuilder: (BuildContext context, int index) =>
-                Post(type:  info[index].type, likesCount:  info[index].likesCount, commentsCount:  info[index].commentsCount, title:  info[index].title, description:  info[index].description, date:  info[index].date, userName:  info[index].userName, email:  info[index].email, tag:  info[index].tag, comments:  info[index].comments, isLiked:  info[index].isLiked, controllerTag:  info[index].controllerTag, links:  info[index].links),
+                Post(type:  info[index].type,profilePic: info[index].profilePic, likesCount:  info[index].likesCount, commentsCount:  info[index].commentsCount,image: info[index].image, title:  info[index].title, description:  info[index].description, date:  info[index].date, userName:  info[index].userName, email:  info[index].email, tag:  info[index].tag, comments:  info[index].comments, isLiked:  info[index].isLiked, controllerTag:  info[index].controllerTag, links:  info[index].links),
               itemCount: infoPosts.where((element) => element.tag=='Administrative').toList().length,
               separatorBuilder: (BuildContext context, int index) {
                 return Divider(

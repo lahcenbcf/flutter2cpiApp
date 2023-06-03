@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flluter2cpi/pages/CorePost/core_post_controller.dart';
+import 'package:flluter2cpi/test.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,7 +21,13 @@ class DisplayImage extends StatelessWidget {
     final controller = Get.find<CorePostCotroller>(tag: controllerTag);
 
     final size = MediaQuery.of(context).size;
-
+    /*ImageProvider imageProvider;
+    if(controller.image !=""){
+      imageProvider=MemoryImage(base64.decode(controller.image!));
+    }else{
+      imageProvider=NetworkImage("https://images.unsplash.com/photo-1560169573-5ff6f7f35fe4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=940&q=80");
+    }*/
+    
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
     //
     //
@@ -43,7 +52,7 @@ class DisplayImage extends StatelessWidget {
         ),
       ),
       body: PhotoView(
-        imageProvider: FileImage(controller.image!),
+        imageProvider: MemoryImage(base64.decode(controller.image!)),
         backgroundDecoration: const BoxDecoration(
           color: Colors.black54,
         ),

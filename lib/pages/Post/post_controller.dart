@@ -1,8 +1,13 @@
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
+import 'package:flluter2cpi/pages/Home_page/home_page_view.dart';
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:flluter2cpi/pages/Post/post_v.dart';
 import 'package:get/get.dart';
+
+import '../../services/api.dart';
 
 class PostController extends GetxController {
   int likesCount = 0;
@@ -10,14 +15,14 @@ class PostController extends GetxController {
   bool isLiked = false;
   String controllerTag = "";
   String type = "";
-  File? profilePic;
+  String? profilePic;
 
   //
-  int getIndex(List<Post> myList) {
+  int getIndex(List<Post> myList,String id) {
     bool found = false;
     int i = 0;
     while (!found && i < myList.length) {
-      if (myList[i].controllerTag == controllerTag) {
+      if (myList[i].controllerTag == id) {
         found = true;
       } else {
         i++;
@@ -27,18 +32,23 @@ class PostController extends GetxController {
     return found ? i : -1;
   }
 
-  //
-  onTap() {
+  //like post 
+  likePost()async{
+    
+    var res=await ApiServices.likePost(controllerTag, userInfo != null ? userInfo![4] : "", type);
+    var result=jsonDecode(res.body);
+  }
+  onTap(String postId) {
     int index =0;
     switch (type) {
       case "StuckPosts":
-        index = getIndex(ePosts);
+        index = getIndex(ePosts,postId);
         break;
         case "academicPosts":
-        index = getIndex(aPosts);
+        index = getIndex(aPosts,postId);
         break;
       default:
-      index = getIndex(infoPosts);
+      index = getIndex(infoPosts,postId);
     }
     if (isLiked) {
       likesCount--; // ui
@@ -90,6 +100,7 @@ switch (type) {
     } 
 
     update();
+    likePost();
   }
   //
   //
@@ -118,4 +129,7 @@ switch (type) {
     }
     return "$commentsCount";
   }
+
+  
 }
+

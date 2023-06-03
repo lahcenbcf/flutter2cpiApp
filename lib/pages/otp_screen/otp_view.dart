@@ -150,8 +150,8 @@ class _OtpState extends State<Otp> {
                                     borderRadius: BorderRadius.circular(13.r)),
                               ),
                               onPressed: () async {
-                                Navigator.pushNamed(context,"newPassword");
-                                /*await state.verifyDigits(
+                                
+                                await state.verifyDigits(
                                     state.code1.text +
                                         state.code2.text +
                                         state.code3.text +
@@ -159,12 +159,26 @@ class _OtpState extends State<Otp> {
                                     state2.email_controler1.text);
                                     
                                 if (state.message_success != null) {
-                                  // success
-                                  // ignore: use_build_context_synchronously
+                                 // ignore: use_build_context_synchronously
+                                 Navigator.pushNamed(context,"newPassword");
                                   
                                 } else {
-                                  debugPrint("failed");
-                                }*/
+                                  // ignore: use_build_context_synchronously
+                                  ScaffoldMessenger.of(context)
+                                               .showSnackBar(
+                                             SnackBar(
+                                              dismissDirection:
+                                                   DismissDirection.horizontal,
+                                               content: Text(
+                                                 state.message_failed!,
+                                                 style: GoogleFonts.poppins(
+                                                   fontSize: 15.sp,
+                                                   fontWeight: FontWeight.w300,
+                                                   color: Colors.white,
+                                                ),
+                                               ),
+                                             ),);
+                                }
                               },
                               child: Text(
                                 textAlign: TextAlign.center,

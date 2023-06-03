@@ -4,6 +4,9 @@ import 'dart:io';
 // import 'package:flluter2cpi/Main_Pages/Esi_info/info_ui.dart';
 // import 'package:flluter2cpi/add_post/post_view_mode.dart';
 // import 'package:flluter2cpi/add_post/select_tag_ui.dart';
+import 'package:flluter2cpi/pages/Home_page/home_page_view.dart';
+import 'package:flluter2cpi/pages/Main_Pages/EsiFlow/esi_flow.dart';
+import 'package:flluter2cpi/pages/Main_Pages/Esi_info/info_posts.dart';
 import 'package:flluter2cpi/pages/add_post/post_view_mode.dart';
 import 'package:flluter2cpi/pages/add_post/select_tag_ui.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +15,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import '../Home_page/home_page_view.dart';
 import '../../display_profile_pic.dart';
+import '../Main_Pages/Esi_info/info_ui.dart';
 
 class AddPostScreen extends StatefulWidget {
   const AddPostScreen({super.key});
@@ -24,18 +28,24 @@ class AddPostScreen extends StatefulWidget {
 
 class _AddPostScreenState extends State<AddPostScreen> {
 File? imageFile;
+String fname="";
+
   @override
   Widget build(BuildContext context) {
-    
+    if(userInfo != null){
+  fname=userInfo![2];
+}
     final state = Provider.of<Post_Model>(context);
-
+    final AddPostState = Provider.of<Post_Model>(context,listen: false);
+    print("selected index is $selectedIndex");
+    print("selected tab $selected_tab1");
     Future takePhoto() async {
       final pickedFile =
           await ImagePicker().pickImage(source: ImageSource.camera);
       setState(() {
         if (pickedFile != null) {
           imageFile = File(pickedFile.path);
-          state.pathImage=pickedFile.path;
+          //state.pathImage=pickedFile.path;
           state.imageFile = imageFile;
         }
       });
@@ -48,7 +58,7 @@ File? imageFile;
         if (pickedFile != null) {
           imageFile = File(pickedFile.path);
           
-          state.pathImage=pickedFile.path;
+         // state.pathImage=pickedFile.path;
           state.imageFile = imageFile;
 
         }
@@ -120,25 +130,21 @@ File? imageFile;
                             ),
                             Container(
                               padding: EdgeInsets.only(top: 27.sp),
-                              child: TextButton(
-                                  style: const ButtonStyle(
-                                      backgroundColor: MaterialStatePropertyAll(
-                                          Color.fromRGBO(32, 197, 122, 1))),
-                                  onPressed: () {
-                                   
-                                        context.read<Post_Model>().title;
-              
-                                    if (model.get_title().length > 1) {
-                                      if (model.get_des().length > 1) {
-                                        //if(selectedIndex==3 ){Navigator.of(context).pop(MaterialPageRoute(builder: (context)=>Info_posts()));}
-                                       /* else*/ {Navigator.of(context)
-                                            .push(MaterialPageRoute(
-                                          builder: (context) => const TagChooser(),
-                                        ));
-                                      }
-                                    }
-                                    
-                                  }},
+                              child: TextButton( 
+                                  style: const ButtonStyle( 
+                                      backgroundColor: MaterialStatePropertyAll( 
+                                          Color.fromRGBO(32, 197, 122, 1))), 
+                                  onPressed: () {    context.read<Post_Model>().title; 
+ 
+                                    if (model.get_title().length > 1) { 
+                                      if (model.get_des().length > 1) { 
+                                        Navigator.of(context) 
+                                            .push(MaterialPageRoute( 
+                                          builder: (context) => TagChooser(), 
+                                        )); 
+                                      } 
+                                    } 
+  },
                                   child: const Text(
                                     'Post',
                                     style: TextStyle(color: Colors.white),
@@ -157,7 +163,7 @@ File? imageFile;
                               width: 8.w,
                             ),
                             Text(
-                              '@username',
+                              fname!=""?  '$fname':"username",
                               style: GoogleFonts.inter(
                                   fontSize: 16.sp,
                                   color: Colors.white,
@@ -188,7 +194,7 @@ File? imageFile;
                                 fontSize: 14.sp,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w400),
-                            controller: model.descriptionController,
+                            controller: model.description,
                             decoration: const InputDecoration(
                                 hintStyle: TextStyle(
                                     fontSize: 14, color: Colors.white),
@@ -240,11 +246,11 @@ File? imageFile;
                                       ),
                                     ),
                                     Center(
-                                      child: state.pathImage == null
+                                      child: state.imageFile == null
                                           ? const Text('No image selected')
                                           : Image.file(
-                                              //File(state.imageFile!.path),
-                                              File(state.pathImage),
+                                              File(state.imageFile!.path),
+                                              //File(state.pathImage),
                                               fit: BoxFit.contain,
                                             ),
                                     )

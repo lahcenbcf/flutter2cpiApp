@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flluter2cpi/pages/Post-Info/core_post_info.dart';
 import 'package:flutter/material.dart';
@@ -12,12 +14,13 @@ class PostInfo extends StatelessWidget {
     required this.image,
     required this.title,
     required this.description,
-    required this.date,
+    required this.date
   });
-  final File? image;
+  final String image;
   final String title;
   final String description;
-  final DateTime date;
+  final String date;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -55,18 +58,20 @@ class PostInfo extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-              image != null ? ClipRRect(
+              ClipRRect(
                   borderRadius: BorderRadius.circular(5).r,
                   child: SizedBox(
                     height: 90.h,
                     width: 160.w,
-                    child: Image.file(
-                      File(image!.path),
+                    child: /*Image.file(
+                      /*File(image!.path),
                       fit: BoxFit.cover,
-                      filterQuality: FilterQuality.medium,
-                    ),
+                      filterQuality: FilterQuality.medium,*/
+                     MemoryImage(image)*/
+                     image =="" ?  Image.network("https://images.unsplash.com/photo-1560169573-5ff6f7f35fe4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=940&q=80"):Image.memory(base64.decode(image)) 
+                    ,
                   ),
-                ):SizedBox(height: 90.h,width: 160.w,),
+                ),
                 SizedBox(width: 6.w),
                 Expanded(
                   child: RichText(
@@ -130,7 +135,7 @@ class PostInfo extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 17).w,
               child: Text(
-                Jiffy.parseFromDateTime(date).fromNow(),
+                Jiffy.parseFromDateTime(DateTime.parse(date)).fromNow(),
                 style: GoogleFonts.poppins(
                   color: const Color.fromRGBO(119, 119, 119, 1),
                   fontWeight: FontWeight.w700,

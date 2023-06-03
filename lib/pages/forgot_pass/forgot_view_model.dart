@@ -9,7 +9,7 @@ class View_model extends ChangeNotifier{
   // ignore: non_constant_identifier_names
   TextEditingController email_controler1=TextEditingController();
 // ignore: non_constant_identifier_names
-bool?CanPass;
+bool CanPass=false;
 String?messageToShown;
   bool checkSpaces(String input) {
     int i = 0;
@@ -28,6 +28,7 @@ String?messageToShown;
   }
   return null;
   }
+
 
   sendEmailToVerify(String email)async {
     notifyListeners();

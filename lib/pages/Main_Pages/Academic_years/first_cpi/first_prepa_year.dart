@@ -19,7 +19,7 @@ class _First_prepaState extends State<First_prepa> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    /*return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
         leading: IconButton(
@@ -391,5 +391,394 @@ width:114,
         ),
       ),
     );
+    */
+    
+return Scaffold( 
+      appBar: AppBar( 
+        backgroundColor: Color.fromRGBO(35, 47, 56, 1), 
+        leading: IconButton( 
+          icon: Icon( 
+            Icons.arrow_back, 
+            color: Colors.white, 
+          ), 
+          onPressed: () { 
+            Navigator.of(context).pop(); 
+          }, 
+        ), 
+        title:  
+           Row( 
+             
+             children: [ 
+              SizedBox(width: 67.w), 
+               Text( 
+                  "1CPI's Modules", 
+                  style: GoogleFonts.inter( 
+                      fontSize: 20.sp, 
+                      fontWeight: FontWeight.w800, 
+                      color: Colors.white), 
+                 
+          ), 
+             ], 
+           ), 
+         
+      ), 
+      backgroundColor: Color.fromRGBO(35, 47, 56, 1), 
+      body: SingleChildScrollView( 
+        child: Center( 
+          child: Column( 
+         
+            children: [ 
+               SizedBox( 
+                        height: 50.h, 
+                      ), 
+              Row( 
+                mainAxisAlignment: MainAxisAlignment.start, 
+                crossAxisAlignment: CrossAxisAlignment.center, 
+                mainAxisSize: MainAxisSize.min, 
+                children: [ 
+                  Column( 
+                    children: [ 
+                      Text( 
+                        'Semester 1', 
+                        style: GoogleFonts.inter( 
+                            fontSize: 20.sp, 
+                            fontWeight: FontWeight.w700, 
+                            color: Colors.white), 
+                      ), 
+                      SizedBox( 
+                        height: 49.h, 
+                      ), 
+                      Container(width:114.w, 
+                          decoration: BoxDecoration( 
+                              borderRadius: BorderRadius.circular(8), 
+                              color: Color.fromRGBO(205, 205, 205, 1)), 
+                          child: TextButton( 
+                              child: Text( 
+                                'Algebra 1', 
+                                style: GoogleFonts.inter(textStyle: kmodules), 
+                              ), 
+                              onPressed: () { 
+                                Navigator.of(context).push(MaterialPageRoute( 
+                                    builder: ((context) => Module_content( 
+                                          title: 'Algebra 1', 
+                                          index: 0, 
+                                        )))); 
+                              })), 
+                      SizedBox( 
+                        height: 24.h, 
+                      ), 
+                      Container(width:114.w, 
+                          decoration: BoxDecoration( 
+                              borderRadius: BorderRadius.circular(8), 
+                              color: Color.fromRGBO(205, 205, 205, 1)), 
+                          child: TextButton( 
+                              child: Text( 
+                                'ALSDS', 
+                                style: GoogleFonts.inter(textStyle: kmodules), 
+                              ), 
+                              onPressed: () { 
+                                Navigator.of(context).push(MaterialPageRoute( 
+                                    builder: ((context) => Module_content( 
+                                          title: 'ALSDS', 
+                                          index: 1, 
+                                        )))); 
+                              })), 
+                      SizedBox( 
+                        height: 24.h, 
+                      ), 
+                      Container(width:114.w, 
+                          decoration: BoxDecoration( 
+                              borderRadius: BorderRadius.circular(8), 
+                              color: Color.fromRGBO(205, 205, 205, 1)), 
+                          child: TextButton( 
+                              child: Text( 
+                                'Analysis 1',
+
+
+
+
+
+style: GoogleFonts.inter(textStyle: kmodules), 
+                              ), 
+                              onPressed: () { 
+                                Navigator.of(context).push(MaterialPageRoute( 
+                                    builder: ((context) => Module_content( 
+                                          title: 'Analysis 1', 
+                                          index: 2, 
+                                        )))); 
+                              })), 
+                      SizedBox( 
+                        height: 24.h, 
+                      ), 
+                      Container(width:114.w, 
+                          decoration: BoxDecoration( 
+                              borderRadius: BorderRadius.circular(8), 
+                              color: Color.fromRGBO(205, 205, 205, 1)), 
+                          child: TextButton( 
+                              child: Text('Archi 1', 
+                                  style: GoogleFonts.inter(textStyle: kmodules)), 
+                              onPressed: () { 
+                                Navigator.of(context).push(MaterialPageRoute( 
+                                    builder: ((context) => Module_content( 
+                                          title: 'Archi 1', 
+                                          index: 3, 
+                                        )))); 
+                              })), 
+                      SizedBox( 
+                        height: 24.h, 
+                      ), 
+                      Container( 
+width:114.w, 
+                          decoration: BoxDecoration( 
+                              borderRadius: BorderRadius.circular(8), 
+                              color: Color.fromRGBO(205, 205, 205, 1)), 
+                          child: TextButton( 
+                              child: Text('BWEB', 
+                                  style: GoogleFonts.inter(textStyle: kmodules)), 
+                              onPressed: () { 
+                                Navigator.of(context).push(MaterialPageRoute( 
+                                    builder: ((context) => Module_content( 
+                                          title: 'BWEB', 
+                                          index: 4, 
+                                        )))); 
+                              })), 
+                      SizedBox( 
+                        height: 24.h, 
+                      ), 
+                      Container(width:114.w, 
+                          decoration: BoxDecoration( 
+                              borderRadius: BorderRadius.circular(8), 
+                              color: Color.fromRGBO(205, 205, 205, 1)), 
+                          child: TextButton( 
+                              child: Text('ELEC', 
+                                  style: GoogleFonts.inter(textStyle: kmodules)), 
+                              onPressed: () { 
+                                Navigator.of(context).push(MaterialPageRoute( 
+                                    builder: ((context) => Module_content( 
+                                          title: 'ELECT', 
+                                          index: 5, 
+                                        )))); 
+                              })), 
+                      SizedBox( 
+                        height: 24.h, 
+                      ), 
+                      Container(width:114.w, 
+                          decoration: BoxDecoration( 
+                              borderRadius: BorderRadius.circular(8), 
+                              color: Color.fromRGBO(205, 205, 205, 1)), 
+                          child: TextButton( 
+                              child: Text('SYST 1', 
+                                  style: GoogleFonts.inter(textStyle: kmodules)), 
+                              onPressed: () { 
+                                Navigator.of(context).push(MaterialPageRoute( 
+                                    builder: ((context) => Module_content( 
+                                          title: 'SYST 1', 
+                                          index: 6,
+
+
+)))); 
+                              })), 
+                      SizedBox( 
+                        height: 24.h, 
+                      ), 
+                      Container(width:114.w, 
+                          decoration: BoxDecoration( 
+                              borderRadius: BorderRadius.circular(8), 
+                              color: Color.fromRGBO(205, 205, 205, 1)), 
+                          child: TextButton( 
+                              child: Text('TEE', 
+                                  style: GoogleFonts.inter(textStyle: kmodules)), 
+                              onPressed: () { 
+                                Navigator.of(context).push(MaterialPageRoute( 
+                                    builder: ((context) => Module_content( 
+                                          title: 'TEE', 
+                                          index: 7, 
+                                        )))); 
+                              })), 
+                      SizedBox( 
+                        height: 44.h, 
+                      ), 
+                    ], 
+                  ), 
+                  SizedBox( 
+                    width: 53.w, 
+                  ), 
+                  Container( 
+                      color: Color.fromRGBO(32, 197, 122, 1), 
+                      child: SizedBox(height: 434, width: 3)), 
+                  SizedBox( 
+                    width: 53.w, 
+                  ), 
+                  Column( 
+                    children: [ 
+                      SizedBox(height:25 ,), 
+                      Text( 
+                        'Semester 2', 
+                        style: GoogleFonts.inter( 
+                            fontSize: 20.sp, 
+                            fontWeight: FontWeight.w700, 
+                            color: Colors.white), 
+                      ), 
+                      SizedBox( 
+                        height: 49.h, 
+                      ), 
+                      Container(width:114.w, 
+                          decoration: BoxDecoration( 
+                              borderRadius: BorderRadius.circular(8), 
+                              color: Color.fromRGBO(205, 205, 205, 1)), 
+                          child: TextButton( 
+                              child: Text('ALgebra 2', 
+                                  style: GoogleFonts.inter(textStyle: kmodules)), 
+                              onPressed: () { 
+                                Navigator.of(context).push(MaterialPageRoute( 
+                                    builder: ((context) => Module_content( 
+                                          title: 'Algebra 2', 
+                                          index: 8, 
+                                        )))); 
+                              })), 
+                      SizedBox( 
+                        height: 24.h, 
+                      ), 
+                      Container( 
+                        width: 114.w, 
+                          decoration: BoxDecoration( 
+                              borderRadius: BorderRadius.circular(8), 
+                              color: Color.fromRGBO(205, 205, 205, 1)), 
+                          child: TextButton( 
+                              child: Text('ALSDD', 
+                                  style: GoogleFonts.inter(textStyle: kmodules)), 
+                              onPressed: () { 
+                                Navigator.of(context).push(MaterialPageRoute( 
+                                    builder: ((context) => Module_content( 
+                                          title: 'ALSDD', 
+                                          index: 9, 
+                                        )))); 
+                              })), 
+                      SizedBox( 
+                        height: 24.h, 
+                      ), 
+                      Container( 
+                        width:114.w, 
+                          decoration: BoxDecoration( 
+                              borderRadius: BorderRadius.circular(8), 
+                              color:
+
+Color.fromRGBO(
+
+
+205, 205, 205, 1)), 
+                          child: TextButton( 
+                              child: Text('Analysis 2', 
+                                  style: GoogleFonts.inter(textStyle: kmodules)), 
+                              onPressed: () { 
+                                Navigator.of(context).push(MaterialPageRoute( 
+                                    builder: ((context) => Module_content( 
+                                          title: 'Analysis 2', 
+                                          index: 10, 
+                                        )))); 
+                              })), 
+                      SizedBox( 
+                        height: 24.h, 
+                      ), 
+                      Container(width:114.w, 
+                          decoration: BoxDecoration( 
+                              borderRadius: BorderRadius.circular(8), 
+                              color: Color.fromRGBO(205, 205, 205, 1)), 
+                          child: TextButton( 
+                              child: Text('FELECT 1', 
+                                  style: GoogleFonts.inter(textStyle: kmodules)), 
+                              onPressed: () { 
+                                Navigator.of(context).push(MaterialPageRoute( 
+                                    builder: ((context) => Module_content( 
+                                          title: 'FELECT 1', 
+                                          index: 11, 
+                                        )))); 
+                              })), 
+                      SizedBox( 
+                        height: 24.h, 
+                      ), 
+                      Container(width:114.w, 
+                          decoration: BoxDecoration( 
+                              borderRadius: BorderRadius.circular(8), 
+                              color: Color.fromRGBO(205, 205, 205, 1)), 
+                          child: TextButton( 
+                              child: Text('English 1', 
+                                  style: GoogleFonts.inter(textStyle: kmodules)), 
+                              onPressed: () { 
+                                Navigator.of(context).push(MaterialPageRoute( 
+                                    builder: ((context) => Module_content( 
+                                          title: 'English 1', 
+                                          index: 12, 
+                                        )))); 
+                              })), 
+                      SizedBox( 
+                        height: 24.h, 
+                      ), 
+                      Container(width:114.w, 
+                          decoration: BoxDecoration( 
+                              borderRadius: BorderRadius.circular(8), 
+                              color: Color.fromRGBO(205, 205, 205, 1)), 
+                          child: TextButton( 
+                              child: Text('Mechanics', 
+                                  style: GoogleFonts.inter(textStyle: kmodules)), 
+                              onPressed: () { 
+                                Navigator.of(context).push(MaterialPageRoute( 
+                                    builder: ((context) => Module_content( 
+                                          title: 'Mechanics', 
+                                          index: 13, 
+                                        )))); 
+                              })), 
+                      SizedBox( 
+                        height: 24.h, 
+                      ), 
+                      Container( 
+width:114.w, 
+                          decoration: BoxDecoration( 
+                              borderRadius: BorderRadius.circular(8), 
+                              color: Color.fromRGBO(205, 205, 205, 1)), 
+                          child: TextButton( 
+                              child: Text('SYST 2', 
+                                  style: GoogleFonts.inter(textStyle: kmodules)), 
+                              onPressed: () { 
+                                Navigator.of(context).push(MaterialPageRoute( 
+                                    builder: ((context) => Module_content( 
+                                          title: 'SYST 2', 
+                                          index: 14, 
+                                        )))); 
+                              })), 
+                      SizedBox( 
+                        height: 24.h, 
+                      ), 
+                      Container( 
+                        width: 114.w, 
+                        decoration: BoxDecoration( 
+                            borderRadius: BorderRadius.circular(8), 
+                            color: Color.fromRGBO(205, 205, 205, 1)), 
+                        child: TextButton( 
+                          child: Text('TEO', 
+                              style: GoogleFonts.inter(textStyle: kmodules)), 
+                          onPressed: () { 
+                            Navigator.of(context).push(MaterialPageRoute( 
+                                builder: ((context) => Module_content( 
+                                      title: 'TEO', 
+                                      index: 15, 
+                                    )))); 
+                          }, 
+                        ), 
+                      ), 
+                      SizedBox( 
+                        height: 24.h, 
+                      ), 
+                    ], 
+                  ), 
+                ], 
+              ), 
+            ], 
+          ), 
+        ), 
+      ), 
+    );
+
+    
   }
 }

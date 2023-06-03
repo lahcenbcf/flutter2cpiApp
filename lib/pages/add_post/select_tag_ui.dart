@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../Home_page/home_page_view.dart';
+import '../Main_Pages/Esi_info/info_ui.dart';
 // import '../pages/Home_page/home_page_view.dart';
 
 class TagChooser extends StatefulWidget {
@@ -78,14 +79,18 @@ class _TagChooserState extends State<TagChooser> {
       ItemTag(itemtext: 'General', click: true),
       ItemTag(itemtext: 'Campus', click: true),
       ItemTag(itemtext: 'Administrative', click: true),
-    ],
+     
+
+    ],[
+       ItemTag(click: true, itemtext: "No tag for this post")
+    ]
   ];
 
   @override
   Widget build(BuildContext context) {
     final AddPostState = Provider.of<Post_Model>(context, listen: false);
 
-    List<String> type = ['StuckPosts', 'academicPosts', 'infoPosts'];
+    //List<String> type = ['StuckPosts', 'academicPosts', 'infoPosts',''];
     return Scaffold(
         backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
         body: SafeArea(
@@ -108,40 +113,49 @@ class _TagChooserState extends State<TagChooser> {
                     SizedBox(
                       width: 250.w,
                     ),
-                    Container(
-                      padding: EdgeInsets.only(top: 24.sp),
-                      child: TextButton(
-                          style: const ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(
-                                  Color.fromRGBO(32, 197, 122, 1))),
-                          onPressed: () {
-                            AddPostState.addPost(
-                              AddPostState.get_title(),
-                              AddPostState.get_des(),
-                              AddPostState.imageFile!,
-                              // AddPostState.pathImage!,
-                              selectedIndex == 3
-                                  ? "infoPosts"
-                                  : (selectedIndex == 2
-                                      ? "academicPosts"
-                                      : "StuckPosts"),
-                            );
-                            print("DONE");
-                            // ignore: use_build_context_synchronously
-                            if (Navigator.of(context).canPop()) {
+                    Consumer<Post_Model>( 
+                builder: (context, model, child) =>
+ Container(
+                        padding: EdgeInsets.only(top: 24.sp),
+                        child: TextButton(
+                            style: const ButtonStyle(
+                                backgroundColor: MaterialStatePropertyAll(
+                                    Color.fromRGBO(32, 197, 122, 1))),
+                            onPressed: ()async {
+                              await AddPostState.addPost(
+                                AddPostState.get_title(),
+                                AddPostState.get_des(),
+                                //AddPostState.imageFile!,
+                                // AddPostState.pathImage!,
+                                
+                                    selectedIndex == 1 
+                                        ? "StuckPosts" 
+                                        : selectedIndex == 2 
+                                            ? "academicPosts" 
+                                            : selectedIndex == 3 && 
+                                                    selected_tab1 == 0 
+                                                ? "articles" 
+                                                : "infoPosts",context
+                              );
+                              
                               // ignore: use_build_context_synchronously
-                              Navigator.of(context).pop();
-                            }
-                            // ignore: use_build_context_synchronously
-                            if (Navigator.of(context).canPop()) {
+                              if (Navigator.of(context).canPop()) {
+                                // ignore: use_build_context_synchronously
+                                Navigator.of(context).pop();
+                              }
                               // ignore: use_build_context_synchronously
-                              Navigator.of(context).pop();
-                            }
-                          }, //here
-                          child: const Text(
-                            'Finish',
-                            style: TextStyle(color: Colors.white),
-                          )),
+                              if (Navigator.of(context).canPop()) {
+                                // ignore: use_build_context_synchronously
+                                Navigator.of(context).pop();
+                              }
+                              model.dispose_text();
+                              
+                            }, //here
+                            child: const Text(
+                              'Finish',
+                              style: TextStyle(color: Colors.white),
+                            )),
+                      ),
                     ),
                   ],
                 ),
@@ -175,7 +189,7 @@ class _TagChooserState extends State<TagChooser> {
                             fontSize: 15,
                             color: Colors.white,
                             fontWeight: FontWeight.w400))),
-                MyGridView(containers: containerList[selectedIndex - 1]),
+                MyGridView(containers: selectedIndex==3&&selected_tab1==0?containerList[3]: containerList[selectedIndex - 1]),
               ], //the selected index refer to the tab that
             ),
           ),
@@ -208,7 +222,7 @@ class _ItemTagState extends State<ItemTag> {
   @override
   Widget build(BuildContext context) {
     final AddPostState = Provider.of<Post_Model>(context, listen: false);
-    print(selectedIndex);
+   
     return Row(
       children: [
         Consumer<TagModel>(

@@ -8,6 +8,8 @@ import 'package:iconsax/iconsax.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 
+import '../../../main.dart';
+import '../../CorePost/core_post_controller.dart';
 import '../post_v.dart';
 import 'like_button_v.dart';
 
@@ -33,7 +35,8 @@ class Buttons extends StatelessWidget {
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
     final PostController x =
         Get.put<PostController>(PostController(), tag: controllerTag);
-    print("BUILD");
+    final CorePostCotroller coreController=Get.put<CorePostCotroller>(CorePostCotroller(),tag:controllerTag);
+    
     return Row(
       mainAxisSize: isBlack ? MainAxisSize.max : MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -52,8 +55,6 @@ class Buttons extends StatelessWidget {
               builder: (context, setState) => GetBuilder<PostController>(
                 tag: controllerTag,
                 builder: (state) {
-                  print("BUILD likes    ${state.controllerTag} $controllerTag");
-
                   return Text(
                     state.displayLikes(),
                     style: GoogleFonts.poppins(
@@ -77,10 +78,9 @@ class Buttons extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             InkWell(
-              onTap: () async {
-                final pref = await SharedPreferences.getInstance();
-                bool isGuest = pref.getBool("isGuest") ?? false;
-                if (isGuest) {
+              onTap: ()  {
+             
+                if (isGuestt) {
                   Toast.show(
                     "you are not logged in",
                     duration: Toast.lengthLong,
@@ -124,74 +124,89 @@ class Buttons extends StatelessWidget {
         // more button
         if (isBlack)
           GestureDetector(
-            onTapDown: (details) {
-              showMenu(
-                context: context,
-                position: RelativeRect.fromLTRB(
-                  details.globalPosition.dx,
-                  details.globalPosition.dy,
-                  details.globalPosition.dx,
-                  details.globalPosition.dy,
-                ),
-                color: const Color.fromRGBO(157, 170, 181, 1),
-                items: [
-                  PopupMenuItem(
-                    height: 0,
-                    onTap: () {
-                      isReported = true;
-                      bool found = false;
-                      int i = 0;
-                      print(aPosts.length);
+            onTapDown: (details)  {
+             
+              if (isGuestt) {
+                Toast.show(
+                  "you are not logged in",
+                  duration: Toast.lengthLong,
+                  gravity: Toast.center,
+                  textStyle: GoogleFonts.poppins(
+                    fontSize: 17.sp,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
+                  backgroundColor: const Color.fromRGBO(157, 170, 181, 1),
+                );
+              } else {
+                showMenu(
+                  context: context,
+                  position: RelativeRect.fromLTRB(
+                    details.globalPosition.dx,
+                    details.globalPosition.dy,
+                    details.globalPosition.dx,
+                    details.globalPosition.dy,
+                  ),
+                  color: const Color.fromRGBO(157, 170, 181, 1),
+                  items: [
+                    PopupMenuItem(
+                      height: 0,
+                      onTap: ()async {
+                        isReported = true;
+                        bool found = false;
+                        int i = 0;
+                        
 
-                      while (!found && i < 3) {
-                        List<Post> list = [];
-                        switch (i) {
-                          case 0:
-                            list = ePosts;
-                            break;
-                          case 1:
-                            list = aPosts;
-                            break;
-                          default:
-                            list = infoPosts;
-                        }
-                        int j = 0;
-                        while (!found && j < list.length) {
-                          if (list[j].controllerTag == controllerTag) {
-                            switch (i) {
-                              case 0:
-                                ePosts.removeAt(j);
-
-                                break;
-                              case 1:
-                                aPosts.removeAt(j);
-
-                                break;
-                              default:
-                                infoPosts.removeAt(j);
-                                
-                            }
-                            found = true;
-Get.forceAppUpdate();
-                          } else {
-                            j++;
+                        while (!found && i < 3) {
+                          List<Post> list = [];
+                          switch (i) {
+                            case 0:
+                              list = ePosts;
+                              break;
+                            case 1:
+                              list = aPosts;
+                              break;
+                            default:
+                              list = infoPosts;
                           }
+                          int j = 0;
+                          while (!found && j < list.length) {
+                            if (list[j].controllerTag == controllerTag) {
+                              switch (i) {
+                                case 0:
+                                  ePosts.removeAt(j);
+
+                                  break;
+                                case 1:
+                                  aPosts.removeAt(j);
+
+                                  break;
+                                default:
+                                  infoPosts.removeAt(j);
+                              }
+                              found = true;
+                              Get.forceAppUpdate();
+                              await coreController.reportPost(context);
+                              
+                            } else {
+                              j++;
+                            }
+                          }
+                          i++;
                         }
-                        i++;
-                      }
-                      print(aPosts.length);
-                    },
-                    child: Text(
-                      "Report this post",
-                      style: GoogleFonts.poppins(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w600,
-                        color: const Color.fromRGBO(0, 0, 0, 1),
+                      },
+                      child: Text(
+                        "Report this post",
+                        style: GoogleFonts.poppins(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w600,
+                          color: const Color.fromRGBO(0, 0, 0, 1),
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              );
+                  ],
+                );
+              }
             },
             child: Icon(
               Iconsax.more,

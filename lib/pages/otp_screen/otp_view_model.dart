@@ -15,14 +15,22 @@ class Otp_view extends ChangeNotifier{
   String?message_success;
   // ignore: non_constant_identifier_names
   String?message_failed;
+  cleanDigits(){
+    code4.text="";
+    code1.text="";
+    code2.text="";
+    code3.text="";
+  }
   verifyDigits(String code,String email)async{
     Response response=await ApiServices.verifyDigits(code,email);
     var finalResult=response.body;
+    debugPrint(finalResult);
     if(finalResult=="true"){
       message_success="success";
     }else{
       String message=json.decode(finalResult)?["message"];
       message_failed=message;
     }
+    cleanDigits();
   }
 }

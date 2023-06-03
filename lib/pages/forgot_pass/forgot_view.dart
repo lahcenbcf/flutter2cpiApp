@@ -16,7 +16,7 @@ class ForgotPass extends StatefulWidget {
 class _ForgotPassState extends State<ForgotPass> {
   @override
   Widget build(BuildContext context) {
- //   final state = Provider.of<View_model>(context, listen: false);
+ final state = Provider.of<View_model>(context, listen: false);
     return SafeArea(
         child: Scaffold(
       body: Container(
@@ -178,32 +178,32 @@ class _ForgotPassState extends State<ForgotPass> {
                                                 BorderRadius.circular(13.r)),
                                       ),
                                       onPressed: () async {
-                                        Navigator.pushNamed(context, "otpView");
+                                        //Navigator.pushNamed(context, "otpView");
                                          //call apiService
-                                         //await state.sendEmailToVerify(
-                                             //state.email_controler1.text);
-                                        // if (state.CanPass) {
-                                        //   // ignore: use_build_context_synchronously
-                                        //   Navigator.pushNamed(
-                                        //       context, "otpView");
-                                        // } else {
-                                        //   // ignore: use_build_context_synchronously
-                                        //   ScaffoldMessenger.of(context)
-                                        //       .showSnackBar(
-                                        //     SnackBar(
-                                        //       dismissDirection:
-                                        //           DismissDirection.horizontal,
-                                        //       content: Text(
-                                        //         state.messageToShown!,
-                                        //         style: GoogleFonts.poppins(
-                                        //           fontSize: 15.sp,
-                                        //           fontWeight: FontWeight.w300,
-                                        //           color: Colors.white,
-                                        //         ),
-                                        //       ),
-                                        //     ),
-                                        //   );
-                                        // }
+                                         await state.sendEmailToVerify(
+                                             state.email_controler1.text);
+                                        if (state.CanPass) {
+                                           // ignore: use_build_context_synchronously
+                                           Navigator.pushNamed(
+                                               context, "otpView");
+                                         } else {
+                                           // ignore: use_build_context_synchronously
+                                           ScaffoldMessenger.of(context)
+                                               .showSnackBar(
+                                             SnackBar(
+                                              dismissDirection:
+                                                   DismissDirection.horizontal,
+                                               content: Text(
+                                                 state.messageToShown!,
+                                                 style: GoogleFonts.poppins(
+                                                   fontSize: 15.sp,
+                                                   fontWeight: FontWeight.w300,
+                                                   color: Colors.white,
+                                                ),
+                                               ),
+                                             ),
+                                           );
+                                         }
                                       },
                                       child: Text(
                                         "Submit",

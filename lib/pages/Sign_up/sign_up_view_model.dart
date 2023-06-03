@@ -72,10 +72,24 @@ class SignUpViewModel extends ChangeNotifier {
       return "delete any extra character";
     }else if(isDuplicate){
       return "name entered is Duplicate";
+    }else if(!check(input)){
+      return "must have a space between LastName and FirstName";
     }
     return null;
   }
+  bool check(String input){
+    int j=0;
+    int i=0;
+    while(i<input.length){
+      if(input[i]==" "){
+        j++;
+      }
+      i++;
+    }
+    return (j==1);
 
+    
+  }
   bool checkSpaces(String input) {
     int i = 0;
     while (i < input.length && input[i] != " ") {

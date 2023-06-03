@@ -225,7 +225,7 @@ class _SignUpState extends State<SignUp> {
                             ],
                           ),
                           SizedBox(height: 15.h),
-                          Row(
+                          /*Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const Expanded(
@@ -276,7 +276,7 @@ class _SignUpState extends State<SignUp> {
                                 ),
                               ),
                             ),
-                          ),
+                          ),*/
                           SizedBox(
                             height: 7.h,
                           )

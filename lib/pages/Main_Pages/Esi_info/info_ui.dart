@@ -2,16 +2,21 @@
 // import 'package:flluter2cpi/Main_Pages/Esi_info/info_posts.dart';
 // import 'package:flluter2cpi/Main_Pages/Esi_info/info_questions.dart';
 import 'package:flluter2cpi/display_profile_pic.dart';
+import 'package:flluter2cpi/pages/Home_page/Home_page_viewM.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 
+import '../../../main.dart';
+import '../../Post-Info/post_info_v.dart';
 import '../../add_post/post_ui.dart';
 import 'info_posts.dart';
 import 'info_questions.dart';
 
+
+int selected_tab1=0;
 class Esi_info extends StatefulWidget {
   const Esi_info({super.key});
 
@@ -22,7 +27,6 @@ class Esi_info extends StatefulWidget {
 final List<Widget> content = [const Info_posts(), const Questions()];
 final List<String> title = ["See latest news", "Esi-community"];
 int selcted_tab = 0;
-
 class _Esi_infoState extends State<Esi_info> {
   @override
   Widget build(BuildContext context) {
@@ -31,6 +35,8 @@ class _Esi_infoState extends State<Esi_info> {
         selcted_tab = selected;
       });
     }
+
+
 
     return DefaultTabController(
       length: 2,
@@ -97,34 +103,20 @@ class _Esi_infoState extends State<Esi_info> {
               )),
         ),
         body: content[selcted_tab],
-        floatingActionButton: FloatingActionButton(
-          shape: const CircleBorder(side: BorderSide()),
-          onPressed: () async {
-            final pref = await SharedPreferences.getInstance();
-            bool isGuest = pref.getBool("isGuest") ?? false;
-            if (isGuest) {
-              Toast.show(
-                "you are not logged in",
-                duration: Toast.lengthLong,
-                gravity: Toast.center,
-                textStyle: GoogleFonts.poppins(
-                  fontSize: 17.sp,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
+        floatingActionButton: !isGuestt
+            ? FloatingActionButton(
+                shape: const CircleBorder(side: BorderSide()),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: ((context) => const AddPostScreen())));
+                },
+                backgroundColor: const Color.fromRGBO(32, 197, 122, 1),
+                child: const Icon(
+                  Icons.add,
+                  color: Colors.white,
                 ),
-                backgroundColor: const Color.fromRGBO(157, 170, 181, 1),
-              );
-            } else {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: ((context) => const AddPostScreen())));
-            }
-          },
-          backgroundColor: const Color.fromRGBO(32, 197, 122, 1),
-          child: const Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
-        ),
+              )
+            : null,
       ),
     );
   }

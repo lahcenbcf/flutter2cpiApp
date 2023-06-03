@@ -1,6 +1,6 @@
-
 import 'dart:io';
 import 'dart:math';
+import 'dart:typed_data';
 
 import 'package:flluter2cpi/pages/CorePost/components/profile_icon.dart';
 import 'package:flluter2cpi/pages/CorePost/core_post_controller.dart';
@@ -31,16 +31,16 @@ class Post extends StatelessWidget {
     required this.comments,
     required this.isLiked,
     required this.controllerTag,
-    this.image,
-    this.profilePic,
-     this.isBlack = false,
+    required this.image,
+    required this.profilePic,
+    this.isBlack = false,
     this.isReported = false,
     required this.links,
   });
-  final List<String> links;
+  final List<dynamic> links;
   bool isReported;
-  final File? image;
-  final File? profilePic;
+  final String image;
+  final String profilePic;
   final String type;
   final String title;
   final String description;
@@ -49,13 +49,31 @@ class Post extends StatelessWidget {
   final String tag;
   int likesCount;
   int commentsCount;
-  final DateTime date;
-  final List<CommentClass> comments;
-   bool isBlack;
+  //final DateTime date;
+  final String date;
+  List<dynamic> comments;
+  bool isBlack;
   bool
       isLiked; //check if the user that is logged in, has liked this post before so i just need true or false value
   final String controllerTag;
-
+Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'description': description,
+      'userName':userName,
+      'email':email,
+      'tag':tag,
+      'likesCount':likesCount,
+      'commentsCount':commentsCount,
+      'date':date,
+      'isLiked':isLiked,
+      'type':type,
+      'isReported':isReported,
+      'links':links,
+      'image':image,
+      'profilePic':profilePic
+    };
+  }
   // every post should have a distinct controllerTag in order to have his own state,otherwise the posts that hold the same tagController will share the same state of likeButton
   @override
   Widget build(BuildContext context) {
@@ -66,24 +84,28 @@ class Post extends StatelessWidget {
     final corePostCotroller =
         Get.put<CorePostCotroller>(CorePostCotroller(), tag: controllerTag);
     //init the comments of the post
-    corePostCotroller.comments = comments;
+    //corePostCotroller.comments = comments;
     corePostCotroller.type = type;
     corePostCotroller.controllerTag = controllerTag;
     corePostCotroller.image = image;
+    //corePostCotroller.getComments("lahcen", controllerTag, type);
     // inint the controller
     postController.type = type;
     postController.likesCount = likesCount;
     postController.commentsCount = commentsCount;
     postController.controllerTag = controllerTag;
     postController.isLiked = isLiked;
-    postController.profilePic = profilePic; // this is the profile pic of the post maker
+    postController.profilePic =
+        profilePic; // this is the profile pic of the post maker
 
     @override
     navigatToPostCore() {
+      //corePostCotroller.isVisited=true;
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) {
             return PostCore(
+              type: type,
               links: links,
               title: title,
               description: description,
@@ -91,7 +113,7 @@ class Post extends StatelessWidget {
               userName: userName,
               email: email,
               tag: tag,
-              comments: comments,
+              //comments: comments,
               generatedColor: generatedColor,
               controllerTag: controllerTag,
               isReported: isReported,
@@ -164,7 +186,8 @@ class Post extends StatelessWidget {
                               SizedBox(height: 6.h),
                               //timeAgo
                               Text(
-                                Jiffy.parseFromDateTime(date).fromNow(),
+                                Jiffy.parseFromDateTime(DateTime.parse(date))
+                                    .fromNow(),
                                 style: GoogleFonts.poppins(
                                   color: const Color.fromRGBO(119, 119, 119, 1),
                                   fontWeight: FontWeight.w700,
@@ -179,7 +202,7 @@ class Post extends StatelessWidget {
 
                       Container(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 36.w, vertical: 2.h),
+                            horizontal: 30.w, vertical: 2.h),
                         decoration: BoxDecoration(
                           color: const Color.fromRGBO(32, 197, 122, 1),
                           borderRadius: BorderRadius.circular(15.r),
@@ -239,7 +262,7 @@ class Post extends StatelessWidget {
               margin: const EdgeInsets.all(5).w,
               child: Padding(
                 padding: EdgeInsets.only(
-                  left: 16.w, 
+                  left: 16.w,
                   right: 16.w,
                   bottom: 16.h,
                   top: 16.h,
@@ -281,7 +304,9 @@ class Post extends StatelessWidget {
                                   SizedBox(height: 6.h),
                                   //timeAgo
                                   Text(
-                                    Jiffy.parseFromDateTime(date).fromNow(),
+                                    Jiffy.parseFromDateTime(
+                                            DateTime.parse(date))
+                                        .fromNow(),
                                     style: GoogleFonts.poppins(
                                       color: const Color.fromRGBO(
                                           119, 119, 119, 1),
@@ -315,7 +340,7 @@ class Post extends StatelessWidget {
 
                       //
                       SizedBox(height: 20.h),
-                      if (image != null)
+                      if (image != "")
                         InkWell(
                           onTap: () {
                             navigatToPostCore();

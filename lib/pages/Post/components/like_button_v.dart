@@ -7,6 +7,8 @@ import 'package:iconsax/iconsax.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 
+import '../../../main.dart';
+
 class LikeButton extends StatelessWidget {
   const LikeButton({
     super.key,
@@ -38,10 +40,9 @@ class LikeButton extends StatelessWidget {
           builder: (state) {
             
             return GestureDetector(
-              onTap: () async {
-                final pref = await SharedPreferences.getInstance();
-                bool isGuest = pref.getBool("isGuest") ?? false;
-                if (isGuest) {
+              onTap: ()  {
+             
+                if (isGuestt) {
                   Toast.show(
                     "you are not logged in",
                     duration: Toast.lengthLong,
@@ -54,7 +55,7 @@ class LikeButton extends StatelessWidget {
                     backgroundColor: const Color.fromRGBO(157, 170, 181, 1),
                   );
                 } else {
-                  state.onTap();
+                  state.onTap(controllerTag);
                 }
               },
               child: Icon(

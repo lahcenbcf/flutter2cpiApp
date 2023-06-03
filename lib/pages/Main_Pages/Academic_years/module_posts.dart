@@ -19,6 +19,7 @@ class Module_posts extends StatefulWidget {
 class _Module_postsState extends State<Module_posts> {
   @override
   Widget build(BuildContext context) {
+    print(aPosts[0]);
     List<Post> filteredList = 
         aPosts.where((p) => p.tag == widget.tag).toList();
        
@@ -29,7 +30,7 @@ class _Module_postsState extends State<Module_posts> {
       backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
       body: filteredList.isNotEmpty
           ? ListView.separated(
-              itemBuilder: (context, index) => Post(type: filteredList[index].type, likesCount: filteredList[index].likesCount, commentsCount: filteredList[index].commentsCount, title: filteredList[index].title, description: filteredList[index].description, date: filteredList[index].date, userName: filteredList[index].userName, email: filteredList[index].email, tag: filteredList[index].tag, comments: filteredList[index].comments, isLiked: filteredList[index].isLiked, controllerTag: filteredList[index].controllerTag, links: filteredList[index].links),
+              itemBuilder: (context,index)=>filteredList[index],
               itemCount: filteredList.length,
               separatorBuilder: (BuildContext context, int index) {
                 return Divider(

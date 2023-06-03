@@ -1,5 +1,7 @@
 import 'package:flluter2cpi/pages/Main_Pages/EsiFlow/tag_search.dart';
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
+import 'package:flluter2cpi/pages/Post-Info/post_info_v.dart';
+import 'package:flluter2cpi/services/api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 
 import '../../../display_profile_pic.dart';
+import '../../../main.dart';
 import '../../Post/post_v.dart';
 import '../../add_post/post_ui.dart';
 import '../Editing_profile/edit_profile_ui.dart';
@@ -18,6 +21,7 @@ class EsiFlow extends StatefulWidget {
 
   @override
   State<EsiFlow> createState() => _EsiFlowState();
+  
 }
 
 class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
@@ -25,7 +29,7 @@ class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     List<Post> filtered = ePosts;
     final size = MediaQuery.of(context).size;
-
+    late List<PostInfo> result;
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
     final TabController controller =
         TabController(length: eTags.length + 1, vsync: this);
@@ -33,7 +37,9 @@ class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
     void dispose() {
       super.dispose();
       controller.dispose();
+      ApiServices.saveTags();
     }
+  
 
     return Scaffold(
       backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
@@ -42,11 +48,14 @@ class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
         centerTitle: true,
         backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
         leading: Padding(
-          padding:  EdgeInsets.only(left: 16.0.w, top: 2.0.h),
-          child: InkWell(onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Profile_1st_screen(),));
-            
-          },child: const DisplayProfilePic(22)),
+          padding: EdgeInsets.only(left: 16.0.w, top: 2.0.h),
+          child: InkWell(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const Profile_1st_screen(),
+                ));
+              },
+              child: const DisplayProfilePic(22)),
         ),
 
         // actions: [
@@ -213,7 +222,9 @@ class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
           ? Builder(builder: (context) {
               List<Post> x = selectedTab != 0
                   ? filtered
-                      .where((element) => element.tag == eTags[selectedTab - 1] && !element.isReported)
+                      .where((element) =>
+                          element.tag == eTags[selectedTab - 1] &&
+                          !element.isReported)
                       .toList()
                   : [];
               return Column(
@@ -315,7 +326,11 @@ class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
                               ),
                             )
                           : Expanded(child: DisplayPosts(filteredd: x))
-                      : Expanded(child: DisplayPosts(filteredd: filtered.where((element) =>  !element.isReported).toList())),
+                      : Expanded(
+                          child: DisplayPosts(
+                              filteredd: filtered
+                                  .where((element) => !element.isReported)
+                                  .toList())),
                 ],
               );
             })
@@ -332,34 +347,20 @@ class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
                 ),
               ),
             ),
-  floatingActionButton: FloatingActionButton(
-          shape: const CircleBorder(side: BorderSide()),
-          onPressed: () async {
-            final pref = await SharedPreferences.getInstance();
-            bool isGuest = pref.getBool("isGuest") ?? false;
-            if (isGuest) {
-              Toast.show(
-                "you are not logged in",
-                duration: Toast.lengthLong,
-                gravity: Toast.center,
-                textStyle: GoogleFonts.poppins(
-                  fontSize: 17.sp,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
-                backgroundColor: const Color.fromRGBO(157, 170, 181, 1),
-              );
-            } else {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: ((context) => const AddPostScreen())));
-            }
-          },
-          backgroundColor: const Color.fromRGBO(32, 197, 122, 1),
-          child: const Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
-        ),
+      floatingActionButton: !isGuestt
+          ? FloatingActionButton(
+              shape: const CircleBorder(side: BorderSide()),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: ((context) => const AddPostScreen())));
+              },
+              backgroundColor: const Color.fromRGBO(32, 197, 122, 1),
+              child: const Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+            )
+          : null,
     );
   }
 }
@@ -377,7 +378,23 @@ class DisplayPosts extends StatelessWidget {
     return ListView.separated(
       // physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-        return Post(type: filteredd[index].type, likesCount: filteredd[index].likesCount, commentsCount: filteredd[index].commentsCount, title: filteredd[index].title, description: filteredd[index].description, date: filteredd[index].date, userName: filteredd[index].userName, email: filteredd[index].email, tag: filteredd[index].tag, comments: filteredd[index].comments, isLiked: filteredd[index].isLiked, controllerTag: filteredd[index].controllerTag, isBlack:false, links: filteredd[index].links);
+        return Post(
+          image: filteredd[index].image,
+            type: filteredd[index].type,
+            profilePic: filteredd[index].profilePic,
+            likesCount: filteredd[index].likesCount,
+            commentsCount: filteredd[index].commentsCount,
+            title: filteredd[index].title,
+            description: filteredd[index].description,
+            date: filteredd[index].date,
+            userName: filteredd[index].userName,
+            email: filteredd[index].email,
+            tag: filteredd[index].tag,
+            comments: filteredd[index].comments,
+            isLiked: filteredd[index].isLiked,
+            controllerTag: filteredd[index].controllerTag,
+            isBlack: false,
+            links: filteredd[index].links);
       },
 
       separatorBuilder: (context, index) => Divider(
