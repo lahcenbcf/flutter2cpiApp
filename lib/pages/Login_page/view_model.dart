@@ -44,9 +44,9 @@ class Vieww extends ChangeNotifier {
 
     var finalResult1 = json.decode(res.body);
     if (finalResult1?["message"] != null) {
-       print("calle d   JJJ");
       errorLoginMessage = finalResult1["message"];
     } else {
+      debugPrint("say forget");
      var finalResult=finalResult1["userInfo"];
       //logged successufully
       isLogged = true;

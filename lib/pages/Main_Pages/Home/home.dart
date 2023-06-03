@@ -30,7 +30,7 @@ class _HomeState extends State<Home> {
     List<Post> e = ePosts.where((element) => !element.isReported).toList();
     List<Post> a = aPosts.where((element) => !element.isReported).toList();
     List<Post> i = infoPosts.where((element) => !element.isReported).toList();
-print(followedTags);
+//print(followedTags);
     //
     //
     return SingleChildScrollView(

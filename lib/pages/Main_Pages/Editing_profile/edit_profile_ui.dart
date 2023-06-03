@@ -205,6 +205,8 @@ return Scaffold(
           height: 50.h, 
         ), 
         Row( 
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [ 
             Column( 
               children: [ 
@@ -225,9 +227,7 @@ return Scaffold(
                 ) 
               ], 
             ), 
-            SizedBox( 
-              width: 176.w, 
-            ), 
+           
             TextButton( 
               onPressed: () {Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Profile_2nd_screen()));}, 
               child: Text( 

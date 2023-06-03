@@ -102,10 +102,16 @@ static Future<http.Response> addPost(String title,String ctx,String tag,String p
 String userId=userInfo != null ? userInfo![4] :"";
 //ta3 user
 String email=userInfo != null ? userInfo![3]:"";
+debugPrint(postType);
+debugPrint(userId);
+
 //Uint8List imageBytes =await image.readAsBytes();
-String route=postType == "StuckPosts" ? "stuckPost" : (postType=="academicPosts" ? "academicPost" : "infoPost");
+String route1=postType == "StuckPosts" ? "stuckPost" : (postType=="academicPosts" ? "academicPost" : "infoPost");
+String route2=postType=="articles" ? "addArticle":"addPost";
+debugPrint(route1);
+debugPrint(route2);
 //String base64Image=base64Encode(imageBytes);
-Uri requestUrl=Uri.parse("$_baseUrl/$route/addPost");
+Uri requestUrl=Uri.parse("$_baseUrl/$route1/$route2");
 var response=await http.post(requestUrl,body:{
   "image":bytes,
 "title":title,
@@ -117,6 +123,7 @@ var response=await http.post(requestUrl,body:{
   "date":date
 
 });
+debugPrint(response.body);
 return response;
 }
 
@@ -237,6 +244,7 @@ static Future<http.Response> deleteReportedComment(String commentId,String postT
 //save followed tags
 static Future<http.Response> saveTags()async{
   String userId=userInfo != null ? userInfo![4] :"";
+  debugPrint(userId);
   Uri requestUrl=Uri.parse("$_baseUrl/saveFollowedtags");
   var response=await http.post(requestUrl,body:{
     "userId":userId,

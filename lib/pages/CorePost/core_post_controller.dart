@@ -179,31 +179,42 @@ class CorePostCotroller extends GetxController {
       switch (type) {
         case "StuckPosts":
           int i = getIndex(ePosts);
+          if(ePosts[i].comments.length == 0){
+            comments.insert(0, newComment);
+          }
           ePosts[i].comments.insert(0, newComment); //keep trace
           ePosts[i].commentsCount++;
           //ePosts[i].comments.length++;
-          
+           
           update();
           break;
 
         case "academicPosts":
         
           int i = getIndex(aPosts);
+           if(aPosts[i].comments.length == 0){
+            comments.insert(0, newComment);
+          }
           aPosts[i].comments.insert(0, newComment); //keep trace
           aPosts[i].commentsCount++;
-          int l=aPosts[i].comments.length;
-          debugPrint("length is $l")
+          
 ;          //aPosts[i].comments.length++;
      update();
           break;
         default:
           int i = getIndex(infoPosts);
+           if(infoPosts[i].comments.length == 0){
+            comments.insert(0, newComment);
+          }
           infoPosts[i].comments.insert(0, newComment); //keep trace
           infoPosts[i].commentsCount++;
           //infoPosts[i].comments.length++;
           update();
+         
       }
-      comments.add(newComment);
+
+      
+      
 
       /*await Future.delayed(const Duration(seconds: 6), () {
         print(commentId);

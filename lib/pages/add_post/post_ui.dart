@@ -38,7 +38,6 @@ String fname="";
     final state = Provider.of<Post_Model>(context);
     final AddPostState = Provider.of<Post_Model>(context,listen: false);
     print("selected index is $selectedIndex");
-    print("selected tab $selected_tab1");
     Future takePhoto() async {
       final pickedFile =
           await ImagePicker().pickImage(source: ImageSource.camera);

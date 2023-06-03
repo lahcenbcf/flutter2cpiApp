@@ -1,5 +1,6 @@
 import 'package:flluter2cpi/display_profile_pic.dart';
 import 'package:flluter2cpi/main.dart';
+import 'package:flluter2cpi/pages/Login_page/view_model.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,7 +28,7 @@ class Drawerr extends StatelessWidget {
       mail=userInfo![3];
   }
 
-  print("$fn $ln $mail");
+  final loginState=Provider.of<Vieww>(context,listen: false);
     final size = MediaQuery.of(context).size;
     final state = Provider.of<GuestBoxViewModel>(context, listen: false);
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
@@ -145,7 +146,9 @@ class Drawerr extends StatelessWidget {
               padding: const EdgeInsets.only(top: 300).h,
               child: InkWell(
                 onTap: ()  {
+                  loginState.isLogged=false;
                  Navigator.of(context).pushReplacementNamed("choice");
+                 
                 },
                 splashColor: const Color.fromRGBO(255, 0, 0, 0.7),
                 borderRadius: BorderRadius.circular(10),

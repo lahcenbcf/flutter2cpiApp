@@ -133,7 +133,7 @@ class _TagChooserState extends State<TagChooser> {
                                         : selectedIndex == 2 
                                             ? "academicPosts" 
                                             : selectedIndex == 3 && 
-                                                    selected_tab1 == 0 
+                                                    selcted_tab == 0 
                                                 ? "articles" 
                                                 : "infoPosts",context
                               );
@@ -189,7 +189,7 @@ class _TagChooserState extends State<TagChooser> {
                             fontSize: 15,
                             color: Colors.white,
                             fontWeight: FontWeight.w400))),
-                MyGridView(containers: selectedIndex==3&&selected_tab1==0?containerList[3]: containerList[selectedIndex - 1]),
+                MyGridView(containers: selectedIndex==3?containerList[3 - selcted_tab] :  containerList[selectedIndex - 1]),
               ], //the selected index refer to the tab that
             ),
           ),

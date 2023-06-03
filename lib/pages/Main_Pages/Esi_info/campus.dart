@@ -61,7 +61,15 @@ class _CampusState extends State<Campus> {
                 );
               },
             )
-          : const Text('no posts yet'),
+          : Center(
+              child: Text(
+                'no posts yet',
+                style: GoogleFonts.poppins(
+                  fontSize: 20.sp,
+                  color: Color.fromRGBO(255, 255, 255, 1),
+                ),
+              ),
+            ),
     );
   }
 }

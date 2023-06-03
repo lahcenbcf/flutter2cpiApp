@@ -561,8 +561,7 @@ return Scaffold(
                 color: Colors.white, 
               ), 
               onPressed: () { 
-                Navigator.of(context).push(MaterialPageRoute( 
-                    builder: (context) => Profile_1st_screen())); 
+                Navigator.of(context).pop(); 
               }, 
             ), 
           ), 

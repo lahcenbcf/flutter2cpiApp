@@ -1,4 +1,5 @@
 import 'package:flluter2cpi/constants/theme_Styles.dart';
+import 'package:flluter2cpi/pages/Home_page/home_page_view.dart';
 import 'package:flluter2cpi/pages/Login_page/components/guest_box_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -93,6 +94,8 @@ class _GuestBox extends State<GuestBox> {
                   
                      final pref = await SharedPreferences.getInstance();
                      pref.setBool("isGuest", true);
+                     //pref.setString("guestName",state.fullNameController.text);
+                        guestName=state.fullNameController.text;
                      isGuestt = true;
                       //rediraction to Home page
                       // ignore: use_build_context_synchronously

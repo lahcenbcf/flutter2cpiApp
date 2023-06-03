@@ -112,7 +112,7 @@ class _InputState extends State<Input> {
               size: 23 * iconSize,
               color: const Color.fromRGBO(32, 197, 122, 1),
             )
-          :SizedBox(child: const CircularProgressIndicator(color: Colors.grey,strokeWidth: 0.0,),width: 5.0,height:5.0)
+          :const SizedBox(child: const CircularProgressIndicator(color: Color.fromRGBO(32, 197, 122, 1),),width: 5.0,height:5.0),
         ),
           ),
         ),

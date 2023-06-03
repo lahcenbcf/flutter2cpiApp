@@ -145,6 +145,24 @@ class SchoolYear extends StatelessWidget {
                                 ElevatedButton(
                                   onPressed: () async{
                                     // state.setYear = null;
+                                    showDialog(
+                                            context: context,
+                                            builder: (context) =>
+                                                const Dialog(
+                                                  backgroundColor: Colors.transparent,
+
+                                                  child: Center(
+                                                    child: Padding(
+                                                      padding: EdgeInsets.all(8.0),
+                                                      child: CircularProgressIndicator(
+                                                                                                  color: Color.fromRGBO(
+                                                        32, 197, 122, 1),
+                                                                                                  
+                                                                                                ),
+                                                    ),
+                                                  ),
+                                                ),
+                                          );
                                     if(state.selectedYear !=null){
                                      
                                       await state.pressButton(UserModal(

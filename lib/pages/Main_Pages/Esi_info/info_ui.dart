@@ -16,7 +16,8 @@ import 'info_posts.dart';
 import 'info_questions.dart';
 
 
-int selected_tab1=0;
+int selcted_tab = 0;
+
 class Esi_info extends StatefulWidget {
   const Esi_info({super.key});
 
@@ -26,7 +27,6 @@ class Esi_info extends StatefulWidget {
 
 final List<Widget> content = [const Info_posts(), const Questions()];
 final List<String> title = ["See latest news", "Esi-community"];
-int selcted_tab = 0;
 class _Esi_infoState extends State<Esi_info> {
   @override
   Widget build(BuildContext context) {

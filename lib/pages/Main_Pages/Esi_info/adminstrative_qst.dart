@@ -18,7 +18,8 @@ class Administrative extends StatefulWidget {
 }
 
 class _AdministrativeState extends State<Administrative> {
-   var info = infoPosts.where((element) => element.tag=='Administrative').toList();
+  var info =
+      infoPosts.where((element) => element.tag == 'Administrative').toList();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,12 +47,31 @@ class _AdministrativeState extends State<Administrative> {
           ],
         ),
       ),
-      body: infoPosts.where((element) => element.tag=='Administrative').toList().isNotEmpty
+      body: infoPosts
+              .where((element) => element.tag == 'Administrative')
+              .toList()
+              .isNotEmpty
           ? ListView.separated(
-            
-              itemBuilder: (BuildContext context, int index) =>
-                Post(type:  info[index].type,profilePic: info[index].profilePic, likesCount:  info[index].likesCount, commentsCount:  info[index].commentsCount,image: info[index].image, title:  info[index].title, description:  info[index].description, date:  info[index].date, userName:  info[index].userName, email:  info[index].email, tag:  info[index].tag, comments:  info[index].comments, isLiked:  info[index].isLiked, controllerTag:  info[index].controllerTag, links:  info[index].links),
-              itemCount: infoPosts.where((element) => element.tag=='Administrative').toList().length,
+              itemBuilder: (BuildContext context, int index) => Post(
+                  type: info[index].type,
+                  profilePic: info[index].profilePic,
+                  likesCount: info[index].likesCount,
+                  commentsCount: info[index].commentsCount,
+                  image: info[index].image,
+                  title: info[index].title,
+                  description: info[index].description,
+                  date: info[index].date,
+                  userName: info[index].userName,
+                  email: info[index].email,
+                  tag: info[index].tag,
+                  comments: info[index].comments,
+                  isLiked: info[index].isLiked,
+                  controllerTag: info[index].controllerTag,
+                  links: info[index].links),
+              itemCount: infoPosts
+                  .where((element) => element.tag == 'Administrative')
+                  .toList()
+                  .length,
               separatorBuilder: (BuildContext context, int index) {
                 return Divider(
                   color: Colors.white,
@@ -62,7 +82,15 @@ class _AdministrativeState extends State<Administrative> {
                 );
               },
             )
-          : const Text('no posts yet'),
+          : Center(
+              child: Text(
+                'no posts yet',
+                style: GoogleFonts.poppins(
+                  fontSize: 20.sp,
+                  color: const Color.fromRGBO(255, 255, 255, 1),
+                ),
+              ),
+            ),
     );
   }
 }

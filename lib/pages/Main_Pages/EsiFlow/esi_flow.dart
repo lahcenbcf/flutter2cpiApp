@@ -35,9 +35,11 @@ class _EsiFlowState extends State<EsiFlow> with TickerProviderStateMixin {
         TabController(length: eTags.length + 1, vsync: this);
     @override
     void dispose() {
-      super.dispose();
       controller.dispose();
+      debugPrint("called from save tags");
       ApiServices.saveTags();
+      super.dispose();
+      
     }
   
 

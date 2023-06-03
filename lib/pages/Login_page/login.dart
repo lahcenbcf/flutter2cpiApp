@@ -10,19 +10,18 @@ import 'package:provider/provider.dart';
 import 'view_model.dart';
 
 class Login extends StatefulWidget {
-const  Login({super.key});
- 
+  const Login({super.key});
 
   @override
   State<Login> createState() => _LoginState();
 }
+
 class _LoginState extends State<Login> {
   final GlobalKey<FormState> forme = GlobalKey<FormState>();
 
-
   @override
   Widget build(BuildContext context) {
-    final state=Provider.of<Vieww>(context,listen: false);
+    final state = Provider.of<Vieww>(context, listen: false);
     final size = MediaQuery.of(context).size;
     final iconSize = ((size.height / 844) + (size.width / 390)) / 2;
     return SafeArea(
@@ -30,7 +29,7 @@ class _LoginState extends State<Login> {
         extendBodyBehindAppBar: true,
         appBar: AppBar(backgroundColor: Colors.transparent),
         body: Container(
-           height: 844.h,
+            height: 844.h,
             width: 390.w, //the heigh of the frame
             decoration: const BoxDecoration(
                 gradient: LinearGradient(
@@ -49,7 +48,7 @@ class _LoginState extends State<Login> {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 11.w),
               child: SingleChildScrollView(
-                 child: Column(
+                child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(
@@ -70,11 +69,12 @@ class _LoginState extends State<Login> {
                         width: 170.w,
                         child: Image.asset(
                           'lib/images/guide_text.png',
-                          
-                          
                         ),
                       ),
-                      SizedBox(height: 40.h,width: 20.w,),
+                      SizedBox(
+                        height: 40.h,
+                        width: 20.w,
+                      ),
                       // ListTile(
                       ListTile(
                         title: Text(
@@ -90,7 +90,6 @@ class _LoginState extends State<Login> {
                         padding: EdgeInsets.only(
                             bottom: 57.h, right: 16.w, left: 16.w, top: 16.h),
                         child: Form(
-                          
                           key: forme,
                           child: FrostedGlassBox(
                             width: 358.0.w,
@@ -102,8 +101,8 @@ class _LoginState extends State<Login> {
                                     children: [
                                       TextFormField(
                                         controller: val.email_controler,
-                                        autovalidateMode: AutovalidateMode
-                                            .onUserInteraction,
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
                                         validator: (String? value) =>
                                             val.validate(value),
                                         enabled: true,
@@ -112,14 +111,15 @@ class _LoginState extends State<Login> {
                                         style: GoogleFonts.poppins(
                                           fontSize: 15.sp,
                                           fontWeight: FontWeight.w500,
-                                          color: const Color.fromRGBO(
-                                              0, 0, 0, 1),
+                                          color:
+                                              const Color.fromRGBO(0, 0, 0, 1),
                                         ),
                                         cursorColor:
                                             const Color.fromRGBO(0, 0, 0, 1),
                                         decoration: InputDecoration(
                                           suffixIcon: Padding(
-                                            padding:  EdgeInsets.only(right: 13.w),
+                                            padding:
+                                                EdgeInsets.only(right: 13.w),
                                             child: Icon(
                                               FluentIcons.mail_24_filled,
                                               size: 25 * iconSize,
@@ -150,7 +150,6 @@ class _LoginState extends State<Login> {
                                         ),
                                       ),
                                       SizedBox(height: 20.h),
-                                      
                                       TextFormField(
                                         enabled: true,
                                         controller: state.password_controller,
@@ -162,30 +161,32 @@ class _LoginState extends State<Login> {
                                         style: GoogleFonts.poppins(
                                           fontSize: 15.sp,
                                           fontWeight: FontWeight.w500,
-                                          color: const Color.fromRGBO(
-                                              0, 0, 0, 1),
+                                          color:
+                                              const Color.fromRGBO(0, 0, 0, 1),
                                         ),
                                         decoration: InputDecoration(
                                           suffixIcon: InkWell(
                                             onTap: () => val.switchState(),
                                             child: val.eyeoff
                                                 ? Padding(
-                                                  padding:  EdgeInsets.only(right: 13.w),
-                                                  child: Icon(
+                                                    padding: EdgeInsets.only(
+                                                        right: 13.w),
+                                                    child: Icon(
                                                       FluentIcons.eye_24_filled,
                                                       size: 25 * iconSize,
                                                       color: Colors.black,
                                                     ),
-                                                )
+                                                  )
                                                 : Padding(
-                                                  padding:  EdgeInsets.only(right: 13.w),
-                                                  child: Icon(
+                                                    padding: EdgeInsets.only(
+                                                        right: 13.w),
+                                                    child: Icon(
                                                       FluentIcons
                                                           .eye_off_24_filled,
                                                       size: 25 * iconSize,
                                                       color: Colors.black,
                                                     ),
-                                                ),
+                                                  ),
                                           ),
                                           filled: true,
                                           fillColor: Colors.white,
@@ -199,7 +200,7 @@ class _LoginState extends State<Login> {
                                           ),
                                           focusedBorder: OutlineInputBorder(
                                             borderRadius:
-                                               BorderRadius.circular(10.r),
+                                                BorderRadius.circular(10.r),
                                           ),
                                           hintText: 'Password',
                                           hintStyle: GoogleFonts.poppins(
@@ -213,20 +214,18 @@ class _LoginState extends State<Login> {
                                     ],
                                   ),
                                 ),
-                              
-                                    
-                               
-                                  Padding(
+                                Padding(
                                   padding: const EdgeInsets.only(
                                       left: 140.0,
                                       top: 5.0,
-                                     right: 7,
+                                      right: 7,
                                       bottom: 16),
                                   child: SizedBox(
                                     width: 110.w,
                                     child: InkWell(
                                       onTap: () {
-                                        Navigator.pushNamed(context,"forgotPassword");
+                                        Navigator.pushNamed(
+                                            context, "forgotPassword");
                                       },
                                       child: Text(
                                         'Forget passWord?',
@@ -239,12 +238,11 @@ class _LoginState extends State<Login> {
                                     ),
                                   ),
                                 ),
-                                
                                 ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       foregroundColor: Colors.white,
-                                      backgroundColor: const Color.fromRGBO(
-                                          32, 197, 122, 1),
+                                      backgroundColor:
+                                          const Color.fromRGBO(32, 197, 122, 1),
                                       padding: EdgeInsets.symmetric(
                                         vertical: 8.h,
                                         horizontal: 72.5.w,
@@ -254,40 +252,60 @@ class _LoginState extends State<Login> {
                                             BorderRadius.circular(17.r),
                                       ),
                                     ),
-                                    onPressed: ()async {
-                                      
-                                      if(forme.currentState != null){
-                                        if(forme.currentState!.validate()){
-                                         
-                                          await state.loginUser(UserModal(email: state.email_controler.text, password:state.password_controller.text));
-                                          if(state.isLogged){
+                                    onPressed: () async {
+                                      if (forme.currentState != null) {
+                                        if (forme.currentState!.validate()) {
+                                          showDialog(
+                                            context: context,
+                                            builder: (context) =>
+                                                Dialog(
+                                                  backgroundColor: Colors.transparent,
+
+                                                  child: Center(
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.all(8.0),
+                                                      child: CircularProgressIndicator(
+                                                                                                  color: Color.fromRGBO(
+                                                        32, 197, 122, 1),
+                                                                                                  
+                                                                                                ),
+                                                    ),
+                                                  ),
+                                                ),
+                                          );
+                                          await state.loginUser(UserModal(
+                                              email: state.email_controler.text,
+                                              password: state
+                                                  .password_controller.text));
+                                          if (state.isLogged) {
+                                            
                                             // ignore: use_build_context_synchronously
                                             //Navigator.pushNamed(context, "LogIn");
-                                             Navigator.pushReplacementNamed(context,"HomePage");
+                                            Navigator.pushReplacementNamed(
+                                                context, "HomePage");
                                             // redirection vers home page
                                             // ignore: use_build_context_synchronously
-                                            
-                                          }else{
+                                          } else {
                                             // ignore: use_build_context_synchronously
-                                            ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    dismissDirection:
-                                        DismissDirection.horizontal,
-                                    content: Text(
-                                      state.errorLoginMessage!,
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 15.sp,
-                                        fontWeight: FontWeight.w300,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                );
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                dismissDirection:
+                                                    DismissDirection.horizontal,
+                                                content: Text(
+                                                  state.errorLoginMessage!,
+                                                  style: GoogleFonts.poppins(
+                                                    fontSize: 15.sp,
+                                                    fontWeight: FontWeight.w300,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
+                                            );
                                           }
                                         }
-                                        
-                                      
-                                      }},
+                                      }
+                                    },
                                     child: Text(
                                       'Login',
                                       style: GoogleFonts.poppins(
@@ -296,7 +314,6 @@ class _LoginState extends State<Login> {
                                       ),
                                     )),
                                 SizedBox(height: 31.h),
-
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -316,7 +333,7 @@ class _LoginState extends State<Login> {
                                             color: Colors.white),
                                       ),
                                       onTap: () {
-                                        Navigator.pushNamed(context,"SignUp");
+                                        Navigator.pushNamed(context, "SignUp");
                                       },
                                     ),
                                   ],
@@ -360,8 +377,7 @@ class _LoginState extends State<Login> {
                                 ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(20.r),
+                                      borderRadius: BorderRadius.circular(20.r),
                                       side: const BorderSide(
                                         color: Color.fromRGBO(0, 200, 152, 1),
                                       ),
@@ -388,13 +404,12 @@ class _LoginState extends State<Login> {
                                 ),
                               ],
                             ),
+                          ),
                         ),
                       ),
-                    ),
                     ]),
               ),
-              )),
-    
+            )),
       ),
     );
   }
@@ -407,10 +422,10 @@ fit:fill
 ],
 ),)*/
 class FrostedGlassBox extends StatelessWidget {
- final double width;
+  final double width;
   final Widget child;
- const FrostedGlassBox({super.key, required this.width, required this.child});
-  
+  const FrostedGlassBox({super.key, required this.width, required this.child});
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -424,8 +439,7 @@ class FrostedGlassBox extends StatelessWidget {
                 sigmaX: 7.0,
                 sigmaY: 7.0,
               ),
-              child: SizedBox(
-                  width: width, child: const Text(" ")),
+              child: SizedBox(width: width, child: const Text(" ")),
             ),
             Container(
               padding: const EdgeInsets.only(

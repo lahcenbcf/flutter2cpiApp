@@ -55,7 +55,7 @@ class _ForgotPassState extends State<ForgotPass> {
                     height: 39.h,
                     width: 170.w,
                     child: Image.asset(
-                      '/lib/images/logo.png',
+                      'lib/images/logo.png',
                     ),
                   ),
                   Padding(
