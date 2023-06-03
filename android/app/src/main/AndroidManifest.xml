@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.flluter2cpi">
    <application
-        android:label="flluter2cpi"
+        android:label="Guide"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

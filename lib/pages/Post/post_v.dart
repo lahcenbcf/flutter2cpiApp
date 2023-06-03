@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 
@@ -7,9 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jiffy/jiffy.dart';
 import '../CorePost/components/Image/display_image.dart';
 import '../CorePost/core_post_v.dart';
 import 'components/buttons.dart';
+import '../Post & Comment classes/comment_class.dart';
 import 'components/title_description.dart';
 import 'post_controller.dart';
 
@@ -21,99 +24,108 @@ class Post extends StatelessWidget {
     required this.commentsCount,
     required this.title,
     required this.description,
-    // ignore: non_constant_identifier_names
-    required this.FormattedDate,
-    required this.reportCounts,
+    required this.date,
     required this.userName,
     required this.email,
     required this.tag,
     required this.comments,
     required this.isLiked,
     required this.controllerTag,
-    required this.pathImage,
-    this.image,
-    this.profilePic,
-    required this.isBlack,
-    required this.isReported
+    required this.image,
+    required this.profilePic,
+    this.isBlack = false,
+    this.isReported = false,
+    required this.links,
   });
-  final Uint8List? image;
-  final bool isReported;
-  int reportCounts;
-  final Uint8List? profilePic;
+  final List<dynamic> links;
+  bool isReported;
+  final String image;
+  final String profilePic;
   final String type;
-  final String pathImage;
   final String title;
   final String description;
   final String userName; // the name of the user that create the post
   final String email;
   final String tag;
-   int likesCount;
-   int commentsCount;
-  // ignore: non_constant_identifier_names
-  final String FormattedDate;
-   List<dynamic> comments;
-
-   bool
+  int likesCount;
+  int commentsCount;
+  //final DateTime date;
+  final String date;
+  List<dynamic> comments;
+  bool isBlack;
+  bool
       isLiked; //check if the user that is logged in, has liked this post before so i just need true or false value
-  final String
-      controllerTag; 
- // every post should have a distinct controllerTag in order to have his own state,otherwise the posts that hold the same tagController will share the same state of likeButton
-  final bool isBlack; //check if the user that is logged in, has liked this post before so i just need true or false value
-
+  final String controllerTag;
+Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'description': description,
+      'userName':userName,
+      'email':email,
+      'tag':tag,
+      'likesCount':likesCount,
+      'commentsCount':commentsCount,
+      'date':date,
+      'isLiked':isLiked,
+      'type':type,
+      'isReported':isReported,
+      'links':links,
+      'image':image,
+      'profilePic':profilePic
+    };
+  }
   // every post should have a distinct controllerTag in order to have his own state,otherwise the posts that hold the same tagController will share the same state of likeButton
   @override
   Widget build(BuildContext context) {
     //
     var generatedColor = Random().nextInt(Colors.primaries.length);
     final postController =
-        Get.put(PostController(), tag: controllerTag, permanent: true);
+        Get.put<PostController>(PostController(), tag: controllerTag);
     final corePostCotroller =
-        Get.put(CorePostCotroller(), tag: controllerTag, permanent: true);
+        Get.put<CorePostCotroller>(CorePostCotroller(), tag: controllerTag);
     //init the comments of the post
     //corePostCotroller.comments = comments;
     corePostCotroller.type = type;
     corePostCotroller.controllerTag = controllerTag;
-    corePostCotroller.image = image!;
-    corePostCotroller.pathImage=pathImage;
+    corePostCotroller.image = image;
+    //corePostCotroller.getComments("lahcen", controllerTag, type);
     // inint the controller
     postController.type = type;
     postController.likesCount = likesCount;
     postController.commentsCount = commentsCount;
     postController.controllerTag = controllerTag;
     postController.isLiked = isLiked;
-    postController.profilePic = profilePic;
-    
+    postController.profilePic =
+        profilePic; // this is the profile pic of the post maker
 
     @override
     navigatToPostCore() {
+      //corePostCotroller.isVisited=true;
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) {
             return PostCore(
+              type: type,
+              links: links,
               title: title,
-              reportCounts: reportCounts,
               description: description,
-              Formatteddate: FormattedDate,
+              date: date,
               userName: userName,
               email: email,
               tag: tag,
-              isReported:isReported ,
               //comments: comments,
               generatedColor: generatedColor,
               controllerTag: controllerTag,
+              isReported: isReported,
             );
           },
         ),
       );
     }
 
-    //ZZZZZZZ
     //
-    final size = MediaQuery.of(context).size;
-    final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
-    final CorePostCotroller state = Get.find(tag: controllerTag);
-    //I called get Comments 
-    //state.getComments("lahcen",controllerTag);
+    //
+
     //
 
     //
@@ -151,6 +163,7 @@ class Post extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           ProfileIcon(
+                            links: links,
                             userName: userName,
                             email: email,
                             controllerTag: controllerTag,
@@ -173,8 +186,8 @@ class Post extends StatelessWidget {
                               SizedBox(height: 6.h),
                               //timeAgo
                               Text(
-                                //Jiffy.parseFromDateTime(date).fromNow(),
-                                FormattedDate,
+                                Jiffy.parseFromDateTime(DateTime.parse(date))
+                                    .fromNow(),
                                 style: GoogleFonts.poppins(
                                   color: const Color.fromRGBO(119, 119, 119, 1),
                                   fontWeight: FontWeight.w700,
@@ -189,13 +202,13 @@ class Post extends StatelessWidget {
 
                       Container(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 36.w, vertical: 2.h),
+                            horizontal: 30.w, vertical: 2.h),
                         decoration: BoxDecoration(
                           color: const Color.fromRGBO(32, 197, 122, 1),
                           borderRadius: BorderRadius.circular(15.r),
                         ),
                         child: Text(
-                          tag[0],
+                          tag,
                           style: GoogleFonts.poppins(
                             color: Colors.white,
                             fontWeight: FontWeight.w700,
@@ -237,6 +250,7 @@ class Post extends StatelessWidget {
                   navigatToPostCore: navigatToPostCore,
                   controllerTag: controllerTag,
                   isBlack: isBlack,
+                  isReported: isReported,
                 ),
                 SizedBox(height: 4.h),
               ],
@@ -246,10 +260,6 @@ class Post extends StatelessWidget {
             onTap: navigatToPostCore,
             child: Container(
               margin: const EdgeInsets.all(5).w,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.r),
-                border: Border.all(color: Colors.white, width: 1),
-              ),
               child: Padding(
                 padding: EdgeInsets.only(
                   left: 16.w,
@@ -271,6 +281,7 @@ class Post extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               ProfileIcon(
+                                links: links,
                                 userName: userName,
                                 email: email,
                                 controllerTag: controllerTag,
@@ -293,8 +304,9 @@ class Post extends StatelessWidget {
                                   SizedBox(height: 6.h),
                                   //timeAgo
                                   Text(
-                                    //Jiffy.parseFromDateTime(date).fromNow(),
-                                    FormattedDate,
+                                    Jiffy.parseFromDateTime(
+                                            DateTime.parse(date))
+                                        .fromNow(),
                                     style: GoogleFonts.poppins(
                                       color: const Color.fromRGBO(
                                           119, 119, 119, 1),
@@ -325,51 +337,30 @@ class Post extends StatelessWidget {
                       //for the description
                       //
                       TitleDescription(text: description, size: 15),
-                      // Text(
-                      //   description,
-                      //   style: GoogleFonts.poppins(
-                      //     color: Colors.white,
-                      //     fontWeight: FontWeight.w600,
-                      //     fontSize: 16.sp,
-                      //   ),
-                      // ),
 
                       //
                       SizedBox(height: 20.h),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Buttons(
-                            navigatToPostCore: navigatToPostCore,
-                            controllerTag: controllerTag,
-                            isBlack: isBlack,
-                          ),
-                          if (image != null)
-                            InkWell(
-                              onTap: ()  {
-                                 navigatToPostCore();
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => DisplayImage(
-                                      controllerTag: controllerTag,
-                                      image: image!,
-                                      pathImage: pathImage,
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: Text(
-                                "check photo",
-                                style: GoogleFonts.poppins(
-                                  fontSize: 14.sp,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w800,
+                      if (image != "")
+                        InkWell(
+                          onTap: () {
+                            navigatToPostCore();
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => DisplayImage(
+                                  controllerTag: controllerTag,
                                 ),
                               ),
+                            );
+                          },
+                          child: Text(
+                            "check photo",
+                            style: GoogleFonts.poppins(
+                              fontSize: 14.sp,
+                              color: const Color.fromRGBO(32, 197, 122, 1),
+                              fontWeight: FontWeight.w800,
                             ),
-                        ],
-                      ),
+                          ),
+                        ),
                     ],
                   ),
                 ),

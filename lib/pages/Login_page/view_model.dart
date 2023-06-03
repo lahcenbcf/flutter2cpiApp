@@ -1,13 +1,15 @@
 import 'dart:convert';
+import 'dart:typed_data';
+import 'package:flluter2cpi/pages/Home_page/Home_page_viewM.dart';
+import 'package:flluter2cpi/pages/Home_page/home_page_view.dart';
 import 'package:http/http.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flluter2cpi/pages/Sign_up/User_Modal.dart';
 import 'package:flluter2cpi/services/api.dart';
 import 'package:flluter2cpi/services/sharedServices.dart';
 import 'package:flutter/material.dart';
 
 
-class View extends ChangeNotifier {
+class Vieww extends ChangeNotifier {
   bool eyeoff = true;
   String? errorLoginMessage;
   bool isLogged = false;
@@ -40,15 +42,31 @@ class View extends ChangeNotifier {
   loginUser(UserModal user) async {
     Response res = await ApiServices.loginUser(user);
 
-    var finalResult = json.decode(res.body);
-    if (finalResult?["message"] != null) {
-      errorLoginMessage = finalResult["message"];
+    var finalResult1 = json.decode(res.body);
+    if (finalResult1?["message"] != null) {
+       print("calle d   JJJ");
+      errorLoginMessage = finalResult1["message"];
     } else {
+     var finalResult=finalResult1["userInfo"];
       //logged successufully
       isLogged = true;
+      
       //store uerData Info session in the cacheDB
-      List<String> loginInfo=[finalResult?["username"],finalResult?["email"],finalResult?["_id"]];
+      int position=finalResult["fullName"].indexOf(" ");
+      //print(position);
+      String lastName=finalResult?["fullName"].substring(0,position);
+      String firstName=finalResult?["fullName"].substring(position+1,finalResult?["fullName"].length);
+      String profilePicture=finalResult?["profilePic"];
+      List<String> loginInfo=[finalResult["fullName"],lastName,firstName,finalResult?["email"],finalResult?["_id"],finalResult?["github"],finalResult?["linkedin"],finalResult?["telegram"],profilePicture,finalResult?["bio"]];
+      userInfo=loginInfo;
+      List<dynamic> followedTags=finalResult?["followedTags"];
+      List<String> ftags=followedTags.map<String>((e) =>e ).toList();
+      followedTags=followedTags;
+      Home_page_viewM.updateTags();
       await SharedPrefService.pref.setStringList("loginInfo", loginInfo);
+      await SharedPrefService.pref.setStringList("followedTags", ftags);
+      
       await SharedPrefService.pref.setBool("isGuest",false);
+      
     }
 }}

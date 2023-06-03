@@ -140,14 +140,19 @@ class _NewPasswordState extends State<NewPassword> {
                       SizedBox(height: 39.h),
                       ElevatedButton(
                         onPressed: () async{
-                          if (Navigator.of(context).canPop()) {
+                          /*if (Navigator.of(context).canPop()) {
                             Navigator.of(context).pop();
-                          }
+                          }*/
                           if (formKey.currentState != null) {
                             if (formKey.currentState!.validate()) {
-
+                              await state.setNewPassword(state.newPasswordController.text,state2.email_controler1.text);
+                             state.cleanInputs(state2.email_controler1.text);
                              // await state.setNewPassword(state.newPasswordController.text,state2.email_controler1.text);
-                              showModalBottomSheet(
+                              if(state.success){
+                                // ignore: use_build_context_synchronously
+                                
+                                // ignore: use_build_context_synchronously
+                                showModalBottomSheet(
                                 backgroundColor: Colors.transparent,
                                 context: context,
                                 builder: (context) {
@@ -217,15 +222,7 @@ class _NewPasswordState extends State<NewPassword> {
                                   );
                                 },
                               );
-                              
-                                // ignore: use_build_context_synchronously
-                                
-                              }
-                              
-                            }
-                             await state.setNewPassword(state.newPasswordController.text,state2.email_controler1.text);
-                             if(state.message!=null){
-                                // ignore: use_build_context_synchronously
+                              }else{
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     dismissDirection:
@@ -240,7 +237,16 @@ class _NewPasswordState extends State<NewPassword> {
                                     ),
                                   ),
                                 );
-                             }
+                              }
+                              
+                              
+                                // ignore: use_build_context_synchronously
+                                
+                              }
+                              
+                            }
+                             
+                             
                           }
                         ,
                         style: ElevatedButton.styleFrom(

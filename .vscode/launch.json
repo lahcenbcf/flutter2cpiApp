@@ -4,9 +4,12 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+<<<<<<< HEAD
     
         
 
+=======
+>>>>>>> 3c064d0f4eb7a009ce160df54a23101d38484312
         {
             "name": "flutter2cpiApp",
             "request": "launch",

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flluter2cpi/pages/Home_page/home_page_view.dart';
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +7,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../services/sharedServices.dart';
+import '../../Post/post_v.dart';
 import 'display_followed_tags.dart';
 
 class Home extends StatefulWidget {
@@ -15,12 +19,18 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  
   @override
   Widget build(BuildContext context) {
     //
-    PageController controller = PageController(initialPage: 0,viewportFraction: 0.95);
-   
+    PageController controller =
+        PageController(initialPage: 0, viewportFraction: 0.9);
+
     //
+    List<Post> e = ePosts.where((element) => !element.isReported).toList();
+    List<Post> a = aPosts.where((element) => !element.isReported).toList();
+    List<Post> i = infoPosts.where((element) => !element.isReported).toList();
+print(followedTags);
     //
     //
     return SingleChildScrollView(
@@ -59,14 +69,18 @@ class _HomeState extends State<Home> {
             ),
           ),
           SizedBox(height: 40.h),
-          Padding(
-            padding: const EdgeInsets.only(left: 16).w,
+          Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25.r),
+                color: const Color.fromRGBO(32, 197, 122, 1)),
+            margin: const EdgeInsets.only(left: 16).w,
+            padding: EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 16.0.w),
             child: Text(
               "Coding q&a",
               style: GoogleFonts.poppins(
-                fontSize: 18.sp,
+                fontSize: 20.sp,
                 fontWeight: FontWeight.w700,
-                color: Colors.white,
+                color: const Color.fromRGBO(255, 255, 255, 1),
               ),
             ),
           ),
@@ -85,34 +99,53 @@ class _HomeState extends State<Home> {
           ),
           SizedBox(height: 16.h),
 
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0).w,
-            child: InkWell(
-              onTap: () {
-                selectedIndex = 1;
-                Get.forceAppUpdate();
-              },
-              child: Text(
-                "... See more ",
-                style: GoogleFonts.poppins(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w700,
-                  color: const Color.fromRGBO(32, 197, 122, 1),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(height: 13.h),
           //
           LimitedBox(
-            maxHeight: 250,
+            maxHeight: 250.0.h,
             child: PageView.builder(
-              itemCount: 3,
+              itemCount:e.length>4 ?  4 : e.length+1 ,
               controller: controller,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5).w,
-                child: ePosts[index],
+                child: SizedBox(
+                  height: 260.h,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: (e.length>4 ? index != 3 : index!=e.length ) 
+                      ?Post(
+                            type: e[index].type,
+                            image: e[index].image,
+                            profilePic: e[index].profilePic,
+                            likesCount: e[index].likesCount,
+                            commentsCount: e[index].commentsCount,
+                            title: e[index].title,
+                            description: e[index].description,
+                            date: e[index].date,
+                            userName: e[index].userName,
+                            email: e[index].email,
+                            tag: e[index].tag,
+                            comments: e[index].comments,
+                            isLiked: e[index].isLiked,
+                            controllerTag: e[index].controllerTag,
+                            isBlack: true,
+                            links: e[index].links)  // ?  ePosts.where((element) => !element.isReported).toList()[index]
+                        : InkWell(
+                            onTap: () {
+                              selectedIndex = 1;
+                              Get.forceAppUpdate();
+                            },
+                            child: Text(
+                              "... See more ",
+                              style: GoogleFonts.poppins(
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w700,
+                                color: const Color.fromRGBO(32, 197, 122, 1),
+                              ),
+                            ),
+                          ),
+                  ),
+                ),
               ),
             ),
           ),
@@ -120,14 +153,18 @@ class _HomeState extends State<Home> {
           //
           //
           SizedBox(height: 25.h),
-          Padding(
-            padding: const EdgeInsets.only(left: 16).w,
+          Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(25.r)),
+                color: const Color.fromRGBO(32, 197, 122, 1)),
+            margin: const EdgeInsets.only(left: 16).w,
+            padding: EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 16.0.w),
             child: Text(
               "Academic q&a",
               style: GoogleFonts.poppins(
-                fontSize: 18.sp,
+                fontSize: 20.sp,
                 fontWeight: FontWeight.w700,
-                color: Colors.white,
+                color: const Color.fromRGBO(255, 255, 255, 1),
               ),
             ),
           ),
@@ -146,48 +183,72 @@ class _HomeState extends State<Home> {
           ),
           SizedBox(height: 16.h),
 
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0).w,
-            child: InkWell(
-              onTap: () {
-                selectedIndex = 2;
-                Get.forceAppUpdate();
-              },
-              child: Text(
-                "... See more ",
-                style: GoogleFonts.poppins(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w700,
-                  color: const Color.fromRGBO(32, 197, 122, 1),
-                ),
-              ),
-            ),
-          ),
           //
-          SizedBox(height: 13.h),
+
           LimitedBox(
-            maxHeight: 250,
+            maxHeight: 250.0.h,
             child: PageView.builder(
-              itemCount: 3,
+              itemCount: a.length>4 ?  4 : a.length+1 ,
               controller: controller,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5).w,
-                child: aPosts[index],
+                child: SizedBox(
+                  height: 260.h,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: (a.length>4 ? index != 3 : index!=a.length ) 
+                        ? Post(
+                            type: a[index].type,
+                            likesCount: a[index].likesCount,
+                            image: a[index].image,
+                            commentsCount: a[index].commentsCount,
+                            title: a[index].title,
+                            description: a[index].description,
+                            date: a[index].date,
+                            userName: a[index].userName,
+                            email: a[index].email,
+                            profilePic: a[index].profilePic,
+                            tag: a[index].tag,
+                            comments: a[index].comments,
+                            isLiked: a[index].isLiked,
+                            controllerTag: a[index].controllerTag,
+                            isBlack: true,
+                            links: a[index].links)
+                        : InkWell(
+                            onTap: () {
+                              selectedIndex = 2;
+                              Get.forceAppUpdate();
+                            },
+                            child: Text(
+                              "... See more ",
+                              style: GoogleFonts.poppins(
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w700,
+                                color: const Color.fromRGBO(32, 197, 122, 1),
+                              ),
+                            ),
+                          ),
+                  ),
+                ),
               ),
             ),
           ),
           //
           //
           SizedBox(height: 25.h),
-          Padding(
-            padding: const EdgeInsets.only(left: 16).w,
+          Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25.r),
+                color: const Color.fromRGBO(32, 197, 122, 1)),
+            margin: const EdgeInsets.only(left: 16).w,
+            padding: EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 16.0.w),
             child: Text(
               "News and Information",
               style: GoogleFonts.poppins(
-                fontSize: 18.sp,
+                fontSize: 20.sp,
                 fontWeight: FontWeight.w700,
-                color: Colors.white,
+                color: const Color.fromRGBO(255, 255, 255, 1),
               ),
             ),
           ),
@@ -205,33 +266,54 @@ class _HomeState extends State<Home> {
             ),
           ),
           SizedBox(height: 16.h),
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0).w,
-            child: InkWell(
-              onTap: () {
-                selectedIndex = 3;
-                Get.forceAppUpdate();
-              },
-              child: Text(
-                "check for more",
-                style: GoogleFonts.poppins(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w700,
-                  color: const Color.fromRGBO(32, 197, 122, 1),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(height: 13.h),
+
           LimitedBox(
-            maxHeight: 250,
+            maxHeight: 250.0.h,
             child: PageView.builder(
-              itemCount: 3,
+              itemCount:i.length>4 ?  4 : i.length+1,
               controller: controller,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5).w,
-                child: iPosts[index],
+                child: SizedBox(
+                  height: 260,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: (i.length>4 ? index != 3 : index!=i.length ) 
+                        ? Post(
+                            type: i[index].type,
+                            image: i[index].image,
+                            profilePic: i[index].profilePic,
+                            likesCount: i[index].likesCount,
+                            commentsCount: i[index].commentsCount,
+                            title: i[index].title,
+                            description: i[index].description,
+                            date: i[index].date,
+                            userName: i[index].userName,
+                            email: i[index].email,
+                            tag: i[index].tag,
+                            comments: i[index].comments,
+                            isLiked: i[index].isLiked,
+                            controllerTag: i[index].controllerTag,
+                            isBlack: true,
+                            links: i[index].links,
+                          )
+                        : InkWell(
+                            onTap: () {
+                              selectedIndex = 3;
+                              Get.forceAppUpdate();
+                            },
+                            child: Text(
+                              "check for more",
+                              style: GoogleFonts.poppins(
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w700,
+                                color: const Color.fromRGBO(32, 197, 122, 1),
+                              ),
+                            ),
+                          ),
+                  ),
+                ),
               ),
             ),
           ),
@@ -240,3 +322,17 @@ class _HomeState extends State<Home> {
     );
   }
 }
+
+// PageView.builder(
+//               itemCount: infoPosts
+//                   .where((element) => element.isBlack == true)
+//                   .toList()
+//                   .length,
+//               controller: controller,
+//               physics: const BouncingScrollPhysics(),
+//               itemBuilder: (context, index) => Padding(
+//                 padding: const EdgeInsets.symmetric(horizontal: 5).w,
+//                 child: infoPosts[index],
+//               ),
+//             ),
+

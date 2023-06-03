@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flluter2cpi/services/api.dart';
-import 'package:flluter2cpi/pages/Sign_up/User_Modal.dart';
 class SignUpViewModel extends ChangeNotifier {
   bool _isEyeOffPassword = false;
   bool _isEyeOffConfirmPassword = false;
-  bool _isDuplicate=false;
+  final bool _isDuplicate=false;
 
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -74,10 +72,24 @@ class SignUpViewModel extends ChangeNotifier {
       return "delete any extra character";
     }else if(isDuplicate){
       return "name entered is Duplicate";
+    }else if(!check(input)){
+      return "must have a space between LastName and FirstName";
     }
     return null;
   }
+  bool check(String input){
+    int j=0;
+    int i=0;
+    while(i<input.length){
+      if(input[i]==" "){
+        j++;
+      }
+      i++;
+    }
+    return (j==1);
 
+    
+  }
   bool checkSpaces(String input) {
     int i = 0;
     while (i < input.length && input[i] != " ") {

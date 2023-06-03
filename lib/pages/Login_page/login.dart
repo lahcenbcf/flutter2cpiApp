@@ -22,7 +22,7 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    final state=Provider.of<View>(context,listen: false);
+    final state=Provider.of<Vieww>(context,listen: false);
     final size = MediaQuery.of(context).size;
     final iconSize = ((size.height / 844) + (size.width / 390)) / 2;
     return SafeArea(
@@ -97,7 +97,7 @@ class _LoginState extends State<Login> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Consumer<View>(
+                                Consumer<Vieww>(
                                   builder: (context, val, child) => Column(
                                     children: [
                                       TextFormField(
@@ -246,7 +246,7 @@ class _LoginState extends State<Login> {
                                       backgroundColor: const Color.fromRGBO(
                                           32, 197, 122, 1),
                                       padding: EdgeInsets.symmetric(
-                                        vertical: 10.h,
+                                        vertical: 8.h,
                                         horizontal: 72.5.w,
                                       ),
                                       shape: RoundedRectangleBorder(
@@ -258,11 +258,12 @@ class _LoginState extends State<Login> {
                                       
                                       if(forme.currentState != null){
                                         if(forme.currentState!.validate()){
-                                          Navigator.pushNamed(context,"HomePage");
+                                         
                                           await state.loginUser(UserModal(email: state.email_controler.text, password:state.password_controller.text));
                                           if(state.isLogged){
                                             // ignore: use_build_context_synchronously
-                                            Navigator.pushNamed(context, "LogIn");
+                                            //Navigator.pushNamed(context, "LogIn");
+                                             Navigator.pushReplacementNamed(context,"HomePage");
                                             // redirection vers home page
                                             // ignore: use_build_context_synchronously
                                             
@@ -408,7 +409,7 @@ fit:fill
 class FrostedGlassBox extends StatelessWidget {
  final double width;
   final Widget child;
- const FrostedGlassBox({required this.width, required this.child});
+ const FrostedGlassBox({super.key, required this.width, required this.child});
   
   @override
   Widget build(BuildContext context) {

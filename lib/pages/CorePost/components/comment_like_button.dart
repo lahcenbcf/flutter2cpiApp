@@ -10,12 +10,13 @@ class CommentLikeButton extends StatefulWidget {
     super.key,
     required this.controllerTag,
     required this.index,
-    required this.commentId
+    required this.commentOid,
+    required this.isLiked
   });
   final String controllerTag;
   final int index;
-  final String commentId;
-
+  final String commentOid;
+  final bool isLiked;
   @override
   State<CommentLikeButton> createState() => _CommentLikeButtonState();
 }
@@ -29,7 +30,8 @@ class _CommentLikeButtonState extends State<CommentLikeButton> {
     //
     //
     final size = MediaQuery.of(context).size;
-
+    /*final CorePostCotroller state =
+        Get.find<CorePostCotroller>(tag: widget.controllerTag);*/
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
     //
     //
@@ -37,6 +39,7 @@ class _CommentLikeButtonState extends State<CommentLikeButton> {
     //
 
     return GetBuilder<CorePostCotroller>(
+     
       tag: widget.controllerTag,
       builder: (state) => Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -46,9 +49,9 @@ class _CommentLikeButtonState extends State<CommentLikeButton> {
             duration: const Duration(milliseconds: 1000),
             curve: Curves.fastLinearToSlowEaseIn,
             child: GestureDetector(
-              onTap: () => state.onTap(widget.index,state.commentId!),
+              onTap: () => state.onTap(widget.index,widget.commentOid),
               child: Icon(
-                state.comments[widget.index].isLiked ? Iconsax.heart5 : Iconsax.heart4,
+                widget.isLiked ? Iconsax.heart5 : Iconsax.heart4,
                 size: 20 * iconSize,
                 color: Colors.white,
               ),

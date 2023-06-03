@@ -1,52 +1,67 @@
-
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:intl/intl.dart';
+
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/comment_class.dart';
+import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/distinct_tags.dart';
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:flluter2cpi/pages/Post/post_controller.dart';
 import 'package:flluter2cpi/pages/Post/post_v.dart';
-import 'package:flluter2cpi/services/api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+
+import '../../services/api.dart';
+import '../Home_page/home_page_view.dart';
+import 'components/input.dart';
 
 class CorePostCotroller extends GetxController {
-  Uint8List image=Uint8List(1000);
-  String?pathImage;
-  //String?image;
+  String? image;
+  String? commentId;
+  bool isVisited = false;
   final TextEditingController controller = TextEditingController();
   final FocusNode unitCodeCtrlFocusNode = FocusNode();
   List<CommentClass> comments = [];
-  String ?commentId;
   String type = "";
+  String ?coid;
   String controllerTag = "";
-  String?messageError;
+  bool reportIsSuccess=false;
+  
   //
   //
-  //I called getComments in post-v to prepare the comments for display 
-  getComments(String userName,String postId)async{
-    var result=await ApiServices.getComments(userName, postId);
-    List<dynamic> listOfComments=jsonDecode(result.body);
-    //print(comments);
-    if(listOfComments.isNotEmpty){
-    comments=listOfComments.map<CommentClass>((c) => CommentClass(userName:c?["author"] , email: "hhhh", comment: c?["text"], likesCount: c?["likes"].length, commentsCount: c?["replys"].length, formattedDate: c?["date"],isLiked: c?["isLiked"],commentId: c?["_id"],profilePic: c?["ProfilePic"])).toList();
-    // search index to push the comments to the post looks for
-    //print(comments);
-    int idx=getIndex(ePosts);
-    if(idx != -1){
-     // print("called");
-      ePosts[idx].comments=comments;
-      //print(ePosts[idx].comments);
-      //print(ePosts[idx].commentsCount);
-    }
-    }
-    //print(comments);
 
-    
+  Future<List<CommentClass>> getComments(
+      String userName, String postId, String type) async {
+    var result = await ApiServices.getComments(userName, postId, type);
+    List<dynamic> listOfComments = jsonDecode(result.body);
+    //print(comments);
+    List<CommentClass> list = [];
+    if (listOfComments.isNotEmpty) {
+      list = listOfComments
+          .map<CommentClass>((c) => CommentClass(
+              userName: c?["author"],
+              email: "hhhh",
+              comment: c?["text"],
+              likesCount: c?["likes"].length,
+              commentsCount: c?["replys"].length,
+              date: c?["date"],
+              isLiked: c?["isLiked"],
+              commentId: c?["_id"],
+              profilePic: c?["profilePic"] != "" ? (c?["profilePic"]) : "",
+              isReported: c?["isReported"],
+              /*pathProfile: c?["pathProfile"],*/ links: c?["links"]))
+          .toList();
+      comments = list;
+      //int idx=getIndex(ePosts);
+      //print("index is $idx");
+      //ePosts[idx].comments=list;
+    }
+
+    return list;
   }
+
   int getIndex(List<Post> myList) {
     bool found = false;
     int i = 0;
@@ -71,17 +86,53 @@ class CorePostCotroller extends GetxController {
     return (spaces == controller.text.length);
   }
 
-//add Comment
-addComment(String date)async{
-  var res=await ApiServices.addComment("lahcen",controllerTag,type,controller.text,date);
-  var result=res.body;
-  //print(result);
-  //I should return the Id of comment added then create a new Comment with this Id 
-  if(result!=false){
-    commentId=result;//insertedId of the comment
+  //add Comment
+  addComment(String date, String txt, BuildContext ctx) async {
+  
+    var res = await ApiServices.addComment(
+        controllerTag, type, txt, date);
+    // if(res.body != null){
+      var result=jsonDecode(res.body);
+     
+      if(result?["id"] != null){
+        coid = result["id"];
+        /*ScaffoldMessenger.of(ctx).showSnackBar(
+      SnackBar(
+        dismissDirection: DismissDirection.vertical,
+        duration: const Duration(milliseconds: 1500),
+        content: Text(
+          "your comment added successufully",
+          style: GoogleFonts.poppins(
+            fontSize: 15.sp,
+            fontWeight: FontWeight.w300,
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+      }else{
+        ScaffoldMessenger.of(ctx).showSnackBar(
+      SnackBar(
+        dismissDirection: DismissDirection.vertical,
+        duration: const Duration(milliseconds: 1500),
+        content: Text(
+          "failed to add the comment",
+          style: GoogleFonts.poppins(
+            fontSize: 15.sp,
+            fontWeight: FontWeight.w300,
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );*/
+      }
+    
+    // ignore: use_build_context_synchronously
+     //insertedId of the comment
   }
-}
-  sendComment(BuildContext context) {
+
+  sendComment(BuildContext context) async {
+    
     if (controller.text.isEmpty || checkSpaces()) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -98,80 +149,161 @@ addComment(String date)async{
         ),
       );
     } else {
-      // ignore: non_constant_identifier_names
-      String FormattedDate=DateFormat("yyyy-MM-dd kk:mm").format(DateTime.now());
+     Input.hint="posting comment ...";
+
+     Input.isComment=true;
+    
+      String date=DateFormat("yyyy-MM-dd mm:kk").format(DateTime.now());
+ 
+      String text=controller.text;
+      controller.text="";
+      await addComment(date,text,context);
+      //print(coid);
+  
+      
       unitCodeCtrlFocusNode.unfocus();
+      
       var newComment = CommentClass(
-        userName: "aboubakr", // add the user info here
-        email: "email",// and here
-        comment: controller.text,// do
-        likesCount: 0,// not
-        isLiked: false,
-        commentId: "",
-        profilePic: new Uint8List(888),
-        commentsCount: 0,// change
-        formattedDate: FormattedDate, // needed
+        links:userInfo!= null ? [userInfo![6], userInfo![5], userInfo![7]] : const ["", "", ""], // add the links of the user here and the list should be always of length 3 so if any link is missing just add ""  , link order is linkedin github telegram
+        profilePic: userInfo != null ? (userInfo![8] !="" ? userInfo![8] : "") :"", // if Abouabkr have profile pic then add it
+        userName: userInfo !=null ? userInfo![0] :"", // add the user info here
+        email: userInfo !=null ? userInfo![3] :"", // and here
+        comment: text, // do
+        likesCount: 0, // not
+        commentsCount: 0, // change
+        date: date,
+        commentId: coid!, // those
       );
-      if (type == "StuckPosts") {
-        int i = getIndex(ePosts);
-        ePosts[i].comments.insert(0, newComment); //keep trace
-        ePosts[i].commentsCount++;
-      } else {
-        int i = getIndex(aPosts);
-        aPosts[i].comments.insert(0, newComment); //keep trace
-        aPosts[i].commentsCount++;
+      
+//print("length${ePosts.length}");
+      switch (type) {
+        case "StuckPosts":
+          int i = getIndex(ePosts);
+          ePosts[i].comments.insert(0, newComment); //keep trace
+          ePosts[i].commentsCount++;
+          //ePosts[i].comments.length++;
+          
+          update();
+          break;
+
+        case "academicPosts":
+        
+          int i = getIndex(aPosts);
+          aPosts[i].comments.insert(0, newComment); //keep trace
+          aPosts[i].commentsCount++;
+          int l=aPosts[i].comments.length;
+          debugPrint("length is $l")
+;          //aPosts[i].comments.length++;
+     update();
+          break;
+        default:
+          int i = getIndex(infoPosts);
+          infoPosts[i].comments.insert(0, newComment); //keep trace
+          infoPosts[i].commentsCount++;
+          //infoPosts[i].comments.length++;
+          update();
       }
+      comments.add(newComment);
 
-     
-      final PostController state = Get.find(tag: controllerTag);
-      state.commentsCount++; // to update the comment count in the ui
+      /*await Future.delayed(const Duration(seconds: 6), () {
+        print(commentId);
+        switch (type) {
+          case "StuckPosts":
+            int i = getIndex(ePosts);
+            ePosts[i].comments[0].commentId = coid; //keep trace
 
-      update();
-      //addComment(FormattedDate);
-      controller.text = "";
-      //addComment();
+            break;
+          case "academicPosts":
+            int i = getIndex(aPosts);
+            aPosts[i].comments[0].commentId = coid; //keep trace
+
+            break;
+          default:
+            int i = getIndex(infoPosts);
+            infoPosts[i].comments[0].commentId = coid; //keep trace
+        }
+      });*/
     }
+    //isVisited=true;
+//print("length${ePosts.length}");
+    Input.hint="add comment";
+    Input.isComment=false;
+    
+
+    debugPrint("wiiiiiiiiiiiiiiiiiiii");
+    
   }
 
   //
-  //
-  //like Comment operation
-  likeComment(String commentId,String uid)async{
-    var res=await ApiServices.likeComment(commentId, uid);
-    var result=jsonDecode(res.body);
-    if(result==false){
-      messageError="something went wrong repeat again";
-    }
+  //like comment
+  likeComment(String commentId) async {
+    var res = await ApiServices.likeComment(commentId);
+    var result = jsonDecode(res.body);
   }
-  onTap(int index,String commentId) {
-    int postNumber = type == "StuckPosts" ? getIndex(ePosts) : getIndex(aPosts);// index of the post
+
+  //
+  onTap(int index,String Coid) {
+    int postNumber = 0;
+
+    switch (type) {
+      case "StuckPosts":
+        postNumber = getIndex(ePosts);
+        break;
+      case "academicPosts":
+        postNumber = getIndex(aPosts);
+        break;
+      default:
+        postNumber = getIndex(infoPosts);
+    }
     // parameter index stand for the position of the comment in the post
     if (comments[index].isLiked) {
-      type == "StuckPosts"
-          ? ePosts[postNumber].comments[index].likesCount--
-          : aPosts[postNumber].comments[index].likesCount--;
+      switch (type) {
+        case "StuckPosts":
+          ePosts[postNumber].comments[index].likesCount--;
+          break;
+        case "academicPosts":
+          aPosts[postNumber].comments[index].likesCount--;
+
+          break;
+        default:
+          infoPosts[postNumber].comments[index].likesCount--;
+      }
     } else {
-      type == "StuckPosts"
-          ? ePosts[postNumber].comments[index].likesCount++
-          : aPosts[postNumber].comments[index].likesCount++;
+      switch (type) {
+        case "StuckPosts":
+          ePosts[postNumber].comments[index].likesCount++;
+          break;
+        case "academicPosts":
+          aPosts[postNumber].comments[index].likesCount++;
+
+          break;
+        default:
+          infoPosts[postNumber].comments[index].likesCount++;
+      }
     }
-    type == "StuckPosts"
-        ? ePosts[postNumber].comments[index].isLiked =
-            !ePosts[postNumber].comments[index].isLiked
-        : aPosts[postNumber].comments[index].isLiked =
+    switch (type) {
+      case "StuckPosts":
+        ePosts[postNumber].comments[index].isLiked =
+            !ePosts[postNumber].comments[index].isLiked;
+        break;
+      case "academicPosts":
+        aPosts[postNumber].comments[index].isLiked =
             !aPosts[postNumber].comments[index].isLiked;
 
-    //likeComment(commentId, "6439d42fac4d0cf5f4518a8d");
+        break;
+      default:
+        infoPosts[postNumber].comments[index].isLiked =
+            !infoPosts[postNumber].comments[index].isLiked;
+    }
+
+    //
+    //
+    //BackEnd here
+    //
+    //
     update();
-
+    likeComment(Coid);
   }
-
-  //prepare image file
-  static Future<File> uint8ListToFile(Uint8List uint8list, String filePath) async {
-    final file = File(filePath);
-    await file.writeAsBytes(uint8list);
-    return file;
-}
 
   //
   //
@@ -183,5 +315,40 @@ addComment(String date)async{
       return "${(comments[index].likesCount / 1000).toStringAsFixed(1)}k";
     }
     return "${comments[index].likesCount}";
+    
+   
   }
+
+  //report post
+  reportPost(BuildContext context) async {
+   
+    var response = await ApiServices.reportPost(controllerTag, type);
+    var result = jsonDecode(response.body);
+    if (result == true) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          dismissDirection: DismissDirection.vertical,
+          duration: const Duration(milliseconds: 1500),
+          content: Text(
+            "this post is successufully reported",
+            style: GoogleFonts.poppins(
+              fontSize: 15.sp,
+              fontWeight: FontWeight.w300,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      );
+    }
+  }
+  // //report comment
+  reportComment(String commentId)async{
+  var response=await ApiServices.reportComment(commentId);
+  var result=jsonDecode(response.body);
+  print(result);
+  if(result==true){
+    reportIsSuccess=true;
+  }
+  }
+
 }

@@ -9,18 +9,22 @@ class CommentClass {
     required this.comment,
     required this.likesCount,
     required this.commentsCount,
-    required this.formattedDate,
+    required this.date,
     this.isLiked = false,
     required this.commentId,
-    required this.profilePic,
+     required this.profilePic,
+    this.isReported = false,
+    required this.links,
   });
-  final Uint8List? profilePic;
+  final String profilePic;
   final String userName;
   final String email;
   final String comment;
-  final String ?commentId;
+  String commentId;
   int likesCount;
   final int commentsCount;
-  final String formattedDate;
+  final String date;
   bool isLiked;
+  bool isReported;
+  final List<dynamic> links;
 }

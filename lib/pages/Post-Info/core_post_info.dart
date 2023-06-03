@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +15,10 @@ class CorePostInfo extends StatelessWidget {
       required this.title,
       required this.description,
       required this.date, required this.image,});
-  final File? image;
+  final String image;
   final String title;
   final String description;
-  final DateTime date;
+  final String date;
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +77,7 @@ class CorePostInfo extends StatelessWidget {
                       SizedBox(height: 4.h),
                       //timeAgo
                       Text(
-                        Jiffy.parseFromDateTime(date).fromNow(),
+                        Jiffy.parseFromDateTime(DateTime.parse(date)).fromNow(),
                         style: GoogleFonts.poppins(
                           color: const Color.fromRGBO(119, 119, 119, 1),
                           fontWeight: FontWeight.w700,
@@ -105,14 +107,16 @@ class CorePostInfo extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 25.h),
-            if(image != null)  ClipRRect(
+            ClipRRect(
                 borderRadius: BorderRadius.circular(5).r,
-                child: Image.file(
+                child: /*Image.file(
                   File(image!.path),
                   fit: BoxFit.cover,
                   filterQuality: FilterQuality.medium,
-                ),
-              ),
+                ),*/
+                image =="" ?  Image.network("https://images.unsplash.com/photo-1560169573-5ff6f7f35fe4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=940&q=80"):Image.memory(base64.decode(image)) 
+              ) 
+            
             ],
           ),
         ),

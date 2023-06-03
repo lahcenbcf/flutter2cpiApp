@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flluter2cpi/pages/Sign_up/sign_up_view_model.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';

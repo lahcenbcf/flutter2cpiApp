@@ -1,12 +1,14 @@
 import 'package:flluter2cpi/pages/School_year/Components/year_selecter.dart';
 import 'package:flluter2cpi/pages/School_year/school_year_view_model.dart';
-import 'package:flluter2cpi/pages/Sign_up/User_Modal.dart';
-import 'package:flluter2cpi/pages/Sign_up/sign_up_view_model.dart';
+//import 'package:flluter2cpi/pages/Sign_up/sign_up_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:provider/provider.dart';
+
+import '../Sign_up/User_Modal.dart';
+import '../Sign_up/sign_up_view_model.dart';
 
 class SchoolYear extends StatelessWidget {
   const SchoolYear({super.key});
@@ -14,7 +16,7 @@ class SchoolYear extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = Provider.of<SchoolYearViewModel>(context, listen: false);
-    final Registerstate = Provider.of<SignUpViewModel>(context, listen: false);
+  final Registerstate = Provider.of<SignUpViewModel>(context, listen: false);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -145,7 +147,7 @@ class SchoolYear extends StatelessWidget {
                                     // state.setYear = null;
                                     if(state.selectedYear !=null){
                                      
-                                      /*await state.pressButton(UserModal(
+                                      await state.pressButton(UserModal(
                                         fullName: Registerstate
                                             .fullNameController.text,
                                         email:
@@ -154,9 +156,9 @@ class SchoolYear extends StatelessWidget {
                                             .passwordController.text,
               
                                         schoolYear: state.selectedYear));
-                                          */
+                                          
                                         Navigator.of(context).pushNamed("LogIn"); 
-                                      /*  if(state.successRegister){
+                                       if(state.successRegister){
                                              
                                       }else{
                                         ScaffoldMessenger.of(context).showSnackBar(
@@ -173,7 +175,7 @@ class SchoolYear extends StatelessWidget {
                                       ),
                                     ),
                                  );
-                                  }*/
+                                  }
 
                                     }else{
                                       ScaffoldMessenger.of(context).showSnackBar(

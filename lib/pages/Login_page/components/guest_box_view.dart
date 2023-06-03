@@ -5,6 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../main.dart';
 
 class GuestBox extends StatefulWidget {
   const GuestBox({super.key});
@@ -86,8 +89,11 @@ class _GuestBox extends State<GuestBox> {
               onPressed: () async{
                 if(forme.currentState != null){
                   if(forme.currentState!.validate()){
-                    await state.registerguest(state.fullNameController.text);
-                    
+                    // await state.registerguest(state.fullNameController.text);
+                  
+                     final pref = await SharedPreferences.getInstance();
+                     pref.setBool("isGuest", true);
+                     isGuestt = true;
                       //rediraction to Home page
                       // ignore: use_build_context_synchronously
                       Navigator.pushNamed(context, "HomePage");

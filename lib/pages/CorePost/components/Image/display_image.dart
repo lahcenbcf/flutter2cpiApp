@@ -1,54 +1,37 @@
-import 'dart:io';
-import 'dart:typed_data';
+import 'dart:convert';
 
 import 'package:flluter2cpi/pages/CorePost/core_post_controller.dart';
+import 'package:flluter2cpi/test.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:flluter2cpi/pages/CorePost/core_post_controller.dart';
+
 import 'package:photo_view/photo_view.dart';
 
-class DisplayImage extends StatefulWidget {
+class DisplayImage extends StatelessWidget {
   const DisplayImage({
     super.key,
-    required this.image,
-    required this.pathImage,
     required this.controllerTag,
   });
   final String controllerTag;
-  final Uint8List image;
-  final String pathImage;
-
-  @override
-  State<DisplayImage> createState() => _DisplayImageState();
-}
-
-class _DisplayImageState extends State<DisplayImage> {
-  late Future<File> fileImage;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    fileImage=CorePostCotroller.uint8ListToFile(widget.image,widget.pathImage);
-  }
-
   @override
   Widget build(BuildContext context) {
     //
-    final controller = Get.find<CorePostCotroller>(tag: widget.controllerTag);
-    File image;
+    final controller = Get.find<CorePostCotroller>(tag: controllerTag);
+
     final size = MediaQuery.of(context).size;
-  
+    /*ImageProvider imageProvider;
+    if(controller.image !=""){
+      imageProvider=MemoryImage(base64.decode(controller.image!));
+    }else{
+      imageProvider=NetworkImage("https://images.unsplash.com/photo-1560169573-5ff6f7f35fe4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=940&q=80");
+    }*/
+    
     final iconSize = (((size.height / 844) + (size.width / 390)) / 2);
     //
     //
-    return FutureBuilder(future: fileImage
-    ,builder: (context,snapShot){
-      if(snapShot.hasData){
-        image=snapShot.data!;
-        return Scaffold(
+    return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -69,12 +52,11 @@ class _DisplayImageState extends State<DisplayImage> {
         ),
       ),
       body: PhotoView(
-        imageProvider: FileImage(image),
-        //uint8ListToFile,
+        imageProvider: MemoryImage(base64.decode(controller.image!)),
         backgroundDecoration: const BoxDecoration(
           color: Colors.black54,
         ),
-        heroAttributes: PhotoViewHeroAttributes(tag: widget.controllerTag),
+        heroAttributes: PhotoViewHeroAttributes(tag: controllerTag),
         initialScale: PhotoViewComputedScale.contained,
         minScale: PhotoViewComputedScale.contained * 1,
         maxScale: PhotoViewComputedScale.covered * 1.5,
@@ -82,15 +64,5 @@ class _DisplayImageState extends State<DisplayImage> {
         filterQuality: FilterQuality.medium,
       ),
     );
-      }
-      else if(snapShot.hasError) {
-          return Text('Error: ${snapShot.error}');
-        } else {
-          return const CircularProgressIndicator();
-        }
-      }
-    );
-    
   }
-
 }
