@@ -91,6 +91,7 @@ Map<String, dynamic> toJson() {
     //corePostCotroller.getComments("lahcen", controllerTag, type);
     // inint the controller
     postController.type = type;
+    String firstName=userName.substring(0,userName.indexOf(' '));
     postController.likesCount = likesCount;
     postController.commentsCount = commentsCount;
     postController.controllerTag = controllerTag;
@@ -164,7 +165,7 @@ Map<String, dynamic> toJson() {
                         children: [
                           ProfileIcon(
                             links: links,
-                            userName: userName,
+                            userName: firstName,
                             email: email,
                             controllerTag: controllerTag,
                           ),
@@ -175,7 +176,7 @@ Map<String, dynamic> toJson() {
                             children: [
                               // userName
                               Text(
-                                "@$userName",
+                                "@$firstName",
                                 style: GoogleFonts.poppins(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w600,

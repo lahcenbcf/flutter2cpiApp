@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:typed_data';
 import 'package:flluter2cpi/pages/Home_page/Home_page_viewM.dart';
 import 'package:flluter2cpi/pages/Home_page/home_page_view.dart';
 import 'package:http/http.dart';
@@ -60,8 +59,12 @@ class Vieww extends ChangeNotifier {
       List<String> loginInfo=[finalResult["fullName"],lastName,firstName,finalResult?["email"],finalResult?["_id"],finalResult?["github"],finalResult?["linkedin"],finalResult?["telegram"],profilePicture,finalResult?["bio"]];
       userInfo=loginInfo;
       List<dynamic> followedTags=finalResult?["followedTags"];
+      print(followedTags);
+      
+
       List<String> ftags=followedTags.map<String>((e) =>e ).toList();
       followedTags=followedTags;
+      print(ftags);
       Home_page_viewM.updateTags();
       await SharedPrefService.pref.setStringList("loginInfo", loginInfo);
       await SharedPrefService.pref.setStringList("followedTags", ftags);

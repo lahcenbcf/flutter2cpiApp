@@ -8,7 +8,6 @@ import 'package:flluter2cpi/pages/Main_Pages/Editing_profile/second_edit_page.da
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../main.dart';
 class Profile_1st_screen extends StatefulWidget {
   const Profile_1st_screen({super.key});
 
@@ -30,8 +29,8 @@ class _Profile_1st_screenState extends State<Profile_1st_screen> {
     String mail="";
     String bio="";
   if(userInfo != null){
-    fn=userInfo![1];
-      ln=userInfo![2];
+    fn=userInfo![2];
+      ln=userInfo![1];
       mail=userInfo![3];
       bio=userInfo![9];
   }
@@ -182,14 +181,14 @@ class _Profile_1st_screenState extends State<Profile_1st_screen> {
     );*/
   
 return Scaffold( 
-      backgroundColor: Color.fromRGBO(35, 47, 56, 1), 
+      backgroundColor: const Color.fromRGBO(35, 47, 56, 1), 
       appBar: PreferredSize( 
         preferredSize: Size.fromHeight(70.h), 
         child: AppBar( 
-          backgroundColor: Color.fromRGBO(35, 47, 56, 1), 
+          backgroundColor: const Color.fromRGBO(35, 47, 56, 1), 
           leading: Center( 
             child: IconButton( 
-              icon: Icon( 
+              icon: const Icon( 
                 Icons.arrow_back, 
                 color: Colors.white, 
               ), 
@@ -229,18 +228,18 @@ return Scaffold(
             ), 
            
             TextButton( 
-              onPressed: () {Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Profile_2nd_screen()));}, 
+              onPressed: () {Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const Profile_2nd_screen()));}, 
+              style: const ButtonStyle( 
+                backgroundColor: MaterialStatePropertyAll( 
+                  Color.fromRGBO(32, 197, 122, 1), 
+                ), 
+              ), 
               child: Text( 
                 'Edit profile', 
                 style: GoogleFonts.inter( 
                     fontSize: 16.sp, 
                     fontWeight: FontWeight.w400, 
                     color: Colors.white), 
-              ), 
-              style: const ButtonStyle( 
-                backgroundColor: MaterialStatePropertyAll( 
-                  Color.fromRGBO(32, 197, 122, 1), 
-                ), 
               ), 
             ) 
           ], 
@@ -262,7 +261,7 @@ return Scaffold(
                             fontWeight: FontWeight.w400, 
                             color: Colors.white)), 
                     SizedBox(width: 12.w), 
-                    Text(ln, 
+                    Text(fn, 
                         style: GoogleFonts.inter( 
                             fontSize: 12, 
                             fontWeight: FontWeight.w400, 
@@ -285,7 +284,7 @@ return Scaffold(
                             fontWeight: FontWeight.w400, 
                             color: Colors.white)), 
                     SizedBox(width: 12.w), 
-                    Text(fn.toUpperCase(), 
+                    Text(ln.toUpperCase(), 
                         style: GoogleFonts.inter( 
                             fontSize: 12, 
                             fontWeight: FontWeight.w400, 

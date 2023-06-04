@@ -49,7 +49,7 @@ class Post_Model extends ChangeNotifier {
       bytes="";
     }
     //Uint8List imageBytes=await imageFile!.readAsBytes();
-    String date=DateFormat("yyyy-MM-dd mm:kk").format(DateTime.now());
+    String date=DateFormat("yyyy-MM-dd kk:mm").format(DateTime.now());
 
     var response=await ApiServices.addPost(title, desc,tag!=null ? tag! : "", postType,date,bytes); 
   var result=jsonDecode(response.body);

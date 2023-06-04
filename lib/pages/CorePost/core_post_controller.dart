@@ -153,7 +153,7 @@ class CorePostCotroller extends GetxController {
 
      Input.isComment=true;
     
-      String date=DateFormat("yyyy-MM-dd mm:kk").format(DateTime.now());
+      String date=DateFormat("yyyy-MM-dd kk:mm").format(DateTime.now());
  
       String text=controller.text;
       controller.text="";
@@ -179,7 +179,7 @@ class CorePostCotroller extends GetxController {
       switch (type) {
         case "StuckPosts":
           int i = getIndex(ePosts);
-          if(ePosts[i].comments.length == 0){
+          if(ePosts[i].comments.isEmpty){
             comments.insert(0, newComment);
           }
           ePosts[i].comments.insert(0, newComment); //keep trace
@@ -192,7 +192,7 @@ class CorePostCotroller extends GetxController {
         case "academicPosts":
         
           int i = getIndex(aPosts);
-           if(aPosts[i].comments.length == 0){
+           if(aPosts[i].comments.isEmpty){
             comments.insert(0, newComment);
           }
           aPosts[i].comments.insert(0, newComment); //keep trace
@@ -203,7 +203,7 @@ class CorePostCotroller extends GetxController {
           break;
         default:
           int i = getIndex(infoPosts);
-           if(infoPosts[i].comments.length == 0){
+           if(infoPosts[i].comments.isEmpty){
             comments.insert(0, newComment);
           }
           infoPosts[i].comments.insert(0, newComment); //keep trace

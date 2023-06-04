@@ -1,17 +1,13 @@
-import 'dart:convert';
 import 'dart:core';
 
-import 'dart:io';
-import 'dart:typed_data';
 import 'package:flluter2cpi/pages/Home_page/home_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:flluter2cpi/pages/Sign_up/User_Modal.dart';
 import 'package:flluter2cpi/services/sharedServices.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 class ApiServices{
-  static const String _baseUrl="https://flutter2cpiserver.onrender.com";
+  static const String _baseUrl="https://flutter2cpi.onrender.com";
 
   static Future<http.Response> registerUser(UserModal user)async {
 

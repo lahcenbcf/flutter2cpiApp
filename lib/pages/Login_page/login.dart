@@ -258,12 +258,13 @@ class _LoginState extends State<Login> {
                                           showDialog(
                                             context: context,
                                             builder: (context) =>
-                                                Dialog(
+                                                const Dialog(
+                                                  elevation: 0,
                                                   backgroundColor: Colors.transparent,
 
                                                   child: Center(
                                                     child: Padding(
-                                                      padding: const EdgeInsets.all(8.0),
+                                                      padding: EdgeInsets.all(8.0),
                                                       child: CircularProgressIndicator(
                                                                                                   color: Color.fromRGBO(
                                                         32, 197, 122, 1),
@@ -281,12 +282,16 @@ class _LoginState extends State<Login> {
                                             
                                             // ignore: use_build_context_synchronously
                                             //Navigator.pushNamed(context, "LogIn");
+                                            // ignore: use_build_context_synchronously
                                             Navigator.pushReplacementNamed(
                                                 context, "HomePage");
                                             // redirection vers home page
                                             // ignore: use_build_context_synchronously
                                           } else {
                                             // ignore: use_build_context_synchronously
+                                            if(Navigator.canPop(context)){
+                                              Navigator.of(context).pop();
+                                            }
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
                                               SnackBar(

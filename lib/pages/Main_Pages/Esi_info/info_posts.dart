@@ -6,6 +6,7 @@ import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../Home_page/home_page_view.dart';
 import '../../Post-Info/post_info_v.dart';
@@ -93,7 +94,7 @@ result=Home_page_viewM.fetchArtclePosts();
                   );
                 },
               )
-            : const Text("no posts yet"),
+            : Center(child:  Text("no posts yet" , style: GoogleFonts.poppins(fontSize: 25, color: const Color.fromRGBO(255, 255, 255, 1)))),
         floatingActionButton: isAdmin == (email=="h.bencharef@esi-sba.dz" || email=="la.belmiloud@esi-sba.dz" || email=="y.ferhat@esi-sba.dz" || email=="a.latrache@esi-sba.dz" || email=="a.lalliche@esi-sba.dz")
             ? FloatingActionButton( 
                 shape: const CircleBorder(side: BorderSide()), 

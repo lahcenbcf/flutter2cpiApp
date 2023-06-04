@@ -62,7 +62,7 @@ class _Profile_2nd_screenState extends State<Profile_2nd_screen> {
       setState(() {
         if (pickedFile != null) {
           imageFile = File(pickedFile.path);
-          // state.imageFile = imageFile;
+        state1.imageFile = imageFile;
         }
       });
     }
@@ -548,15 +548,15 @@ class _Profile_2nd_screenState extends State<Profile_2nd_screen> {
 
     
 return Scaffold( 
-      backgroundColor: Color.fromRGBO(35, 47, 56, 1), 
+      backgroundColor: const Color.fromRGBO(35, 47, 56, 1), 
       appBar: PreferredSize( 
         preferredSize: Size.fromHeight(70.h), 
         child: AppBar( 
           centerTitle: true, 
-          backgroundColor: Color.fromRGBO(35, 47, 56, 1), 
+          backgroundColor: const Color.fromRGBO(35, 47, 56, 1), 
           leading: Center( 
             child: IconButton( 
-              icon: Icon( 
+              icon:const Icon( 
                 Icons.arrow_back, 
                 color: Colors.white, 
               ), 
@@ -577,9 +577,27 @@ return Scaffold(
                         Color.fromRGBO(32, 197, 122, 1))), 
                 onPressed:
                   () async{if (formState.currentState != null) {
-                                if (formState.currentState!.validate()) {
+                                if (formState.currentState!.validate() || !is_enabled || !is_enabled1) {
                                   //hna nb3ath requset 
-                                 
+                                 showDialog(
+                                            context: context,
+                                            builder: (context) =>
+                                                const Dialog(
+                                                  elevation: 0,
+                                                  backgroundColor: Colors.transparent,
+
+                                                  child: Center(
+                                                    child: Padding(
+                                                      padding: EdgeInsets.all(8.0),
+                                                      child: CircularProgressIndicator(
+                                                                                                  color: Color.fromRGBO(
+                                                        32, 197, 122, 1),
+                                                                                                  
+                                                                                                ),
+                                                    ),
+                                                  ),
+                                                ),
+                                          );
                                     await state1.editProfile();
                                     if(state1.message=="your profile data is updated"){
                                       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const HomePage() ));
@@ -652,7 +670,7 @@ return Scaffold(
                                   File(imageFile!.path), 
                                 ) 
                               : null, 
-                          child: imageFile == null ? Icon(Icons.person) : null, 
+                          child: imageFile == null ? const Icon(Icons.person) : null, 
                         ), 
                       ), 
                       SizedBox( 
@@ -687,7 +705,7 @@ return Scaffold(
                               style: GoogleFonts.inter( 
                                   fontSize: 15.sp, 
                                   fontWeight: FontWeight.w400, 
-                                  color: Color.fromARGB(255, 255, 255, 255)), 
+                                  color: const Color.fromARGB(255, 255, 255, 255)), 
                             ), 
                             SizedBox(width: 8.w), 
                             SizedBox( 
@@ -701,7 +719,7 @@ return Scaffold(
                                     fontSize: 16.sp, 
                                   ), 
                                   cursorColor: Colors.white, 
-                                  decoration: InputDecoration( 
+                                  decoration: const InputDecoration( 
                                     focusedBorder: UnderlineInputBorder( 
                                         borderSide: BorderSide( 
                                             color: Color.fromARGB( 
@@ -722,13 +740,13 @@ return Scaffold(
                                 style: GoogleFonts.inter( 
                                     fontSize: 16.sp, 
                                     fontWeight: FontWeight.w500, 
-                                    color: Color.fromRGBO(32, 197, 122, 1)), 
+                                    color: const Color.fromRGBO(32, 197, 122, 1)), 
                               ): Text( 
                                 'Edit', 
                                 style: GoogleFonts.inter( 
                                     fontSize: 16.sp, 
                                     fontWeight: FontWeight.w500, 
-                                    color: Color.fromRGBO(32, 197, 122, 1)), 
+                                    color: const Color.fromRGBO(32, 197, 122, 1)), 
                               ), 
                             ) 
                           ], 
@@ -789,7 +807,7 @@ return Scaffold(
                                   fontSize: 16.sp, 
                                 ), 
                                 cursorColor: Colors.white, 
-                                decoration: InputDecoration( 
+                                decoration: const InputDecoration( 
                                   focusedBorder: UnderlineInputBorder( 
                                       borderSide: BorderSide( 
                                           color: Color.fromARGB( 
@@ -807,13 +825,13 @@ return Scaffold(
                                 style: GoogleFonts.inter( 
                                     fontSize: 16.sp, 
                                     fontWeight: FontWeight.w500, 
-                                    color: Color.fromRGBO(32, 197, 122, 1)), 
+                                    color: const Color.fromRGBO(32, 197, 122, 1)), 
                               ): Text( 
                                 'Edit', 
                                 style: GoogleFonts.inter( 
                                     fontSize: 16.sp, 
                                     fontWeight: FontWeight.w500, 
-                                    color: Color.fromRGBO(32, 197, 122, 1)), 
+                                    color: const Color.fromRGBO(32, 197, 122, 1)), 
                               ), 
                             ) 
                         ], 
@@ -871,13 +889,13 @@ return Scaffold(
                               onPressed: () => Navigator.of(context).push( 
                                   MaterialPageRoute( 
                                       builder: (context) => 
-                                          Profile_3rd_screen())), 
+                                          const Profile_3rd_screen())), 
                               child: Text( 
                                 'Edit', 
                                 style: GoogleFonts.inter( 
                                     fontSize: 16.sp, 
                                     fontWeight: FontWeight.w500, 
-                                    color: Color.fromRGBO(32, 197, 122, 1)), 
+                                    color: const Color.fromRGBO(32, 197, 122, 1)), 
                               ), 
                             ) 
                           ], 
@@ -905,7 +923,7 @@ return Scaffold(
                                     fontSize: 16.sp, 
                                   ), 
                                   cursorColor: Colors.white, 
-                                  decoration: InputDecoration( 
+                                  decoration: const InputDecoration( 
                                     focusedBorder: UnderlineInputBorder( 
                                         borderSide: BorderSide( 
                                             color: Color.fromARGB( 
@@ -941,7 +959,7 @@ SizedBox(
                                     fontSize: 16.sp, 
                                   ), 
                                   cursorColor: Colors.white, 
-                                  decoration: InputDecoration( 
+                                  decoration: const InputDecoration( 
                                     focusedBorder: UnderlineInputBorder( 
                                         borderSide: BorderSide( 
                                             color: Color.fromARGB( 
@@ -958,7 +976,7 @@ SizedBox(
                         height: 20.h, 
                       ), 
                       Padding( 
-                        padding:  EdgeInsets.only(left: 8.0), 
+                        padding:  const EdgeInsets.only(left: 8.0), 
                         child: Row( 
                           children: [ 
                             Text('Telegram User:', 

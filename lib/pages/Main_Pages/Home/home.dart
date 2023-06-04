@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:flluter2cpi/pages/Home_page/home_page_view.dart';
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
@@ -7,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../services/sharedServices.dart';
 import '../../Post/post_v.dart';
 import 'display_followed_tags.dart';
 
@@ -101,7 +99,7 @@ class _HomeState extends State<Home> {
 
           //
           LimitedBox(
-            maxHeight: 250.0.h,
+            maxHeight: 300.0.h,
             child: PageView.builder(
               itemCount:e.length>4 ?  4 : e.length+1 ,
               controller: controller,
@@ -109,7 +107,7 @@ class _HomeState extends State<Home> {
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5).w,
                 child: SizedBox(
-                  height: 260.h,
+                  height: 300.h,
                   child: Align(
                     alignment: Alignment.center,
                     child: (e.length>4 ? index != 3 : index!=e.length ) 
@@ -186,7 +184,7 @@ class _HomeState extends State<Home> {
           //
 
           LimitedBox(
-            maxHeight: 250.0.h,
+            maxHeight: 300.0.h,
             child: PageView.builder(
               itemCount: a.length>4 ?  4 : a.length+1 ,
               controller: controller,
@@ -194,7 +192,7 @@ class _HomeState extends State<Home> {
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5).w,
                 child: SizedBox(
-                  height: 260.h,
+                  height: 300.h,
                   child: Align(
                     alignment: Alignment.center,
                     child: (a.length>4 ? index != 3 : index!=a.length ) 
@@ -268,7 +266,7 @@ class _HomeState extends State<Home> {
           SizedBox(height: 16.h),
 
           LimitedBox(
-            maxHeight: 250.0.h,
+            maxHeight: 300.0.h,
             child: PageView.builder(
               itemCount:i.length>4 ?  4 : i.length+1,
               controller: controller,

@@ -122,6 +122,24 @@ class _TagChooserState extends State<TagChooser> {
                                 backgroundColor: MaterialStatePropertyAll(
                                     Color.fromRGBO(32, 197, 122, 1))),
                             onPressed: ()async {
+                              showDialog(
+                                            context: context,
+                                            builder: (context) =>
+                                                const Dialog(
+                                                  backgroundColor: Colors.transparent,
+                                                  elevation: 0,
+                                                  child: Center(
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.all(8.0),
+                                                      child: CircularProgressIndicator(
+                                                                                                  color: Color.fromRGBO(
+                                                        32, 197, 122, 1),
+                                                                                                  
+                                                                                                ),
+                                                    ),
+                                                  ),
+                                                ),
+                                          );
                               await AddPostState.addPost(
                                 AddPostState.get_title(),
                                 AddPostState.get_des(),

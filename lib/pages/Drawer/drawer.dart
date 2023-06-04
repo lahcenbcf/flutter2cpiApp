@@ -1,5 +1,4 @@
 import 'package:flluter2cpi/display_profile_pic.dart';
-import 'package:flluter2cpi/main.dart';
 import 'package:flluter2cpi/pages/Login_page/view_model.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../services/sharedServices.dart';
 import '../Home_page/home_page_view.dart';
 import '../Login_page/components/guest_box_view_model.dart';
 import '../Main_Pages/Editing_profile/edit_profile_ui.dart';
@@ -23,8 +22,8 @@ class Drawerr extends StatelessWidget {
   String ln="";
   String mail="";
     if(userInfo != null){
-    fn=userInfo![1];
-      ln=userInfo![2];
+    fn=userInfo![2];
+      ln=userInfo![1];
       mail=userInfo![3];
   }
 
@@ -49,7 +48,7 @@ class Drawerr extends StatelessWidget {
               
                 Text(
                         // ignore: unnecessary_null_comparison
-                        fn !="" ? "$fn" : "@username",
+                        fn !="" ? fn : "@username",
                         style: GoogleFonts.poppins(
                           color: const Color.fromRGBO(255, 255, 255, 1),
                           fontSize: 16.0.sp,
@@ -145,8 +144,9 @@ class Drawerr extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 300).h,
               child: InkWell(
-                onTap: ()  {
+                onTap: () async {
                   loginState.isLogged=false;
+               await  SharedPrefService.pref.clear();
                  Navigator.of(context).pushReplacementNamed("choice");
                  
                 },
@@ -171,3 +171,5 @@ class Drawerr extends StatelessWidget {
     );
   }
 }
+
+

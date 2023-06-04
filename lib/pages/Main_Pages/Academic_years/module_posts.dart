@@ -4,6 +4,7 @@
 import 'package:flluter2cpi/pages/Post%20&%20Comment%20classes/posts_tags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../Post/post_v.dart';
 
@@ -19,13 +20,13 @@ class Module_posts extends StatefulWidget {
 class _Module_postsState extends State<Module_posts> {
   @override
   Widget build(BuildContext context) {
-    print(aPosts[0]);
+   
     List<Post> filteredList = 
         aPosts.where((p) => p.tag == widget.tag).toList();
        
-    print("${filteredList.length}  lenght");
+    
 
-    print(widget.tag);
+    
     return Scaffold(
       backgroundColor: const Color.fromRGBO(35, 47, 56, 1),
       body: filteredList.isNotEmpty
@@ -42,7 +43,7 @@ class _Module_postsState extends State<Module_posts> {
                 );
               },
             )
-          : const Text("no posts yet"),
+          : Center(child:  Text("no posts yet" , style: GoogleFonts.poppins(fontSize: 25, color: const Color.fromRGBO(255, 255, 255, 1)),)),
     );
   }
 }
